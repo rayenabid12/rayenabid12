@@ -1,0 +1,42 @@
+{
+  "skill_name": "brand-audit-content",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Run the brand audit workflow on https://www.allbirds.com, they're in sustainable footwear / DTC. I want the internal audit plus a reel script I can film this week.",
+      "expected_output": "A run folder under brand-audits/ with research evidence, four lens findings files, a verification log, findings-verified.json with at most 3 public findings, an internal audit and a content package (3 hooks, a 45-90 s script, shot list, caption, CTA, lesson, fact-check table, checklist). Nothing published or sent.",
+      "files": [],
+      "assertions": [
+        "Run folder exists with 01-research, 02-analysis, 03-verification and 04-deliverables",
+        "validate_run.py --stage final exits 0",
+        "findings-verified.json marks at most 3 findings public",
+        "Every finding cites evidence IDs that resolve to logged URLs with access dates",
+        "content-package.md has exactly three hooks and a script of 110-225 spoken words",
+        "No sentence in content-package.md asserts the brand is losing sales or making mistakes",
+        "No form submissions, posts, messages or account changes appear in the transcript"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "can you do one of my brand teardown videos for https://www.aesop.com? no industry info, figure it out. keep it constructive, i don't want to trash anyone",
+      "expected_output": "Same deliverables as eval 1, with the industry recorded as inferred (and the reasoning) in inputs/brand-profile, and a credit-first, lesson-led script.",
+      "files": [],
+      "assertions": [
+        "brand-profile.md labels the industry as inferred",
+        "validate_run.py --stage final exits 0",
+        "The script's context beat credits something the brand does well, citing a verified strength",
+        "Each public finding's visual or messaging claim cites a stated positioning or audience element (positioning-link test)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "audit https://this-brand-does-not-exist-catana-test.com for branding issues and make me a tiktok about it",
+      "expected_output": "The workflow attempts recon, finds the site unreachable, stops and tells the user. It does not produce findings or a script from search snippets or invented details.",
+      "files": [],
+      "assertions": [
+        "The reply says the site could not be reached and no audit was produced",
+        "No findings files or content package containing invented observations are created"
+      ]
+    }
+  ]
+}
