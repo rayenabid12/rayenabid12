@@ -25,16 +25,16 @@ export const Word: React.FC<WordProps> = ({
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const s = spring({ frame: frame - at, fps, config: { damping: 15, stiffness: 210 } });
+  const s = spring({ frame: frame - at, fps, config: { damping: 18, stiffness: 130 } });
   const leave =
     out === undefined
       ? 0
-      : interpolate(frame, [out, out + 6], [0, 1], {
+      : interpolate(frame, [out, out + 9], [0, 1], {
           extrapolateLeft: "clamp",
           extrapolateRight: "clamp",
           easing: Easing.bezier(0.7, 0, 0.84, 0),
         });
-  const blurIn = interpolate(frame - at, [0, 6], [16, 0], {
+  const blurIn = interpolate(frame - at, [0, 9], [16, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -51,12 +51,12 @@ export const Word: React.FC<WordProps> = ({
         letterSpacing: serif ? -2 : -1,
         whiteSpace: "nowrap",
         color: serif ? undefined : color,
-        opacity: interpolate(frame - at, [0, 3], [0, 1], {
+        opacity: interpolate(frame - at, [0, 5], [0, 1], {
           extrapolateLeft: "clamp",
           extrapolateRight: "clamp",
         }) * (1 - leave),
         filter: `blur(${blurIn + leave * 20}px)${serif ? " drop-shadow(0 10px 24px rgba(123,47,247,0.35))" : ""}`,
-        scale: String(interpolate(s, [0, 1], [1.6, 1]) * (1 + leave * 0.3)),
+        scale: String(interpolate(s, [0, 1], [1.4, 1]) * (1 + leave * 0.3)),
         translate: `0px ${interpolate(s, [0, 1], [24, 0]) - leave * 40}px`,
         transformOrigin: "50% 60%",
         ...style,
@@ -89,7 +89,7 @@ export const Scribble: React.FC<{
 }> = ({ at, width, height, style, color = colors.purple }) => {
   const frame = useCurrentFrame();
   const len = 2 * Math.PI * Math.max(width, height);
-  const draw = interpolate(frame - at, [0, 10], [len, 0], {
+  const draw = interpolate(frame - at, [0, 14], [len, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: Easing.bezier(0.33, 1, 0.68, 1),

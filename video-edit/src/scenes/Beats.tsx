@@ -3,6 +3,7 @@ import { HERO } from "../components/FaceCard";
 import { Pill } from "../components/Headline";
 import { Brackets, Editorial, Scribble, Word } from "../components/Kinetic";
 import { colors, sansFont } from "../theme";
+import { Bars3D } from "../components/ThreeD";
 
 const Center: React.FC<{ top: number; children: React.ReactNode; gap?: number }> = ({
   top,
@@ -30,24 +31,24 @@ export const HookText: React.FC = () => (
   <AbsoluteFill>
     {/* while the speaker is full screen */}
     <Center top={1430}>
-      <Word variant="sans" size={72} color="white" at={1} out={13} style={{ textShadow: "0 4px 20px rgba(0,0,0,0.6)" }}>
+      <Word variant="sans" size={72} color="white" at={3} out={16} style={{ textShadow: "0 4px 20px rgba(0,0,0,0.6)" }}>
         When you start
       </Word>
     </Center>
     {/* after the card shrinks */}
     <Center top={250}>
-      <Word variant="sans" size={64} at={17} out={48}>
+      <Word variant="sans" size={64} at={26} out={54}>
         you&apos;re
       </Word>
-      <Word size={230} at={20} out={48}>
+      <Word size={230} at={30} out={54}>
         BUILDING
       </Word>
-      <Word variant="sans" size={84} at={26} out={48} style={{ marginTop: 6 }}>
+      <Word variant="sans" size={84} at={38} out={54} style={{ marginTop: 6 }}>
         a brand.
       </Word>
     </Center>
-    <Brackets at={26} rect={HERO} />
-    <Editorial at={28} style={{ left: 70, top: 90 }}>
+    <Brackets at={34} rect={HERO} />
+    <Editorial at={36} style={{ left: 70, top: 90 }}>
       Building a brand from zero — the process, step by step. Part 01.
     </Editorial>
   </AbsoluteFill>
@@ -80,24 +81,9 @@ const Badge: React.FC<{ i: number; at: number; glyph: React.ReactNode }> = ({ i,
 
 export const AnyBrandDecor: React.FC = () => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const s = spring({ frame: frame - 2, fps, config: { damping: 13, stiffness: 140 } });
-  const out = interpolate(frame, [34, 41], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const out = interpolate(frame, [36, 44], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   return (
     <AbsoluteFill style={{ opacity: out }}>
-      <div
-        style={{
-          position: "absolute",
-          left: 540 - 340,
-          top: 820 - 340,
-          width: 680,
-          height: 680,
-          borderRadius: "50%",
-          background: `radial-gradient(circle at 35% 30%, ${colors.purpleLight} 0%, ${colors.purple} 45%, ${colors.purpleDeep} 100%)`,
-          boxShadow: "0 50px 100px rgba(85,18,194,0.45), inset -30px -40px 80px rgba(40,0,90,0.35)",
-          scale: String(s),
-        }}
-      />
       <Badge i={0} at={10} glyph={<circle cx={50} cy={50} r={26} />} />
       <Badge i={1} at={10} glyph={<rect x={26} y={26} width={48} height={48} rx={10} />} />
       <Badge i={2} at={10} glyph={<polygon points="50,16 59,40 85,40 64,56 72,82 50,66 28,82 36,56 15,40 41,40" />} />
@@ -110,10 +96,10 @@ export const AnyBrandDecor: React.FC = () => {
 export const AnyBrandText: React.FC = () => (
   <AbsoluteFill>
     <Center top={600}>
-      <Word variant="sans" size={84} color="white" at={9} out={34}>
+      <Word variant="sans" size={84} color="white" at={7} out={36}>
         any
       </Word>
-      <Word size={290} fill="white" at={12} out={34} style={{ filter: "drop-shadow(0 12px 30px rgba(40,0,90,0.5))" }}>
+      <Word size={290} fill="white" at={11} out={36} style={{ filter: "drop-shadow(0 12px 30px rgba(40,0,90,0.5))" }}>
         BRAND
       </Word>
     </Center>
@@ -123,12 +109,12 @@ export const AnyBrandText: React.FC = () => (
 /* 3 · Step 01: vertical purple band on the left -------------------------- */
 export const FirstDecor: React.FC = () => {
   const frame = useCurrentFrame();
-  const p = interpolate(frame, [0, 9], [0, 1], {
+  const p = interpolate(frame, [0, 12], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: Easing.bezier(0.16, 1, 0.3, 1),
   });
-  const out = interpolate(frame, [25, 31], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const out = interpolate(frame, [30, 36], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   return (
     <div
       style={{
@@ -159,14 +145,14 @@ export const FirstText: React.FC = () => (
         gap: 6,
       }}
     >
-      <Pill delay={2}>STEP 01</Pill>
-      <Word variant="sans" size={84} color="white" at={4} out={25}>
+      <Pill delay={4}>STEP 01</Pill>
+      <Word variant="sans" size={84} color="white" at={8} out={30}>
         the
       </Word>
-      <Word size={230} fill="white" at={8} out={25}>
+      <Word size={230} fill="white" at={12} out={30}>
         FIRST
       </Word>
-      <Word variant="sans" size={84} color="white" at={13} out={25}>
+      <Word variant="sans" size={84} color="white" at={20} out={30}>
         thing
       </Word>
     </div>
@@ -176,17 +162,17 @@ export const FirstText: React.FC = () => (
 /* 4 · Brand research: heartbeat line + magnifier ------------------------ */
 export const ResearchDecor: React.FC = () => {
   const frame = useCurrentFrame();
-  const pulse = interpolate(frame, [2, 20], [1500, 0], {
+  const pulse = interpolate(frame, [2, 24], [1500, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: Easing.bezier(0.33, 1, 0.68, 1),
   });
-  const lensX = interpolate(frame, [8, 36], [1100, 520], {
+  const lensX = interpolate(frame, [8, 40], [1100, 520], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: Easing.bezier(0.45, 0, 0.2, 1),
   });
-  const out = interpolate(frame, [35, 41], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const out = interpolate(frame, [40, 46], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   return (
     <AbsoluteFill style={{ opacity: out }}>
       <svg width={1080} height={300} viewBox="0 0 1080 300" style={{ position: "absolute", top: 380 }}>
@@ -209,7 +195,7 @@ export const ResearchDecor: React.FC = () => {
           position: "absolute",
           left: lensX,
           top: 1330,
-          rotate: `${interpolate(frame, [8, 36], [25, -5], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}deg`,
+          rotate: `${interpolate(frame, [8, 40], [25, -5], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}deg`,
           filter: "drop-shadow(0 14px 22px rgba(42,31,61,0.35))",
         }}
       >
@@ -223,17 +209,17 @@ export const ResearchDecor: React.FC = () => {
 export const ResearchText: React.FC = () => (
   <AbsoluteFill>
     <Center top={720}>
-      <Word variant="sans" size={72} at={2} out={35}>
+      <Word variant="sans" size={72} at={4} out={40}>
         this is the
       </Word>
-      <Word size={260} at={9} out={35}>
+      <Word size={260} at={11} out={40}>
         BRAND
       </Word>
       <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center" }}>
-        <Word size={205} at={14} out={35}>
+        <Word size={205} at={18} out={40}>
           RESEARCH
         </Word>
-        <Scribble at={19} width={900} height={290} style={{ top: -62 }} />
+        <Scribble at={24} width={900} height={290} style={{ top: -62 }} />
       </div>
     </Center>
   </AbsoluteFill>
@@ -242,19 +228,19 @@ export const ResearchText: React.FC = () => (
 /* 5 · In this phase ------------------------------------------------------ */
 export const PhaseText: React.FC = () => {
   const frame = useCurrentFrame();
-  const line = interpolate(frame, [15, 24], [0, 1], {
+  const line = interpolate(frame, [19, 30], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: Easing.bezier(0.16, 1, 0.3, 1),
   });
-  const out = interpolate(frame, [29, 34], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const out = interpolate(frame, [33, 38], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   return (
     <AbsoluteFill>
       <Center top={1150}>
-        <Word variant="sans" size={84} at={8} out={29}>
+        <Word variant="sans" size={84} at={12} out={33}>
           in this
         </Word>
-        <Word size={250} at={12} out={29}>
+        <Word size={250} at={17} out={33}>
           PHASE
         </Word>
         <div
@@ -267,7 +253,7 @@ export const PhaseText: React.FC = () => {
             background: `linear-gradient(90deg, ${colors.purpleDeep}, ${colors.purpleLight})`,
           }}
         />
-        <Word variant="sans" size={52} color={colors.inkSoft} at={20} out={29} style={{ marginTop: 22 }}>
+        <Word variant="sans" size={52} color={colors.inkSoft} at={26} out={33} style={{ marginTop: 22 }}>
           you do two things ↓
         </Word>
       </Center>
@@ -317,12 +303,12 @@ const Row: React.FC<{ at: number; label: string }> = ({ at, label }) => {
 
 export const BriefDecor: React.FC = () => {
   const frame = useCurrentFrame();
-  const card = interpolate(frame, [4, 14], [0, 1], {
+  const card = interpolate(frame, [10, 22], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: Easing.bezier(0.16, 1, 0.3, 1),
   });
-  const out = interpolate(frame, [40, 46], [0, 1], {
+  const out = interpolate(frame, [43, 49], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: Easing.bezier(0.7, 0, 0.84, 0),
@@ -356,9 +342,9 @@ export const BriefDecor: React.FC = () => {
         CLIENT BRIEF
       </div>
       <div style={{ padding: "50px 44px 20px" }}>
-        <Row at={18} label="Goals & vision" />
-        <Row at={24} label="Target audience" />
-        <Row at={30} label="Budget & timeline" />
+        <Row at={22} label="Goals & vision" />
+        <Row at={29} label="Target audience" />
+        <Row at={36} label="Budget & timeline" />
       </div>
     </div>
   );
@@ -367,10 +353,10 @@ export const BriefDecor: React.FC = () => {
 export const BriefText: React.FC = () => (
   <AbsoluteFill>
     <Center top={190}>
-      <Word variant="sans" size={84} at={6} out={40}>
+      <Word variant="sans" size={84} at={8} out={43}>
         take the
       </Word>
-      <Word size={300} at={14} out={40}>
+      <Word size={300} at={16} out={43}>
         BRIEF
       </Word>
     </Center>
@@ -380,41 +366,21 @@ export const BriefText: React.FC = () => (
 /* 7 · Market research ---------------------------------------------------- */
 export const MarketText: React.FC = () => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const bars = [0.35, 0.55, 0.45, 0.75, 1];
   return (
     <AbsoluteFill>
-      <div style={{ position: "absolute", top: 1120, width: 1080, display: "flex", justifyContent: "center", alignItems: "flex-end", gap: 22, height: 150 }}>
-        {bars.map((b, i) => {
-          const s = spring({ frame: frame - 12 - i * 2, fps, config: { damping: 13, stiffness: 160 } });
-          return (
-            <div
-              key={i}
-              style={{
-                width: 70,
-                height: 150 * b * s,
-                borderRadius: "16px 16px 6px 6px",
-                background:
-                  i === bars.length - 1
-                    ? `linear-gradient(180deg, ${colors.purpleLight}, ${colors.purpleDeep})`
-                    : "rgba(123,47,247,0.28)",
-              }}
-            />
-          );
-        })}
-      </div>
-      <Center top={1300}>
-        <Word variant="sans" size={72} at={14} style={{ marginBottom: 20 }}>
+      <Bars3D at={14} />
+      <Center top={1430}>
+        <Word variant="sans" size={72} at={18} style={{ marginBottom: 10 }}>
           research the
         </Word>
         <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center" }}>
-          <Word size={250} at={30}>
+          <Word size={250} at={38}>
             MARKET
           </Word>
         </div>
         <div
           style={{
-            width: 600 * interpolate(frame, [33, 42], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.bezier(0.16, 1, 0.3, 1) }),
+            width: 600 * interpolate(frame, [41, 52], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.bezier(0.16, 1, 0.3, 1) }),
             height: 10,
             borderRadius: 5,
             marginTop: 10,
@@ -432,10 +398,10 @@ export const OutroText: React.FC = () => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill style={{ justifyContent: "center", alignItems: "center" }}>
-      <Word size={340} at={1}>
+      <Word size={340} at={6}>
         SAVE
       </Word>
-      <Word variant="sans" size={60} color={colors.inkSoft} at={7}>
+      <Word variant="sans" size={60} color={colors.inkSoft} at={14}>
         & follow for step 02
       </Word>
       <div
@@ -444,7 +410,7 @@ export const OutroText: React.FC = () => {
           fontSize: 90,
           color: colors.purple,
           translate: `0px ${interpolate(frame % 20, [0, 10, 20], [0, 18, 0])}px`,
-          opacity: interpolate(frame, [16, 22], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
+          opacity: interpolate(frame, [18, 24], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
         }}
       >
         ↓

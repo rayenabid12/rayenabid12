@@ -12,13 +12,14 @@ A vertical 1080×1920 edit of the talking-head clip, styled after the lavender a
     -c:a aac -b:a 192k public/graded.mp4
   ```
 - **Layout**: the speaker floats in a rounded card (`src/components/FaceCard.tsx`, `CARD_TRACK` in `src/Edit.tsx`). The card moves between beats with motion blur, and the whole stage does a small punch-in at each scene change.
+- **3D**: `@remotion/three` adds glossy floating shapes, the "ANY BRAND" sphere with its orbit ring, the 3D bar chart and the outro knot (`src/components/ThreeD.tsx`). Render with `--gl=angle`.
 - **Kinetic type**: words build up one at a time with blur-in and blur-out (`src/components/Kinetic.tsx`, `src/scenes/Beats.tsx`).
 - **Silence cuts**: adaptive `silencedetect` at −33.9 dB. Five gaps are removed, and the jump cuts are hidden with punch-in zooms.
-- **SFX**: `public/sfx`, made of Kenney CC0 UI sounds plus a synthesized whoosh, swish, riser and boom.
+- **SFX**: `public/sfx`. It has a synthesized cinematic `impact.wav` and `impact_soft.wav` (a sub drop, a transient hit and a reverb tail) and Kenney CC0 punch, plate and UI sounds. It also has the synthesized whoosh, swish, riser and boom.
 - **Fonts**: Playfair Display Italic 800/900 (condensed) and Inter, bundled in `public/fonts` under the OFL.
 
 ```bash
 npm i
 npx remotion studio            # preview / tweak
-npx remotion render BrandResearchReel out/BrandResearchReel.mp4
+npx remotion render BrandResearchReel out/BrandResearchReel.mp4 --gl=angle
 ```
