@@ -1,4 +1,5 @@
 import { Composition, Folder, Still, staticFile } from "remotion";
+import { BoumFinal } from "./final/BoumFinal";
 import { BoumStory } from "./story/BoumStory";
 import { CharacterSheet } from "./story/CharacterSheet";
 import { ModelSheet } from "./rig/ModelSheet";
@@ -15,6 +16,14 @@ import { OutroScene } from "./scenes/OutroScene";
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      <Composition
+        id="BoumFinal"
+        component={BoumFinal}
+        durationInFrames={600}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
       <Composition
         id="BoumStory"
         component={BoumStory}

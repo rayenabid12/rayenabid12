@@ -81,8 +81,15 @@ export const primaryPose = (keys: Key[], frame: number): Pose => {
       }
     }
     if (!prev && !next) continue;
-    // before a channel's first key, ease in from the rest pose at frame 0
-    if (!prev) prev = { f: Math.min(0, next!.f), [ch]: DEFAULT_POSE[ch] } as Key;
+    // before a channel's first key: if it is keyed at/before frame 0, hold it;
+    // otherwise ease in from the rest pose at frame 0
+    if (!prev) {
+      if (next!.f <= 0 || frame <= 0) {
+        out[ch] = next!.f <= 0 ? (next![ch] as number) : DEFAULT_POSE[ch];
+        continue;
+      }
+      prev = { f: 0, [ch]: DEFAULT_POSE[ch] } as Key;
+    }
     if (!next || next.ease === "hold") {
       out[ch] = prev[ch] as number;
       continue;
