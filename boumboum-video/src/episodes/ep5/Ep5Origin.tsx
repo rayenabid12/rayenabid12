@@ -18,7 +18,7 @@ export const Ep5Origin = () => (
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: 8 })} />
       <TransitionSeries.Sequence name="Brand finale" durationInFrames={90}>
-        <BrandFinale line="Né pour faire BOUM !" />
+        <BrandFinale line="Le seul avec un cœur coulant !" />
       </TransitionSeries.Sequence>
     </TransitionSeries>
   </>

@@ -54,7 +54,7 @@ product with the viewer.
 | ★ | Noël Boum Boum | idea |
 
 ## Locations
-- The candy factory where he was born (Ep. 5, `ep5/FactorySet.tsx`): bubble machine, filling tank, conveyor, press, wrapper, printing platform. Canon: born from a gum bubble + a drop of filling, struck by lightning; his face was printed on the very first pack.
+- The candy factory where he was born (Ep. 5, `ep5/FactorySet.tsx`): bubble machine, filling tank, conveyor, quality-control scanner + reject bin, tasting machine (« Goûtomètre »), dripper line, printing platform. Canon: in a factory of identical, empty gums, a drop of filling fell into a bubble during a storm and he was born with a glowing liquid heart. Rejected as a « défaut », he tried to hide it, then his heart won the taste test, every Boum Boum got a liquid heart, and his face was printed on the first pack. Message: « Ce qui te rend différent, c'est ce qui te rend unique. »
 - City street at night (Ep. 2, `ep2/CitySet.tsx`), sunny park (Ep. 3, `ep3/ParkSet.tsx`), the pink monster's home (Ep. 4, `ep4/HomeSet.tsx`: wall calendar, photo of the two friends, party table, front door).
 - Shared staging toolkit for two-character episodes: `src/episodes/shared/stage.tsx`. Mélo on the end card: `brand/FinaleMelo.tsx`.
 

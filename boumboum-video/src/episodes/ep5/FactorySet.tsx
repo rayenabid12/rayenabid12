@@ -1,6 +1,5 @@
 import type React from "react";
 import { Easing, Img, interpolate, staticFile } from "remotion";
-import { GumShape } from "../../story/Props";
 import { displayFont } from "../../theme";
 
 // The candy factory where the pink monster was born, in WORLD coordinates.
@@ -12,9 +11,11 @@ export const BELT_END = 3400;
 export const NOZZLE: [number, number] = [520, 1900]; // bubble machine nozzle tip
 export const BIRTH_BUBBLE: [number, number] = [640, 1900]; // where the first bubble grows
 export const DRIP: [number, number] = [640, 1480]; // filling pipe tap
-export const PRESS_X = 1850;
-export const PRESS_UP = 1700; // press head bottom when raised
-export const WRAP_X = 2700;
+export const SCAN_X = 1900; // quality-control scanner
+export const TRAP_X = 2000; // trapdoor in the belt, right after the scanner
+export const BIN_X = 2040; // reject bin under the belt
+export const TASTE_X = 2900; // tasting machine
+export const DRIP_Y = 1960; // dripper pipe along the line
 export const PLATFORM_Y = 1750;
 export const PACK_X = 4700;
 export const PACK_W = 300;
@@ -209,25 +210,26 @@ export const Hall: React.FC<{ f: number; power: number; bolt: number; beltPos: n
       <rect x={BELT_END + 40} y={BELT + 120} width={600} height={1000} fill="#0C0A22" />
       <Gear x={BELT_END + 220} y={FLOOR + 40} r={150} a={spin * 1.5} color="#1E1950" />
       <Gear x={BELT_END + 470} y={FLOOR - 80} r={110} a={-spin * 2} color="#241E5C" />
-      {/* press frame (the head is drawn separately) */}
+      {/* quality-control scanner (frame; the beam is drawn separately) */}
       <g>
-        <rect x={PRESS_X - 300} y={1150} width={70} height={BELT - 1150 + 100} fill="#3B3570" />
-        <rect x={PRESS_X + 230} y={1150} width={70} height={BELT - 1150 + 100} fill="#3B3570" />
-        <rect x={PRESS_X - 330} y={1100} width={660} height={200} rx={24} fill="#4A4290" />
-        {[0, 1, 2, 3, 4, 5].map((i) => (
-          <rect key={i} x={PRESS_X - 300 + i * 110} y={1110} width={50} height={20} fill={i % 2 ? "#FFD84D" : "#2B2560"} />
-        ))}
-        <circle cx={PRESS_X + 260} cy={1200} r={16} fill={power > 0.5 && f > 560 && Math.floor(f / 5) % 2 ? "#FF4F4F" : "#5A2030"} />
+        <rect x={SCAN_X - 220} y={1640} width={50} height={BELT - 1640 + 80} fill="#3B3570" />
+        <rect x={SCAN_X + 170} y={1640} width={50} height={BELT - 1640 + 80} fill="#3B3570" />
+        <rect x={SCAN_X - 250} y={1590} width={500} height={170} rx={30} fill="#4A4290" />
+        <text x={SCAN_X} y={1580} textAnchor="middle" fontFamily={displayFont} fontSize={50} fill="#9AA0E8">CONTRÔLE</text>
       </g>
-      {/* wrapping machine: rollers on a gantry */}
+      {/* reject bin (back), under the belt */}
+      <rect x={BIN_X - 190} y={2440} width={380} height={FLOOR - 2440} rx={16} fill="#241E5C" />
+      {/* tasting machine (tower; probe + meter drawn separately) */}
       <g>
-        <rect x={WRAP_X - 320} y={1400} width={60} height={BELT - 1400 + 100} fill="#3B3570" />
-        <rect x={WRAP_X + 260} y={1400} width={60} height={BELT - 1400 + 100} fill="#3B3570" />
-        <rect x={WRAP_X - 340} y={1380} width={680} height={90} rx={20} fill="#4A4290" />
-        <Gear x={WRAP_X - 120} y={1560} r={70} a={spin * 3} color="#F06AA8" />
-        <Gear x={WRAP_X + 120} y={1560} r={70} a={-spin * 3} color="#F06AA8" />
-        <rect x={WRAP_X - 240} y={1610} width={480} height={26} rx={13} fill="#F9A6CB" />
+        <rect x={TASTE_X + 200} y={1250} width={90} height={FLOOR - 1250} fill="#3B3570" />
+        <rect x={TASTE_X - 60} y={1300} width={350} height={80} rx={30} fill="#4A4290" />
+        <rect x={TASTE_X - 40} y={1380} width={80} height={60} rx={14} fill="#5D5D80" />
       </g>
+      {/* dripper pipe along the line (fed by the filling tank) */}
+      <path d={`M 652 1480 L 652 ${DRIP_Y} L ${BELT_END - 20} ${DRIP_Y}`} stroke="#5A1024" strokeWidth={22} fill="none" />
+      {Array.from({ length: 26 }, (_, i) => (
+        <path key={i} d={`M ${300 + i * 120 - 16} ${DRIP_Y + 8} L ${300 + i * 120 + 16} ${DRIP_Y + 8} L ${300 + i * 120 + 6} ${DRIP_Y + 34} L ${300 + i * 120 - 6} ${DRIP_Y + 34} Z`} fill="#3F0A1A" />
+      ))}
       {/* printing platform */}
       <g>
         <rect x={4200} y={PLATFORM_Y} width={760} height={50} rx={16} fill="#4A4290" />
@@ -237,31 +239,6 @@ export const Hall: React.FC<{ f: number; power: number; bolt: number; beltPos: n
         <rect x={PACK_X - 260} y={1000} width={30} height={PLATFORM_Y - 1000} fill="#3B3570" />
         <rect x={PACK_X + 230} y={1000} width={30} height={PLATFORM_Y - 1000} fill="#3B3570" />
         <rect x={PACK_X - 280} y={980} width={560} height={40} rx={12} fill="#4A4290" />
-      </g>
-    </svg>
-  );
-};
-
-// Press head: bottom edge at `bottom` (world y).
-export const PressHead: React.FC<{ bottom: number }> = ({ bottom }) => (
-  <svg viewBox="-800 -1200 6400 4200" style={{ position: "absolute", left: -800, top: -1200, width: 6400, height: 4200, overflow: "visible" }}>
-    <rect x={PRESS_X - 50} y={1300} width={100} height={bottom - 160 - 1300} fill="#8A8AA8" />
-    <rect x={PRESS_X - 230} y={bottom - 170} width={460} height={170} rx={20} fill="#5D5D80" />
-    <rect x={PRESS_X - 230} y={bottom - 40} width={460} height={40} rx={10} fill="#3B3B55" />
-    {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
-      <path key={i} d={`M ${PRESS_X - 230 + i * 57.5} ${bottom - 170} l 30 0 l -40 70 l -30 0 Z`} fill="#FFD84D" opacity={0.9} />
-    ))}
-  </svg>
-);
-
-// The giant gum on the belt; squashed flat by the press at `squash` 0..1.
-export const GiantGum: React.FC<{ x: number; squash: number; jiggle: number }> = ({ x, squash, jiggle }) => {
-  const w = 380;
-  const h = 304;
-  return (
-    <svg viewBox="0 0 300 240" style={{ position: "absolute", left: x - (w * (1 + squash * 0.5)) / 2, top: BELT - h * (1 - squash * 0.8) + 8, width: w * (1 + squash * 0.5), height: h * (1 - squash * 0.8), overflow: "visible" }} preserveAspectRatio="none">
-      <g transform={`translate(150 230) scale(${1 + jiggle * 0.06} ${1 - jiggle * 0.06}) translate(-150 -230)`}>
-        <GumShape flavor="fraise" shadow={false} />
       </g>
     </svg>
   );
@@ -296,27 +273,6 @@ export const PrinterHead: React.FC<{ y: number; on: number }> = ({ y, on }) => (
   </svg>
 );
 
-// A candy-wrapper bundle with two eyes peeking out (the monster, wrapped).
-export const WrappedBundle: React.FC<{ x: number; y: number; t: number }> = ({ x, y, t }) => {
-  const wig = Math.sin(t * 1.3) * 8;
-  return (
-    <svg viewBox="-260 -170 520 340" style={{ position: "absolute", left: x - 260, top: y - 170, width: 520, height: 340, overflow: "visible", rotate: `${wig}deg` }}>
-      <path d="M -150 -20 L -250 -110 L -230 0 L -250 110 L -150 20 Z" fill="#E3123B" />
-      <path d="M 150 -20 L 250 -110 L 230 0 L 250 110 L 150 20 Z" fill="#E3123B" />
-      <ellipse rx={170} ry={140} fill="#F06AA8" />
-      {[-90, -30, 30, 90].map((sx) => (
-        <path key={sx} d={`M ${sx} -136 Q ${sx + 20} 0 ${sx} 136`} stroke="#FFD3E6" strokeWidth={14} fill="none" opacity={0.6} />
-      ))}
-      <ellipse cx={0} cy={-40} rx={90} ry={44} fill="#2B0F1E" />
-      <circle cx={-34} cy={-40} r={22} fill="white" />
-      <circle cx={34} cy={-40} r={22} fill="white" />
-      <circle cx={-30 + Math.sin(t) * 6} cy={-38} r={10} fill="#1D2B5C" />
-      <circle cx={38 + Math.sin(t) * 6} cy={-38} r={10} fill="#1D2B5C" />
-      <text x={0} y={80} textAnchor="middle" fontFamily={displayFont} fontSize={44} fill="white" opacity={0.85}>BOUM</text>
-    </svg>
-  );
-};
-
 // Little electric sparks travelling along the pipe from the roof to the machine.
 export const SPARK_PATH: [number, number][] = [[600, -1150], [600, -600], [300, -600], [300, 1420]];
 export const pointOnPath = (path: [number, number][], t: number): [number, number] => {
@@ -333,3 +289,108 @@ export const pointOnPath = (path: [number, number][], t: number): [number, numbe
   return path[path.length - 1];
 };
 
+
+// One gum on the line. `filled` 0..1 gives it a glowing liquid heart.
+export const LineGum: React.FC<{ x: number; filled: number; scanned?: number }> = ({ x, filled, scanned = 0 }) => {
+  const w = 200;
+  const h = 160;
+  return (
+    <svg viewBox="0 0 300 240" style={{ position: "absolute", left: x - w / 2, top: BELT - h + 10, width: w, height: h, overflow: "visible" }}>
+      {filled > 0 ? <circle cx={110} cy={125} r={140 + filled * 40} fill="#FF6F91" opacity={0.3 * filled} /> : null}
+      <path d="M 70 40 L 240 40 C 290 40 300 210 240 210 L 70 210 Z" fill="#E8B9CC" />
+      <path d="M 70 40 L 240 40 C 270 40 285 90 288 120 L 70 120 Z" fill="#F4D3E1" />
+      <ellipse cx={80} cy={125} rx={70} ry={86} fill="#D9A1B8" />
+      <ellipse cx={80} cy={125} rx={60} ry={76} fill="#F6E4EC" />
+      <ellipse cx={170} cy={58} rx={60} ry={9} fill="white" opacity={0.35} />
+      {filled > 0 ? (
+        <g transform={`translate(82 125) scale(${2.1 * filled})`} opacity={filled}>
+          <circle r={34} fill="#FF6F91" opacity={0.35} />
+          <path d="M 0 22 C -12 14 -26 4 -26 -8 C -26 -20 -14 -26 -6 -22 C -3 -20 -1 -17 0 -14 C 1 -17 3 -20 6 -22 C 14 -26 26 -20 26 -8 C 26 4 12 14 0 22 Z" fill="#E0164A" stroke="#FFD3E3" strokeWidth={3} />
+        </g>
+      ) : null}
+      {scanned > 0 ? <text x={150} y={-20} textAnchor="middle" fontFamily={displayFont} fontSize={90} fill="#7BFF8A" opacity={scanned}>✓</text> : null}
+    </svg>
+  );
+};
+
+// Scanner beam + status screen + siren. state: 0 idle, 1 OK (green), 2 alarm (red).
+export const ScannerFX: React.FC<{ f: number; state: number; power: number }> = ({ f, state, power }) => {
+  const alarm = state === 2;
+  const flash = alarm ? 0.6 + 0.4 * Math.sign(Math.sin(f * 1.3)) : 1;
+  const c = alarm ? "#FF4F4F" : "#7BFF8A";
+  return (
+    <svg viewBox="-800 -1200 6400 4200" style={{ position: "absolute", left: -800, top: -1200, width: 6400, height: 4200, overflow: "visible" }}>
+      <path d={`M ${SCAN_X - 130} 1760 L ${SCAN_X + 130} 1760 L ${SCAN_X + 175} ${BELT} L ${SCAN_X - 175} ${BELT} Z`} fill={c} opacity={power * (alarm ? 0.32 * flash : state === 1 ? 0.3 : 0.14)} />
+      <rect x={SCAN_X - 150} y={1752} width={300} height={14} rx={7} fill={c} opacity={power} />
+      <rect x={SCAN_X - 130} y={1620} width={260} height={110} rx={16} fill="#141238" />
+      <text x={SCAN_X} y={1700} textAnchor="middle" fontFamily={displayFont} fontSize={alarm ? 58 : 80} fill={state === 0 ? "#3B3570" : c} opacity={alarm ? flash : 1}>
+        {alarm ? "DÉFAUT" : "✓"}
+      </text>
+      <circle cx={SCAN_X} cy={1560} r={26} fill={alarm ? "#FF4F4F" : "#5A2030"} opacity={flash} />
+      {alarm ? <circle cx={SCAN_X} cy={1560} r={90} fill="#FF4F4F" opacity={0.25 * flash} /> : null}
+    </svg>
+  );
+};
+
+// Trapdoor in the belt: `open` 0..1.
+export const Trapdoor: React.FC<{ open: number }> = ({ open }) =>
+  open <= 0 ? null : (
+    <svg viewBox="-800 -1200 6400 4200" style={{ position: "absolute", left: -800, top: -1200, width: 6400, height: 4200, overflow: "visible" }}>
+      <rect x={TRAP_X - 130} y={BELT} width={260} height={70} fill="#0C0A22" />
+      <rect x={TRAP_X - 130} y={BELT} width={260} height={30} rx={8} fill="#3A3A4E" transform={`rotate(${open * 82} ${TRAP_X - 130} ${BELT})`} />
+    </svg>
+  );
+
+// Front wall of the reject bin (drawn over the monster).
+export const BinFront: React.FC = () => (
+  <svg viewBox="-800 -1200 6400 4200" style={{ position: "absolute", left: -800, top: -1200, width: 6400, height: 4200, overflow: "visible" }}>
+    <rect x={BIN_X - 200} y={2510} width={400} height={FLOOR - 2510} rx={14} fill="#4A4290" />
+    <rect x={BIN_X - 200} y={2510} width={400} height={22} fill="url(#hazard)" />
+    <defs>
+      <pattern id="hazard" width="40" height="22" patternUnits="userSpaceOnUse">
+        <rect width="20" height="22" fill="#FFD84D" />
+        <rect x="20" width="20" height="22" fill="#2B2560" />
+      </pattern>
+    </defs>
+    <text x={BIN_X} y={2610} textAnchor="middle" fontFamily={displayFont} fontSize={56} fill="#9AA0E8">DÉFAUTS</text>
+  </svg>
+);
+
+// Tasting machine: probe (tip at `probe` world y) and the flavour meter (needle in degrees, -70 = « Bof », +75 = max).
+export const Taster: React.FC<{ probe: number; needle: number; wow: number }> = ({ probe, needle, wow }) => {
+  const mx = TASTE_X + 250;
+  const my = 1080;
+  const arc = (a0: number, a1: number, r: number) => {
+    const p = (a: number) => [mx + Math.sin((a * Math.PI) / 180) * r, my - Math.cos((a * Math.PI) / 180) * r];
+    const [x0, y0] = p(a0);
+    const [x1, y1] = p(a1);
+    return `M ${x0} ${y0} A ${r} ${r} 0 0 1 ${x1} ${y1}`;
+  };
+  return (
+    <svg viewBox="-800 -1200 6400 4200" style={{ position: "absolute", left: -800, top: -1200, width: 6400, height: 4200, overflow: "visible" }}>
+      <rect x={TASTE_X - 14} y={1420} width={28} height={probe - 1420} fill="#8A8AA8" />
+      <circle cx={TASTE_X} cy={probe} r={24} fill="#F06AA8" />
+      {wow > 0 ? <circle cx={mx} cy={my} r={260 + wow * 60} fill="#FFD84D" opacity={0.25 * wow} /> : null}
+      <circle cx={mx} cy={my} r={190} fill="#141238" stroke="#4A4290" strokeWidth={18} />
+      <path d={arc(-75, -30, 150)} stroke="#6E6E8A" strokeWidth={28} fill="none" />
+      <path d={arc(-28, 10, 150)} stroke="#FFD84D" strokeWidth={28} fill="none" />
+      <path d={arc(12, 45, 150)} stroke="#FF9A3C" strokeWidth={28} fill="none" />
+      <path d={arc(47, 78, 150)} stroke="#FF4F8B" strokeWidth={28} fill="none" />
+      <text x={mx - 120} y={my + 90} textAnchor="middle" fontFamily={displayFont} fontSize={40} fill="#9AA0E8">bof</text>
+      <text x={mx + 110} y={my + 90} textAnchor="middle" fontFamily={displayFont} fontSize={40} fill="#FF8FB8">waouh</text>
+      <path d={`M ${mx} ${my} L ${mx} ${my - 135}`} stroke="#FFFFFF" strokeWidth={12} strokeLinecap="round" transform={`rotate(${needle} ${mx} ${my})`} />
+      <circle cx={mx} cy={my} r={22} fill="#FFFFFF" />
+      <text x={mx} y={my - 220} textAnchor="middle" fontFamily={displayFont} fontSize={52} fill="#9AA0E8">GOÛTOMÈTRE</text>
+    </svg>
+  );
+};
+
+// Dripper valves light up when the filling flows (`on` 0..1).
+export const DripperLights: React.FC<{ on: number }> = ({ on }) =>
+  on <= 0 ? null : (
+    <svg viewBox="-800 -1200 6400 4200" style={{ position: "absolute", left: -800, top: -1200, width: 6400, height: 4200, overflow: "visible" }}>
+      {Array.from({ length: 26 }, (_, i) => (
+        <circle key={i} cx={300 + i * 120} cy={DRIP_Y} r={14} fill="#FF6F91" opacity={on} />
+      ))}
+    </svg>
+  );
