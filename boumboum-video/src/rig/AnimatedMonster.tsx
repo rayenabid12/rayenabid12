@@ -1,6 +1,6 @@
 import type React from "react";
 import { useCurrentFrame } from "remotion";
-import { BoumMonster } from "./BoumMonster";
+import { BoumMonster, type Skin } from "./BoumMonster";
 import { animatedPose, type Key, type Pose } from "./pose";
 
 // Plays a keyed reaction through the physics pass. `override` lets a scene
@@ -12,9 +12,10 @@ export const AnimatedMonster: React.FC<{
   held?: React.ReactNode;
   over?: React.ReactNode;
   alive?: boolean; // moving holds, natural blinks, horizontal smear stretch
+  skin?: Skin;
   style?: React.CSSProperties;
-}> = ({ keys, override, shadow, held, over, alive = false, style }) => {
+}> = ({ keys, override, shadow, held, over, alive = false, skin, style }) => {
   const frame = useCurrentFrame();
   const pose = { ...animatedPose(keys, frame, alive), ...override };
-  return <BoumMonster pose={pose} shadow={shadow} held={held} over={over} style={style} />;
+  return <BoumMonster pose={pose} shadow={shadow} held={held} over={over} skin={skin} style={style} />;
 };

@@ -21,6 +21,15 @@ product with the viewer.
 - Signature moves: hop with anticipation, rubber-arm wave, "idea!" finger, surprise take, scramble run, wink + point.
 - Use `alive` on `AnimatedMonster` for new episodes: moving holds, natural blinks, horizontal smear stretch. Add `DustPuff` on landings.
 
+## Mélo, the watermelon friend (Pastèque flavour)
+- Same rig, `skin="melo"` on `BoumMonster` / `AnimatedMonster`. Model sheet: `MeloSheet` still; duo size reference: `DuoLineup`.
+- Roles: the pink monster stays the brand host (all flavours); Mélo is his friend and the face of the green Pastèque pack.
+- Design: rounder and wider, rind stripes, seed freckles on the lower body, curly stem + leaf (swings with the ear physics), pink cheeks, teal eyes.
+- Personality: cool, calm, a bit of a show-off with his perfect bubbles. Contrast with the pink monster's big emotions.
+- Default face `MELO_COOL` (`src/rig/meloKeys.ts`): half-closed lids + half-smile. Use `coolBlink` (returns to the half-lids); `alive` auto-blinks don't fire on him.
+- Acting: fewer, shorter, more precise moves; he always settles back to cool. He only loses it on a big surprise, then pretends nothing happened.
+- Reactions (`Melo-*` compositions, `MeloReactionReel`, `MeloReactionGrid`): Idle (hand on hip, nods to a beat), Yo (two-finger flick), Yesss (fist pump, then composes himself), Miam (calm chew + chef's kiss), Surprise (take, then checks no one saw), Clin d'œil (finger guns), Trop facile (signature perfect bubble, shrug, pop).
+
 ## World
 - Candy world (`story/World`): gum trees, watermelon-striped hills, bubble clouds; `night` mode for seasonal episodes.
 - Candy city (`episodes/ep2/CitySet`): BONBONS candy shop, apartment block, haunted townhouse n°13, parallax skyline, sidewalk and street lamps.
