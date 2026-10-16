@@ -277,7 +277,8 @@ export const BoumMonster: React.FC<{
       >
         {/* legs */}
         {LEGS.map((l, i) => {
-          const sway = Math.sin(frame / 8 + l.phase) * 3 + p.legSwing * (i < 2 ? 1 : -1);
+          const sway =
+            Math.sin(frame / 8 + l.phase) * 3 + p.legSwing * (i < 2 ? 1 : -1) + Math.sin(frame * 0.95 + (i % 2) * Math.PI) * 32 * p.run;
           const splay = l.splay * (1 + p.legSpread) * (1 - lift * 0.5) + lift * (l.x < 200 ? 35 : -35);
           const len = l.len * (1 - lift * 0.35);
           return (

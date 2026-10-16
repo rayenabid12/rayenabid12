@@ -35,6 +35,7 @@ export type Pose = {
   curlR: number;
   legLift: number; // 0 standing .. 1 tucked
   legSpread: number;
+  run: number; // 0 .. 1 scramble-run leg cycle
   // secondary (normally written by the physics pass)
   earL: number;
   earR: number;
@@ -46,7 +47,7 @@ export const DEFAULT_POSE: Pose = {
   x: 0, y: 0, rot: 0, sx: 1, sy: 1, bend: 0, turn: 0, back: 0,
   blink: 0, squint: 0, wink: 0, lookX: 0, lookY: 0, eyeScale: 1, pupil: 1, browY: 0, browTilt: 0,
   mouthOpen: 0.85, mouthWidth: 1, smile: 1, tongue: 0, tongueX: 0, cheeks: 0,
-  armL: 8, armR: 8, curlL: 0, curlR: 0, legLift: 0, legSpread: 0,
+  armL: 8, armR: 8, curlL: 0, curlR: 0, legLift: 0, legSpread: 0, run: 0,
   earL: 0, earR: 0, jiggle: 0, legSwing: 0,
 };
 
@@ -119,7 +120,7 @@ const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v
 
 // Full pose with secondary motion. The springs are simulated from frame 0, so
 // follow-through always reflects how the character actually moved.
-export const animatedPose = (keys: Key[], frame: number): Pose => {
+export const animatedPose = (keys: Key[], frame: number, alive = false): Pose => {
   const jig: Spring = { x: 0, v: 0 };
   const bend: Spring = { x: 0, v: 0 };
   const earL: Spring = { x: 0, v: 0 };
@@ -156,11 +157,20 @@ export const animatedPose = (keys: Key[], frame: number): Pose => {
   const vy = cur.y - p0.y;
   const stretch = clamp(Math.abs(vy) * 0.0022, 0, 0.1);
   const j = clamp(jig.x, -0.16, 0.16);
+  // "alive" mode: horizontal smear stretch, moving holds and natural blinks
+  const vx = cur.x - p0.x;
+  const hStretch = alive ? clamp(Math.abs(vx) * 0.0035, 0, 0.14) : 0;
+  const cycle = alive ? (frame + 37) % 97 : 99;
+  const autoBlink = alive && cur.squint < 0.3 && cur.blink < 0.05 && cycle < 6 ? [0, 0.7, 1, 1, 0.6, 0.2][cycle] : 0;
+  const saccade = alive ? Math.round(Math.sin(Math.floor((frame + 11) / 37) * 12.9898) * 2) * 0.05 : 0;
   return {
     ...cur,
-    sy: cur.sy * (1 + stretch) * (1 - j),
-    sx: (cur.sx / Math.sqrt(1 + stretch)) * (1 + j),
-    bend: clamp(bend.x, -16, 16),
+    sy: (cur.sy * (1 + stretch) * (1 - j)) / Math.sqrt(1 + hStretch),
+    sx: (cur.sx / Math.sqrt(1 + stretch)) * (1 + j) * (1 + hStretch),
+    blink: Math.max(cur.blink, autoBlink),
+    lookX: cur.lookX + saccade,
+    rot: cur.rot + (alive ? Math.sin(frame / 31) * 0.9 : 0),
+    bend: clamp(bend.x + (alive ? Math.sin(frame / 23) * 3 : 0), -18, 18),
     earL: clamp(earL.x, -35, 35),
     earR: clamp(earR.x, -35, 35),
     curlL: clamp(curlL.x, -0.9, 0.9),

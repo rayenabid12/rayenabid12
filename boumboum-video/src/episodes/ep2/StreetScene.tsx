@@ -7,8 +7,9 @@ import { AnimatedMonster } from "../../rig/AnimatedMonster";
 import { blinkAt, type Key, sortKeys } from "../../rig/pose";
 import { GumPiece, GumShape, Starburst } from "../../story/Props";
 import { bodyFont, candyText, colors, displayFont } from "../../theme";
-import { Bat, BucketShape, Ghost, type GhostPose, Pumpkin, Sheet, SpookyHouse } from "./Halloween";
-import { GROUND, NightGround, NightSky } from "./NightSet";
+import { CityStreet, DustPuff, GROUND, Skyline } from "./CitySet";
+import { Bat, BucketShape, Ghost, type GhostPose, Pumpkin, Sheet } from "./Halloween";
+import { NightSky } from "./NightSet";
 
 // Everything below is in WORLD coordinates; a keyed virtual camera frames each beat.
 const ANCHOR: [number, number] = [560, GROUND]; // monster feet at rig x = 0
@@ -16,7 +17,6 @@ const WIDTH = 520;
 const SCALE = WIDTH / 400;
 const X = (worldX: number) => (worldX - ANCHOR[0]) / SCALE;
 
-const HOUSE = { x: 980, y: GROUND - 820, w: 440 }; // door centre ~ (1200, 1290)
 const HIDE_PUMPKIN = { x: 130, y: GROUND - 250, w: 340 }; // centre x ~ 300
 
 // beats (30 fps, 120 BPM: a beat every 15 frames)
@@ -67,11 +67,13 @@ export const MONSTER_KEYS: Key[] = sortKeys([
   { f: BOUH, y: -160, sy: 1.3, eyeScale: 1.45, pupil: 0.5, browY: -30, mouthOpen: 1, mouthWidth: 0.45, armL: 160, armR: 160, legSpread: 0.6, rot: 0, turn: 0, lookX: 0.6, ease: "snap" },
   { f: BOUH + 6, sy: 1.15, eyeScale: 1.35, ease: "out" },
   { f: BOUH + 14, y: -160, sy: 1.15, ease: "hold" },
-  // ...and runs to the pumpkin
-  { f: BOUH + 16, turn: -0.5, lookX: -0.7 },
-  ...hop(BOUH + 18, X(820), X(560), 80),
-  ...hop(BOUH + 34, X(560), X(300), 80),
-  { f: HIDE, sy: 0.8, ease: "snap" },
+  // ...and scrambles to the pumpkin
+  { f: BOUH + 15, y: -160, turn: 0, run: 0, x: X(820) },
+  { f: BOUH + 18, y: 0, turn: -0.5, lookX: -0.7, sy: 0.9, ease: "in" },
+  { f: BOUH + 20, run: 1, rot: -10, armL: 140, armR: 120, sy: 1, ease: "out" },
+  ...alternate(BOUH + 20, HIDE - 6, 4, { y: -22, armL: 150, armR: 115 }, { y: 0, armL: 120, armR: 145 }),
+  { f: HIDE - 4, x: X(300), y: 0, run: 1, rot: -10 },
+  { f: HIDE, run: 0, rot: 0, sy: 0.8, ease: "snap" },
   { f: HIDE + 6, sy: 0.82, y: 18, turn: 0.3, lookX: 0.9, lookY: -0.2, browTilt: 16, browY: -4, eyeScale: 1.15, pupil: 0.8, mouthOpen: 0.3, mouthWidth: 0.45, smile: -0.5, armL: -30, armR: -30, legSpread: 0 },
   ...alternate(HIDE + 8, 412, 2, { x: X(300) + 2.5 }, { x: X(300) - 2.5 }).map((k) => ({ ...k, ease: "linear" as const })),
   ...blinkAt(395),
@@ -89,7 +91,7 @@ export const MONSTER_KEYS: Key[] = sortKeys([
   ...alternate(CHOMP + 4, 480, 5, { mouthOpen: 0.08, cheeks: 1 }, { mouthOpen: 0.28, cheeks: 0.55 }),
   // steps out bravely
   { f: 482, squint: 0, browTilt: -14, browY: 4, cheeks: 0, mouthOpen: 0.3, mouthWidth: 0.6, smile: 0.6 },
-  ...hop(484, X(300), X(420), 90),
+  ...hop(484, X(300), X(540), 90),
   { f: 500, turn: 0.25, lookX: 0.7 },
   { f: BREATH - 4, sy: 1 },
   { f: BREATH, sy: 1.08, cheeks: 1, mouthOpen: 0.3, mouthWidth: 0.28, armL: 30, armR: 30, browTilt: -10 },
@@ -117,23 +119,23 @@ const lerp = (f: number, i: number[], o: number[]) => interpolate(f, i, o, { ...
 // Virtual camera: [frame, centreX, centreY, zoom] in world coordinates.
 const CAMERA: [number, number, number, number][] = [
   [0, 750, 250, 0.75],
-  [75, 750, 1150, 0.75], // tilt down: wide establishing shot
-  [165, 750, 1150, 0.75],
-  [195, 1010, 1180, 1.0], // medium: monster + door
-  [DOOR, 1010, 1180, 1.0],
-  [290, 1110, 1210, 1.25], // slow push on the door
-  [BOUH, 1110, 1210, 1.25],
-  [BOUH + 6, 1000, 1150, 1.0], // snap back for BOUH
-  [340, 1000, 1150, 1.0],
-  [365, 400, 1230, 1.05], // follow him to the pumpkin
-  [470, 400, 1230, 1.05],
-  [508, 680, 1150, 0.95], // two-shot face-off: him left third, ghost right third
-  [POP - 6, 680, 1150, 1.03],
-  [730, 680, 1150, 1.0],
-  [752, 860, 1090, 1.22], // the ghost tastes
-  [CLOSE, 860, 1090, 1.22],
-  [CLOSE + 18, 420, 1250, 1.9], // close-up on him
-  [STREET_END, 560, 1250, 1.9],
+  [75, 750, 1000, 0.75], // tilt down: wide establishing shot
+  [165, 750, 1000, 0.75],
+  [195, 1010, 990, 1.0], // medium: monster + door
+  [DOOR, 1010, 990, 1.0],
+  [290, 1110, 1040, 1.25], // slow push on the door
+  [BOUH, 1110, 1040, 1.25],
+  [BOUH + 6, 1000, 970, 1.0], // snap back for BOUH
+  [BOUH + 12, 1000, 970, 1.0],
+  [HIDE, 420, 1020, 1.05], // pan with the run to the pumpkin
+  [470, 400, 1020, 1.05],
+  [508, 720, 970, 0.95], // two-shot face-off: him left third, ghost right third
+  [POP - 6, 720, 975, 1.03],
+  [730, 720, 970, 1.0],
+  [752, 920, 950, 1.22], // the ghost tastes
+  [CLOSE, 920, 950, 1.22],
+  [CLOSE + 18, 540, 1250, 1.9], // close-up on him
+  [STREET_END, 540, 1250, 1.9],
 ];
 
 const camera = (f: number) => {
@@ -148,7 +150,7 @@ const camera = (f: number) => {
 const ghostAt = (f: number): (GhostPose & { x: number; y: number; size: number; alpha: number }) | null => {
   if (f < BOUH - 6) return null;
   const k = (frames: number[], values: number[]) => lerp(f, frames, values);
-  const x = f < POP ? k([BOUH - 6, BOUH, BOUH + 8, BOUH + 26, 360, 470, 508, BLOW, 640], [1200, 1200, 980, 980, 1150, 1150, 930, 930, 1010]) : k([POP, 700, 730, TASTE], [1010, 1010, 900, 880]);
+  const x = f < POP ? k([BOUH - 6, BOUH, BOUH + 8, BOUH + 26, 360, 470, 508, BLOW, 640], [1200, 1200, 980, 980, 1150, 1150, 990, 990, 1070]) : k([POP, 700, 730, TASTE], [1070, 1070, 960, 940]);
   const y = f < POP ? k([BOUH - 6, BOUH, BOUH + 8, BOUH + 26, 360, 470, 508, BLOW, 640], [1300, 1280, 1110, 1110, 1010, 1010, 980, 980, 900]) : k([POP, 700, 730, TASTE], [900, 900, 1060, 1090]);
   const size = f < POP ? k([BOUH - 6, BOUH, BOUH + 8, BOUH + 26, 360, BLOW, 640], [180, 240, 470, 470, 380, 380, 300]) : k([POP, 700, 730], [300, 300, 380]);
   const giggle = f >= GIGGLE && f < TASTE ? Math.sin(f * 1.3) * 5 : 0;
@@ -255,12 +257,8 @@ export const StreetScene: React.FC = () => {
       ))}
       {/* the world, seen through the camera */}
       <div style={{ position: "absolute", left: 0, top: 0, transformOrigin: "0 0", transform: `translate(${540 - cx * z}px, ${960 - cy * z}px) scale(${z})` }}>
-        <NightGround />
-        <SpookyHouse
-          door={lerp(f, [DOOR, 285], [0, 1])}
-          eyes={f < BOUH ? lerp(f, [270, 282], [0, 1]) : 0}
-          style={{ position: "absolute", left: HOUSE.x, top: HOUSE.y, width: HOUSE.w, height: 820 }}
-        />
+        <Skyline cx={cx} />
+        <CityStreet door={lerp(f, [DOOR, 285], [0, 1])} eyes={f < BOUH ? lerp(f, [270, 282], [0, 1]) : 0} />
         {f >= BOUH ? (
           <svg viewBox="0 0 200 200" style={{ position: "absolute", left: bucketFrom[0] - 900 * bt - 70, top: bucketFrom[1] - Math.sin(Math.PI * bt) * 500 + bt * 200 - 70, width: 140, height: 140, rotate: `${-bt * 400}deg`, overflow: "visible" }}>
             <BucketShape />
@@ -289,7 +287,14 @@ export const StreetScene: React.FC = () => {
             </div>
           </Sequence>
         ) : null}
-        <AnimatedMonster keys={MONSTER_KEYS} held={held} over={f < BOUH ? <Sheet /> : null} style={rigBox(ANCHOR, WIDTH)} />
+        <AnimatedMonster keys={MONSTER_KEYS} alive held={held} over={f < BOUH ? <Sheet /> : null} style={rigBox(ANCHOR, WIDTH)} />
+        {/* dust on landings and on the run */}
+        {[
+          [110, 140, 0], [128, 480, 0], [146, 820, 0], [BOUH + 18, 820, 0],
+          [BOUH + 24, 720, 1], [BOUH + 30, 580, 1], [BOUH + 36, 450, 1], [HIDE, 300, 0], [498, 540, 0],
+        ].map(([at, x, dir], i) => (
+          <DustPuff key={i} at={at} x={x} y={GROUND} dir={dir} />
+        ))}
         {ghost ? (
           <div style={{ opacity: ghost.alpha }}>
             <Ghost {...ghost} />

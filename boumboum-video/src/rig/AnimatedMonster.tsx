@@ -11,9 +11,10 @@ export const AnimatedMonster: React.FC<{
   shadow?: boolean;
   held?: React.ReactNode;
   over?: React.ReactNode;
+  alive?: boolean; // moving holds, natural blinks, horizontal smear stretch
   style?: React.CSSProperties;
-}> = ({ keys, override, shadow, held, over, style }) => {
+}> = ({ keys, override, shadow, held, over, alive = false, style }) => {
   const frame = useCurrentFrame();
-  const pose = { ...animatedPose(keys, frame), ...override };
+  const pose = { ...animatedPose(keys, frame, alive), ...override };
   return <BoumMonster pose={pose} shadow={shadow} held={held} over={over} style={style} />;
 };

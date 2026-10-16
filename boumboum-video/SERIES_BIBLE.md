@@ -18,10 +18,12 @@ product with the viewer.
 - Rig: `src/rig` (pose-to-pose keys + spring physics). Model sheet: `ModelSheet` still.
 - Personality: joyful, greedy for gum, curious, a little too ambitious with bubbles. Never mean.
 - Always glossy pink, no outline; eyes ~40% of height; big toothy grin is his default face.
-- Signature moves: hop with anticipation, rubber-arm wave, "idea!" finger, surprise take, wink + point.
+- Signature moves: hop with anticipation, rubber-arm wave, "idea!" finger, surprise take, scramble run, wink + point.
+- Use `alive` on `AnimatedMonster` for new episodes: moving holds, natural blinks, horizontal smear stretch. Add `DustPuff` on landings.
 
 ## World
 - Candy world (`story/World`): gum trees, watermelon-striped hills, bubble clouds; `night` mode for seasonal episodes.
+- Candy city (`episodes/ep2/CitySet`): BONBONS candy shop, apartment block, haunted townhouse n°13, parallax skyline, sidewalk and street lamps.
 - Props in the same glossy style (`story/Props`, `episodes/ep2/Halloween`).
 - Colors: see the model sheet palette; logo red `#E3123B`, brand green `#2E9E3E`.
 

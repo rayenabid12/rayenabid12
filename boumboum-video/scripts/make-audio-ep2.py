@@ -148,10 +148,9 @@ add(sfx, glock(98, 0.5, 0.08), f(272))  # glowing eyes
 add(sfx, sweep(110, 60, 0.7, 0.35, vibrato=0.08, rate=9) * env(0.7, 0.02, 0.4), f(300))  # "BOUH"
 add(sfx, slide_whistle(500, 1500, 0.25, 0.14), f(300))  # his take
 add(sfx, whoosh(0.4, 0.16), f(302))  # costume and bucket fly
-for at in (324, 340):
-    add(sfx, boing(0.12, 300, 600), f(at))
-for at in (332, 348):
-    add(sfx, bloop(0.2), f(at))
+for k in range(7):  # scramble-run footsteps
+    add(sfx, pop(1.6 + (k % 2) * 0.3, 0.09), f(320 + k * 4))
+add(sfx, bloop(0.22), f(350))
 add(sfx, chatter(1.9), f(356))
 add(sfx, glock(96, 0.4, 0.14), f(425))  # idea "ting"
 sparkle(f(426), sfx, 0.06)
