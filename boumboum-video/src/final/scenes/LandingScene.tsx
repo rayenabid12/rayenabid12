@@ -8,10 +8,10 @@ import { GROUND_Y, World } from "../../story/World";
 import { bodyFont, candyText, colors, displayFont } from "../../theme";
 import { alternate, poseAt, rigBox, rigToScreen } from "../kit";
 
-const ANCHOR: [number, number] = [540, 1215]; // feet on top of the giant gum
+const ANCHOR: [number, number] = [540, 1100]; // feet standing ON the giant gum
 const WIDTH = 520;
 const SCALE = WIDTH / 400;
-const BERRY_Y = (1190 - 1215) / SCALE; // strawberry top, in rig units
+const BERRY_Y = (1075 - 1100) / SCALE; // standing on the strawberry top, in rig units
 
 // Continuous shot: fall in, splat, celebrate, leap to the strawberry,
 // then the camera dollies in for the lick and the pack offered to camera.
@@ -108,6 +108,30 @@ export const LandingScene: React.FC = () => {
         <World cameraX={pan} cameraY={cameraY} />
         <GumPiece style={{ position: "absolute", width: 720, left: 540 - 360 - pan, top: GROUND_Y - 520 + cameraY }} />
         <Strawberry style={{ position: "absolute", width: 560, left: 1440 - 280 - pan, top: GROUND_Y - 600 + cameraY }} />
+        <AbsoluteFill style={{ opacity: interpolate(f, [30, 42], [1, 0], clamp) }}>
+          <Sequence from={5} durationInFrames={40} layout="none" name="Watermelon splash">
+            <Goo x={540 - pan} y={1120} color="#C70D3A" light="#FF7A9A" />
+          </Sequence>
+        </AbsoluteFill>
+        <AbsoluteFill style={{ opacity: interpolate(f, [86, 96], [1, 0], clamp) }}>
+          <Sequence from={67} durationInFrames={30} layout="none" name="Strawberry splash">
+            <Goo x={540} y={1095} color="#D3123F" light="#FF8FA8" />
+          </Sequence>
+        </AbsoluteFill>
+        {/* contact shadow on the surface he stands on */}
+        <div
+          style={{
+            position: "absolute",
+            left: 540 - 130,
+            top: ANCHOR[1] + (f >= 45 ? BERRY_Y * SCALE : 0) - 14,
+            width: 260,
+            height: 34,
+            borderRadius: "50%",
+            background: "rgba(80,0,30,0.22)",
+            opacity: interpolate(Math.abs(pose.y - (f >= 45 ? BERRY_Y : 0)), [0, 200], [1, 0], clamp),
+            scale: interpolate(Math.abs(pose.y - (f >= 45 ? BERRY_Y : 0)), [0, 300], [1, 0.4], clamp),
+          }}
+        />
         <AnimatedMonster keys={LANDING_KEYS} shadow={false} style={rigBox(ANCHOR, WIDTH)} />
         {dropsOn ? (
           <svg viewBox="0 0 1080 1920" style={{ position: "absolute", inset: 0 }}>
@@ -116,16 +140,6 @@ export const LandingScene: React.FC = () => {
             <circle cx={cheek[0] - 4} cy={cheek[1] + 18} r={6} fill="#D3123F" />
           </svg>
         ) : null}
-        <AbsoluteFill style={{ opacity: interpolate(f, [30, 42], [1, 0], clamp) }}>
-          <Sequence from={5} durationInFrames={40} layout="none" name="Watermelon splash">
-            <Goo x={540 - pan} y={1235} color="#C70D3A" light="#FF7A9A" />
-          </Sequence>
-        </AbsoluteFill>
-        <AbsoluteFill style={{ opacity: interpolate(f, [86, 96], [1, 0], clamp) }}>
-          <Sequence from={67} durationInFrames={30} layout="none" name="Strawberry splash">
-            <Goo x={540} y={1210} color="#D3123F" light="#FF8FA8" />
-          </Sequence>
-        </AbsoluteFill>
       </AbsoluteFill>
       <Title small="Fourré coulis goût" big="PASTÈQUE !" at={9} out={40} />
       <Title small="Fourré goût" big="FRAISE !" at={70} out={96} />

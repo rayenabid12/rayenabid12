@@ -60,34 +60,35 @@ add(music, kick(0.4), f(570))
 sfx = np.zeros_like(music)
 for k, m in enumerate([72, 76, 79, 84]):  # camera tilts down from the sky
     add(sfx, glock(m, 0.5, 0.07), f(2) + k * 0.08)
-for at in (18, 34, 50):
+for at in (12, 28):  # hop takeoffs
     add(sfx, boing(0.16, 220, 480), f(at))
-for at in (28, 44, 60):
+for at in (20, 36):  # hop landings
     add(sfx, bloop(0.28), f(at))
-sparkle(f(78), sfx, 0.08)  # hello
-sparkle(f(121), sfx, 0.1)  # pack appears
-add(sfx, crinkle(0.35, 0.22), f(128))
-add(sfx, crinkle(0.2, 0.3), f(141))
-add(sfx, whoosh(0.35, 0.2), f(142))
-add(sfx, slide_whistle(500, 1300, 0.3), f(150))
-add(sfx, slide_whistle(1300, 700, 0.27), f(158))
-add(sfx, gulp(), f(166))
-for k in range(5):
-    add(sfx, chew(), f(172 + k * 6))
-sparkle(f(176), sfx, 0.08)  # "Miam !"
-add(sfx, chew(), f(190))
-add(sfx, chew(), f(194))
+sparkle(f(58), sfx, 0.08)  # hello
+sparkle(f(103), sfx, 0.1)  # pack appears
+add(sfx, crinkle(0.35, 0.22), f(112))  # shake
+add(sfx, crinkle(0.2, 0.3), f(126))  # rip
+add(sfx, whoosh(0.35, 0.2), f(127))  # wrapper over the shoulder
+add(sfx, glock(91, 0.3, 0.1), f(128))  # gum pops out
+add(sfx, bloop(0.2), f(132))  # catch
+add(sfx, slide_whistle(500, 1300, 0.3), f(142))  # toss up
+add(sfx, slide_whistle(1300, 800, 0.22), f(151))  # ...and in
+add(sfx, gulp(), f(158))  # chomp
+for k in range(8):
+    add(sfx, chew(), f(162 + k * 6))
+sparkle(f(166), sfx, 0.08)  # "Miam !"
+add(sfx, gulp(0.3), f(206))  # swallow
 
-# bubble
-add(sfx, glock(96, 0.4, 0.12), f(199))  # the idea "ting"
-add(sfx, whoosh(0.3, 0.12), f(205))  # deep breath
-add(sfx, stretch(f(78), 0.2), f(212))  # blowing, stops before the pop
-add(sfx, whoosh(0.9, 0.18), f(235))  # lift-off
+# idea, breath, bubble
+add(sfx, glock(96, 0.4, 0.14), f(213))  # the idea "ting"
+add(sfx, whoosh(0.3, 0.12), f(226))  # deep breath
+add(sfx, stretch(f(55), 0.2), f(233))  # blowing, stops before the pop
+add(sfx, whoosh(0.9, 0.18), f(245))  # lift-off
 for k, m in enumerate([72, 76, 79, 84, 88]):
-    add(sfx, glock(m, 0.5, 0.09), f(235) + k * 0.06)
-add(sfx, glock(70, 0.4, 0.14), f(274))  # "uh..."
-add(sfx, glock(65, 0.5, 0.14), f(280))  # "...oh"
-add(sfx, gulp(0.3), f(281))
+    add(sfx, glock(m, 0.5, 0.09), f(245) + k * 0.06)
+add(sfx, glock(70, 0.4, 0.14), f(266))  # "uh..."
+add(sfx, glock(65, 0.5, 0.14), f(274))  # "...oh"
+add(sfx, gulp(0.3), f(286))
 
 # BOUM + fall
 add(sfx, pop(0.55, 1.0), f(300))

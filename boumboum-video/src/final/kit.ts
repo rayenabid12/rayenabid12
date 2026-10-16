@@ -4,18 +4,21 @@ import { animatedPose, type Key, type Pose } from "../rig/pose";
 // Shift a block of keys in time (reuse reactions inside a longer shot).
 export const offset = (keys: Key[], df: number): Key[] => keys.map((k) => ({ ...k, f: k.f + df }));
 
-// One hop: crouch, launch, arc, land with a squash (rig units, y < 0 is up).
-export const hop = (start: number, x0: number, x1: number, height = 110): Key[] => [
-  { f: start, x: x0, y: 0, sy: 1 },
-  { f: start + 3, sy: 0.82, legSpread: 0.3 },
-  { f: start + 4, x: x0, y: 0 },
-  { f: start + 6, sy: 1.1, legSpread: 0, ease: "out" },
-  { f: start + 8, legLift: 0.6, ease: "out" },
-  { f: start + 9, y: -height, ease: "out" },
-  { f: start + 13, legLift: 0 },
-  { f: start + 14, x: x1, y: 0, ease: "in" },
-  { f: start + 15, sy: 0.8, ease: "snap" },
-  { f: start + 19, sy: 1, ease: "out" },
+// One hop: crouch with arms back, launch with arms up and legs tucking,
+// land with a squash (rig units, y < 0 is up). Horizontal travel eases in/out,
+// vertical uses gravity-like eases.
+export const hop = (s: number, x0: number, x1: number, height = 150): Key[] => [
+  { f: s, x: x0, y: 0, sy: 1, armL: 20, armR: 20 },
+  { f: s + 3, sy: 0.84, armL: -12, armR: -12, legSpread: 0.25 },
+  { f: s + 4, x: x0, y: 0 },
+  { f: s + 6, sy: 1.08, armL: 70, armR: 70, legSpread: 0, ease: "out" },
+  { f: s + 7, legLift: 0.5, ease: "out" },
+  { f: s + 9, y: -height, ease: "out" },
+  { f: s + 12, legLift: 0, armL: 35, armR: 35 },
+  { f: s + 14, x: x1, ease: "inOut" },
+  { f: s + 14, y: 0, ease: "in" },
+  { f: s + 15, sy: 0.82, ease: "snap" },
+  { f: s + 19, sy: 1, armL: 20, armR: 20, ease: "out" },
 ];
 
 // Alternate two poses every `every` frames between `from` and `to`.

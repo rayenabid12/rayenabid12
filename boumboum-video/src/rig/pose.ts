@@ -69,6 +69,7 @@ const CHANNELS = Object.keys(DEFAULT_POSE) as (keyof Pose)[];
 // Pose-to-pose interpolation; each channel only interpolates between keys that set it.
 export const primaryPose = (keys: Key[], frame: number): Pose => {
   const out = { ...DEFAULT_POSE };
+  const keyFrames = keys.map((k) => k.f);
   for (const ch of CHANNELS) {
     let prev: Key | undefined;
     let next: Key | undefined;
@@ -81,14 +82,20 @@ export const primaryPose = (keys: Key[], frame: number): Pose => {
       }
     }
     if (!prev && !next) continue;
-    // before a channel's first key: if it is keyed at/before frame 0, hold it;
-    // otherwise ease in from the rest pose at frame 0
+    // Before a channel's first key it rests at its default value, and starts
+    // moving from the previous key pose (any channel), like pose-to-pose keying.
     if (!prev) {
-      if (next!.f <= 0 || frame <= 0) {
-        out[ch] = next!.f <= 0 ? (next![ch] as number) : DEFAULT_POSE[ch];
+      const before = keyFrames.filter((kf) => kf < next!.f);
+      const startF = before.length ? Math.max(...before) : next!.f;
+      if (startF === next!.f) {
+        out[ch] = next![ch] as number; // first key of the shot: it is the starting pose
         continue;
       }
-      prev = { f: 0, [ch]: DEFAULT_POSE[ch] } as Key;
+      if (frame <= startF) {
+        out[ch] = DEFAULT_POSE[ch];
+        continue;
+      }
+      prev = { f: startF, [ch]: DEFAULT_POSE[ch] } as Key;
     }
     if (!next || next.ease === "hold") {
       out[ch] = prev[ch] as number;
@@ -135,7 +142,7 @@ export const animatedPose = (keys: Key[], frame: number): Pose => {
     const dArmR = cur.armR - p1.armR;
     const dSy = cur.sy - p1.sy;
     step(jig, 0, clamp(-ay * 0.0016 + dSy * 0.12, -0.05, 0.05), 0.24, 0.32);
-    step(bend, cur.bend, -ax * 1.4 - dRot * 1.2, 0.16, 0.22);
+    step(bend, cur.bend, clamp(-ax * 0.5 - dRot * 0.6, -3, 3), 0.18, 0.28);
     const earDrive = clamp(ay * 0.35 - dSy * 25, -8, 8);
     step(earL, 0, earDrive + dRot * 0.8 - ax * 0.2, 0.13, 0.17);
     step(earR, 0, earDrive - dRot * 0.8 - ax * 0.2, 0.13, 0.17);
@@ -153,7 +160,7 @@ export const animatedPose = (keys: Key[], frame: number): Pose => {
     ...cur,
     sy: cur.sy * (1 + stretch) * (1 - j),
     sx: (cur.sx / Math.sqrt(1 + stretch)) * (1 + j),
-    bend: bend.x,
+    bend: clamp(bend.x, -16, 16),
     earL: clamp(earL.x, -35, 35),
     earR: clamp(earR.x, -35, 35),
     curlL: clamp(curlL.x, -0.9, 0.9),

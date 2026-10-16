@@ -73,22 +73,23 @@ const Eye: React.FC<EyeProps> = (p) => {
   const ry = 50 * p.size;
   const ix = p.cx + p.lookX * 15;
   const iy = p.cy + p.lookY * 15;
-  const open = 1 - clamp((p.squint - 0.15) / 0.5, 0, 1); // eye shrinks as it closes happily
-  const arc = clamp((p.squint - 0.45) / 0.25, 0, 1);
-  const lidY = p.cy - ry + 2 * ry * p.blink;
+  // happy-closing: lids come down first, then the eye becomes a "^" arc
+  const lid = Math.max(p.blink, clamp(p.squint / 0.55, 0, 1));
+  const arc = clamp((p.squint - 0.55) / 0.2, 0, 1);
+  const lidY = p.cy - ry + 2 * ry * lid;
   const clip = `eye${p.side}${p.id}`;
   const browCx = p.cx;
   const browCy = p.cy - ry - 24 + p.browY;
   return (
     <g transform={`translate(${p.cx} 0) scale(${p.scaleX} 1) translate(${-p.cx} 0)`}>
-      {open > 0.02 ? (
-        <g transform={`translate(0 ${p.cy}) scale(1 ${open}) translate(0 ${-p.cy})`}>
+      {arc < 1 ? (
+        <g opacity={1 - arc}>
           <defs>
             <clipPath id={clip}>
               <ellipse cx={p.cx} cy={p.cy} rx={rx} ry={ry} />
             </clipPath>
           </defs>
-          <ellipse cx={p.cx} cy={p.cy} rx={rx + 3} ry={ry + 3} fill={PALETTE.bodyShadow} opacity={0.35} />
+          <ellipse cx={p.cx} cy={p.cy} rx={rx + 3} ry={ry + 3} fill={PALETTE.bodyShadow} opacity={0.35 * (1 - lid)} />
           <g clipPath={`url(#${clip})`}>
             <ellipse cx={p.cx} cy={p.cy} rx={rx} ry={ry} fill={`url(#white${p.id})`} />
             <circle cx={ix} cy={iy} r={27 * p.size} fill={`url(#iris${p.id})`} />
@@ -98,7 +99,7 @@ const Eye: React.FC<EyeProps> = (p) => {
             <rect x={p.cx - rx - 5} y={p.cy - ry - 60} width={rx * 2 + 10} height={lidY - (p.cy - ry - 60)} fill={p.fill} />
           </g>
           <path
-            d={`M ${p.cx - rx * 0.95} ${Math.max(lidY, p.cy - ry * 0.75) + 6} Q ${p.cx} ${lidY - 14 + 10 * p.blink} ${p.cx + rx * 0.95} ${Math.max(lidY, p.cy - ry * 0.75) + 6}`}
+            d={`M ${p.cx - rx * 0.95} ${Math.max(lidY, p.cy - ry * 0.75) + 6} Q ${p.cx} ${lidY - 14 + 10 * lid} ${p.cx + rx * 0.95} ${Math.max(lidY, p.cy - ry * 0.75) + 6}`}
             stroke={PALETTE.ink}
             strokeWidth={7}
             strokeLinecap="round"
@@ -213,11 +214,12 @@ const LEGS = [
   { x: 292, w: 76, len: 92, phase: 3.0, splay: -28 },
 ];
 
-export const BoumMonster: React.FC<{ pose: Pose; shadow?: boolean; style?: React.CSSProperties }> = ({
-  pose: p,
-  shadow = true,
-  style,
-}) => {
+export const BoumMonster: React.FC<{
+  pose: Pose;
+  shadow?: boolean;
+  held?: React.ReactNode; // svg drawn in rig space, between the face and the front arms
+  style?: React.CSSProperties;
+}> = ({ pose: p, shadow = true, held, style }) => {
   const frame = useCurrentFrame();
   const id = useId().replace(/:/g, "");
   const fill = `url(#body${id})`;
@@ -300,8 +302,6 @@ export const BoumMonster: React.FC<{ pose: Pose; shadow?: boolean; style?: React
         <circle cx={150 + bx(36) + t * 30} cy={36 + Math.sin(frame / 6) * 3 + p.earL * 0.3} r={9} fill={PALETTE.body} />
         {/* body */}
         <path d={warpPath(BODY, warp)} fill={fill} />
-        {!farArmIsLeft ? armLEl : null}
-        {!farArmIsRight ? armREl : null}
         {/* gloss + speckles */}
         <ellipse cx={128 + bx(104) - t * 20} cy={104} rx={46} ry={20} fill="white" opacity={0.45} transform={`rotate(-28 ${128 + bx(104)} 104)`} />
         <ellipse cx={92 + bx(140)} cy={140} rx={10} ry={6} fill="white" opacity={0.4} transform={`rotate(-50 ${92 + bx(140)} 140)`} />
@@ -343,6 +343,9 @@ export const BoumMonster: React.FC<{ pose: Pose; shadow?: boolean; style?: React
             <Mouth x={faceX} y={292} scaleX={1 - a * 0.4} open={p.mouthOpen} width={p.mouthWidth} smile={p.smile} tongue={p.tongue} tongueX={p.tongueX} id={id} />
           </g>
         ) : null}
+        {held}
+        {!farArmIsLeft ? armLEl : null}
+        {!farArmIsRight ? armREl : null}
       </g>
     </svg>
   );

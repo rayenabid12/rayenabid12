@@ -3,15 +3,15 @@ import { useId } from "react";
 
 // Vector props drawn in the same glossy style as the mascot.
 
-// A Boum Boum gum: green shell, pink cross-section, glossy red filling. viewBox 0 0 300 240.
-export const GumPiece: React.FC<{ readonly style?: React.CSSProperties; readonly flavor?: "pasteque" | "fraise" }> = ({
-  style,
+// A Boum Boum gum: green shell, pink cross-section, glossy red filling. Drawn in 300x240.
+export const GumShape: React.FC<{ readonly flavor?: "pasteque" | "fraise"; readonly shadow?: boolean }> = ({
   flavor = "pasteque",
+  shadow = true,
 }) => {
   const id = useId().replace(/:/g, "");
   const shell = flavor === "pasteque" ? ["#B5E86A", "#5DAA2E", "#3D7F1C"] : ["#FFD3E3", "#F7A3C5", "#D9709C"];
   return (
-    <svg viewBox="0 0 300 240" style={{ overflow: "visible", ...style }}>
+    <g>
       <defs>
         <linearGradient id={`shell${id}`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={shell[0]} />
@@ -24,7 +24,7 @@ export const GumPiece: React.FC<{ readonly style?: React.CSSProperties; readonly
           <stop offset="100%" stopColor="#A10A30" />
         </radialGradient>
       </defs>
-      <ellipse cx={150} cy={226} rx={130} ry={12} fill="black" opacity={0.15} />
+      {shadow ? <ellipse cx={150} cy={226} rx={130} ry={12} fill="black" opacity={0.15} /> : null}
       <path d="M 70 40 L 240 40 C 290 40 300 210 240 210 L 70 210 Z" fill={`url(#shell${id})`} />
       <ellipse cx={240} cy={125} rx={40} ry={85} fill={shell[2]} opacity={0.35} />
       <ellipse cx={80} cy={125} rx={70} ry={86} fill={shell[1]} />
@@ -32,9 +32,18 @@ export const GumPiece: React.FC<{ readonly style?: React.CSSProperties; readonly
       <path d="M 52 95 C 70 70 112 80 112 110 C 112 140 92 150 86 175 C 82 196 56 196 56 172 C 56 150 36 125 52 95 Z" fill={`url(#fill${id})`} />
       <ellipse cx={72} cy={100} rx={14} ry={8} fill="white" opacity={0.7} transform="rotate(-30 72 100)" />
       <ellipse cx={170} cy={58} rx={60} ry={9} fill="white" opacity={0.35} />
-    </svg>
+    </g>
   );
 };
+
+export const GumPiece: React.FC<{ readonly style?: React.CSSProperties; readonly flavor?: "pasteque" | "fraise" }> = ({
+  style,
+  flavor = "pasteque",
+}) => (
+  <svg viewBox="0 0 300 240" style={{ overflow: "visible", ...style }}>
+    <GumShape flavor={flavor} />
+  </svg>
+);
 
 // Cartoon strawberry. viewBox 0 0 300 320.
 export const Strawberry: React.FC<{ readonly style?: React.CSSProperties }> = ({ style }) => {

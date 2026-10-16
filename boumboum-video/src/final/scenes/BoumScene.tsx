@@ -6,7 +6,7 @@ import { Starburst } from "../../story/Props";
 import { World } from "../../story/World";
 import { candyText, colors, displayFont } from "../../theme";
 import { alternate, poseAt, rigBox, rigToScreen } from "../kit";
-import { ANCHOR, SCALE, WIDTH } from "./SnackScene";
+import { ANCHOR, SCALE, WIDTH } from "./OpeningScene";
 
 // POP: the cartoon take, gum on his head, hang time... he looks down... and drops.
 export const BOUM_KEYS: Key[] = sortKeys([
