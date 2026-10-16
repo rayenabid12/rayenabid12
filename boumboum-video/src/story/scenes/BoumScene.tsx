@@ -5,6 +5,8 @@ import { Monster } from "../Monster";
 import { Starburst } from "../Props";
 import { clamp, lerp, monsterBox, World } from "../World";
 
+const fallAt = (f: number) => interpolate(f, [14, 40], [0, 1], { ...clamp, easing: Easing.in(Easing.quad) });
+
 const SIZE = 540;
 const SHREDS = Array.from({ length: 16 }, (_, i) => ({
   a: (i / 16) * Math.PI * 2 + (i % 3) * 0.3,
@@ -16,7 +18,8 @@ const SHREDS = Array.from({ length: 16 }, (_, i) => ({
 export const BoumScene: React.FC = () => {
   const f = useCurrentFrame();
   const burst = interpolate(f, [0, 14], [0, 1], { ...clamp, easing: Easing.out(Easing.cubic) });
-  const fall = interpolate(f, [14, 40], [0, 1], { ...clamp, easing: Easing.in(Easing.quad) });
+  const fall = fallAt(f);
+  const vy = (fallAt(f) - fallAt(f - 1)) * 2300;
   const feetY = 1200 + fall * 2300;
   const headTop = feetY - SIZE * 1.175;
 
@@ -64,9 +67,14 @@ export const BoumScene: React.FC = () => {
         blink={lerp(f, [8, 10, 12], [0, 1, 0])}
         mouthOpen={0.9}
         mouthWidth={0.5}
-        leftArm={125}
-        rightArm={125}
+        leftArm={125 + Math.sin(f / 2) * 15 * fall}
+        rightArm={125 + Math.cos(f / 2) * 15 * fall}
+        armCurl={Math.sin(f / 2.5) * 0.9}
         legSwing={1}
+        impactAt={0}
+        vy={vy}
+        lean={fall * 18}
+        tilt={f < 14 ? Math.sin(f / 2) * 3 : 0}
         squash={1 + fall * 0.15}
         shadow={false}
         style={{ ...monsterBox(540 + (f < 14 ? Math.sin(f * 3) * 4 : 0), feetY, SIZE) }}

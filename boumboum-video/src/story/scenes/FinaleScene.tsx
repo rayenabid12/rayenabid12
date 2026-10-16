@@ -62,9 +62,13 @@ export const FinaleScene: React.FC = () => {
         mouthOpen={blowing ? 0.3 : 0.95}
         mouthWidth={blowing ? 0.28 : 1}
         cheeks={blowing ? 0.7 : 0}
-        rightArm={f < 30 ? 120 + Math.sin(f / 2.6) * 22 : f >= POP + 4 ? 40 : 15}
+        rightArm={f < 30 ? 125 + Math.sin(f / 2.6) * 24 : f >= POP + 4 ? 45 : 15}
+        armCurl={f < 30 ? Math.sin(f / 2.6 - 1.2) * 0.9 : 0}
         leftArm={10}
-        squash={lerp(f, [POP, POP + 3, POP + 9], [1, 0.9, 1])}
+        tilt={f >= POP + 4 ? 8 : Math.sin(f / 8) * 4}
+        lean={interpolate(f, [2, 14], [-14, 0], clamp)}
+        impactAt={f >= POP ? POP : 14}
+        squash={lerp(f, [26, 30, 34], [1, 1.07, 1]) * lerp(f, [POP, POP + 3, POP + 9], [1, 0.9, 1])}
         shadow={false}
         style={{
           ...monsterBox(300, feetY, 520),

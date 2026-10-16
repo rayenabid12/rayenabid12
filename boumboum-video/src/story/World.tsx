@@ -1,5 +1,5 @@
 import type React from "react";
-import { AbsoluteFill, interpolate, interpolateColors, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Easing, interpolate, interpolateColors, useCurrentFrame } from "remotion";
 import { Cloud } from "./Props";
 
 export const GROUND_Y = 1520;
@@ -124,3 +124,14 @@ export const monsterBox = (x: number, feetY: number, width: number): React.CSSPr
 export const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 export const lerp = (frame: number, input: number[], output: number[]) =>
   interpolate(frame, input, output, clamp);
+
+// Smoothly blend a value between keyframes (eased), for expression changes.
+export const ease = (frame: number, input: number[], output: number[]) =>
+  interpolate(frame, input, output, { ...clamp, easing: Easing.inOut(Easing.sin) });
+
+// Most recent landing frame at or before `frame`.
+export const lastImpact = (frame: number, impacts: number[]) => {
+  let at: number | undefined;
+  for (const i of impacts) if (frame >= i) at = i;
+  return at;
+};

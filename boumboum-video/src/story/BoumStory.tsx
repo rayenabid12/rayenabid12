@@ -7,8 +7,9 @@ import { BubbleScene } from "./scenes/BubbleScene";
 import { FinaleScene } from "./scenes/FinaleScene";
 import { FlavorScene } from "./scenes/FlavorScene";
 import { HelloScene } from "./scenes/HelloScene";
+import { TreatScene } from "./scenes/TreatScene";
 
-// "Le plus gros BOUM": 18 s kids' story starring the Boum Boum monster.
+// "Le plus gros BOUM": 20 s kids' story starring the Boum Boum monster.
 // Key moments land on the 120 BPM beat (every 15 frames).
 export const BoumStory = () => {
   return (
@@ -27,6 +28,9 @@ export const BoumStory = () => {
         </TransitionSeries.Sequence>
         <TransitionSeries.Sequence name="Flavors" durationInFrames={118}>
           <FlavorScene />
+        </TransitionSeries.Sequence>
+        <TransitionSeries.Sequence name="À toi !" durationInFrames={60}>
+          <TreatScene />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition
           presentation={iris({ width: 1080, height: 1920 })}

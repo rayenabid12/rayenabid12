@@ -8,7 +8,7 @@ import numpy as np
 
 from synth import *  # noqa: F401,F403
 
-LENGTH = 540 / FPS
+LENGTH = 600 / FPS
 f = lambda frame: frame / FPS  # noqa: E731
 
 
@@ -162,20 +162,20 @@ def play_section(start_frame, end_frame, full=True, melody_on=True):
 
 play_section(0, 180, full=True)
 play_section(180, 270, full=False, melody_on=False)
-play_section(345, 510, full=True)
+play_section(345, 570, full=True)
 # ta-da ending on the final pop
 for m in [60, 64, 67, 72, 76]:
-    add(music, ks(m, 1.6, 0.13, bright=0.6, decay=0.997), f(510) + (m - 60) * 0.004)
-add(music, glock(84, 1.2, 0.2), f(510))
-add(music, glock(88, 1.2, 0.16), f(517))
-add(music, glock(91, 1.4, 0.16), f(524))
-add(music, kick(0.4), f(510))
+    add(music, ks(m, 1.6, 0.13, bright=0.6, decay=0.997), f(570) + (m - 60) * 0.004)
+add(music, glock(84, 1.2, 0.2), f(570))
+add(music, glock(88, 1.2, 0.16), f(577))
+add(music, glock(91, 1.4, 0.16), f(584))
+add(music, kick(0.4), f(570))
 
 # ---------------- sfx ----------------
 sfx = np.zeros_like(music)
-for at in (0, 14, 28):
+for at in (3, 18, 33):
     add(sfx, boing(0.16, 220, 480), f(at))
-for at in (14, 28, 42):
+for at in (14, 29, 44):
     add(sfx, bloop(0.28), f(at))
 sparkle(f(45), sfx, 0.08)  # hello!
 sparkle(f(77), sfx, 0.1)  # pack appears
@@ -207,15 +207,34 @@ add(sfx, boing(0.18), f(346))
 add(sfx, boing(0.22, 200, 700), f(385))
 add(sfx, splat(0.55), f(406))
 
-add(sfx, whoosh(0.35, 0.2), f(448))
+# "A toi !" close-up
+add(sfx, whoosh(0.25, 0.14), f(457))
+
+
+def slurp(vol=0.25):
+    t = t_arr(0.45)
+    wet = lowpass(rng.uniform(-1, 1, len(t)), 0.15) * 3
+    tone = sweep(300, 700, 0.45, 1.0)
+    return vol * (0.6 * wet + 0.4 * tone) * np.sin(np.pi * t / 0.45)
+
+
+add(sfx, slurp(), f(466))
+add(sfx, glock(79, 0.5, 0.12), f(482))  # "mmm"
+add(sfx, glock(84, 0.6, 0.12), f(486))
+sparkle(f(492), sfx, 0.1)  # "A toi !"
+add(sfx, slide_whistle(400, 1100, 0.7, 0.13), f(494))
+add(sfx, whoosh(0.6, 0.25), f(500))
+
+# finale
+add(sfx, whoosh(0.35, 0.2), f(508))
 for k in range(8):
-    add(sfx, pop(1 + k * 0.07, 0.18), f(463 + k * 3))
-add(sfx, bloop(0.22), f(470))
-add(sfx, bloop(0.22), f(474))
-add(sfx, stretch(1.0, 0.12), f(480))
-add(sfx, pop(0.7, 0.9), f(510))
-add(sfx, boum(0.6), f(510))
-sparkle(f(514), sfx, 0.12)
+    add(sfx, pop(1 + k * 0.07, 0.18), f(523 + k * 3))
+add(sfx, bloop(0.22), f(524))
+add(sfx, bloop(0.22), f(530))
+add(sfx, stretch(1.0, 0.12), f(540))
+add(sfx, pop(0.7, 0.9), f(570))
+add(sfx, boum(0.6), f(570))
+sparkle(f(574), sfx, 0.12)
 
 write_mp3(music, "story-music", LENGTH)
 write_mp3(sfx, "story-sfx", LENGTH)
