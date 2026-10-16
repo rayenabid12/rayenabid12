@@ -255,9 +255,10 @@ export const BoumMonster: React.FC<{
   shadow?: boolean;
   held?: React.ReactNode; // svg drawn in rig space, between the face and the front arms
   over?: React.ReactNode; // svg drawn in rig space on top of everything (costumes)
+  inner?: React.ReactNode; // svg drawn in rig space inside the body, behind the face (glows)
   skin?: Skin;
   style?: React.CSSProperties;
-}> = ({ pose: p, shadow = true, held, over, skin = "pink", style }) => {
+}> = ({ pose: p, shadow = true, held, over, inner, skin = "pink", style }) => {
   const melo = skin === "melo";
   const pal: Palette = melo ? MELO_PALETTE : PALETTE;
   const eyeY = melo ? 206 : 190;
@@ -385,6 +386,7 @@ export const BoumMonster: React.FC<{
             <circle key={i} cx={x + bx(y) + t * 15} cy={y} r={r} fill={pal.speckle} opacity={0.55} />
           )
         ))}
+        {inner}
         {/* face */}
         {p.back < 0.5 ? (
           <g transform={`translate(${bx(230)} 0)`}>

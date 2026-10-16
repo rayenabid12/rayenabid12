@@ -296,18 +296,17 @@ export const LineGum: React.FC<{ x: number; filled: number; scanned?: number }> 
   const h = 160;
   return (
     <svg viewBox="0 0 300 240" style={{ position: "absolute", left: x - w / 2, top: BELT - h + 10, width: w, height: h, overflow: "visible" }}>
-      {filled > 0 ? <circle cx={110} cy={125} r={140 + filled * 40} fill="#FF6F91" opacity={0.3 * filled} /> : null}
+      {filled > 0 ? <circle cx={80} cy={125} r={110 + filled * 40} fill="#FF6F91" opacity={0.35 * filled} /> : null}
       <path d="M 70 40 L 240 40 C 290 40 300 210 240 210 L 70 210 Z" fill="#E8B9CC" />
       <path d="M 70 40 L 240 40 C 270 40 285 90 288 120 L 70 120 Z" fill="#F4D3E1" />
       <ellipse cx={80} cy={125} rx={70} ry={86} fill="#D9A1B8" />
       <ellipse cx={80} cy={125} rx={60} ry={76} fill="#F6E4EC" />
       <ellipse cx={170} cy={58} rx={60} ry={9} fill="white" opacity={0.35} />
-      {filled > 0 ? (
-        <g transform={`translate(82 125) scale(${2.1 * filled})`} opacity={filled}>
-          <circle r={34} fill="#FF6F91" opacity={0.35} />
-          <path d="M 0 22 C -12 14 -26 4 -26 -8 C -26 -20 -14 -26 -6 -22 C -3 -20 -1 -17 0 -14 C 1 -17 3 -20 6 -22 C 14 -26 26 -20 26 -8 C 26 4 12 14 0 22 Z" fill="#E0164A" stroke="#FFD3E3" strokeWidth={3} />
-        </g>
-      ) : null}
+      <g opacity={filled}>
+        <ellipse cx={80} cy={125} rx={54} ry={70} fill="#FF8FB0" opacity={0.6} />
+        <path d="M 52 95 C 70 70 112 80 112 110 C 112 140 92 150 86 175 C 82 196 56 196 56 172 C 56 150 36 125 52 95 Z" fill="#E0164A" />
+        <ellipse cx={72} cy={100} rx={14} ry={8} fill="white" opacity={0.75} transform="rotate(-30 72 100)" />
+      </g>
       {scanned > 0 ? <text x={150} y={-20} textAnchor="middle" fontFamily={displayFont} fontSize={90} fill="#7BFF8A" opacity={scanned}>✓</text> : null}
     </svg>
   );

@@ -321,19 +321,20 @@ const BirthBubble: React.FC<{ f: number }> = ({ f }) => {
   );
 };
 
-// his glowing liquid heart (rig coordinates, drawn on top of the arms)
+// his liquid heart: a warm glow shining from inside the jelly body, behind the face
+// (rig coordinates, drawn in the `inner` slot)
 const HeartGlow: React.FC<{ v: number }> = ({ v }) =>
   v <= 0 ? null : (
-    <g transform="translate(200 340) scale(1.9)">
+    <g>
       <defs>
-        <radialGradient id="heartHalo" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#FF6F91" stopOpacity={0.9} />
-          <stop offset="100%" stopColor="#FF6F91" stopOpacity={0} />
+        <radialGradient id="heartInner" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#FFF4F8" stopOpacity={0.95} />
+          <stop offset="30%" stopColor="#FF8FB0" stopOpacity={0.8} />
+          <stop offset="65%" stopColor="#FF3D6E" stopOpacity={0.35} />
+          <stop offset="100%" stopColor="#FF3D6E" stopOpacity={0} />
         </radialGradient>
       </defs>
-      <circle r={70 + v * 20} fill="url(#heartHalo)" opacity={v} />
-      <path d="M 0 22 C -12 14 -26 4 -26 -8 C -26 -20 -14 -26 -6 -22 C -3 -20 -1 -17 0 -14 C 1 -17 3 -20 6 -22 C 14 -26 26 -20 26 -8 C 26 4 12 14 0 22 Z" fill="#E0164A" opacity={Math.min(1, v * 1.3)} stroke="#FFD3E3" strokeWidth={3} />
-      <ellipse cx={-10} cy={-12} rx={6} ry={3} fill="white" opacity={0.8 * v} transform="rotate(-30 -10 -12)" />
+      <ellipse cx={200} cy={310} rx={110 + v * 40} ry={100 + v * 35} fill="url(#heartInner)" opacity={Math.min(1, v * 1.2)} />
     </g>
   );
 
@@ -411,7 +412,7 @@ const World: React.FC<{ f: number }> = ({ f }) => {
         const x = gumX(k, f);
         if (x < 230 || x > BELT_END - 40) return null;
         const tScan = crossing(k, SCAN_X);
-        const scanned = f >= tScan && f < tScan + 16 && tScan > CLANK + 10 ? interpolate(f, [tScan, tScan + 3, tScan + 12, tScan + 16], [0, 1, 1, 0], clamp) : 0;
+        const scanned = f >= tScan && f < tScan + 16 && tScan > CLANK + 10 && tScan < STOP ? interpolate(f, [tScan, tScan + 3, tScan + 12, tScan + 16], [0, 1, 1, 0], clamp) : 0;
         const filled = lerp(f, [fillAt(k) + 8, fillAt(k) + 14], [0, 1]);
         return <LineGum key={k} x={x} filled={filled} scanned={scanned} />;
       })}
@@ -427,7 +428,21 @@ const World: React.FC<{ f: number }> = ({ f }) => {
         : null}
       <DripperLights on={lerp(f, [FILL - 6, FILL], [0, 1])} />
       <BirthBubble f={f} />
-      {born ? <BoumMonster pose={pose} over={<HeartGlow v={heart(f)} />} style={rigBox(AT, WIDTH)} /> : null}
+      {born && heart(f) > 0 ? (
+        <div
+          style={{
+            position: "absolute",
+            left: toWorld(pose, 200, 300)[0] - 260,
+            top: toWorld(pose, 200, 300)[1] - 260,
+            width: 520,
+            height: 520,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(255,120,170,0.75) 0%, rgba(255,90,140,0.35) 40%, rgba(255,90,140,0) 70%)",
+            opacity: heart(f),
+          }}
+        />
+      ) : null}
+      {born ? <BoumMonster pose={pose} inner={<HeartGlow v={heart(f)} />} style={rigBox(AT, WIDTH)} /> : null}
       {bubbleR > 1 ? <HeartBubble x={mouth[0]} y={mouth[1] + bubbleR * 0.42} r={bubbleR} f={f} /> : null}
       <Trapdoor open={trap} />
       <BinFront />
