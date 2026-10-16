@@ -1,5 +1,8 @@
 import { Composition, Folder, staticFile } from "remotion";
 import { BoumBoumPromo } from "./BoumBoumPromo";
+import { BubblePop } from "./bubblepop/BubblePop";
+import { BiteScene } from "./bubblepop/scenes/BiteScene";
+import { PayoffScene } from "./bubblepop/scenes/PayoffScene";
 import { FlavorScene } from "./scenes/FlavorScene";
 import { IntroScene } from "./scenes/IntroScene";
 import { OutroScene } from "./scenes/OutroScene";
@@ -7,6 +10,67 @@ import { OutroScene } from "./scenes/OutroScene";
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      <Composition
+        id="BubblePop"
+        component={BubblePop}
+        durationInFrames={450}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Folder name="BubblePop-Scenes">
+        <Composition
+          id="PastequeBite"
+          component={BiteScene}
+          durationInFrames={125}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            flavor: "PASTÈQUE",
+            subtitle: "Fourré coulis",
+            bg: "#2E9E3E",
+            bgLight: "#5CC46A",
+            titleOutline: "#1F7A2E",
+            gooColor: "#C70D3A",
+            gooLight: "#FF7A9A",
+            heroSrc: staticFile("gum-pasteque.webp"),
+            packSrc: staticFile("packs-pasteque.webp"),
+            mascotSide: "left",
+            biteFrame: 50,
+          }}
+        />
+        <Composition
+          id="FraiseBite"
+          component={BiteScene}
+          durationInFrames={105}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            flavor: "FRAISE",
+            subtitle: "Fourré goût",
+            bg: "#E01F3D",
+            bgLight: "#FF5A73",
+            titleOutline: "#B5122C",
+            gooColor: "#D3123F",
+            gooLight: "#FF8FA8",
+            heroSrc: staticFile("pack-fraise.webp"),
+            packSrc: staticFile("box-fraise.webp"),
+            mascotSide: "right",
+            biteFrame: 38,
+          }}
+        />
+        <Composition
+          id="Payoff"
+          component={PayoffScene}
+          durationInFrames={76}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{ cta: "Fais BOUM !" }}
+        />
+      </Folder>
       <Composition
         id="BoumBoumPromo"
         component={BoumBoumPromo}
