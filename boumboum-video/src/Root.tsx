@@ -1,6 +1,7 @@
 import { Composition, Folder, staticFile } from "remotion";
 import { BoumBoumPromo } from "./BoumBoumPromo";
 import { BubblePop } from "./bubblepop/BubblePop";
+import { KineticType } from "./kinetic/KineticType";
 import { BiteScene } from "./bubblepop/scenes/BiteScene";
 import { PayoffScene } from "./bubblepop/scenes/PayoffScene";
 import { FlavorScene } from "./scenes/FlavorScene";
@@ -10,6 +11,14 @@ import { OutroScene } from "./scenes/OutroScene";
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      <Composition
+        id="KineticType"
+        component={KineticType}
+        durationInFrames={450}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
       <Composition
         id="BubblePop"
         component={BubblePop}
