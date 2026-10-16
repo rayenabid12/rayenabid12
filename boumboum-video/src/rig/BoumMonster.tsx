@@ -218,8 +218,9 @@ export const BoumMonster: React.FC<{
   pose: Pose;
   shadow?: boolean;
   held?: React.ReactNode; // svg drawn in rig space, between the face and the front arms
+  over?: React.ReactNode; // svg drawn in rig space on top of everything (costumes)
   style?: React.CSSProperties;
-}> = ({ pose: p, shadow = true, held, style }) => {
+}> = ({ pose: p, shadow = true, held, over, style }) => {
   const frame = useCurrentFrame();
   const id = useId().replace(/:/g, "");
   const fill = `url(#body${id})`;
@@ -346,6 +347,7 @@ export const BoumMonster: React.FC<{
         {held}
         {!farArmIsLeft ? armLEl : null}
         {!farArmIsRight ? armREl : null}
+        {over}
       </g>
     </svg>
   );

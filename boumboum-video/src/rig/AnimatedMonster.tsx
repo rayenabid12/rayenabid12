@@ -10,9 +10,10 @@ export const AnimatedMonster: React.FC<{
   override?: Partial<Pose>;
   shadow?: boolean;
   held?: React.ReactNode;
+  over?: React.ReactNode;
   style?: React.CSSProperties;
-}> = ({ keys, override, shadow, held, style }) => {
+}> = ({ keys, override, shadow, held, over, style }) => {
   const frame = useCurrentFrame();
   const pose = { ...animatedPose(keys, frame), ...override };
-  return <BoumMonster pose={pose} shadow={shadow} held={held} style={style} />;
+  return <BoumMonster pose={pose} shadow={shadow} held={held} over={over} style={style} />;
 };
