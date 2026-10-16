@@ -1,4 +1,6 @@
-import { Composition, Folder, staticFile } from "remotion";
+import { Composition, Folder, Still, staticFile } from "remotion";
+import { BoumStory } from "./story/BoumStory";
+import { CharacterSheet } from "./story/CharacterSheet";
 import { BoumBoumPromo } from "./BoumBoumPromo";
 import { BubblePop } from "./bubblepop/BubblePop";
 import { KineticType } from "./kinetic/KineticType";
@@ -11,6 +13,15 @@ import { OutroScene } from "./scenes/OutroScene";
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      <Composition
+        id="BoumStory"
+        component={BoumStory}
+        durationInFrames={540}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Still id="CharacterSheet" component={CharacterSheet} width={1920} height={1080} />
       <Composition
         id="KineticType"
         component={KineticType}
