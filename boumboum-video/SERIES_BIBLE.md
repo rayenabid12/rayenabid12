@@ -46,10 +46,15 @@ product with the viewer.
 | 1 | Le plus gros BOUM | `BoumFinal` |
 | 2 | Boum-Boo ! (Halloween) | `Ep2BoumBoo` |
 | 3 | Le Duel de Bulles (introduces Mélo; Fraise vs Pastèque, then together) | `Ep3Duel` |
-| 4 | Le dernier Boum Boum | idea |
+| 4 | Joyeux anniversaire, Mélo ! (surprise party at the pink monster's home) | `Ep4Birthday` |
+| – | Le dernier Boum Boum | idea |
 | 5 | La Récré | idea |
 | 6 | Mission Pastèque | idea |
 | ★ | Noël Boum Boum | idea |
+
+## Locations
+- City street at night (Ep. 2, `ep2/CitySet.tsx`), sunny park (Ep. 3, `ep3/ParkSet.tsx`), the pink monster's home (Ep. 4, `ep4/HomeSet.tsx`: wall calendar, photo of the two friends, party table, front door).
+- Shared staging toolkit for two-character episodes: `src/episodes/shared/stage.tsx`. Mélo on the end card: `brand/FinaleMelo.tsx`.
 
 ## Notes from Ep. 3
 - Long gaps between keys make channels drift (e.g. eyes slowly closing). Wrap episode keys in `tighten()` (`src/final/kit.ts`); give deliberate slow moves an explicit `inOut` ease.
