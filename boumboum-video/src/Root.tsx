@@ -1,6 +1,8 @@
 import { Composition, Folder, Still, staticFile } from "remotion";
 import { BoumStory } from "./story/BoumStory";
 import { CharacterSheet } from "./story/CharacterSheet";
+import { ModelSheet } from "./rig/ModelSheet";
+import { REEL_DURATION, ReactionGrid, ReactionReel } from "./rig/ReactionReel";
 import { BoumBoumPromo } from "./BoumBoumPromo";
 import { BubblePop } from "./bubblepop/BubblePop";
 import { KineticType } from "./kinetic/KineticType";
@@ -21,6 +23,25 @@ export const RemotionRoot: React.FC = () => {
         width={1080}
         height={1920}
       />
+      <Folder name="Character">
+        <Still id="ModelSheet" component={ModelSheet} width={3840} height={2500} />
+        <Composition
+          id="ReactionReel"
+          component={ReactionReel}
+          durationInFrames={REEL_DURATION}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="ReactionGrid"
+          component={ReactionGrid}
+          durationInFrames={200}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+      </Folder>
       <Still id="CharacterSheet" component={CharacterSheet} width={1920} height={1080} />
       <Composition
         id="KineticType"
