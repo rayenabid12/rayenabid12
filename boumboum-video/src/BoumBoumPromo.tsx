@@ -1,4 +1,9 @@
-import { linearTiming, springTiming, TransitionSeries } from "@remotion/transitions";
+import { Audio } from "@remotion/media";
+import {
+  linearTiming,
+  springTiming,
+  TransitionSeries,
+} from "@remotion/transitions";
 import { slide } from "@remotion/transitions/slide";
 import { wipe } from "@remotion/transitions/wipe";
 import { staticFile } from "remotion";
@@ -8,45 +13,55 @@ import { OutroScene } from "./scenes/OutroScene";
 
 export const BoumBoumPromo = () => {
   return (
-    <TransitionSeries>
-      <TransitionSeries.Sequence name="Intro" durationInFrames={90}>
-        <IntroScene tagline="Bubble Gum fourré" />
-      </TransitionSeries.Sequence>
-      <TransitionSeries.Transition
-        presentation={slide({ direction: "from-bottom" })}
-        timing={springTiming({ config: { damping: 200 }, durationInFrames: 15 })}
-      />
-      <TransitionSeries.Sequence name="Pastèque" durationInFrames={120}>
-        <FlavorScene
-          flavor="PASTÈQUE"
-          subtitle="Fourré coulis goût"
-          stripeA="#2E9E3E"
-          stripeB="#1F7A2E"
-          heroSrc={staticFile("gum-pasteque.webp")}
-          packSrc={staticFile("packs-pasteque.webp")}
+    <>
+      <Audio name="Music" src={staticFile("music.mp3")} volume={0.6} />
+      <Audio name="Sound effects" src={staticFile("sfx.mp3")} volume={0.9} />
+      <TransitionSeries>
+        <TransitionSeries.Sequence name="Intro" durationInFrames={90}>
+          <IntroScene tagline="Bubble Gum fourré" />
+        </TransitionSeries.Sequence>
+        <TransitionSeries.Transition
+          presentation={slide({ direction: "from-bottom" })}
+          timing={springTiming({
+            config: { damping: 200 },
+            durationInFrames: 15,
+          })}
         />
-      </TransitionSeries.Sequence>
-      <TransitionSeries.Transition
-        presentation={wipe({ direction: "from-right" })}
-        timing={linearTiming({ durationInFrames: 15 })}
-      />
-      <TransitionSeries.Sequence name="Fraise" durationInFrames={120}>
-        <FlavorScene
-          flavor="FRAISE"
-          subtitle="Fourré goût"
-          stripeA="#E01F3D"
-          stripeB="#B5122C"
-          heroSrc={staticFile("pack-fraise.webp")}
-          packSrc={staticFile("box-fraise.webp")}
+        <TransitionSeries.Sequence name="Pastèque" durationInFrames={120}>
+          <FlavorScene
+            flavor="PASTÈQUE"
+            subtitle="Fourré coulis goût"
+            stripeA="#2E9E3E"
+            stripeB="#1F7A2E"
+            heroSrc={staticFile("gum-pasteque.webp")}
+            packSrc={staticFile("packs-pasteque.webp")}
+          />
+        </TransitionSeries.Sequence>
+        <TransitionSeries.Transition
+          presentation={wipe({ direction: "from-right" })}
+          timing={linearTiming({ durationInFrames: 15 })}
         />
-      </TransitionSeries.Sequence>
-      <TransitionSeries.Transition
-        presentation={slide({ direction: "from-top" })}
-        timing={springTiming({ config: { damping: 200 }, durationInFrames: 15 })}
-      />
-      <TransitionSeries.Sequence name="Outro" durationInFrames={120}>
-        <OutroScene cta="Fais BOUM !" badge="Colorants naturels" />
-      </TransitionSeries.Sequence>
-    </TransitionSeries>
+        <TransitionSeries.Sequence name="Fraise" durationInFrames={120}>
+          <FlavorScene
+            flavor="FRAISE"
+            subtitle="Fourré goût"
+            stripeA="#E01F3D"
+            stripeB="#B5122C"
+            heroSrc={staticFile("pack-fraise.webp")}
+            packSrc={staticFile("box-fraise.webp")}
+          />
+        </TransitionSeries.Sequence>
+        <TransitionSeries.Transition
+          presentation={slide({ direction: "from-top" })}
+          timing={springTiming({
+            config: { damping: 200 },
+            durationInFrames: 15,
+          })}
+        />
+        <TransitionSeries.Sequence name="Outro" durationInFrames={120}>
+          <OutroScene cta="Fais BOUM !" badge="Colorants naturels" />
+        </TransitionSeries.Sequence>
+      </TransitionSeries>
+    </>
   );
 };
