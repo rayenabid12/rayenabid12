@@ -5,7 +5,7 @@ import { fade } from "@remotion/transitions/fade";
 import { staticFile, useCurrentFrame } from "remotion";
 import { BrandFinale } from "../../brand/BrandFinale";
 import { Bat, Ghost, Pumpkin } from "./Halloween";
-import { StreetScene } from "./StreetScene";
+import { STREET_END, StreetScene } from "./StreetScene";
 
 // Halloween touches for the shared brand finale: bats, pumpkins, and the
 // (now pink and friendly) ghost waving next to the logo.
@@ -27,14 +27,14 @@ const HalloweenFront: React.FC = () => (
   </>
 );
 
-// "Les Aventures Boum Boum", Episode 2: "Boum-Boo !" (Halloween special, 20 s).
+// "Les Aventures Boum Boum", Episode 2: "Boum-Boo !" (Halloween special, 30 s).
 export const Ep2BoumBoo = () => {
   return (
     <>
       <Audio name="Music" src={staticFile("ep2-music.mp3")} volume={0.55} />
       <Audio name="Sound effects" src={staticFile("ep2-sfx.mp3")} volume={0.8} />
       <TransitionSeries>
-        <TransitionSeries.Sequence name="Street: trick, BOUH, bubble, friends" durationInFrames={518}>
+        <TransitionSeries.Sequence name="Street: trick, BOUH, bubble, friends" durationInFrames={STREET_END}>
           <StreetScene />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: 8 })} />

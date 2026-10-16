@@ -39,3 +39,12 @@ product with the viewer.
 | 5 | La Récré | idea |
 | 6 | Mission Pastèque | idea |
 | ★ | Noël Boum Boum | idea |
+
+## Staging & pacing rules (learned on Ep. 2)
+- One idea per shot. Give every key moment a **hold** (≥ 1 s) so kids can read it before the next beat.
+- Prefer **30 s** when the story has a second character; 20 s only for single-character stories.
+- Use the virtual camera (world coordinates + keyed `[frame, x, y, zoom]`): wide to establish,
+  medium for action, push-ins for suspense, close-up for "À toi !".
+- Never stack characters and set pieces in one corner: in two-shots put the monster on the left
+  third, the other character on the right third, and let the action (bubble) happen in the space between.
+- Keep text in the top third; characters in the middle/bottom.

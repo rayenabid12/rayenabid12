@@ -9,7 +9,7 @@ import numpy as np
 from kids_synth import *  # noqa: F401,F403
 from synth import *  # noqa: F401,F403
 
-LENGTH = 600 / FPS
+LENGTH = 900 / FPS
 f = lambda frame: frame / FPS  # noqa: E731
 music = np.zeros(int(LENGTH * SR) + SR)
 sfx = np.zeros_like(music)
@@ -83,20 +83,22 @@ def spooky_section(start, end, melody_on=True, perc=True):
                     add(music, glock(m, 0.7, 0.11), t0 + (rep + beat) * BEAT)
 
 
-spooky_section(0, 96)
+spooky_section(0, 240)
+# the door: creak, theremin, silence
+add(music, theremin(69, 63, 1.6), f(250))
 # BOUH stinger
 for m in [33, 45, 51, 57]:
-    add(music, ks(m, 1.2, 0.2, bright=0.4, decay=0.996), f(100))
-add(music, crash(0.25), f(100))
+    add(music, ks(m, 1.2, 0.2, bright=0.4, decay=0.996), f(300))
+add(music, crash(0.25), f(300))
 # hiding: trembling tremolo + theremin
-for k in range(int((170 - 106) / 2)):
-    add(music, pizz(40 + (k % 2), 0.08), f(106 + k * 2))
-add(music, theremin(69, 75, 1.0), f(108))
-add(music, theremin(75, 66, 1.1), f(140))
-# sneaky plan march
-spooky_section(172, 296, melody_on=False, perc=False)
-for k in range(int((296 - 240) / 7.5)):
-    add(music, shaker(0.04), f(240 + k * 7.5))
+for k in range(int((420 - 350) / 2)):
+    add(music, pizz(40 + (k % 2), 0.08), f(350 + k * 2))
+add(music, theremin(69, 75, 1.0), f(356))
+add(music, theremin(75, 66, 1.1), f(390))
+# sneaky plan march, building up to the bubble
+spooky_section(425, 645, melody_on=False, perc=False)
+for k in range(int((645 - 560) / 7.5)):
+    add(music, shaker(0.04), f(560 + k * 7.5))
 
 # friends: the series' happy theme
 C, Am, F, G = [60, 64, 67, 72], [57, 64, 69, 72], [57, 65, 69, 72], [55, 62, 67, 71]
@@ -107,8 +109,8 @@ melody = [
     (8, 77, 0.5), (8.5, 81, 0.5), (9, 84, 1), (10, 81, 0.5), (10.5, 77, 0.5), (11, 74, 1),
     (12, 79, 0.5), (12.5, 77, 0.5), (13, 76, 0.5), (13.5, 74, 0.5), (14, 72, 2),
 ]
-t0 = f(330)
-beats = int((570 - 330) / 15)
+t0 = f(690)
+beats = int((870 - 690) / 15)
 for b in range(beats):
     tb = t0 + b * BEAT
     chord, root = prog[(b // 4) % 4]
@@ -125,69 +127,68 @@ for beat, m, ln in melody:
         if rep + beat < beats:
             add(music, glock(m, 0.6 + ln * 0.3), t0 + (rep + beat) * BEAT)
 for m in [60, 64, 67, 72, 76]:
-    add(music, ks(m, 1.6, 0.13, bright=0.6, decay=0.997), f(570) + (m - 60) * 0.004)
-add(music, glock(84, 1.2, 0.2), f(570))
-add(music, glock(88, 1.2, 0.16), f(577))
-add(music, glock(91, 1.4, 0.16), f(584))
-add(music, kick(0.4), f(570))
+    add(music, ks(m, 1.6, 0.13, bright=0.6, decay=0.997), f(870) + (m - 60) * 0.004)
+add(music, glock(84, 1.2, 0.2), f(870))
+add(music, glock(88, 1.2, 0.16), f(877))
+add(music, glock(91, 1.4, 0.16), f(884))
+add(music, kick(0.4), f(870))
 
 # ---------------- sfx ----------------
 for k in range(6):
     add(sfx, flap(), f(4 + k * 6))
 add(sfx, glock(96, 0.6, 0.06), f(10))  # title sparkle
-for at in (30, 46):
+for at in (102, 120, 138):
     add(sfx, boing(0.14, 220, 460), f(at))
-for at in (38, 54):
+for at in (110, 128, 146):
     add(sfx, bloop(0.25), f(at))
-for at in (64, 70, 76):
+for at in (200, 215, 230):
     add(sfx, knock(), f(at))
-add(sfx, creak(0.45), f(83))
-add(sfx, sweep(110, 60, 0.7, 0.35, vibrato=0.08, rate=9) * env(0.7, 0.02, 0.4), f(100))  # "BOUH"
-add(sfx, slide_whistle(500, 1500, 0.25, 0.14), f(100))  # his take
-add(sfx, whoosh(0.4, 0.16), f(102))  # sheet flies off
-add(sfx, bloop(0.2), f(118))  # bucket lands
-for k in range(5):
-    add(sfx, pop(1 + k * 0.15, 0.1), f(120 + k * 2))  # candy scatter
-add(sfx, bloop(0.2), f(125))
-add(sfx, chatter(1.2), f(132))
-add(sfx, glock(96, 0.4, 0.14), f(172))  # idea "ting"
-sparkle(f(173), sfx, 0.06)
-add(sfx, slide_whistle(600, 1200, 0.25, 0.12), f(194))  # gum flip
-add(sfx, gulp(), f(202))
+add(sfx, creak(1.3, 0.16), f(245))
+add(sfx, glock(98, 0.5, 0.08), f(272))  # glowing eyes
+add(sfx, sweep(110, 60, 0.7, 0.35, vibrato=0.08, rate=9) * env(0.7, 0.02, 0.4), f(300))  # "BOUH"
+add(sfx, slide_whistle(500, 1500, 0.25, 0.14), f(300))  # his take
+add(sfx, whoosh(0.4, 0.16), f(302))  # costume and bucket fly
+for at in (324, 340):
+    add(sfx, boing(0.12, 300, 600), f(at))
+for at in (332, 348):
+    add(sfx, bloop(0.2), f(at))
+add(sfx, chatter(1.9), f(356))
+add(sfx, glock(96, 0.4, 0.14), f(425))  # idea "ting"
+sparkle(f(426), sfx, 0.06)
+add(sfx, pop(1.3, 0.12), f(452))  # gum appears
+add(sfx, gulp(), f(462))
 for k in range(3):
-    add(sfx, chew(), f(206 + k * 5))
-add(sfx, boing(0.16), f(222))
-add(sfx, bloop(0.22), f(232))
-add(sfx, whoosh(0.3, 0.12), f(236))  # deep breath
-add(sfx, stretch(f(53), 0.2), f(243))  # blowing the ghost bubble
-add(sfx, theremin(81, 72, 0.5, 0.06), f(262))  # the ghost goes "oooh..."
-add(sfx, pop(0.55, 1.0), f(300))
-add(sfx, boum(1.0), f(300))
-add(sfx, crash(0.25), f(300))
-add(sfx, splat(0.4), f(302))  # gum all over the ghost
-giggle(f(326))
-giggle(f(340), 0.08)
-add(sfx, chew(0.12), f(LICK := 360))
-add(sfx, splat(0.45), f(362))
-sparkle(f(366), sfx, 0.08)
-add(sfx, boing(0.2, 200, 700), f(386))
-add(sfx, bloop(0.22), f(397))
-add(sfx, whoosh(0.8, 0.14), f(408))  # dolly-in
-sparkle(f(440), sfx, 0.1)  # "A toi !"
-add(sfx, slide_whistle(400, 1100, 0.7, 0.13), f(452))
-add(sfx, whoosh(0.6, 0.25), f(500))
+    add(sfx, chew(), f(466 + k * 5))
+add(sfx, boing(0.16), f(490))
+add(sfx, bloop(0.22), f(498))
+add(sfx, whoosh(0.3, 0.12), f(526))  # deep breath
+add(sfx, stretch(f(110), 0.2), f(540))  # blowing the ghost bubble
+add(sfx, theremin(81, 72, 0.6, 0.06), f(600))  # the ghost goes "oooh..."
+add(sfx, pop(0.55, 1.0), f(660))
+add(sfx, boum(1.0), f(660))
+add(sfx, crash(0.25), f(660))
+add(sfx, splat(0.4), f(662))  # gum all over the ghost
+giggle(f(700))
+giggle(f(716), 0.08)
+add(sfx, chew(0.12), f(740))
+add(sfx, splat(0.45), f(742))
+sparkle(f(746), sfx, 0.08)
+add(sfx, whoosh(0.6, 0.14), f(770))  # camera to the close-up
+sparkle(f(792), sfx, 0.1)  # "A toi !"
+add(sfx, slide_whistle(400, 1100, 0.6, 0.13), f(800))
+add(sfx, whoosh(0.4, 0.22), f(806))
 # finale
-add(sfx, whoosh(0.35, 0.18), f(510))
-add(sfx, bloop(0.25), f(523))
+add(sfx, whoosh(0.35, 0.18), f(810))
+add(sfx, bloop(0.25), f(823))
 for k in range(8):
-    add(sfx, pop(1 + k * 0.07, 0.16), f(525 + k * 3))
-sparkle(f(530), sfx, 0.08)
-add(sfx, stretch(0.7, 0.12), f(549))
-add(sfx, pop(0.7, 0.9), f(570))
-add(sfx, boum(0.6), f(570))
-sparkle(f(574), sfx, 0.12)
-add(sfx, glock(96, 0.3, 0.14), f(576))
-giggle(f(580), 0.07)
+    add(sfx, pop(1 + k * 0.07, 0.16), f(825 + k * 3))
+sparkle(f(830), sfx, 0.08)
+add(sfx, stretch(0.7, 0.12), f(849))
+add(sfx, pop(0.7, 0.9), f(870))
+add(sfx, boum(0.6), f(870))
+sparkle(f(874), sfx, 0.12)
+add(sfx, glock(96, 0.3, 0.14), f(876))
+giggle(f(880), 0.07)
 
 write_mp3(music, "ep2-music", LENGTH)
 write_mp3(sfx, "ep2-sfx", LENGTH)

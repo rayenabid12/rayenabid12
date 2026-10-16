@@ -5,28 +5,37 @@ import { SeriesTitle } from "../../brand/SeriesTitle";
 import { alternate, hop, poseAt, rigBox, rigToScreen } from "../../final/kit";
 import { AnimatedMonster } from "../../rig/AnimatedMonster";
 import { blinkAt, type Key, sortKeys } from "../../rig/pose";
-import { GumPiece, Starburst } from "../../story/Props";
-import { GROUND_Y, World } from "../../story/World";
+import { GumPiece, GumShape, Starburst } from "../../story/Props";
 import { bodyFont, candyText, colors, displayFont } from "../../theme";
 import { Bat, BucketShape, Ghost, type GhostPose, Pumpkin, Sheet, SpookyHouse } from "./Halloween";
+import { GROUND, NightGround, NightSky } from "./NightSet";
 
-const ANCHOR: [number, number] = [540, GROUND_Y - 20];
-const WIDTH = 480;
+// Everything below is in WORLD coordinates; a keyed virtual camera frames each beat.
+const ANCHOR: [number, number] = [560, GROUND]; // monster feet at rig x = 0
+const WIDTH = 520;
 const SCALE = WIDTH / 400;
-const X = (screenX: number) => (screenX - 540) / SCALE; // screen x -> rig x
+const X = (worldX: number) => (worldX - ANCHOR[0]) / SCALE;
 
-// beats
-const BOUH = 100;
-const HIDE = 125;
-const IDEA = 172;
-const CHOMP = 202;
-const BLOW = 243;
-export const POP = 300;
-const LICK = 360;
-const ZOOM_AT = 408;
-const OFFER = 436;
+const HOUSE = { x: 980, y: GROUND - 820, w: 440 }; // door centre ~ (1200, 1290)
+const HIDE_PUMPKIN = { x: 130, y: GROUND - 250, w: 340 }; // centre x ~ 300
 
-// hop without arm keys (his hands are busy with the bucket under the costume)
+// beats (30 fps, 120 BPM: a beat every 15 frames)
+const ARRIVE = 150;
+const KNOCKS = [200, 215, 230];
+const DOOR = 245;
+const BOUH = 300;
+const HIDE = 350;
+const IDEA = 425;
+const CHOMP = 462;
+const BREATH = 530;
+const BLOW = 540;
+export const POP = 660;
+const GIGGLE = 700;
+const TASTE = 740;
+const CLOSE = 770;
+const OFFER = 790;
+export const STREET_END = 818;
+
 const hopBody = (s: number, x0: number, x1: number, h: number): Key[] =>
   hop(s, x0, x1, h).map((k) => {
     const rest: Key = { ...k };
@@ -36,104 +45,133 @@ const hopBody = (s: number, x0: number, x1: number, h: number): Key[] =>
   });
 
 export const MONSTER_KEYS: Key[] = sortKeys([
-  // trick-or-treating, in his ghost costume, bucket in hand
-  { f: 0, x: X(-300), y: 0, turn: 0.12, lookX: 0.5, armL: -46, armR: -46, mouthOpen: 0.6 },
-  ...hopBody(24, X(-300), X(180), 120),
-  ...hopBody(40, X(180), X(468), 120),
-  { f: 58, turn: 0.3, lookX: 0.8 },
-  // knock knock knock
-  ...alternate(64, 78, 3, { rot: 5, bend: 6 }, { rot: 0, bend: 0 }),
-  { f: 80, rot: 0, bend: 0 },
-  { f: 86, rot: -3, eyeScale: 1.12, lookX: 0.9 },
-  { f: 98, eyeScale: 1.12, rot: -3 },
-  // BOUH! he jumps right out of his costume
-  { f: BOUH, y: -150, sy: 1.3, eyeScale: 1.45, pupil: 0.5, browY: -30, mouthOpen: 1, mouthWidth: 0.45, armL: 160, armR: 160, legSpread: 0.6, rot: 0, turn: 0, lookX: 0.6, ease: "snap" },
+  { f: 0, x: X(-250), y: 0, turn: 0.12, lookX: 0.5, armL: -46, armR: -46, mouthOpen: 0.6 },
+  { f: 92, x: X(-250) },
+  ...hopBody(96, X(-250), X(140), 120),
+  ...hopBody(114, X(140), X(480), 120),
+  ...hopBody(132, X(480), X(820), 120),
+  { f: ARRIVE + 6, turn: 0.12, lookX: 0.5 },
+  { f: ARRIVE + 16, turn: 0.3, lookX: 0.8, ease: "out" },
+  // knock, knock, knock (on the beat)
+  ...KNOCKS.flatMap((k) => [
+    { f: k - 2, rot: 0, bend: 0 },
+    { f: k, rot: 6, bend: 9, ease: "snap" as const },
+    { f: k + 5, rot: 0, bend: 0, ease: "out" as const },
+  ]),
+  // waiting... the door creaks
+  { f: DOOR, eyeScale: 1, rot: 0 },
+  { f: 288, eyeScale: 1.18, rot: -3, lookX: 0.9 },
+  ...blinkAt(262),
+  { f: BOUH - 1, eyeScale: 1.18, rot: -3 },
+  // BOUH! he jumps out of his costume
+  { f: BOUH, y: -160, sy: 1.3, eyeScale: 1.45, pupil: 0.5, browY: -30, mouthOpen: 1, mouthWidth: 0.45, armL: 160, armR: 160, legSpread: 0.6, rot: 0, turn: 0, lookX: 0.6, ease: "snap" },
   { f: BOUH + 6, sy: 1.15, eyeScale: 1.35, ease: "out" },
-  { f: BOUH + 8, y: -150, ease: "hold" },
-  // ...and dashes behind the pumpkin
-  { f: 110, turn: -0.45, lookX: -0.6, x: X(468) },
-  { f: 112, legLift: 0.6 },
-  { f: 116, y: 0, ease: "in" },
-  { f: 120, y: -50, ease: "out" },
-  { f: 122, legLift: 0 },
-  { f: 124, x: X(262), y: 0, ease: "in" },
+  { f: BOUH + 14, y: -160, sy: 1.15, ease: "hold" },
+  // ...and runs to the pumpkin
+  { f: BOUH + 16, turn: -0.5, lookX: -0.7 },
+  ...hop(BOUH + 18, X(820), X(560), 80),
+  ...hop(BOUH + 34, X(560), X(300), 80),
   { f: HIDE, sy: 0.8, ease: "snap" },
-  { f: 130, sy: 0.82, y: 18, turn: 0.3, lookX: 0.9, lookY: -0.2, browTilt: 16, browY: -4, eyeScale: 1.15, pupil: 0.8, mouthOpen: 0.3, mouthWidth: 0.45, smile: -0.5, armL: -30, armR: -30, legSpread: 0 },
-  ...alternate(132, 168, 2, { x: X(262) + 2.5 }, { x: X(262) - 2.5 }).map((k) => ({ ...k, ease: "linear" as const })),
-  ...blinkAt(150),
+  { f: HIDE + 6, sy: 0.82, y: 18, turn: 0.3, lookX: 0.9, lookY: -0.2, browTilt: 16, browY: -4, eyeScale: 1.15, pupil: 0.8, mouthOpen: 0.3, mouthWidth: 0.45, smile: -0.5, armL: -30, armR: -30, legSpread: 0 },
+  ...alternate(HIDE + 8, 412, 2, { x: X(300) + 2.5 }, { x: X(300) - 2.5 }).map((k) => ({ ...k, ease: "linear" as const })),
+  ...blinkAt(395),
   // the idea!
-  { f: IDEA, x: X(262), sy: 1.02, y: 0, eyeScale: 1.15, browY: -16, browTilt: 0, lookY: -0.5, lookX: 0.3, armR: 150, curlR: -0.3, mouthOpen: 0.45, mouthWidth: 0.7, smile: 1, pupil: 1, ease: "snap" },
-  { f: IDEA + 4, sy: 1, ease: "out" },
-  { f: 184, browTilt: -14, browY: 4, lookX: 0.6, lookY: 0.2, mouthOpen: 0.35, mouthWidth: 0.8, armR: 8, curlR: 0, turn: 0.25 },
-  // scoops a gum off the ground, flips it into his mouth
-  { f: 190, armL: -70, rot: -6, sy: 0.92 },
-  { f: 194, armL: 40, rot: 0, sy: 1, lookY: -0.3, ease: "snap" },
-  { f: 198, mouthOpen: 1, mouthWidth: 0.7 },
-  { f: CHOMP, mouthOpen: 0, mouthWidth: 0.55, sy: 0.85, squint: 1, armL: 8, ease: "snap" },
+  { f: IDEA - 1, x: X(300), sy: 0.82, y: 18 },
+  { f: IDEA, sy: 1.02, y: 0, eyeScale: 1.15, browY: -16, browTilt: 0, lookY: -0.5, lookX: 0.3, armR: 150, curlR: -0.3, mouthOpen: 0.45, mouthWidth: 0.7, smile: 1, pupil: 1, ease: "snap" },
+  { f: IDEA + 5, sy: 1, ease: "out" },
+  { f: 440, browTilt: -14, browY: 4, lookX: 0.6, lookY: 0.2, mouthOpen: 0.35, mouthWidth: 0.8, armR: 8, curlR: 0, turn: 0.25 },
+  // pulls a gum from behind his back, chomp
+  { f: 448, armR: -25 },
+  { f: 452, armR: 70, lookY: -0.3, ease: "snap" },
+  { f: 456, mouthOpen: 1, mouthWidth: 0.7 },
+  { f: CHOMP, mouthOpen: 0, mouthWidth: 0.55, sy: 0.85, squint: 1, armR: 8, ease: "snap" },
   { f: CHOMP + 4, sy: 1, ease: "out" },
-  ...alternate(CHOMP + 4, 216, 5, { mouthOpen: 0.08, cheeks: 1 }, { mouthOpen: 0.28, cheeks: 0.55 }),
-  // brave now: steps out to face the ghost
-  { f: 218, squint: 0, browTilt: -14, browY: 4, cheeks: 0, mouthOpen: 0.3, mouthWidth: 0.6, smile: 0.6 },
-  ...hop(218, X(262), X(492), 90),
-  { f: 234, turn: 0.25, lookX: 0.7 },
-  { f: 238, sy: 1.08, cheeks: 1, mouthOpen: 0.3, mouthWidth: 0.28, armL: 30, armR: 30, browTilt: -10 },
+  ...alternate(CHOMP + 4, 480, 5, { mouthOpen: 0.08, cheeks: 1 }, { mouthOpen: 0.28, cheeks: 0.55 }),
+  // steps out bravely
+  { f: 482, squint: 0, browTilt: -14, browY: 4, cheeks: 0, mouthOpen: 0.3, mouthWidth: 0.6, smile: 0.6 },
+  ...hop(484, X(300), X(420), 90),
+  { f: 500, turn: 0.25, lookX: 0.7 },
+  { f: BREATH - 4, sy: 1 },
+  { f: BREATH, sy: 1.08, cheeks: 1, mouthOpen: 0.3, mouthWidth: 0.28, armL: 30, armR: 30, browTilt: -10 },
   { f: BLOW, sy: 0.98, cheeks: 0.8, rot: 4 },
-  { f: 270, squint: 0.3 },
-  { f: 296, squint: 0.3, rot: 4 },
+  { f: 600, squint: 0.3 },
+  { f: POP - 1, squint: 0.3, rot: 4 },
   // BOUM
   { f: POP, sy: 0.88, eyeScale: 1.25, browY: -20, browTilt: 0, cheeks: 0, mouthOpen: 0.9, mouthWidth: 0.5, squint: 0, rot: 0, ease: "snap" },
   { f: POP + 6, eyeScale: 1, sy: 1, ease: "out" },
+  { f: 680, lookX: 0.8, mouthOpen: 0.35, mouthWidth: 0.6, browY: -10 },
   // laughing together
-  { f: 312, squint: 1, mouthOpen: 1, mouthWidth: 1, browY: -10, armL: 60, armR: 60 },
-  ...alternate(314, 354, 4, { y: -12, sy: 1.02 }, { y: 0, sy: 0.97 }),
-  { f: 358, y: 0, sy: 1, squint: 0, mouthOpen: 0.85, lookX: 0.7, armL: 8, armR: 8 },
-  // friendship jump
-  { f: 382, sy: 1, squint: 0 },
-  { f: 384, sy: 0.8, squint: 1, armL: -20, armR: -20, y: 0 },
-  { f: 388, y: -110, sy: 1.1, armL: 150, armR: 150, legLift: 0.8, ease: "out" },
-  { f: 395, legLift: 0 },
-  { f: 396, y: 0, ease: "in" },
-  { f: 397, sy: 0.78, ease: "snap" },
-  { f: 402, sy: 1, ease: "out" },
+  { f: GIGGLE, squint: 1, mouthOpen: 1, mouthWidth: 1, browY: -10, armL: 60, armR: 60 },
+  ...alternate(GIGGLE + 2, 734, 4, { y: -12, sy: 1.02 }, { y: 0, sy: 0.97 }),
+  { f: 738, y: 0, sy: 1, squint: 0, mouthOpen: 0.85, lookX: 0.7, armL: 8, armR: 8 },
   // close-up: "A toi !"
-  { f: 410, turn: 0, lookX: 0, squint: 0, mouthOpen: 0.9, armL: 8, armR: 8 },
+  { f: CLOSE, turn: 0, lookX: 0, mouthOpen: 0.9 },
   { f: OFFER, armL: -46, armR: -46, browY: -8, ease: "out" },
-  { f: 450, rot: 4 },
-  { f: 470, sy: 1 },
+  { f: 805, rot: 4 },
 ]);
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
-const lerp = (f: number, i: number[], o: number[], ease = Easing.inOut(Easing.cubic)) => interpolate(f, i, o, { ...clamp, easing: ease });
+const io = Easing.inOut(Easing.cubic);
+const lerp = (f: number, i: number[], o: number[]) => interpolate(f, i, o, { ...clamp, easing: io });
 
-// The ghost's performance, frame by frame.
+// Virtual camera: [frame, centreX, centreY, zoom] in world coordinates.
+const CAMERA: [number, number, number, number][] = [
+  [0, 750, 250, 0.75],
+  [75, 750, 1150, 0.75], // tilt down: wide establishing shot
+  [165, 750, 1150, 0.75],
+  [195, 1010, 1180, 1.0], // medium: monster + door
+  [DOOR, 1010, 1180, 1.0],
+  [290, 1110, 1210, 1.25], // slow push on the door
+  [BOUH, 1110, 1210, 1.25],
+  [BOUH + 6, 1000, 1150, 1.0], // snap back for BOUH
+  [340, 1000, 1150, 1.0],
+  [365, 400, 1230, 1.05], // follow him to the pumpkin
+  [470, 400, 1230, 1.05],
+  [508, 680, 1150, 0.95], // two-shot face-off: him left third, ghost right third
+  [POP - 6, 680, 1150, 1.03],
+  [730, 680, 1150, 1.0],
+  [752, 860, 1090, 1.22], // the ghost tastes
+  [CLOSE, 860, 1090, 1.22],
+  [CLOSE + 18, 420, 1250, 1.9], // close-up on him
+  [STREET_END, 560, 1250, 1.9],
+];
+
+const camera = (f: number) => {
+  const fs = CAMERA.map((c) => c[0]);
+  const at = (i: number) => interpolate(f, fs, CAMERA.map((c) => c[i]), { ...clamp, easing: io });
+  const shake = (from: number) => (f >= from && f < from + 12 ? (1 - (f - from) / 12) * 14 : 0);
+  const s = shake(BOUH) + shake(POP);
+  return { cx: at(1) + Math.sin(f * 2.7) * s, cy: at(2) + Math.cos(f * 3.1) * s, z: at(3) };
+};
+
+// The ghost's performance (world coordinates).
 const ghostAt = (f: number): (GhostPose & { x: number; y: number; size: number; alpha: number }) | null => {
-  if (f < 92) return null;
-  const alpha = lerp(f, [92, 100], [0, 1]);
-  const x = f < 300 ? lerp(f, [92, 100, 108, 124, 140, 243, 290], [860, 860, 700, 700, 800, 800, 880]) : lerp(f, [300, 340, 356, 372], [880, 880, 790, 790]);
-  const yBase = f < 300 ? lerp(f, [92, 100, 108, 124, 140, 243, 290], [1330, 1290, 1120, 1120, 1050, 1060, 960]) : lerp(f, [300, 340, 356], [960, 960, 1130]);
-  const jump = f >= 384 && f < 398 ? -Math.sin(((f - 384) / 14) * Math.PI) * 90 : 0;
-  const size = f < 300 ? lerp(f, [92, 100, 108, 124, 140, 243, 290], [200, 260, 430, 430, 360, 360, 300]) : lerp(f, [300, 340, 356], [300, 300, 380]);
-  const giggle = f >= 326 && f < 356 ? Math.sin(f * 1.3) * 5 : 0;
+  if (f < BOUH - 6) return null;
+  const k = (frames: number[], values: number[]) => lerp(f, frames, values);
+  const x = f < POP ? k([BOUH - 6, BOUH, BOUH + 8, BOUH + 26, 360, 470, 508, BLOW, 640], [1200, 1200, 980, 980, 1150, 1150, 930, 930, 1010]) : k([POP, 700, 730, TASTE], [1010, 1010, 900, 880]);
+  const y = f < POP ? k([BOUH - 6, BOUH, BOUH + 8, BOUH + 26, 360, 470, 508, BLOW, 640], [1300, 1280, 1110, 1110, 1010, 1010, 980, 980, 900]) : k([POP, 700, 730, TASTE], [900, 900, 1060, 1090]);
+  const size = f < POP ? k([BOUH - 6, BOUH, BOUH + 8, BOUH + 26, 360, BLOW, 640], [180, 240, 470, 470, 380, 380, 300]) : k([POP, 700, 730], [300, 300, 380]);
+  const giggle = f >= GIGGLE && f < TASTE ? Math.sin(f * 1.3) * 5 : 0;
   return {
-    x: x + (f >= 108 && f < 124 ? Math.sin(f * 2.2) * 6 : 0),
-    y: yBase + jump,
+    x: x + (f >= BOUH + 8 && f < BOUH + 26 ? Math.sin(f * 2.2) * 6 : 0),
+    y,
     size,
-    alpha,
-    mouth: f < 108 ? lerp(f, [96, 104], [0.2, 1]) : f < 124 ? 0.9 : f < 300 ? (f > 250 ? 0.55 : 0.3) : f < LICK ? 0.7 : f < 374 ? 0.5 : 0.7,
-    happy: (f >= 130 && f < 172) || (f >= 326 && f < LICK + 14) || f >= 380 ? 1 : 0,
-    scared: f < 300 ? lerp(f, [250, 270], [0, 1]) : lerp(f, [300, 320], [1, 0]),
-    pink: lerp(f, [POP, POP + 3], [0, 1]),
-    arms: f < 124 ? lerp(f, [100, 106], [0, 1]) : f >= 380 ? 0.9 : 0.4,
-    lean: (f >= 280 && f < 300 ? Math.sin(f * 2) * 4 : 0) + giggle + (f >= 304 && f < 324 ? 10 : 0),
-    tongue: f >= LICK && f < LICK + 14 ? 1 : 0,
+    alpha: k([BOUH - 6, BOUH], [0, 1]),
+    mouth: f < BOUH + 8 ? k([BOUH - 2, BOUH + 4], [0.2, 1]) : f < BOUH + 26 ? 0.9 : f < POP ? (f > 590 ? 0.55 : 0.3) : f < TASTE ? 0.7 : f < TASTE + 14 ? 0.5 : 0.7,
+    happy: (f >= 360 && f < 420) || (f >= GIGGLE && f < TASTE) || f >= TASTE + 14 ? 1 : 0,
+    scared: f < POP ? k([580, 610], [0, 1]) : k([POP, 680], [1, 0]),
+    pink: k([POP, POP + 3], [0, 1]),
+    arms: f < BOUH + 26 ? k([BOUH, BOUH + 6], [0, 1]) : f >= TASTE + 14 ? 0.9 : 0.4,
+    lean: (f >= 620 && f < POP ? Math.sin(f * 2) * 4 : 0) + giggle + (f >= POP + 10 && f < 690 ? 12 : 0),
+    tongue: f >= TASTE && f < TASTE + 14 ? 1 : 0,
   };
 };
 
 const ghostBubbleR = (f: number) =>
-  f < 296 ? interpolate(f, [BLOW, 296], [0, 230], { ...clamp, easing: Easing.inOut(Easing.quad) }) : f < POP ? 238 : 0;
+  f < 650 ? interpolate(f, [BLOW, 650], [0, 250], { ...clamp, easing: Easing.inOut(Easing.quad) }) : f < POP ? 258 : 0;
 
 const GhostBubble: React.FC<{ x: number; y: number; r: number; wob: number }> = ({ x, y, r, wob }) => (
-  <svg viewBox="0 0 1080 1920" style={{ position: "absolute", inset: 0 }}>
+  <svg viewBox="-800 0 3600 2600" style={{ position: "absolute", left: -800, top: 0, width: 3600, height: 2600, overflow: "visible" }}>
     <defs>
       <radialGradient id="ghostBubble" cx="38%" cy="30%" r="80%">
         <stop offset="0%" stopColor="#FFE3EF" stopOpacity={0.95} />
@@ -144,7 +182,6 @@ const GhostBubble: React.FC<{ x: number; y: number; r: number; wob: number }> = 
     <g transform={`translate(${x} ${y}) scale(${(r / 110) * (1 + wob)} ${(r / 110) * (1 - wob)})`}>
       <path d="M -110 10 C -110 -90 -60 -150 0 -150 C 60 -150 110 -90 110 10 L 110 118 Q 88 152 66 118 Q 44 152 22 118 Q 0 152 -22 118 Q -44 152 -66 118 Q -88 152 -110 118 Z" fill="url(#ghostBubble)" stroke="rgba(255,255,255,0.65)" strokeWidth={4} />
       <ellipse cx={-50} cy={-100} rx={30} ry={13} fill="white" opacity={0.75} transform="rotate(-25 -50 -100)" />
-      {/* silly ghost face */}
       <circle cx={-38} cy={-40} r={20} fill="white" />
       <circle cx={38} cy={-40} r={20} fill="white" />
       <circle cx={-30} cy={-36} r={9} fill="#3A0F2A" />
@@ -155,207 +192,165 @@ const GhostBubble: React.FC<{ x: number; y: number; r: number; wob: number }> = 
   </svg>
 );
 
-const BigText: React.FC<{ text: string; at: number; out: number; top: number; fill: string; stroke: string; size?: number; jitter?: boolean }> = ({
-  text,
-  at,
-  out,
-  top,
-  fill,
-  stroke,
-  size = 190,
-  jitter,
-}) => {
+const Pop: React.FC<{ at: number; out: number; children: React.ReactNode; top: number }> = ({ at, out, children, top }) => {
   const f = useCurrentFrame();
-  const s = interpolate(f, [at, at + 7, out, out + 6], [0, 1, 1, 0], { ...clamp, easing: Easing.out(Easing.back(2.2)) });
-  return (
-    <div
-      style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top,
-        textAlign: "center",
-        fontFamily: displayFont,
-        fontSize: size,
-        ...candyText(fill, stroke, 15),
-        scale: s,
-        rotate: `${-5 + (jitter ? Math.sin(f * 2.5) * 3 : Math.sin(f / 5) * 2)}deg`,
-      }}
-    >
-      {text}
-    </div>
-  );
+  const s = interpolate(f, [at, at + 8, out, out + 6], [0, 1, 1, 0], { ...clamp, easing: Easing.out(Easing.back(2.2)) });
+  return <div style={{ position: "absolute", left: 0, right: 0, top, textAlign: "center", scale: s }}>{children}</div>;
 };
 
 export const StreetScene: React.FC = () => {
   const f = useCurrentFrame();
+  const { cx, cy, z } = camera(f);
+  const toScreen = (p: [number, number]): [number, number] => [(p[0] - cx) * z + 540, (p[1] - cy) * z + 960];
   const pose = poseAt(MONSTER_KEYS, f);
-  const cameraY = lerp(f, [0, 30], [600, 0]);
   const ghost = ghostAt(f);
 
-  // costume: worn until BOUH, then it floats off him and drapes to the ground
-  const p99 = poseAt(MONSTER_KEYS, BOUH - 1);
+  // costume: floats off at BOUH, drapes to the ground, then fades away
+  const p0 = poseAt(MONSTER_KEYS, BOUH - 1);
   const sheetT = interpolate(f, [BOUH, BOUH + 40], [0, 1], clamp);
-  const sheetDy = -Math.sin(Math.min(1, sheetT * 2) * Math.PI) * 60 + Easing.in(Easing.quad)(sheetT) * 120;
+  const sheetDy = -Math.sin(Math.min(1, sheetT * 2) * Math.PI) * 60 + Easing.in(Easing.quad)(sheetT) * 130;
+  // bucket: flung away (off to the left) at BOUH
+  const bucketFrom = rigToScreen(p0, ANCHOR, SCALE, 200, 420);
+  const bt = interpolate(f, [BOUH, BOUH + 26], [0, 1], clamp);
 
-  // bucket: held, flung at BOUH, lands and spills candy
-  const bucketFrom = rigToScreen(p99, ANCHOR, SCALE, 200, 420);
-  const bt = interpolate(f, [BOUH, BOUH + 22], [0, 1], clamp);
-  const bucket: [number, number] = [bucketFrom[0] + (420 - bucketFrom[0]) * bt, bucketFrom[1] + (1440 - bucketFrom[1]) * bt - Math.sin(Math.PI * bt) * 260];
-  const spill = interpolate(f, [BOUH + 20, BOUH + 32], [0, 1], { ...clamp, easing: Easing.out(Easing.quad) });
-  const candies: [number, number][] = [[330, 1478], [560, 1486], [680, 1492]];
+  // gum pulled from behind his back, popped into his mouth
+  const handR = (fr: number) => {
+    const p = poseAt(MONSTER_KEYS, fr);
+    const a = ((62 - p.armR) * Math.PI) / 180;
+    return rigToScreen(p, ANCHOR, SCALE, 326 + Math.cos(a) * 134, 252 + Math.sin(a) * 134);
+  };
+  const flipT = interpolate(f, [454, CHOMP], [0, 1], clamp);
+  const from = handR(454);
+  const mouthC = rigToScreen(poseAt(MONSTER_KEYS, CHOMP), ANCHOR, SCALE, 236, 318);
+  const gx = from[0] + (mouthC[0] - from[0]) * flipT;
+  const gy = from[1] + (mouthC[1] - from[1]) * flipT - Math.sin(Math.PI * flipT) * 140;
 
-  // gum flip into his mouth
-  const flipT = interpolate(f, [194, CHOMP], [0, 1], clamp);
-  const mouthAt = rigToScreen(poseAt(MONSTER_KEYS, CHOMP), ANCHOR, SCALE, 230, 320);
-  const gx = candies[0][0] + (mouthAt[0] - candies[0][0]) * flipT;
-  const gy = candies[0][1] + (mouthAt[1] - candies[0][1]) * flipT - Math.sin(Math.PI * flipT) * 360;
-
-  // ghost-shaped bubble from his mouth toward the ghost
+  // ghost-shaped bubble, growing in the space between them
   const r = ghostBubbleR(f);
-  const mouth = rigToScreen(pose, ANCHOR, SCALE, 230, 300);
-  const wob = Math.sin(f * 1.7) * 0.05 * interpolate(f, [282, POP], [0, 1], clamp);
+  const mouth = rigToScreen(pose, ANCHOR, SCALE, 236, 300);
+  const wob = Math.sin(f * 1.7) * 0.05 * interpolate(f, [630, POP], [0, 1], clamp);
   const bubbleAt: [number, number] = [mouth[0] + r * 1.05 + 30, mouth[1] - r * 0.3];
-  const burst = interpolate(f, [POP, POP + 14], [0, 1], { ...clamp, easing: Easing.out(Easing.cubic) });
-
-  // dolly-in on his face for "A toi !"
-  const face = rigToScreen(poseAt(MONSTER_KEYS, ZOOM_AT), ANCHOR, SCALE, 200, 230);
-  const push = lerp(f, [ZOOM_AT, ZOOM_AT + 24], [0, 1]);
-  const zoom = 1 + 0.9 * push;
-  const tx = (540 - face[0]) * push;
-  const ty = (880 - face[1]) * push;
-  const toScreen = (p: [number, number]): [number, number] => [face[0] + (p[0] - face[0]) * zoom + tx, face[1] + (p[1] - face[1]) * zoom + ty];
-  const hands = toScreen(rigToScreen(pose, ANCHOR, SCALE, 200, 400));
-  const offer = interpolate(f, [452, 518], [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
+  const burst = interpolate(f, [POP, POP + 16], [0, 1], { ...clamp, easing: Easing.out(Easing.cubic) });
+  const popAt: [number, number] = [mouth[0] + 280, mouth[1] - 80];
 
   const held =
     f < BOUH ? (
       <g transform="translate(140 360) scale(0.6)">
         <BucketShape />
       </g>
-    ) : f >= OFFER && f < 452 ? (
+    ) : f >= OFFER && f < 800 ? (
       <g transform={`translate(200 400) scale(${interpolate(f, [OFFER, OFFER + 6], [0, 1], { ...clamp, easing: Easing.out(Easing.back(2)) })})`}>
         <image href={staticFile("pack-fraise.webp")} x={-62} y={-114} width={124} height={228} />
       </g>
     ) : null;
 
+  const hands = toScreen(rigToScreen(pose, ANCHOR, SCALE, 200, 400));
+  const offer = interpolate(f, [800, STREET_END], [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
+
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
-      <AbsoluteFill style={{ transformOrigin: `${face[0]}px ${face[1]}px`, scale: zoom, translate: `${tx}px ${ty}px` }}>
-        <World night cameraY={cameraY} />
-        <AbsoluteFill style={{ translate: `0px ${cameraY}px` }}>
-          {[[200, 300, 0], [700, 220, 1.5], [420, 520, 3]].map(([bx, by, ph], i) => (
-            <Bat key={i} x={(bx + f * (i % 2 ? -4 : 5) + 1400) % 1400 - 160} y={by + Math.sin(f / 10 + ph) * 30} size={110 - i * 15} phase={ph} />
-          ))}
-          <Pumpkin style={{ position: "absolute", left: 60, top: 1170, width: 110 }} />
-          <SpookyHouse
-            door={lerp(f, [84, 96], [0, 1])}
-            eyes={f < BOUH ? lerp(f, [88, 94], [0, 1]) : 0}
-            style={{ position: "absolute", left: 640, top: 700, width: 440, height: 820 }}
-          />
-          <Pumpkin style={{ position: "absolute", left: 960, top: 1430, width: 120 }} />
-          {/* spilled bucket + candy */}
-          {f >= BOUH ? (
-            <svg viewBox="0 0 200 200" style={{ position: "absolute", left: bucket[0] - 70, top: bucket[1] - 70, width: 140, height: 140, rotate: `${bt * 150}deg`, overflow: "visible" }}>
-              <BucketShape />
-            </svg>
-          ) : null}
-          {spill > 0
-            ? candies.map(([cx, cy], i) =>
-                i === 0 && f >= 194 ? null : (
-                  <GumPiece
-                    key={i}
-                    style={{
-                      position: "absolute",
-                      width: 90,
-                      left: 420 + (cx - 420) * spill - 45,
-                      top: 1440 + (cy - 1440) * spill - 36 - Math.sin(Math.PI * spill) * 120,
-                      rotate: `${spill * (i - 1) * 200}deg`,
-                    }}
-                  />
-                ),
-              )
-            : null}
-          {f >= BOUH ? (
-            <Img src={staticFile("pack-pasteque-single.webp")} style={{ position: "absolute", width: 150, left: 400 + spill * -60, top: 1440 + spill * 45, rotate: `${spill * -25}deg`, opacity: spill }} />
-          ) : null}
-          {/* the costume, once he has jumped out of it */}
-          {f >= BOUH ? (
-            <svg
-              viewBox="0 0 400 500"
-              style={{
-                ...rigBox(ANCHOR, WIDTH),
-                overflow: "visible",
-                translate: `${p99.x * SCALE + sheetT * 40}px ${p99.y * SCALE + sheetDy}px`,
-                rotate: `${Math.sin(sheetT * 6) * 8 * (1 - sheetT)}deg`,
-                scale: `1 ${1 - Easing.in(Easing.quad)(sheetT) * 0.6}`,
-                transformOrigin: "50% 94%",
-              }}
-            >
-              <Sheet />
-            </svg>
-          ) : null}
-          {ghost && f >= LICK - 2 ? (
-            <Sequence from={LICK + 2} durationInFrames={40} layout="none" name="Ghost tastes the filling">
-              <AbsoluteFill style={{ opacity: interpolate(f, [LICK + 26, LICK + 40], [1, 0], clamp) }}>
-                <Goo x={ghost.x} y={ghost.y + 20} color="#C70D3A" light="#FF7A9A" />
-              </AbsoluteFill>
-            </Sequence>
-          ) : null}
-          <AnimatedMonster keys={MONSTER_KEYS} held={held} over={f < BOUH ? <Sheet /> : null} style={rigBox(ANCHOR, WIDTH)} />
-          {ghost ? (
-            <div style={{ opacity: ghost.alpha }}>
-              <Ghost {...ghost} />
+      <NightSky cy={cy} />
+      {[[200, 300, 0], [700, 220, 1.5], [420, 560, 3]].map(([bx, by, ph], i) => (
+        <Bat key={i} x={((bx + f * (i % 2 ? -3 : 4) + 1400) % 1400) - 160} y={by + Math.sin(f / 10 + ph) * 30 - (cy - 1150) * 0.25} size={100 - i * 15} phase={ph} />
+      ))}
+      {/* the world, seen through the camera */}
+      <div style={{ position: "absolute", left: 0, top: 0, transformOrigin: "0 0", transform: `translate(${540 - cx * z}px, ${960 - cy * z}px) scale(${z})` }}>
+        <NightGround />
+        <SpookyHouse
+          door={lerp(f, [DOOR, 285], [0, 1])}
+          eyes={f < BOUH ? lerp(f, [270, 282], [0, 1]) : 0}
+          style={{ position: "absolute", left: HOUSE.x, top: HOUSE.y, width: HOUSE.w, height: 820 }}
+        />
+        {f >= BOUH ? (
+          <svg viewBox="0 0 200 200" style={{ position: "absolute", left: bucketFrom[0] - 900 * bt - 70, top: bucketFrom[1] - Math.sin(Math.PI * bt) * 500 + bt * 200 - 70, width: 140, height: 140, rotate: `${-bt * 400}deg`, overflow: "visible" }}>
+            <BucketShape />
+          </svg>
+        ) : null}
+        {f >= BOUH && f < 420 ? (
+          <svg
+            viewBox="0 0 400 500"
+            style={{
+              ...rigBox(ANCHOR, WIDTH),
+              overflow: "visible",
+              translate: `${p0.x * SCALE + sheetT * 40}px ${p0.y * SCALE + sheetDy}px`,
+              rotate: `${Math.sin(sheetT * 6) * 8 * (1 - sheetT)}deg`,
+              scale: `1 ${1 - Easing.in(Easing.quad)(sheetT) * 0.6}`,
+              transformOrigin: "50% 94%",
+              opacity: interpolate(f, [395, 420], [1, 0], clamp),
+            }}
+          >
+            <Sheet />
+          </svg>
+        ) : null}
+        {ghost && f >= TASTE - 2 ? (
+          <Sequence from={TASTE + 2} durationInFrames={40} layout="none" name="Ghost tastes the filling">
+            <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, opacity: interpolate(f, [TASTE + 26, TASTE + 40], [1, 0], clamp) }}>
+              <Goo x={ghost.x} y={ghost.y + 20} color="#C70D3A" light="#FF7A9A" />
             </div>
-          ) : null}
-          <Pumpkin style={{ position: "absolute", left: 80, top: 1290, width: 360 }} />
-          {f >= 194 && f < CHOMP ? (
-            <GumPiece style={{ position: "absolute", width: 90, left: gx - 45, top: gy - 36, scale: 1 - flipT * 0.6, rotate: `${flipT * 400}deg` }} />
-          ) : null}
-          {r > 1 ? <GhostBubble x={bubbleAt[0]} y={bubbleAt[1]} r={r} wob={wob} /> : null}
-          {f >= POP && f < POP + 30
-            ? Array.from({ length: 14 }, (_, i) => {
-                const a = (i / 14) * Math.PI * 2;
-                const d = 420 + (i % 4) * 120;
-                const sz = 46 + ((i * 29) % 40);
-                const at = rigToScreen(poseAt(MONSTER_KEYS, POP), ANCHOR, SCALE, 230, 300);
-                return (
-                  <div
-                    key={i}
-                    style={{
-                      position: "absolute",
-                      left: at[0] + 170 - sz / 2,
-                      top: at[1] - 80 - sz / 2,
-                      width: sz,
-                      height: sz * 0.7,
-                      borderRadius: "48% 52% 40% 60% / 55% 45% 55% 45%",
-                      backgroundColor: i % 2 ? "#F9A6CB" : "#FFD3E6",
-                      translate: `${Math.cos(a) * d * burst}px ${Math.sin(a) * d * burst + burst * burst * 160}px`,
-                      opacity: interpolate(f, [POP + 18, POP + 30], [1, 0], clamp),
-                    }}
-                  />
-                );
-              })
-            : null}
-        </AbsoluteFill>
-        {/* night vignette */}
-        <AbsoluteFill style={{ background: "radial-gradient(circle at 50% 55%, rgba(0,0,0,0) 55%, rgba(20,6,40,0.45) 100%)" }} />
-      </AbsoluteFill>
+          </Sequence>
+        ) : null}
+        <AnimatedMonster keys={MONSTER_KEYS} held={held} over={f < BOUH ? <Sheet /> : null} style={rigBox(ANCHOR, WIDTH)} />
+        {ghost ? (
+          <div style={{ opacity: ghost.alpha }}>
+            <Ghost {...ghost} />
+          </div>
+        ) : null}
+        <Pumpkin style={{ position: "absolute", left: HIDE_PUMPKIN.x, top: HIDE_PUMPKIN.y, width: HIDE_PUMPKIN.w }} />
+        {f >= 449 && f < CHOMP ? (
+          f < 454 ? (
+            <svg viewBox="0 0 300 240" style={{ position: "absolute", width: 110, left: handR(f)[0] - 55, top: handR(f)[1] - 44, overflow: "visible", scale: interpolate(f, [449, 452], [0, 1], clamp) }}>
+              <GumShape shadow={false} />
+            </svg>
+          ) : (
+            <GumPiece style={{ position: "absolute", width: 110, left: gx - 55, top: gy - 44, scale: 1 - flipT * 0.6, rotate: `${flipT * 300}deg` }} />
+          )
+        ) : null}
+        {r > 1 ? <GhostBubble x={bubbleAt[0]} y={bubbleAt[1]} r={r} wob={wob} /> : null}
+        {f >= POP && f < POP + 32
+          ? Array.from({ length: 14 }, (_, i) => {
+              const a = (i / 14) * Math.PI * 2;
+              const d = 420 + (i % 4) * 120;
+              const sz = 46 + ((i * 29) % 40);
+              return (
+                <div
+                  key={i}
+                  style={{
+                    position: "absolute",
+                    left: popAt[0] - sz / 2,
+                    top: popAt[1] - sz / 2,
+                    width: sz,
+                    height: sz * 0.7,
+                    borderRadius: "48% 52% 40% 60% / 55% 45% 55% 45%",
+                    backgroundColor: i % 2 ? "#F9A6CB" : "#FFD3E6",
+                    translate: `${Math.cos(a) * d * burst}px ${Math.sin(a) * d * burst + burst * burst * 160}px`,
+                    opacity: interpolate(f, [POP + 20, POP + 32], [1, 0], clamp),
+                  }}
+                />
+              );
+            })
+          : null}
+      </div>
+      <AbsoluteFill style={{ background: "radial-gradient(circle at 50% 55%, rgba(0,0,0,0) 55%, rgba(20,6,40,0.45) 100%)" }} />
 
-      <SeriesTitle episode={2} title="Boum-Boo !" titleColor="#F27A1A" outAt={50} />
-      <BigText text="BOUH !" at={BOUH} out={122} top={430} fill="#F6F2FF" stroke="#4E2470" jitter />
-      {f >= POP && f < POP + 34 ? (
-        <div style={{ position: "absolute", left: 190, top: 300, width: 700, height: 520, display: "flex", alignItems: "center", justifyContent: "center", scale: interpolate(f, [POP, POP + 6, POP + 26, POP + 34], [2.2, 1, 1, 0], { ...clamp, easing: Easing.out(Easing.back(1.6)) }), rotate: "-7deg" }}>
+      {/* titles and callouts (screen space) */}
+      <SeriesTitle episode={2} title="Boum-Boo !" titleColor="#F27A1A" outAt={70} />
+      <Pop at={BOUH} out={BOUH + 28} top={300}>
+        <div style={{ fontFamily: displayFont, fontSize: 200, ...candyText("#F6F2FF", "#4E2470", 15), rotate: `${-5 + Math.sin(f * 2.5) * 3}deg` }}>BOUH !</div>
+      </Pop>
+      {f >= POP && f < POP + 40 ? (
+        <div style={{ position: "absolute", left: 190, top: 240, width: 700, height: 520, display: "flex", alignItems: "center", justifyContent: "center", scale: interpolate(f, [POP, POP + 6, POP + 32, POP + 40], [2.2, 1, 1, 0], { ...clamp, easing: Easing.out(Easing.back(1.6)) }), rotate: "-7deg" }}>
           <Starburst color="#FFD84D" style={{ position: "absolute", width: 700, height: 520 }} />
           <div style={{ position: "relative", fontFamily: displayFont, fontSize: 200, ...candyText(colors.logoRed, colors.white, 16) }}>BOUM !</div>
         </div>
       ) : null}
-      <div style={{ position: "absolute", left: 0, right: 0, top: 250, textAlign: "center", scale: interpolate(f, [LICK + 4, LICK + 12, 404, 410], [0, 1, 1, 0], { ...clamp, easing: Easing.out(Easing.back(2)) }) }}>
+      <Pop at={TASTE + 4} out={CLOSE + 4} top={250}>
         <div style={{ fontFamily: bodyFont, fontWeight: 700, fontSize: 66, color: "white", textShadow: "0 4px 0 rgba(0,0,0,0.3)" }}>Fourré coulis goût</div>
         <div style={{ fontFamily: displayFont, fontSize: 200, lineHeight: 1, ...candyText(colors.logoRed, colors.white, 15), rotate: "-4deg" }}>PASTÈQUE !</div>
-      </div>
-      <BigText text="À toi !" at={OFFER + 4} out={470} top={230} fill={colors.logoRed} stroke={colors.white} />
-      {f >= 452 ? (
+      </Pop>
+      <Pop at={OFFER + 2} out={812} top={230}>
+        <div style={{ fontFamily: displayFont, fontSize: 190, ...candyText(colors.logoRed, colors.white, 15), rotate: `${-5 + Math.sin(f / 5) * 2}deg` }}>À toi !</div>
+      </Pop>
+      {f >= 800 ? (
         <Img
           src={staticFile("pack-fraise.webp")}
           style={{
