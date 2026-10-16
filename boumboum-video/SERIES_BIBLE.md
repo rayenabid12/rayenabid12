@@ -47,12 +47,14 @@ product with the viewer.
 | 2 | Boum-Boo ! (Halloween) | `Ep2BoumBoo` |
 | 3 | Le Duel de Bulles (introduces Mélo; Fraise vs Pastèque, then together) | `Ep3Duel` |
 | 4 | Joyeux anniversaire, Mélo ! (surprise party at the pink monster's home) | `Ep4Birthday` |
+| 5 | La Naissance de Boum Boum (origin story, 45 s) | `Ep5Origin` |
 | – | Le dernier Boum Boum | idea |
 | 5 | La Récré | idea |
 | 6 | Mission Pastèque | idea |
 | ★ | Noël Boum Boum | idea |
 
 ## Locations
+- The candy factory where he was born (Ep. 5, `ep5/FactorySet.tsx`): bubble machine, filling tank, conveyor, press, wrapper, printing platform. Canon: born from a gum bubble + a drop of filling, struck by lightning; his face was printed on the very first pack.
 - City street at night (Ep. 2, `ep2/CitySet.tsx`), sunny park (Ep. 3, `ep3/ParkSet.tsx`), the pink monster's home (Ep. 4, `ep4/HomeSet.tsx`: wall calendar, photo of the two friends, party table, front door).
 - Shared staging toolkit for two-character episodes: `src/episodes/shared/stage.tsx`. Mélo on the end card: `brand/FinaleMelo.tsx`.
 

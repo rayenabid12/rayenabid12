@@ -2,6 +2,7 @@ import { Composition, Folder, Still, staticFile } from "remotion";
 import { Ep2BoumBoo } from "./episodes/ep2/Ep2BoumBoo";
 import { Ep3Duel } from "./episodes/ep3/Ep3Duel";
 import { Ep4Birthday } from "./episodes/ep4/Ep4Birthday";
+import { EP5_DURATION, Ep5Origin } from "./episodes/ep5/Ep5Origin";
 import { BoumFinal } from "./final/BoumFinal";
 import { BoumStory } from "./story/BoumStory";
 import { CharacterSheet } from "./story/CharacterSheet";
@@ -33,6 +34,7 @@ export const RemotionRoot: React.FC = () => {
         />
         <Composition id="Ep3Duel" component={Ep3Duel} durationInFrames={900} fps={30} width={1080} height={1920} />
         <Composition id="Ep4Birthday" component={Ep4Birthday} durationInFrames={900} fps={30} width={1080} height={1920} />
+        <Composition id="Ep5Origin" component={Ep5Origin} durationInFrames={EP5_DURATION} fps={30} width={1080} height={1920} />
       </Folder>
       <Composition
         id="BoumFinal"
