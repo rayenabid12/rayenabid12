@@ -1,5 +1,6 @@
 import { Composition, Folder, Still, staticFile } from "remotion";
 import { Ep2BoumBoo } from "./episodes/ep2/Ep2BoumBoo";
+import { Ep3Duel } from "./episodes/ep3/Ep3Duel";
 import { BoumFinal } from "./final/BoumFinal";
 import { BoumStory } from "./story/BoumStory";
 import { CharacterSheet } from "./story/CharacterSheet";
@@ -29,6 +30,7 @@ export const RemotionRoot: React.FC = () => {
           width={1080}
           height={1920}
         />
+        <Composition id="Ep3Duel" component={Ep3Duel} durationInFrames={900} fps={30} width={1080} height={1920} />
       </Folder>
       <Composition
         id="BoumFinal"

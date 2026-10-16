@@ -49,3 +49,23 @@ export const rigBox = (anchor: [number, number], width: number): React.CSSProper
   left: anchor[0] - width / 2,
   top: anchor[1] - width * 1.175,
 });
+
+// Hold every channel until at most `max` frames before its next key, so a key
+// placed long after the previous one doesn't turn into a slow drift. Keys with an
+// explicit "inOut" or "linear" ease (deliberate slow moves) and holds are left alone.
+export const tighten = (keys: Key[], max = 16): Key[] => {
+  const extra: Key[] = [];
+  const chans = new Set<string>();
+  keys.forEach((k) => Object.keys(k).forEach((c) => c !== "f" && c !== "ease" && chans.add(c)));
+  for (const c of chans) {
+    const ch = c as keyof Pose;
+    const ks = keys.filter((k) => k[ch] !== undefined).sort((a, b) => a.f - b.f);
+    for (let i = 1; i < ks.length; i++) {
+      const a = ks[i - 1];
+      const b = ks[i];
+      if (b.f - a.f <= max || b.ease === "inOut" || b.ease === "linear" || b.ease === "hold" || a[ch] === b[ch]) continue;
+      extra.push({ f: b.f - max, [ch]: a[ch] } as Key);
+    }
+  }
+  return [...keys, ...extra].sort((a, b) => a.f - b.f);
+};

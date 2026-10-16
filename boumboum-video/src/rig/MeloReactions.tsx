@@ -8,7 +8,7 @@ import { animatedPose, type Key } from "./pose";
 const GREEN = "#2E9E3E";
 const INK = "#1D4A26";
 
-// Watermelon-flavour gum bubble, in rig space, anchored on the mouth.
+// Pastèque gum bubble (green, like his pack), in rig space, anchored on the mouth.
 const MeloBubble: React.FC<{ frame: number; mx: number }> = ({ frame, mx }) => {
   const fs = BUBBLE_KEYS.map(([f]) => f);
   const rs = BUBBLE_KEYS.map(([, r]) => r);
@@ -27,7 +27,7 @@ const MeloBubble: React.FC<{ frame: number; mx: number }> = ({ frame, mx }) => {
           const a = (i / 10) * Math.PI * 2 + 0.3;
           if (Math.sin(a) < -0.55) return null; // keep the flecks off his eyes
           const d = R + e * 150;
-          return <circle key={i} cx={mx + Math.cos(a) * d} cy={cy + Math.sin(a) * d} r={11 * (1 - e * 0.5)} fill="#FF6F91" />;
+          return <circle key={i} cx={mx + Math.cos(a) * d} cy={cy + Math.sin(a) * d} r={11 * (1 - e * 0.5)} fill="#7FD15A" />;
         })}
       </g>
     );
@@ -39,8 +39,8 @@ const MeloBubble: React.FC<{ frame: number; mx: number }> = ({ frame, mx }) => {
   const cy = 304 + r * 0.42;
   return (
     <g transform={`translate(${cx} ${cy}) scale(${1 + wob} ${1 - wob})`}>
-      <circle r={r} fill="#FF7A98" opacity={0.88} />
-      <circle r={r} fill="none" stroke="#E04F78" strokeWidth={4} opacity={0.6} />
+      <circle r={r} fill="#A8E68A" opacity={0.88} />
+      <circle r={r} fill="none" stroke="#5DB33E" strokeWidth={4} opacity={0.6} />
       <ellipse cx={-r * 0.38} cy={-r * 0.4} rx={r * 0.24} ry={r * 0.13} fill="white" opacity={0.75} transform={`rotate(-35 ${-r * 0.38} ${-r * 0.4})`} />
       <circle cx={-r * 0.6} cy={-r * 0.08} r={r * 0.06} fill="white" opacity={0.55} />
     </g>

@@ -45,11 +45,16 @@ product with the viewer.
 |---|---|---|
 | 1 | Le plus gros BOUM | `BoumFinal` |
 | 2 | Boum-Boo ! (Halloween) | `Ep2BoumBoo` |
-| 3 | Le Duel de Bulles (introduces the Fraise monster) | idea |
+| 3 | Le Duel de Bulles (introduces Mélo; Fraise vs Pastèque, then together) | `Ep3Duel` |
 | 4 | Le dernier Boum Boum | idea |
 | 5 | La Récré | idea |
 | 6 | Mission Pastèque | idea |
 | ★ | Noël Boum Boum | idea |
+
+## Notes from Ep. 3
+- Long gaps between keys make channels drift (e.g. eyes slowly closing). Wrap episode keys in `tighten()` (`src/final/kit.ts`); give deliberate slow moves an explicit `inOut` ease.
+- Split screen = the same world rendered through two cameras (`View` in `DuelScene.tsx`).
+- Pink monster labelled « BOUM » on the scoreboard; Mélo's gum and bubbles are green.
 
 ## Staging & pacing rules (learned on Ep. 2)
 - One idea per shot. Give every key moment a **hold** (≥ 1 s) so kids can read it before the next beat.
