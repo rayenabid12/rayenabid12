@@ -33,15 +33,23 @@ export const rectAt = (frame: number, track: [number, Rect][]): Rect => {
   return track[track.length - 1][1];
 };
 
-// The speaker lives inside this floating rounded card. Fast moves get motion blur.
-export const FaceCard: React.FC<{ track: [number, Rect][]; children: React.ReactNode }> = ({
-  track,
-  children,
-}) => {
+// The speaker lives inside a rounded card that stays in one place. Instead of
+// sliding around, it fades in/out between beats (shown on some, hidden on others).
+export const FaceCard: React.FC<{
+  track: [number, Rect][];
+  shown: [number, number][]; // [from, to) frame windows where the card is visible
+  children: React.ReactNode;
+}> = ({ track, shown, children }) => {
   const frame = useCurrentFrame();
   const r = rectAt(frame, track);
-  const p = rectAt(frame - 1, track);
-  const speed = Math.hypot(r.left - p.left, r.top - p.top, r.width - p.width, r.height - p.height);
+  const FADE = 9;
+  let v = 0;
+  for (const [from, to] of shown) {
+    const fadeIn = from === 0 ? 1 : interpolate(frame, [from, from + FADE], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+    const fadeOut = interpolate(frame, [to - FADE, to], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+    v = Math.max(v, Math.min(fadeIn, fadeOut));
+  }
+  const e = Easing.bezier(0.33, 1, 0.68, 1)(v);
   const framed = r.radius > 1;
   return (
     <div
@@ -53,9 +61,10 @@ export const FaceCard: React.FC<{ track: [number, Rect][]; children: React.React
         height: r.height,
         borderRadius: r.radius,
         overflow: "hidden",
+        opacity: e,
+        scale: String(0.94 + 0.06 * e),
         outline: framed ? `${Math.min(8, r.radius / 6)}px solid rgba(255,255,255,0.95)` : undefined,
         boxShadow: framed ? "0 30px 80px rgba(85,18,194,0.45), 0 0 60px rgba(166,107,255,0.35)" : undefined,
-        filter: speed > 2 ? `blur(${Math.min(10, speed / 14)}px)` : undefined,
       }}
     >
       {children}

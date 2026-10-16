@@ -1,5 +1,5 @@
 import { AbsoluteFill, Easing, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { HERO } from "../components/FaceCard";
+import { TOP } from "../components/FaceCard";
 import { Pill } from "../components/Headline";
 import { Brackets, Editorial, Scribble, Word } from "../components/Kinetic";
 import { colors, sansFont } from "../theme";
@@ -35,8 +35,8 @@ export const HookText: React.FC = () => (
         When you start
       </Word>
     </Center>
-    {/* after the card shrinks */}
-    <Center top={250}>
+    {/* after the card settles at the top */}
+    <Center top={1150}>
       <Word variant="sans" size={64} at={26} out={54}>
         you&apos;re
       </Word>
@@ -47,8 +47,8 @@ export const HookText: React.FC = () => (
         a brand.
       </Word>
     </Center>
-    <Brackets at={34} rect={HERO} />
-    <Editorial at={36} style={{ left: 70, top: 90 }}>
+    <Brackets at={42} rect={TOP} />
+    <Editorial at={44} style={{ left: 710, top: 1790, textAlign: "right" }}>
       Building a brand from zero — the process, step by step. Part 01.
     </Editorial>
   </AbsoluteFill>
@@ -119,12 +119,12 @@ export const FirstDecor: React.FC = () => {
     <div
       style={{
         position: "absolute",
-        left: 60,
-        top: 0,
-        width: 420,
-        height: 1920,
-        background: `linear-gradient(180deg, ${colors.purpleLight}, ${colors.purple} 55%, ${colors.purpleDeep})`,
-        translate: `0px ${interpolate(p, [0, 1], [-1920, 0]) + out * 1920}px`,
+        left: 0,
+        top: 1150,
+        width: 1080,
+        height: 560,
+        background: `linear-gradient(90deg, ${colors.purpleDeep}, ${colors.purple} 50%, ${colors.purpleLight})`,
+        translate: `${interpolate(p, [0, 1], [-1080, 0]) + out * 1080}px 0px`,
         opacity: 0.95,
       }}
     />
@@ -133,18 +133,7 @@ export const FirstDecor: React.FC = () => {
 
 export const FirstText: React.FC = () => (
   <AbsoluteFill>
-    <div
-      style={{
-        position: "absolute",
-        left: 60,
-        width: 420,
-        top: 660,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: 6,
-      }}
-    >
+    <Center top={1185} gap={4}>
       <Pill delay={4}>STEP 01</Pill>
       <Word variant="sans" size={84} color="white" at={8} out={30}>
         the
@@ -155,7 +144,7 @@ export const FirstText: React.FC = () => (
       <Word variant="sans" size={84} color="white" at={20} out={30}>
         thing
       </Word>
-    </div>
+    </Center>
   </AbsoluteFill>
 );
 
@@ -324,6 +313,7 @@ export const BriefDecor: React.FC = () => {
         background: "rgba(255,255,255,0.94)",
         boxShadow: "0 40px 80px rgba(85,18,194,0.25)",
         overflow: "hidden",
+        opacity: interpolate(frame, [10, 14], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
         translate: `${out * -1200}px ${interpolate(card, [0, 1], [700, 0])}px`,
         rotate: `${interpolate(card, [0, 1], [10, -3])}deg`,
       }}

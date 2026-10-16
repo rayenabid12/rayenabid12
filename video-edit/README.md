@@ -11,7 +11,7 @@ A vertical 1080×1920 edit of the talking-head clip, styled after the lavender a
     -af "highpass=f=80,afftdn=nf=-25,acompressor=threshold=-20dB:ratio=3:attack=5:release=80:makeup=2,loudnorm=I=-14:TP=-1.5:LRA=7" \
     -c:a aac -b:a 192k public/graded.mp4
   ```
-- **Layout**: the speaker floats in a rounded card (`src/components/FaceCard.tsx`, `CARD_TRACK` in `src/Edit.tsx`). The card moves between beats with motion blur, and the whole stage does a small punch-in at each scene change.
+- **Layout**: the speaker opens full screen, then settles once into a fixed rounded card at the top (`src/components/FaceCard.tsx`). The card never moves after that. It fades in and out per beat (`CARD_SHOWN` in `src/Edit.tsx`), and the full-screen 3D and graphic beats play while it is hidden.
 - **3D**: `@remotion/three` adds glossy floating shapes, the "ANY BRAND" sphere with its orbit ring, the 3D bar chart and the outro knot (`src/components/ThreeD.tsx`). Render with `--gl=angle`.
 - **Kinetic type**: words build up one at a time with blur-in and blur-out (`src/components/Kinetic.tsx`, `src/scenes/Beats.tsx`).
 - **Silence cuts**: adaptive `silencedetect` at −33.9 dB. Five gaps are removed, and the jump cuts are hidden with punch-in zooms.

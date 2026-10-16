@@ -1,18 +1,7 @@
 import { Audio, Video } from "@remotion/media";
 import { AbsoluteFill, Sequence, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { BrandBg } from "./components/BrandBg";
-import {
-  CORNER_L,
-  CORNER_R,
-  FULL,
-  FaceCard,
-  GONE,
-  HERO,
-  Punch,
-  RIGHT,
-  TOP,
-  type Rect,
-} from "./components/FaceCard";
+import { FULL, FaceCard, Punch, TOP, type Rect } from "./components/FaceCard";
 import { Knot3D, FloatingShapes, Sphere3D } from "./components/ThreeD";
 import { Flash } from "./components/Transitions";
 import {
@@ -35,25 +24,18 @@ import {
 // 0–0.26s, 1.17–1.46s, 4.29–4.62s, 5.60–5.97s, 7.19–7.54s.
 const SRC = staticFile("graded.mp4");
 
-// Where the speaker's card sits over time (frame, rect). Moves take ~14 frames.
+// The speaker opens full screen, settles once into the TOP card, and stays there.
 const CARD_TRACK: [number, Rect][] = [
   [0, FULL],
-  [18, FULL],
-  [34, HERO],
-  [56, HERO],
-  [70, CORNER_R],
-  [96, CORNER_R],
-  [110, RIGHT],
-  [128, RIGHT],
-  [142, CORNER_L],
-  [172, CORNER_L],
-  [186, TOP],
-  [205, TOP],
-  [219, CORNER_R],
-  [252, CORNER_R],
-  [266, TOP],
-  [309, TOP],
-  [323, GONE],
+  [20, FULL],
+  [42, TOP],
+];
+// Beats where the speaker is on screen; in between, full-screen graphics take over.
+const CARD_SHOWN: [number, number][] = [
+  [0, 62], // hook
+  [104, 134], // step 01
+  [174, 211], // in this phase
+  [256, 312], // market research
 ];
 
 // Scene-change "camera kicks": the whole stage gently punches in and settles.
@@ -64,7 +46,7 @@ const Stage: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { durationInFrames } = useVideoConfig();
   let kick = 0;
   for (const k of KICKS) {
-    if (frame >= k) kick = Math.max(kick, 0.03 * Math.exp(-(frame - k) / 7));
+    if (frame >= k) kick = Math.max(kick, 0.02 * Math.exp(-(frame - k) / 8));
   }
   return (
     <AbsoluteFill
@@ -107,7 +89,7 @@ export const Edit: React.FC = () => {
         </Sequence>
 
         {/* ---------- Speaker card: jump cuts (≈0.2s breaths kept) with punch-ins ---------- */}
-        <FaceCard track={CARD_TRACK}>
+        <FaceCard track={CARD_TRACK} shown={CARD_SHOWN}>
           <Sequence name="A · hook" from={0} durationInFrames={34}>
             <Punch zoom={1.1}>
               <Video src={SRC} trimBefore={4} objectFit="cover" style={{ width: "100%", height: "100%" }} />
@@ -158,7 +140,7 @@ export const Edit: React.FC = () => {
         <Sequence name="Research · text" from={130} durationInFrames={46}>
           <ResearchText />
         </Sequence>
-        <Sequence name="Phase · text" from={172} durationInFrames={38}>
+        <Sequence name="Phase · text" from={172} durationInFrames={42}>
           <PhaseText />
         </Sequence>
         <Sequence name="Brief · text" from={207} durationInFrames={49}>
