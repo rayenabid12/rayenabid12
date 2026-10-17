@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;1,700;1,800&family=Roboto:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="base.css">
+<style>
+  .card { position: absolute; width: 504px; height: 288px; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 2px rgba(0,0,0,.25), 0 30px 50px rgba(0,0,0,.45); }
+  .card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, rgba(255,255,255,.10), rgba(255,255,255,0) 40%, rgba(0,0,0,.08)); }
+  .stamp { width: 46px; height: 46px; border-radius: 50%; border: 2px dashed #8C8A85; }
+</style>
+</head>
+<body>
+<div class="scene grain" data-out="stationery" style="width:1600px;height:1000px;background:radial-gradient(ellipse 80% 70% at 40% 30%, #3a3936 0%, #1d1d1b 70%, #121211 100%)">
+
+  <!-- card back (info) -->
+  <div class="card" style="left:180px;top:420px;background:#F2EEE7;transform:rotate(-9deg)">
+    <div class="abs" style="left:0;top:0;bottom:0;width:14px;background:#BC3333"></div>
+    <div class="abs" style="left:52px;top:46px">
+      <div class="display" style="font-size:44px;color:#1D1D1B">NOM PRÉNOM</div>
+      <div class="eyebrow" style="color:#BC3333;margin-top:10px;font-size:12px">Conseiller nutrition</div>
+    </div>
+    <div class="abs" style="left:52px;bottom:42px;font:500 15px/1.75 Roboto;color:#3b3a37">
+      +216 00 000 000<br>contact@musclestock.tn<br>Tunis, Tunisie
+    </div>
+    <img class="abs" src="../../assets/logo/icon-color.png" style="right:40px;bottom:40px;width:110px">
+  </div>
+
+  <!-- card front (red) -->
+  <div class="card" style="left:470px;top:150px;background:#BC3333;transform:rotate(6deg)">
+    <div class="abs" style="left:-40px;top:-20px;width:360px;height:400px;background:#a82d2d;transform:skewX(-14deg)"></div>
+    <img class="abs" src="../../assets/logo/head-white.png" style="left:70px;top:44px;height:200px">
+    <img class="abs" src="../../assets/logo/wordmark-white.png" style="right:44px;top:118px;width:230px">
+    <div class="abs eyebrow" style="right:44px;top:156px;color:#F2EEE7;opacity:.85;font-size:11px">Nutrition sportive · Tunisie</div>
+  </div>
+
+  <!-- loyalty card -->
+  <div class="card" style="left:960px;top:470px;background:#1D1D1B;transform:rotate(-4deg);border:1px solid #333">
+    <div class="abs" style="left:40px;top:34px;display:flex;align-items:center;gap:14px">
+      <img src="../../assets/logo/icon-color.png" style="width:56px">
+      <div>
+        <div class="display" style="font-size:34px;color:#F2EEE7">CARTE FIDÉLITÉ</div>
+        <div class="eyebrow" style="color:#8C8A85;font-size:10px;margin-top:4px">Exemple d'offre · à définir</div>
+      </div>
+    </div>
+    <div class="abs" style="left:40px;right:40px;top:134px;display:grid;grid-template-columns:repeat(5,46px);justify-content:space-between;row-gap:16px">
+      <div class="stamp" style="background:#BC3333;border:none"></div><div class="stamp" style="background:#BC3333;border:none"></div><div class="stamp" style="background:#BC3333;border:none"></div><div class="stamp"></div><div class="stamp"></div>
+      <div class="stamp"></div><div class="stamp"></div><div class="stamp"></div><div class="stamp"></div>
+      <div class="stamp" style="border-color:#BC3333;display:grid;place-items:center;font:800 italic 13px 'Barlow Condensed';color:#BC3333">OFFERT</div>
+    </div>
+  </div>
+
+  <!-- sticker -->
+  <div class="abs" style="left:1180px;top:110px;width:230px;height:230px;border-radius:50%;background:#F2EEE7;box-shadow:0 20px 40px rgba(0,0,0,.45);display:grid;place-items:center;transform:rotate(-12deg)">
+    <img src="../../assets/logo/icon-color.png" style="width:200px">
+  </div>
+</div>
+</body>
+</html>

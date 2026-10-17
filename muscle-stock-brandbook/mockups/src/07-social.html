@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;1,700;1,800&family=Roboto:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="base.css">
+<style>
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+  .post { position: relative; aspect-ratio: 1; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+  .story { position: absolute; width: 300px; height: 533px; border-radius: 22px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,.5); }
+  .bar { position: absolute; top: 14px; left: 14px; right: 14px; height: 3px; border-radius: 2px; background: rgba(255,255,255,.35); }
+  .bar::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 40%; background: #fff; border-radius: 2px; }
+  .duo { position: absolute; inset: 0; background: url(../../assets/photo/hero-torso.jpg) center/cover; filter: grayscale(1) contrast(1.25) brightness(.8); }
+  .duo + .tint { position: absolute; inset: 0; background: #BC3333; mix-blend-mode: multiply; }
+</style>
+</head>
+<body>
+<div class="scene grain" data-out="social" style="width:1600px;height:1000px;background:linear-gradient(160deg,#BC3333 0%,#8E2424 100%)">
+  <div class="abs" style="left:-100px;top:0;width:820px;height:1000px;background:#1D1D1B;transform:skewX(-14deg);transform-origin:top"></div>
+
+  <div class="phone" style="left:150px;top:110px;width:440px;height:800px">
+    <div class="screen" style="background:#0f0f0e">
+      <div class="island"></div>
+      <div style="padding:64px 18px 12px;display:flex;align-items:center;gap:16px">
+        <div style="width:86px;height:86px;border-radius:50%;padding:3px;background:linear-gradient(45deg,#BC3333,#F2EEE7)"><img src="../../assets/logo/icon-color.png" style="width:100%;border-radius:50%;background:#111"></div>
+        <div>
+          <div style="font:700 17px Roboto;color:#fff">musclestock.tn</div>
+          <div style="font:400 13px/1.45 Roboto;color:#cfc9bf;margin-top:4px">Nutrition sportive · Tunisie<br><b style="color:#fff">LA FORCE, EN STOCK.</b></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;padding:6px 18px 14px">
+        <div style="flex:1;background:#BC3333;border-radius:8px;padding:8px;text-align:center;font:700 13px Roboto;color:#fff">Commander</div>
+        <div style="flex:1;background:#262624;border-radius:8px;padding:8px;text-align:center;font:700 13px Roboto;color:#fff">Message</div>
+      </div>
+      <div class="grid">
+        <div class="post" style="background:#BC3333"><div class="display" style="font-size:34px;color:#F2EEE7">LA FORCE,<br>EN STOCK.</div></div>
+        <div class="post" style="background:#161615"><div id="tubpost" style="position:relative;width:100%;height:100%"></div></div>
+        <div class="post" style="background:#F2EEE7"><div class="eyebrow" style="color:#BC3333;font-size:9px">Nouvel arrivage</div><div class="display" style="font-size:30px;color:#1D1D1B;margin-top:6px">WHEY<br>ISOLATE</div></div>
+        <div class="post"><div class="duo"></div><div class="tint"></div><img src="../../assets/logo/head-white.png" style="position:relative;height:60%"></div>
+        <div class="post" style="background:#1F3A93"><div class="eyebrow" style="color:#cdd6f2;font-size:9px">Gamme</div><div class="display" style="font-size:34px;color:#F2EEE7;margin-top:6px">RECOVERY</div></div>
+        <div class="post" style="background:#161615"><div class="display" style="font-size:58px;color:#BC3333">-20%</div><div class="eyebrow" style="color:#F2EEE7;font-size:9px;margin-top:4px">Ce week-end</div></div>
+        <div class="post" style="background:#F2EEE7"><div class="eyebrow" style="color:#8C8A85;font-size:9px">Conseil #04</div><div class="display" style="font-size:26px;color:#1D1D1B;margin-top:6px">BOIS<br>DE L'EAU.<br><span style="color:#BC3333">BEAUCOUP.</span></div></div>
+        <div class="post" style="background:#BC3333"><img src="../../assets/logo/icon-black-knockout.png" style="width:70%"></div>
+        <div class="post" style="background:#161615"><div class="display" style="font-size:28px;color:#F2EEE7">DISCIPLINE<br><span style="color:#BC3333">&gt;</span> MOTIVATION</div></div>
+      </div>
+      <div class="abs" style="left:0;right:0;bottom:0;height:64px;background:#0f0f0e;border-top:1px solid #262624;display:flex;justify-content:space-around;align-items:center">
+        <div style="width:22px;height:22px;border:2px solid #F2EEE7;border-radius:5px"></div><div style="width:22px;height:22px;border:2px solid #8C8A85;border-radius:50%"></div><div style="width:22px;height:22px;border:2px solid #8C8A85;border-radius:5px"></div><div style="width:22px;height:22px;border-radius:50%;background:#BC3333"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- stories -->
+  <div class="story" style="left:820px;top:120px;background:#161615;transform:rotate(-4deg)">
+    <div class="duo"></div><div class="tint"></div><div class="abs" style="inset:0;background:linear-gradient(180deg,rgba(18,18,17,0) 35%,rgba(18,18,17,.9))"></div>
+    <div class="bar"></div>
+    <div class="abs" style="left:24px;top:34px;display:flex;align-items:center;gap:8px"><img src="../../assets/logo/icon-color.png" style="width:30px"><span style="font:700 12px Roboto;color:#fff">musclestock.tn</span></div>
+    <div class="abs" style="left:26px;right:26px;bottom:110px">
+      <div class="eyebrow" style="color:#F2EEE7;font-size:10px">Offre du week-end</div>
+      <div class="display" style="font-size:96px;color:#F2EEE7;margin-top:6px">-20%</div>
+      <div class="display" style="font-size:34px;color:#F2EEE7;opacity:.85">SUR TOUTE LA WHEY</div>
+    </div>
+    <div class="abs" style="left:26px;right:26px;bottom:34px;background:#F2EEE7;border-radius:30px;padding:12px;text-align:center;font:700 13px Roboto;color:#1D1D1B">Voir la boutique</div>
+  </div>
+  <div class="story" style="left:1160px;top:200px;background:#F2EEE7;transform:rotate(5deg)">
+    <div class="bar" style="background:rgba(0,0,0,.15)"></div>
+    <div class="abs" style="left:-20%;right:-20%;top:58%;height:22%;background:#BC3333;transform:skewY(-8deg)"></div>
+    <div class="abs" style="left:0;right:0;top:60px;text-align:center">
+      <div class="eyebrow" style="color:#BC3333;font-size:10px">Nouveau</div>
+      <div class="display" style="font-size:58px;color:#1D1D1B;margin-top:8px">CRÉATINE<br>MONO</div>
+    </div>
+    <div id="jarstory" class="abs" style="left:0;right:0;top:250px;height:260px"></div>
+  </div>
+</div>
+<script src="kit.js"></script>
+<script>
+  tub(document.getElementById('tubpost'), { x: 34, y: 14, w: 76, line: 'performance' });
+  const js = document.getElementById('jarstory');
+  shadowUnder(js, 80, 225, 140, 0.18);
+  tub(js, { x: 80, y: 85, w: 140, short: true, product: 'CRÉATINE', variant: 'MONO', flavour: 'NEUTRE', weight: '300 G' });
+</script>
+</body>
+</html>

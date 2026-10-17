@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;1,700;1,800&family=Roboto:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="base.css">
+<style>
+  html, body { background: transparent; }
+  body { padding: 20px; display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+  .lock-h { display: inline-flex; align-items: center; gap: 36px; padding: 10px; }
+  .lock-v { display: inline-flex; flex-direction: column; align-items: center; padding: 10px; }
+  .tile { position: relative; width: 480px; height: 320px; display: grid; place-items: center; overflow: hidden; background: #F2EEE7; }
+  .tile img.logo { width: 200px; }
+  .photo { width: 600px; height: 400px; position: relative; overflow: hidden; }
+  .photo .p { position: absolute; inset: 0; background: url(../../assets/photo/hero-torso.jpg) center/cover; }
+</style>
+</head>
+<body>
+  <!-- new horizontal lockup -->
+  <div class="lock-h" data-out="lockup-horizontal-light" data-transparent>
+    <img src="../../assets/logo/icon-color.png" style="width:200px">
+    <div><img src="../../assets/logo/wordmark-white.png" style="width:620px"><div class="eyebrow" style="color:#BC3333;font-size:20px;letter-spacing:.62em;margin-top:18px">Nutrition sportive · Tunisie</div></div>
+  </div>
+  <div class="lock-h" data-out="lockup-horizontal-dark" data-transparent>
+    <img src="../../assets/logo/icon-color.png" style="width:200px">
+    <div><img src="../../assets/logo/wordmark-black.png" style="width:620px"><div class="eyebrow" style="color:#BC3333;font-size:20px;letter-spacing:.62em;margin-top:18px">Nutrition sportive · Tunisie</div></div>
+  </div>
+  <div class="lock-v" data-out="lockup-stacked-light" data-transparent>
+    <img src="../../assets/logo/icon-color.png" style="width:300px">
+    <img src="../../assets/logo/wordmark-white.png" style="width:440px;margin-top:34px">
+    <div class="eyebrow" style="color:#BC3333;font-size:18px;letter-spacing:.9em;margin-top:16px;margin-right:-.9em">Tunisie</div>
+  </div>
+  <div class="lock-v" data-out="lockup-stacked-dark" data-transparent>
+    <img src="../../assets/logo/icon-color.png" style="width:300px">
+    <img src="../../assets/logo/wordmark-black.png" style="width:440px;margin-top:34px">
+    <div class="eyebrow" style="color:#BC3333;font-size:18px;letter-spacing:.9em;margin-top:16px;margin-right:-.9em">Tunisie</div>
+  </div>
+  <div data-out="app-icon" data-transparent style="width:512px;height:512px;border-radius:112px;background:#BC3333;display:grid;place-items:center;overflow:hidden;position:relative">
+    <div class="abs" style="left:-80px;top:-40px;width:330px;height:640px;background:#a82d2d;transform:skewX(-14deg)"></div>
+    <img src="../../assets/logo/head-white.png" style="height:360px;position:relative">
+  </div>
+
+  <!-- misuse examples -->
+  <div class="tile" data-out="misuse-stretch"><img class="logo" src="../../assets/logo/emblem-red.png" style="transform:scaleX(1.55)"></div>
+  <div class="tile" data-out="misuse-rotate"><img class="logo" src="../../assets/logo/emblem-red.png" style="transform:rotate(-18deg)"></div>
+  <div class="tile" data-out="misuse-recolor"><img class="logo" src="../../assets/logo/emblem-red.png" style="filter:hue-rotate(95deg) saturate(1.6)"></div>
+  <div class="tile" data-out="misuse-effects"><img class="logo" src="../../assets/logo/emblem-red.png" style="filter:drop-shadow(14px 16px 6px rgba(0,0,0,.55)) drop-shadow(0 0 20px #ffd400)"></div>
+  <div class="tile" data-out="misuse-contrast" style="background:linear-gradient(135deg,#7a2222,#c43d3d 40%,#1F3A93)"><img class="logo" src="../../assets/logo/emblem-red.png"></div>
+  <div class="tile" data-out="misuse-opacity"><img class="logo" src="../../assets/logo/emblem-red.png" style="opacity:.35"></div>
+
+  <!-- photo treatment -->
+  <div class="photo" data-out="photo-original"><div class="p" style="filter:saturate(.7) sepia(.2)"></div></div>
+  <div class="photo" data-out="photo-mono"><div class="p" style="filter:grayscale(1) contrast(1.35) brightness(.85)"></div></div>
+  <div class="photo" data-out="photo-duotone"><div class="p" style="filter:grayscale(1) contrast(1.2) brightness(1.5)"></div><div class="abs" style="inset:0;background:#BC3333;mix-blend-mode:multiply"></div></div>
+
+  <!-- brand pattern -->
+  <div data-out="pattern" style="width:1200px;height:800px;position:relative;overflow:hidden;background:#1D1D1B">
+    <div class="abs" style="inset:-200px;background:repeating-linear-gradient(-76deg, rgba(188,51,51,0) 0 70px, #BC3333 70px 92px, rgba(188,51,51,0) 92px 120px, rgba(188,51,51,.35) 120px 126px)"></div>
+    <div class="abs" style="inset:0;display:grid;place-items:center"><img src="../../assets/logo/head-white.png" style="height:340px;filter:drop-shadow(0 0 0 #1D1D1B) drop-shadow(0 0 40px #1D1D1B) drop-shadow(0 0 40px #1D1D1B)"></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;1,700;1,800&family=Roboto:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="base.css">
+<style>
+  .wall { position: absolute; inset: 0; background:
+      repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0 2px, rgba(0,0,0,0) 2px 120px),
+      linear-gradient(180deg, #4b4945 0%, #3a3835 60%, #2e2c2a 100%); }
+  .glass { position: absolute; background: linear-gradient(180deg, #121417 0%, #1b1f24 55%, #0d0f11 100%); overflow: hidden; }
+  .glass::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.07) 38%, rgba(255,255,255,0) 46%, rgba(255,255,255,0) 60%, rgba(255,255,255,.04) 66%, rgba(255,255,255,0) 72%); }
+  .shelf { position: absolute; height: 6px; background: #2a2b2d; box-shadow: 0 0 18px rgba(255,240,220,.25); }
+  .mini { position: absolute; bottom: 6px; width: 34px; height: 44px; border-radius: 8px 8px 5px 5px; background: #161615; }
+  .mini::before { content: ""; position: absolute; left: 3px; right: 3px; top: -8px; height: 9px; border-radius: 4px; background: var(--c); }
+</style>
+</head>
+<body>
+<div id="s" class="scene grain" data-out="storefront" style="width:1600px;height:1000px">
+  <div class="wall"></div>
+  <!-- fascia sign -->
+  <div class="abs" style="left:180px;top:110px;width:1240px;height:190px;background:#151514;box-shadow:0 30px 60px rgba(0,0,0,.6), inset 0 0 0 3px #222;display:flex;align-items:center;justify-content:center;gap:44px">
+    <img src="../../assets/logo/icon-color.png" style="width:150px;filter:drop-shadow(0 0 18px rgba(255,80,80,.55))">
+    <div>
+      <img src="../../assets/logo/wordmark-white.png" style="width:640px;filter:drop-shadow(0 0 10px rgba(255,255,255,.55)) drop-shadow(0 0 30px rgba(255,255,255,.2))">
+      <div class="eyebrow" style="color:#BC3333;font-size:18px;margin-top:16px;letter-spacing:.5em;text-shadow:0 0 12px rgba(255,60,60,.6)">Nutrition sportive · Tunisie</div>
+    </div>
+  </div>
+  <div class="abs" style="left:180px;top:300px;width:1240px;height:40px;background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,0))"></div>
+
+  <!-- shop window + door -->
+  <div class="glass" style="left:180px;top:360px;width:800px;height:560px;border:10px solid #1a1a19">
+    <div class="shelf" style="left:60px;right:60px;top:170px"></div>
+    <div class="shelf" style="left:60px;right:60px;top:300px"></div>
+    <div class="shelf" style="left:60px;right:60px;top:430px"></div>
+    <div id="stock"></div>
+    <div class="abs display" style="left:0;right:0;top:40px;text-align:center;font-size:34px;color:#F2EEE7;letter-spacing:.06em;opacity:.92">WHEY · CRÉATINE · VITAMINES · ACCESSOIRES</div>
+    <div class="abs" style="left:-5%;right:-5%;top:96px;height:6px;background:#BC3333;transform:skewY(-2deg)"></div>
+  </div>
+  <div class="glass" style="left:1010px;top:360px;width:410px;height:640px;border:10px solid #1a1a19">
+    <div class="abs" style="left:50%;top:0;bottom:0;width:8px;background:#1a1a19"></div>
+    <div class="abs" style="left:38%;top:300px;width:8px;height:120px;background:#8C8A85;border-radius:4px"></div>
+    <div class="abs" style="left:56%;top:300px;width:8px;height:120px;background:#8C8A85;border-radius:4px"></div>
+    <div class="abs" style="left:28px;top:40px;width:150px;font:500 13px/1.7 Roboto;color:#cfc9bf;opacity:.9">
+      <div class="display" style="font-size:22px;color:#F2EEE7;margin-bottom:6px">HORAIRES</div>
+      Lun – Sam<br>[__h – __h]<br>Dimanche<br>[fermé]
+    </div>
+    <img class="abs" src="../../assets/logo/icon-red-knockout.png" style="right:30px;top:40px;width:110px;opacity:.95">
+  </div>
+  <!-- pavement -->
+  <div class="abs" style="left:0;right:0;bottom:0;height:80px;background:linear-gradient(180deg,#2a2927,#1b1a19)"></div>
+  <!-- warm light from inside -->
+  <div class="abs" style="left:180px;top:360px;width:1240px;height:560px;background:radial-gradient(ellipse at 40% 60%, rgba(255,214,170,.10), rgba(255,214,170,0) 60%);mix-blend-mode:screen"></div>
+</div>
+<script>
+  const stock = document.getElementById('stock');
+  const colors = ['#BC3333', '#1F3A93', '#E7E2D9'];
+  [170, 300, 430].forEach((top, r) => {
+    for (let i = 0; i < 14; i++) {
+      const m = document.createElement('div');
+      m.className = 'mini';
+      m.style.left = (78 + i * 46) + 'px';
+      m.style.top = (top - 50) + 'px';
+      m.style.setProperty('--c', colors[(i + r) % 3]);
+      stock.appendChild(m);
+    }
+  });
+</script>
+</body>
+</html>

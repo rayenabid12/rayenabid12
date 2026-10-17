@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;1,700;1,800&family=Roboto:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="base.css">
+<script src="kit.js"></script>
+</head>
+<body>
+<div id="s" class="scene studio-dark grain" data-out="packaging-range" style="width:1600px;height:1000px">
+  <div class="studio-floor" style="height:16%"></div>
+  <div class="abs" style="left:-200px;top:-260px;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle, rgba(188,51,51,.22), rgba(188,51,51,0) 65%)"></div>
+  <div class="abs" style="right:-260px;top:-200px;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle, rgba(31,58,147,.22), rgba(31,58,147,0) 65%)"></div>
+</div>
+<script>
+  const s = document.getElementById('s');
+  const floor = 860;
+  const items = [
+    { x: 190, w: 380, line: 'recovery', product: 'WHEY', variant: 'ISOLATE', flavour: 'VANILLE', weight: '2,27 KG · 5 LB' },
+    { x: 1030, w: 380, line: 'essentials', product: 'MASS', variant: 'GAINER', flavour: 'FRAISE', weight: '3 KG' },
+    { x: 570, w: 460, line: 'performance', product: 'WHEY', variant: 'GOLD', flavour: 'CHOCOLAT', weight: '2,27 KG · 5 LB' },
+  ];
+  for (const it of items) {
+    const h = Math.round(it.w * 1.32);
+    const y = floor - h + (it.line === 'performance' ? 40 : 0);
+    shadowUnder(s, it.x, y + h, it.w);
+    const t = tub(s, { ...it, y });
+    reflect(s, t.el, it.x, y, h, 0.12);
+  }
+</script>
+</body>
+</html>

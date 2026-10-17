@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;1,700;1,800&family=Roboto:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="base.css">
+<style>
+  .tee { position: absolute; width: 600px; height: 640px; filter: drop-shadow(0 30px 40px rgba(0,0,0,.35)); }
+  .tee svg { position: absolute; inset: 0; }
+  .print { position: absolute; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <path id="teePath" d="M175 38 C215 58 385 58 425 38 L555 92 L600 238 L500 268 L482 214 L486 618 C400 634 200 634 114 618 L118 214 L100 268 L0 238 L45 92 Z"/>
+    <linearGradient id="fold" x1="0" x2="1">
+      <stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset=".18" stop-color="#000" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#fff" stop-opacity=".05"/><stop offset=".82" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".35"/>
+    </linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="9"/></filter>
+    <clipPath id="teeClip"><use href="#teePath"/></clipPath>
+  </defs>
+</svg>
+
+<div class="scene grain" data-out="apparel" style="width:1600px;height:1000px;background:linear-gradient(135deg,#ECE7DF 0%,#DCD5CA 100%)">
+  <div class="abs" style="right:-120px;top:-100px;width:760px;height:1300px;background:#1D1D1B;transform:rotate(14deg)"></div>
+
+  <!-- black tee, front -->
+  <div class="tee" style="left:130px;top:190px">
+    <svg viewBox="0 0 600 640">
+      <use href="#teePath" fill="#1b1b1a"/>
+      <g clip-path="url(#teeClip)">
+        <rect width="600" height="640" fill="url(#fold)"/>
+        <path d="M200 260 C230 400 220 520 240 640" stroke="#000" stroke-opacity=".35" stroke-width="22" fill="none" filter="url(#soft)"/>
+        <path d="M410 300 C390 420 400 520 380 640" stroke="#fff" stroke-opacity=".06" stroke-width="26" fill="none" filter="url(#soft)"/>
+        <path d="M118 214 L170 120" stroke="#000" stroke-opacity=".4" stroke-width="10" fill="none" filter="url(#soft)"/>
+        <path d="M482 214 L430 120" stroke="#000" stroke-opacity=".4" stroke-width="10" fill="none" filter="url(#soft)"/>
+      </g>
+      <path d="M220 48 C250 98 350 98 380 48" stroke="#2c2c2a" stroke-width="16" fill="none"/>
+      <path d="M210 44 C245 108 355 108 390 44" stroke="#0e0e0d" stroke-width="3" fill="none"/>
+    </svg>
+    <div class="print" style="top:150px">
+      <img src="../../assets/logo/icon-color.png" style="width:190px;filter:contrast(.95) brightness(.95)">
+      <img src="../../assets/logo/wordmark-white.png" style="width:210px;margin-top:20px;opacity:.92">
+      <div class="eyebrow" style="color:#BC3333;margin-top:12px;font-size:12px">TUNISIE · DEPUIS 2023</div>
+    </div>
+  </div>
+
+  <!-- red tee, back print -->
+  <div class="tee" style="left:860px;top:160px;transform:rotate(4deg)">
+    <svg viewBox="0 0 600 640">
+      <use href="#teePath" fill="#BC3333"/>
+      <g clip-path="url(#teeClip)">
+        <rect width="600" height="640" fill="url(#fold)"/>
+        <path d="M250 230 C270 380 250 520 270 640" stroke="#000" stroke-opacity=".25" stroke-width="24" fill="none" filter="url(#soft)"/>
+        <path d="M118 214 L170 120" stroke="#000" stroke-opacity=".3" stroke-width="10" fill="none" filter="url(#soft)"/>
+        <path d="M482 214 L430 120" stroke="#000" stroke-opacity=".3" stroke-width="10" fill="none" filter="url(#soft)"/>
+      </g>
+      <path d="M215 42 C250 62 350 62 385 42" stroke="#9c2929" stroke-width="12" fill="none"/>
+    </svg>
+    <div class="print" style="top:110px">
+      <img src="../../assets/logo/head-black.png" style="width:86px;opacity:.92">
+      <div class="display" style="font-size:74px;color:#1D1D1B;text-align:center;margin-top:24px;opacity:.92">LA FORCE,<br>EN STOCK.</div>
+      <div class="eyebrow" style="color:#1D1D1B;margin-top:22px;font-size:12px;opacity:.85">MUSCLE STOCK · TUNISIE</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

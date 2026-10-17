@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;1,700;1,800&family=Roboto:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="base.css">
+<style>
+  .laptop-lid { position: absolute; border-radius: 26px 26px 6px 6px; background: #1b1b1c; padding: 22px 22px 30px; box-shadow: 0 0 0 2px #444, 0 40px 80px rgba(0,0,0,.4); }
+  .laptop-base { position: absolute; height: 26px; border-radius: 0 0 22px 22px; background: linear-gradient(180deg,#d6d4d0,#a9a7a3); }
+  .site { position: relative; width: 100%; height: 100%; overflow: hidden; background: #121211; }
+  .nav { height: 52px; display: flex; align-items: center; padding: 0 28px; gap: 26px; background: #121211; border-bottom: 1px solid #262624; }
+  .nav a { font: 500 13px Roboto; color: #cfc9bf; text-decoration: none; }
+  .cat { flex: 1; border-radius: 6px; padding: 16px; background: #1e1e1c; position: relative; overflow: hidden; height: 130px; }
+  .duo { position: absolute; background: url(../../assets/photo/hero-torso.jpg) center/cover; filter: grayscale(1) contrast(1.3) brightness(.75); }
+</style>
+</head>
+<body>
+<div class="scene grain" data-out="web" style="width:1600px;height:1000px;background:linear-gradient(180deg,#ECE7DF,#D9D2C6)">
+  <div class="abs" style="left:0;right:0;bottom:0;height:200px;background:#CFC7BA"></div>
+  <div class="laptop-lid" style="left:110px;top:90px;width:1060px;height:690px">
+    <div class="site">
+      <div class="nav">
+        <img src="../../assets/logo/icon-color.png" style="width:34px">
+        <img src="../../assets/logo/wordmark-white.png" style="width:150px;margin-left:-14px">
+        <div style="flex:1"></div>
+        <a>Protéines</a><a>Créatine</a><a>Pré-workout</a><a>Vitamines</a><a>Accessoires</a>
+        <div style="background:#BC3333;color:#fff;font:700 12px Roboto;padding:8px 14px;border-radius:4px">Panier (0)</div>
+      </div>
+      <div style="position:relative;height:420px;overflow:hidden">
+        <div class="duo" style="left:460px;right:0;top:0;bottom:0"></div>
+        <div class="abs" style="left:460px;right:0;top:0;bottom:0;background:#BC3333;mix-blend-mode:multiply"></div>
+        <div class="abs" style="left:380px;top:-40px;width:200px;height:520px;background:#121211;transform:skewX(-14deg)"></div>
+        <div class="abs" style="left:48px;top:70px;width:440px">
+          <div class="eyebrow" style="color:#BC3333;font-size:11px">Nutrition sportive · Tunisie</div>
+          <div class="display" style="font-size:92px;color:#F2EEE7;margin-top:12px">LA FORCE,<br>EN STOCK.</div>
+          <div style="font:400 15px/1.6 Roboto;color:#bdb8ae;margin-top:18px;width:360px">Protéines, créatine et vitamines de qualité, conseillées par des passionnés, au juste prix.</div>
+          <div style="display:flex;gap:12px;margin-top:26px">
+            <div style="background:#BC3333;color:#fff;font:700 13px Roboto;padding:13px 22px;border-radius:4px">Découvrir la boutique</div>
+            <div style="border:1px solid #55524c;color:#F2EEE7;font:700 13px Roboto;padding:12px 22px;border-radius:4px">Nos conseils</div>
+          </div>
+        </div>
+        <div id="herotub" class="abs" style="left:640px;top:0;width:400px;height:420px"></div>
+      </div>
+      <div style="display:flex;gap:14px;padding:18px 28px">
+        <div class="cat" style="border-top:4px solid #BC3333"><div class="eyebrow" style="color:#BC3333;font-size:9px">Gamme</div><div class="display" style="font-size:34px;color:#F2EEE7;margin-top:6px">PERFORMANCE</div></div>
+        <div class="cat" style="border-top:4px solid #2F55C9"><div class="eyebrow" style="color:#7f98e6;font-size:9px">Gamme</div><div class="display" style="font-size:34px;color:#F2EEE7;margin-top:6px">RECOVERY</div></div>
+        <div class="cat" style="border-top:4px solid #E7E2D9"><div class="eyebrow" style="color:#bdb8ae;font-size:9px">Gamme</div><div class="display" style="font-size:34px;color:#F2EEE7;margin-top:6px">ESSENTIALS</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="laptop-base" style="left:40px;top:780px;width:1200px"></div>
+  <div class="contact-shadow" style="left:40px;top:790px;width:1200px;height:60px;opacity:.5"></div>
+
+  <!-- phone: mobile site -->
+  <div class="phone" style="left:1240px;top:150px;width:300px;height:620px;border-radius:44px">
+    <div class="screen" style="border-radius:34px;background:#121211">
+      <div class="island" style="width:80px;height:24px"></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:50px 16px 10px;border-bottom:1px solid #262624">
+        <img src="../../assets/logo/wordmark-white.png" style="width:120px">
+        <div style="width:22px;display:flex;flex-direction:column;gap:4px"><div style="height:2px;background:#F2EEE7"></div><div style="height:2px;background:#F2EEE7"></div><div style="height:2px;background:#F2EEE7"></div></div>
+      </div>
+      <div style="position:relative;height:250px;overflow:hidden">
+        <div class="duo" style="inset:0"></div>
+        <div class="abs" style="inset:0;background:#BC3333;mix-blend-mode:multiply"></div>
+        <div class="abs" style="inset:0;background:linear-gradient(180deg,rgba(18,18,17,0) 30%,#121211)"></div>
+        <div class="abs display" style="left:16px;bottom:16px;font-size:46px;color:#F2EEE7">LA FORCE,<br>EN STOCK.</div>
+      </div>
+      <div style="padding:14px 16px">
+        <div style="background:#BC3333;color:#fff;font:700 12px Roboto;padding:12px;border-radius:4px;text-align:center">Découvrir la boutique</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+          <div style="background:#1e1e1c;border-radius:6px;height:120px;position:relative" id="m1"></div>
+          <div style="background:#1e1e1c;border-radius:6px;height:120px;position:relative" id="m2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="kit.js"></script>
+<script>
+  const h = document.getElementById('herotub');
+  shadowUnder(h, 90, 400, 240, 0.16);
+  tub(h, { x: 90, y: 400 - Math.round(240 * 1.32), w: 240, line: 'performance', product: 'WHEY', variant: 'GOLD' });
+  tub(document.getElementById('m1'), { x: 30, y: 10, w: 75, line: 'recovery' });
+  tub(document.getElementById('m2'), { x: 30, y: 10, w: 75, line: 'essentials', product: 'MASS', variant: 'GAINER' });
+</script>
+</body>
+</html>

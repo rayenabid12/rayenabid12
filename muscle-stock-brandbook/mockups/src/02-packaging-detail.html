@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;1,700;1,800&family=Roboto:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="base.css">
+<script src="kit.js"></script>
+</head>
+<body>
+<!-- Light "bone" studio: creatine pouch, creatine jar and pre-workout sticks -->
+<div id="s" class="scene grain" data-out="packaging-detail" style="width:1600px;height:1000px;background:radial-gradient(ellipse 70% 60% at 50% 35%, #F6F3EE 0%, #E4DED4 70%, #D3CCC0 100%)">
+  <div class="abs" style="left:0;right:0;bottom:0;height:20%;background:linear-gradient(180deg,#D8D1C5,#CBC3B6)"></div>
+  <div class="abs" style="left:-6%;top:0;width:52%;height:100%;background:#BC3333;transform:skewX(-14deg);transform-origin:bottom"></div>
+</div>
+<script>
+  const s = document.getElementById('s');
+  const floor = 860;
+  // pouch
+  shadowUnder(s, 300, floor, 340, 0.18);
+  pouch(s, { x: 300, y: floor - Math.round(340 * 1.45), w: 340 });
+  // jar
+  shadowUnder(s, 760, floor, 300, 0.2);
+  tub(s, { x: 760, y: floor - 300, w: 300, short: true, line: 'performance', product: 'CRÉATINE', variant: 'MONOHYDRATE', flavour: 'NEUTRE', weight: '300 G' });
+  // sticks
+  stick(s, { x: 1150, y: floor - 330, w: 74, h: 330, rot: -8, label: 'PRE-WORKOUT' });
+  stick(s, { x: 1250, y: floor - 330, w: 74, h: 330, rot: 4, line: 'recovery', label: 'BCAA 2:1:1' });
+  stick(s, { x: 1350, y: floor - 330, w: 74, h: 330, rot: 12, line: 'essentials', label: 'ÉLECTROLYTES' });
+</script>
+</body>
+</html>
