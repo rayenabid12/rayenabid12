@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>01 · العودة</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans+Arabic:wght@500;600&family=IBM+Plex+Mono:wght@500&display=block">
+<link rel="stylesheet" href="../kit.css">
+</head>
+<body>
+<div id="stage"></div>
+<script src="../kit.js"></script>
+<script>
+/* Video 01 · The return. Times in seconds; *word* = cobalt emphasis. */
+Kit.mount({
+  duration: 43,
+
+  /* split = graphic on top + face card · full = face only · graphic = graphic only · pip = small face */
+  layout: [[0,'split'], [9.6,'full'], [12,'split'], [31,'graphic'], [35,'full'], [39,'graphic']],
+  /* punch-ins on the face (hard cut zoom) */
+  zoom: [[0,1], [10.8,1.2], [12,1], [36.6,1.22]],
+
+  graphics: [
+    { t0:0,   t1:3.6,  type:'compare', mode:'wipe', tag:'2025',
+      before:{ src:'../assets/old-feed.jpg', label:'قبل' },
+      after:{ label:'اليوم', html:'<div class="mini-feed"><div class="k"><span>BRAND 101</span>اللوغو موش هو البراند</div><div class="s"><span>CASE 01</span>من فكرة لمحل</div><div class="c"><span>OPINION</span>Rebranding نجح؟</div><div class="s"><span>CASE 02</span>هوية فاخرة</div><div class="k"><span>BRAND 102</span>3 أخطاء في اللوغو</div><div class="k"><span>NEW · 01</span>غبت 10 شهور</div></div>' },
+      revealAt:1.7 },
+    { t0:3.6, t1:6.2,  type:'card', variant:'title', tag:'BACK · 01', title:'غبت *10 شهور*' },
+    { t0:6.2, t1:9.6,  type:'counter', tag:'2021 — 2025', prefix:'+', to:40, label:'كليون · تونس والعالم' },
+    { t0:12,  t1:17,   type:'compare', mode:'text', tag:'THE CLIENT',
+      before:{ label:'ASKS FOR', items:['لوغو','تصميم','سعر'] },
+      after:{ label:'BUYS', items:['*ثقة*','وضوح','قيمة'] }, afterAt:2.2 },
+    { t0:17,  t1:23,   type:'grid', tag:'CASE 01 · PARA ELIXEA', label:'قبل الشكل: *الأساس*' },
+    { t0:23,  t1:31,   type:'method', tag:'THE FOUNDATION METHOD', steps:[
+        { name:'افهم', desc:'السوق والحريف', at:0 },
+        { name:'قرّر', desc:'شنوّا باش تقول العلامة', at:2 },
+        { name:'صمّم', desc:'الهوية ودليل الاستعمال', at:4 },
+        { name:'رافق', desc:'بعد الإطلاق', at:6 } ] },
+    { t0:31,  t1:35,   type:'card', variant:'tiles', tag:'BRAND SYSTEM', items:[
+        { icon:'logo', label:'لوغو' }, { icon:'color', label:'ألوان' }, { icon:'voice', label:'صوت', hi:true } ], step:0.4 },
+    { t0:39,  t1:43,   type:'card', variant:'end', tag:'THE FOUNDATION METHOD', title:'نبني الأساس<br>قبل الواجهة', by:'ريان، مصمم براند استراتيجي' }
+  ],
+
+  subs: [
+    [0,1.7,'هذي كانت صفحتي'], [1.7,3.6,'وهذي *اليوم*'],
+    [3.6,6.2,'غبت عشرة شهور'],
+    [6.2,8,'خدمت مع أكثر من *40*'], [8,9.6,'كليون'],
+    [9.6,12,'وفهمت حاجة *وحدة*'],
+    [12,14.2,'صاحب المشروع يطلب *لوغو*'], [14.2,17,'أما يشري *الثقة*'],
+    [17,19.5,'قبل ما نرسم حتى خط'], [19.5,23,'نبني *الأساس*'],
+    [23,25,'*نفهم* السوق'], [25,27,'*نقرّر* شنوّا نقولو'], [27,29,'مبعد *نصمّم*'], [29,31,'ونبقى *معاك*'],
+    [31,33,'لوغو، ألوان، صوت'], [33,35,'كلها *نظام* واحد'],
+    [35,37,'البراند *قرار تجاري*'], [37,39,'موش رسمة.']
+  ]
+});
+</script>
+</body>
+</html>

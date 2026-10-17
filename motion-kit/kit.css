@@ -1,0 +1,133 @@
+/* RAYEN motion kit. Stage = export size 1080×1920; all values are output pixels. */
+:root{
+  --ink:#15181F; --ink-2:#1C2029; --stone:#E9E8E3; --cobalt:#2D4BF0; --cobalt-l:#93A3FF; --graphite:#6C707A; --white:#FFFFFF;
+  --line:rgba(233,232,227,.10); --line-2:rgba(233,232,227,.18);
+  --wall-a:#3B3833; --wall-b:#211F1C;
+  --f-display:"Alexandria","IBM Plex Sans Arabic",sans-serif;
+  --f-body:"IBM Plex Sans Arabic",sans-serif;
+  --f-mono:"IBM Plex Mono","IBM Plex Sans Arabic",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--ink)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--ink);direction:rtl}
+em{font-style:normal}
+
+/* background: ink, faint construction grid, one soft cobalt glow behind the face card */
+.bg{position:absolute;inset:0}
+.bg .grid{position:absolute;inset:0;background-image:linear-gradient(to left,rgba(233,232,227,.035) 1px,transparent 1px),linear-gradient(to bottom,rgba(233,232,227,.035) 1px,transparent 1px);background-size:90px 90px;background-position:center}
+.bg .glow{position:absolute;width:1400px;height:1400px;left:-160px;top:500px;border-radius:50%;background:radial-gradient(circle,rgba(45,75,240,.22),transparent 60%)}
+
+/* graphics zone: components draw in a 900×600 box */
+.zone{position:absolute;left:90px;width:900px;height:600px;transform-origin:50% 50%}
+.zone>.g{position:absolute;inset:0}
+.zone>.g:not(.on){display:none}
+.g.on{display:block}
+
+/* face card */
+.card{position:absolute;overflow:hidden;background:#0E0F12;box-shadow:0 0 0 2px rgba(147,163,255,.22),0 40px 140px rgba(45,75,240,.38)}
+.card .inner{position:absolute;left:50%;top:50%;width:1080px;height:1920px}
+.card .inner img{width:100%;height:100%;object-fit:cover;display:block}
+.ph{position:absolute;inset:0;background:radial-gradient(120% 80% at 70% 20%,var(--wall-a),var(--wall-b))}
+.ph .lamp{position:absolute;width:430px;height:430px;border-radius:50%;background:radial-gradient(circle,rgba(255,196,120,.45),transparent 65%);top:300px;right:10px}
+.ph .back{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(45,75,240,.35))}
+.ph svg{position:absolute;bottom:0;left:50%;width:1100px;transform:translateX(-50%);fill:#0E0F12}
+.ph .slate{position:absolute;top:470px;left:120px;font-family:var(--f-mono);font-size:30px;letter-spacing:.08em;color:rgba(255,255,255,.5);direction:ltr}
+
+/* subtitles: 2–4 words, one emphasis on cobalt */
+.subs{position:absolute;left:120px;right:120px;text-align:center;font-family:var(--f-body);font-weight:600;font-size:60px;line-height:1.4;color:var(--white);text-shadow:0 6px 22px rgba(0,0,0,.55)}
+.subs em{background:var(--cobalt);padding:0 16px 5px;border-radius:12px;text-shadow:none}
+
+/* shared bits */
+.pill{display:inline-flex;align-items:center;gap:12px;padding:10px 26px;border:2px solid rgba(147,163,255,.45);border-radius:999px;font-family:var(--f-mono);font-weight:500;font-size:28px;letter-spacing:.08em;color:var(--cobalt-l);direction:ltr;background:rgba(21,24,31,.6)}
+.pill i{width:12px;height:12px;border-radius:50%;background:var(--cobalt)}
+.center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+
+/* card · title */
+.c-title h2{font-family:var(--f-display);font-weight:800;font-size:116px;line-height:1.2;color:var(--stone);margin-top:30px}
+.c-title h2 span{display:inline-block;margin:0 .12em}
+.c-title h2 em{color:var(--cobalt-l)}
+.c-title p{font-family:var(--f-body);font-weight:500;font-size:44px;color:rgba(233,232,227,.6);margin-top:18px}
+
+/* card · tiles */
+.c-tiles .row{display:flex;gap:26px;margin-top:40px}
+.tile{width:270px;height:310px;border-radius:30px;background:var(--ink-2);border:2px solid var(--line-2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+.tile svg{width:120px;height:120px}
+.tile b{font-family:var(--f-display);font-weight:700;font-size:44px;color:var(--stone)}
+.tile.hi{background:var(--cobalt);border-color:var(--cobalt)}
+.tile.hi b{color:var(--white)}
+
+/* card · solid / end */
+.c-solid .panel{position:absolute;inset:20px 0;border-radius:40px;background:var(--cobalt);overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:0 70px}
+.c-solid .panel::before{content:"";position:absolute;width:760px;height:760px;border-radius:50%;border:2px solid rgba(255,255,255,.16);left:-300px;top:-80px}
+.c-solid .panel::after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;border:2px solid rgba(255,255,255,.16);left:-130px;top:90px}
+.c-solid .tag{font-family:var(--f-mono);font-size:28px;letter-spacing:.12em;color:var(--stone);direction:ltr;text-align:right}
+.c-solid h2{font-family:var(--f-display);font-weight:800;font-size:104px;line-height:1.3;color:var(--white);margin-top:22px;position:relative}
+.c-solid .by{font-family:var(--f-body);font-weight:500;font-size:40px;color:rgba(255,255,255,.85);margin-top:20px}
+.c-solid .mark{font-family:var(--f-display);font-weight:800;font-size:54px;letter-spacing:.2em;color:var(--white);direction:ltr;text-align:right;margin-top:46px}
+
+/* grid · logo construction */
+.c-grid svg{position:absolute;inset:0;width:900px;height:600px;overflow:visible}
+.c-grid .gl{stroke:rgba(233,232,227,.09);stroke-width:1.5}
+.c-grid .ax{stroke:var(--cobalt-l);stroke-width:2;stroke-dasharray:8 10;fill:none}
+.c-grid .cc{stroke:var(--stone);stroke-width:3;fill:none}
+.c-grid .lens{fill:var(--cobalt)}
+.c-grid .pt{fill:var(--cobalt-l)}
+.c-grid .pill{position:absolute;top:0;right:0}
+.c-grid .lab{position:absolute;bottom:0;left:0;right:0;text-align:center;font-family:var(--f-display);font-weight:700;font-size:44px;color:var(--stone)}
+
+/* counter */
+.c-count .num{font-family:var(--f-display);font-weight:800;font-size:250px;line-height:1;color:var(--stone);direction:ltr;margin-top:20px}
+.c-count .num em{color:var(--cobalt-l)}
+.c-count .lab{font-family:var(--f-body);font-weight:600;font-size:46px;color:rgba(233,232,227,.65);margin-top:6px}
+.c-count .tiles{display:grid;grid-template-columns:repeat(20,32px);gap:9px;margin-top:40px;direction:ltr}
+.c-count .tiles i{width:32px;height:32px;border-radius:8px;background:var(--ink-2);border:1.5px solid var(--line-2)}
+.c-count .tiles i.on{background:var(--cobalt);border-color:var(--cobalt)}
+
+/* compare · text */
+.c-cmp .cols{position:absolute;inset:80px 0 0 0;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.c-cmp .col{border-radius:32px;padding:34px 36px;background:var(--ink-2);border:2px solid var(--line-2)}
+.c-cmp .col.after{border-color:var(--cobalt);background:rgba(45,75,240,.12)}
+.c-cmp .col h3{font-family:var(--f-mono);font-weight:500;font-size:30px;letter-spacing:.1em;color:var(--graphite);direction:ltr;text-align:right}
+.c-cmp .col.after h3{color:var(--cobalt-l)}
+.c-cmp .it{display:flex;align-items:center;gap:20px;margin-top:30px;font-family:var(--f-display);font-weight:700;font-size:52px;color:rgba(233,232,227,.5);position:relative}
+.c-cmp .col.after .it{color:var(--stone)}
+.c-cmp .it .x{position:absolute;right:62px;top:52%;height:4px;background:rgba(233,232,227,.5);transform-origin:right}
+.c-cmp .mk{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:2.5px solid var(--graphite)}
+.c-cmp .col.after .mk{background:var(--cobalt);border-color:var(--cobalt)}
+.c-cmp .mk svg{width:24px;height:24px;stroke:var(--white);stroke-width:3.5;fill:none}
+.c-cmp .head{position:absolute;top:0;left:0;right:0;text-align:center}
+
+/* compare · image wipe */
+.c-wipe .frame{position:absolute;inset:70px 0 0 0;border-radius:30px;overflow:hidden;border:2px solid var(--line-2);background:var(--ink-2)}
+.c-wipe .layer{position:absolute;inset:0}
+.c-wipe .layer img{width:100%;height:100%;object-fit:cover;display:block}
+.c-wipe .bar{position:absolute;top:0;bottom:0;width:6px;background:var(--cobalt);box-shadow:0 0 40px rgba(45,75,240,.8)}
+.c-wipe .bar::after{content:"";position:absolute;top:50%;left:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:var(--cobalt);border:5px solid var(--white)}
+.c-wipe .lbl{position:absolute;top:24px;font-family:var(--f-body);font-weight:600;font-size:34px;padding:6px 24px;border-radius:999px}
+.c-wipe .lbl.b{right:24px;background:rgba(21,24,31,.85);color:var(--stone)}
+.c-wipe .lbl.a{left:24px;background:var(--cobalt);color:var(--white)}
+.c-wipe .head{position:absolute;top:0;left:0;right:0;text-align:center}
+.mini-feed{position:absolute;inset:0;background:var(--ink);display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:6px}
+.mini-feed div{border-radius:6px;padding:26px 20px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;font-family:var(--f-display);font-weight:800;font-size:34px;line-height:1.25}
+.mini-feed span{font-family:var(--f-mono);font-weight:500;font-size:16px;letter-spacing:.1em;direction:ltr;text-align:right}
+.mini-feed .k{background:#1C2029;color:var(--stone)} .mini-feed .k span{color:var(--cobalt-l)}
+.mini-feed .s{background:var(--stone);color:var(--ink)} .mini-feed .s span{color:var(--cobalt)}
+.mini-feed .c{background:var(--cobalt);color:var(--white)} .mini-feed .c span{color:var(--stone)}
+
+/* method */
+.c-method .pill{position:absolute;top:0;right:0}
+.c-method svg{position:absolute;left:0;top:70px;width:900px;height:220px;overflow:visible}
+.c-method .base{stroke:var(--line-2);stroke-width:4}
+.c-method .prog{stroke:var(--cobalt);stroke-width:6}
+.c-method .node circle{fill:var(--ink-2);stroke:var(--line-2);stroke-width:3}
+.c-method .node text{font-family:var(--f-mono);font-size:30px;fill:var(--graphite);text-anchor:middle;dominant-baseline:central}
+.c-method .node .nm{font-family:var(--f-display);font-weight:700;font-size:30px;fill:rgba(233,232,227,.45)}
+.c-method .node.done circle{stroke:var(--cobalt);fill:var(--ink-2)}
+.c-method .node.done text{fill:var(--cobalt-l)}
+.c-method .node.on circle{fill:var(--cobalt);stroke:var(--cobalt)}
+.c-method .node.on text{fill:var(--white)}
+.c-method .node.on .nm,.c-method .node.done .nm{fill:var(--stone)}
+.c-method .big{position:absolute;left:0;right:0;top:330px;text-align:center}
+.c-method .big b{display:block;font-family:var(--f-display);font-weight:800;font-size:116px;line-height:1.1;color:var(--stone)}
+.c-method .big p{font-family:var(--f-body);font-weight:500;font-size:42px;color:rgba(233,232,227,.6);margin-top:14px}
+.c-cmp em,.c-grid .lab em{color:var(--cobalt-l)}
