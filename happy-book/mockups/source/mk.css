@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&family=Tajawal:wght@300;400;500;700;800&family=Nunito:wght@400;600;700;800;900&display=swap');
+:root{--purple:#B130D0;--cyan:#00CCFF;--yellow:#FFCC0D;--lime:#CCCC0D;--orange:#FF9922;--pink:#FF669B;--ink:#231F20;--cream:#FFF8EC;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden}
+body{font-family:'Tajawal',sans-serif;color:var(--ink);position:relative}
+.ar{font-family:'Baloo Bhaijaan 2',sans-serif}
+.en{font-family:'Nunito',sans-serif}
+.abs{position:absolute}
+/* paper grain overlay */
+.grain::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;mix-blend-mode:multiply;
+ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .25 0'/></filter><rect width='300' height='300' filter='url(%23n)'/></svg>");}
+.shadow{box-shadow:0 1px 1px rgba(35,31,32,.08),0 4px 8px rgba(35,31,32,.08),0 18px 36px rgba(35,31,32,.14),0 40px 80px rgba(35,31,32,.12)}
+.shadow-lg{box-shadow:0 2px 2px rgba(35,31,32,.1),0 10px 20px rgba(35,31,32,.12),0 30px 60px rgba(35,31,32,.18),0 70px 120px rgba(35,31,32,.16)}
+.stripe{display:flex;height:100%}.stripe i{flex:1}
+.stripe i:nth-child(1){background:var(--purple)}.stripe i:nth-child(2){background:var(--cyan)}.stripe i:nth-child(3){background:var(--yellow)}
+.stripe i:nth-child(4){background:var(--lime)}.stripe i:nth-child(5){background:var(--orange)}.stripe i:nth-child(6){background:var(--pink)}
+.pat-cream{background:url(../../brand/pattern/tile-cream.svg) 0 0/300px}
+.pat-cyan{background:url(../../brand/pattern/tile-cyan.svg) 0 0/300px}
+.pat-cyan-mono{background:url(../../brand/pattern/tile-cyan-mono.svg) 0 0/300px}
+.pat-purple-mono{background:url(../../brand/pattern/tile-purple-mono.svg) 0 0/300px}

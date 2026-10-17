@@ -1,0 +1,54 @@
+<!doctype html><html dir="rtl"><head><meta charset="utf-8"><link rel="stylesheet" href="mk.css">
+<style>
+body{background:linear-gradient(180deg,#FFE58A 0%,#FFD84A 58%,#F2C230 58%,#EDB923 100%)}
+.scene{position:absolute;left:330px;top:170px;width:560px;height:700px;perspective:2200px}
+.box{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(-8deg) rotateY(-30deg)}
+.f{position:absolute;backface-visibility:hidden;overflow:hidden}
+.box{width:520px;height:660px}
+.front{left:0;top:0;width:520px;height:660px;background:var(--cyan);transform:translateZ(100px)}
+.side{left:160px;top:0;width:200px;height:660px;background:var(--purple);transform:rotateY(90deg) translateZ(260px)}
+.top{left:0;top:230px;width:520px;height:200px;background:#FFE14D;transform:rotateX(90deg) translateZ(330px)}
+.front .pat{position:absolute;inset:0}
+.front .panel{position:absolute;left:36px;right:36px;bottom:36px;height:250px;background:#FFFDF9;border-radius:28px;padding:30px 34px}
+.front .logo{position:absolute;left:50%;top:70px;width:330px;transform:translateX(-50%)}
+.front h2{font:800 46px/1.25 'Baloo Bhaijaan 2';color:var(--ink)}
+.front h2 span{color:var(--purple)}
+.front p{font:500 20px/1.5 Tajawal;color:#5C5557;margin-top:6px}
+.front .en{font:800 15px Nunito;letter-spacing:.14em;color:var(--cyan);margin-top:14px;direction:ltr;text-align:right}
+.badge{position:absolute;left:26px;top:262px;width:128px;height:128px;border-radius:50%;background:var(--pink);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-12deg);box-shadow:0 6px 0 rgba(0,0,0,.08)}
+.badge b{font:800 42px/1 Nunito;direction:ltr}.badge span{font:700 18px Tajawal}
+.side .pat{position:absolute;inset:0}
+.side .v{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(90deg);white-space:nowrap;font:800 40px 'Baloo Bhaijaan 2';color:#fff}
+.side .lg{position:absolute;left:50%;bottom:40px;width:150px;transform:translateX(-50%)}
+.shade-side{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.18),rgba(0,0,0,.05))}
+.shade-top{position:absolute;inset:0;background:rgba(255,255,255,.18)}
+.floor{position:absolute;left:180px;top:810px;width:900px;height:90px;border-radius:50%;background:radial-gradient(ellipse,rgba(120,80,0,.45),transparent 70%);filter:blur(14px)}
+/* cards */
+.card{position:absolute;width:280px;height:400px;border-radius:26px;padding:16px;transform-origin:50% 120%}
+.card .in{width:100%;height:100%;background:#FFFDF9;border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:42px 0 26px}
+.card svg{width:180px;height:180px}
+.card b{font:800 52px/1 'Baloo Bhaijaan 2'}
+.card i{font:800 16px Nunito;font-style:normal;letter-spacing:.14em;color:#8A8285;direction:ltr}
+.k1{left:960px;top:250px;background:var(--orange);transform:rotate(-9deg)}
+.k2{left:1240px;top:215px;background:var(--cyan);transform:rotate(0deg)}
+.k3{left:1520px;top:250px;background:var(--pink);transform:rotate(9deg)}
+.back{position:absolute;left:1180px;top:690px;width:420px;height:300px;border-radius:26px;background:var(--purple);transform:rotate(-4deg);overflow:hidden}
+.back .pat{position:absolute;inset:0}
+.back img{position:absolute;left:50%;top:50%;width:250px;transform:translate(-50%,-50%)}
+</style></head><body class="grain">
+<div class="floor"></div>
+<div class="scene"><div class="box">
+  <div class="f top"><div class="shade-top"></div></div>
+  <div class="f side"><div class="pat pat-purple-mono"></div><div class="v">ألعب وأتعلّم</div><img class="lg" src="../../brand/logo/logo-white.svg"><div class="shade-side"></div></div>
+  <div class="f front">
+    <div class="pat pat-cyan-mono"></div>
+    <img class="logo" src="../../brand/logo/logo-color-sticker.svg">
+    
+    <div class="panel"><h2>بطاقات <span>الأشكال</span><br>والألوان</h2><p>40 بطاقة مصوّرة + دليل عملي للوالدين</p><div class="en">SHAPES &amp; COLOURS · 40 CARDS</div></div><div class="badge"><b>0–5</b><span>سنوات</span></div>
+  </div>
+</div></div>
+<div class="back shadow-lg"><div class="pat pat-purple-mono"></div><img src="../../brand/logo/logo-color-sticker.svg"></div>
+<div class="card k1 shadow-lg"><div class="in"><svg viewBox="0 0 100 100"><polygon points="50,8 95,90 5,90" fill="#FF9922"/></svg><b style="color:#E07600">مثلّث</b><i>TRIANGLE</i></div></div>
+<div class="card k2 shadow-lg"><div class="in"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="#00CCFF"/></svg><b style="color:#0090B8">دائرة</b><i>CIRCLE</i></div></div>
+<div class="card k3 shadow-lg"><div class="in"><img src="../../brand/icons/heart-pink.svg" style="width:200px;height:200px;margin:-10px 0"><b style="color:#E03C78">قلب</b><i>HEART</i></div></div>
+</body></html>

@@ -1,0 +1,75 @@
+<!doctype html><html dir="rtl"><head><meta charset="utf-8"><link rel="stylesheet" href="mk.css">
+<style>
+body{background:radial-gradient(ellipse at 30% 20%,#5A1A70 0%,#2E0B3D 55%,#1E0828 100%)}
+.glow{position:absolute;left:520px;top:220px;width:1100px;height:600px;border-radius:50%;background:radial-gradient(ellipse,rgba(177,48,208,.55),transparent 65%);filter:blur(40px)}
+.lap{position:absolute;left:470px;top:110px;width:1300px}
+.lid{width:1300px;height:820px;border-radius:30px 30px 8px 8px;background:#151213;padding:22px 22px 30px;box-shadow:0 0 0 2px #3a3436 inset}
+.scr{width:100%;height:100%;border-radius:10px;overflow:hidden;background:#FFF8EC;position:relative}
+.base{position:relative;left:-90px;width:1480px;height:30px;border-radius:0 0 30px 30px;background:linear-gradient(180deg,#d9d6d4,#a19c9a);box-shadow:0 40px 80px rgba(0,0,0,.6)}
+.base::before{content:"";position:absolute;left:50%;top:0;width:220px;height:12px;transform:translateX(-50%);border-radius:0 0 14px 14px;background:#b5b0ae}
+/* site */
+.nav{height:76px;display:flex;align-items:center;padding:0 50px;gap:36px;background:#FFF8EC}
+.nav img{width:118px}
+.nav a{font:600 17px Tajawal;color:#4a4547}
+.nav .sp{flex:1}
+.nav .cart{background:var(--ink);color:#fff;padding:10px 22px;border-radius:30px;font:700 16px Tajawal}
+.hero{position:relative;height:520px;padding:50px 60px 0;display:flex;gap:40px}
+.hero .txt{width:560px;padding-top:40px}
+.eyb{display:inline-block;background:#F3DDF8;color:var(--purple);padding:6px 16px;border-radius:30px;font:700 15px Tajawal}
+.hero h1{font:800 64px/1.2 'Baloo Bhaijaan 2';margin:18px 0 14px;color:var(--ink)}
+.hero h1 span{color:var(--purple)}
+.hero p{font:500 20px/1.65 Tajawal;color:#5C5557;width:500px}
+.cta{display:flex;gap:14px;margin-top:28px}
+.b1{background:var(--purple);color:#fff;padding:15px 30px;border-radius:40px;font:700 18px Tajawal;box-shadow:0 8px 0 #7E1C98}
+.b2{border:2px solid var(--ink);padding:13px 28px;border-radius:40px;font:700 18px Tajawal}
+.ph{position:absolute;left:70px;top:36px;width:520px;height:440px}
+.ph .bl{position:absolute;inset:0;background:var(--cyan);border-radius:46% 54% 42% 58% / 52% 44% 56% 48%}
+.ph img.main{position:absolute;left:30px;top:20px;width:460px;height:420px;object-fit:cover;object-position:50% 30%;border-radius:44% 56% 50% 50% / 50% 46% 54% 50%}
+.ph .s1{position:absolute;right:-10px;top:10px;width:80px;transform:rotate(12deg)}
+.ph .s2{position:absolute;left:-20px;bottom:40px;width:86px;transform:rotate(-14deg)}
+.trust{position:absolute;left:0;right:0;bottom:0;height:150px;background:#fff;display:flex;justify-content:space-around;align-items:center;padding:0 50px;border-top:1px solid #f0e6da}
+.trust div{display:flex;align-items:center;gap:14px;font:700 18px Tajawal}
+.trust i{width:54px;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center}
+.trust i img{width:34px}
+.trust small{display:block;font:500 14px Tajawal;color:#8A8285}
+/* phone */
+.phone{position:absolute;left:170px;top:330px;width:330px;height:680px;border-radius:52px;background:#151213;padding:12px;box-shadow:0 50px 100px rgba(0,0,0,.6),0 0 0 2px #3a3436 inset}
+.ps{width:100%;height:100%;border-radius:42px;overflow:hidden;background:#FFF8EC;position:relative}
+.ps .nt{position:absolute;left:50%;top:10px;width:96px;height:28px;border-radius:16px;background:#151213;transform:translateX(-50%)}
+.ps .mnav{display:flex;justify-content:space-between;align-items:center;padding:52px 20px 10px}
+.ps .mnav img{width:80px}
+.ps .mnav span{font:800 22px Nunito}
+.ps .mimg{margin:6px 18px;height:230px;border-radius:26px;overflow:hidden;background:var(--cyan)}
+.ps .mimg img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.ps h2{font:800 32px/1.2 'Baloo Bhaijaan 2';padding:14px 20px 6px}
+.ps h2 span{color:var(--purple)}
+.ps p{font:500 14px/1.6 Tajawal;color:#5C5557;padding:0 20px}
+.ps .mb{margin:16px 20px;background:var(--purple);color:#fff;text-align:center;padding:13px;border-radius:30px;font:700 16px Tajawal;box-shadow:0 6px 0 #7E1C98}
+.ps .chips{display:flex;gap:8px;padding:4px 20px}
+.ps .chips span{padding:6px 12px;border-radius:20px;font:700 12px Tajawal}
+</style></head><body>
+<div class="glow"></div>
+<div class="lap"><div class="lid"><div class="scr">
+ <div class="nav"><img src="../../brand/logo/logo-color.svg"><a style="color:var(--purple)">الرئيسية</a><a>منتجاتنا</a><a>دليل الوالدين</a><a>من نحن</a><div class="sp"></div><span class="cart">السلّة (2)</span></div>
+ <div class="hero">
+  <div class="txt"><span class="eyb">للأطفال من 0 إلى 5 سنوات</span>
+   <h1>أطفال سعداء<br><span>عائلات مطمئنة</span></h1>
+   <p>وسائل تعليمية تفاعلية صُمّمت في تونس، تساعد طفلك على التعلّم من خلال اللعب، وتمنحك الثقة في كل خطوة</p>
+   <div class="cta"><span class="b1">اكتشفي مجموعاتنا</span><span class="b2">كيف نعمل؟</span></div></div>
+  <div class="ph"><div class="bl"></div><img class="main" src="../../brand/photos/family-portrait.jpg"><img class="s1" src="../../brand/icons/face.svg"><img class="s2" src="../../brand/icons/hand.svg"></div>
+ </div>
+ <div class="trust">
+  <div><i style="background:#FFF4CC"><img src="../../brand/icons/face.svg"></i><span>تعلّم ممتع<small>أنشطة مدروسة لكل عمر</small></span></div>
+  <div><i style="background:#E5F9FF"><img src="../../brand/icons/heart.svg"></i><span>آمن 100%<small>مواد مطابقة لمعايير السلامة</small></span></div>
+  <div><i style="background:#F6E6FA"><img src="../../brand/icons/hand.svg"></i><span>صُنع في تونس<small>بأيادٍ وخبرات محلية</small></span></div>
+ </div>
+</div></div><div class="base"></div></div>
+<div class="phone"><div class="ps"><div class="nt"></div>
+ <div class="mnav"><span>☰</span><img src="../../brand/logo/logo-color.svg"></div>
+ <div class="mimg"><img src="../../brand/photos/family-portrait.jpg"></div>
+ <h2>أطفال سعداء<br><span>عائلات مطمئنة</span></h2>
+ <p>وسائل تعليمية تفاعلية تساعد طفلك على التعلّم من خلال اللعب</p>
+ <div class="mb">اكتشفي مجموعاتنا</div>
+ <div class="chips"><span style="background:#FFF4CC">0–1 سنة</span><span style="background:#E5F9FF">1–3 سنوات</span><span style="background:#FFE6EF">3–5 سنوات</span></div>
+</div></div>
+</body></html>

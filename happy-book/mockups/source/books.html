@@ -1,0 +1,54 @@
+<!doctype html><html dir="rtl"><head><meta charset="utf-8"><link rel="stylesheet" href="mk.css">
+<style>
+body{background:linear-gradient(180deg,#F3ECFA 0%,#E9DDF5 64%,#D9C6EC 64%,#CFB8E6 100%)}
+.book{position:absolute;width:440px;height:600px;perspective:1800px}
+.b3d{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(-22deg)}
+.cover{position:absolute;inset:0;border-radius:18px 4px 4px 18px;overflow:hidden;transform:translateZ(22px)}
+.spine{position:absolute;right:-22px;top:0;width:44px;height:100%;transform:rotateY(90deg);transform-origin:center;display:flex;align-items:center;justify-content:center}
+.spine b{transform:rotate(90deg);white-space:nowrap;font:800 22px 'Baloo Bhaijaan 2';color:#fff}
+.pages{display:none;position:absolute;right:0;top:6px;width:44px;height:calc(100% - 12px);transform:rotateY(90deg) translateZ(-22px);transform-origin:right;background:repeating-linear-gradient(90deg,#FFFDF7 0 2px,#EDE6DA 2px 3px)}
+.cover .hinge{position:absolute;right:14px;top:0;bottom:0;width:6px;background:linear-gradient(90deg,rgba(0,0,0,.06),rgba(255,255,255,.18),rgba(0,0,0,.14))}
+.cover .gloss{position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.22) 0%,rgba(255,255,255,0) 40%,rgba(0,0,0,.06) 100%)}
+.cover .lg{position:absolute;right:44px;top:30px;width:120px}
+.cover .num{position:absolute;left:30px;top:30px;font:900 22px Nunito;color:rgba(35,31,32,.55);direction:ltr}
+.cover h2{position:absolute;right:44px;left:30px;bottom:80px;font:800 52px/1.2 'Baloo Bhaijaan 2';color:var(--ink);text-align:right}
+.cover .sub{position:absolute;right:44px;bottom:42px;font:800 16px Nunito;letter-spacing:.16em;direction:ltr}
+.cover .art{position:absolute;left:50%;top:130px;transform:translateX(-50%) scale(.82);transform-origin:50% 0}
+.shadow-floor{position:absolute;bottom:-40px;left:30px;right:-30px;height:60px;border-radius:50%;background:radial-gradient(ellipse,rgba(70,20,90,.45),transparent 70%);filter:blur(10px)}
+.bk1{left:170px;top:230px}.bk2{left:740px;top:190px}.bk3{left:1310px;top:230px}
+.blob{position:absolute;border-radius:50%}
+</style></head><body class="grain">
+<!-- book 1 yellow: colours -->
+<div class="book bk1"><div class="shadow-floor"></div><div class="b3d">
+ <div class="pages"></div><div class="spine" style="background:#E6B400"><b>هابي بوك · ألواني الأولى</b></div>
+ <div class="cover" style="background:var(--yellow)">
+  <div class="art" style="width:300px;height:250px">
+    <div class="blob" style="left:20px;top:40px;width:150px;height:150px;background:var(--cyan)"></div>
+    <div class="blob" style="left:130px;top:10px;width:150px;height:150px;background:var(--pink);mix-blend-mode:multiply"></div>
+    <div class="blob" style="left:90px;top:100px;width:150px;height:150px;background:var(--purple);mix-blend-mode:multiply"></div>
+  </div>
+  <img class="lg" src="../../brand/logo/logo-color.svg"><div class="num">01</div>
+  <h2>ألواني<br>الأولى</h2><div class="sub" style="color:#8A6A00">MY FIRST COLOURS</div>
+  <div class="hinge"></div><div class="gloss"></div></div></div></div>
+<!-- book 2 cyan: numbers -->
+<div class="book bk2"><div class="shadow-floor"></div><div class="b3d">
+ <div class="pages"></div><div class="spine" style="background:#00A8D6"><b>هابي بوك · أرقامي من 1 إلى 10</b></div>
+ <div class="cover" style="background:var(--cyan)">
+  <div class="art" style="width:330px;height:240px;font:900 190px/1 Nunito;direction:ltr;display:flex;gap:4px;justify-content:center">
+    <span style="color:var(--yellow);transform:rotate(-8deg)">1</span><span style="color:#fff;transform:translateY(20px)">2</span><span style="color:var(--purple);transform:rotate(8deg)">3</span></div>
+  <img class="lg" src="../../brand/logo/logo-color.svg"><div class="num">02</div>
+  <h2>أرقامي<br>من 1 إلى 10</h2><div class="sub" style="color:#00607A">COUNTING 1 TO 10</div>
+  <div class="hinge"></div><div class="gloss"></div></div></div></div>
+<!-- book 3 pink: feelings -->
+<div class="book bk3"><div class="shadow-floor"></div><div class="b3d">
+ <div class="pages"></div><div class="spine" style="background:#E64E86"><b>هابي بوك · مشاعري الصغيرة</b></div>
+ <div class="cover" style="background:var(--pink)">
+  <div class="art" style="width:300px;height:240px">
+    <img src="../../brand/icons/face-yellow.svg" style="position:absolute;left:70px;top:0;width:200px">
+    <img src="../../brand/icons/heart-white.svg" style="position:absolute;left:0;top:120px;width:110px;transform:rotate(-14deg)">
+    <img src="../../brand/icons/hand-purple.svg" style="position:absolute;left:220px;top:130px;width:110px;transform:rotate(14deg)">
+  </div>
+  <img class="lg" src="../../brand/logo/logo-color.svg"><div class="num">03</div>
+  <h2>مشاعري<br>الصغيرة</h2><div class="sub" style="color:#8A1E48">MY LITTLE FEELINGS</div>
+  <div class="hinge"></div><div class="gloss"></div></div></div></div>
+</body></html>
