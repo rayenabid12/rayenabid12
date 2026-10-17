@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Video 01 · العودة</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans+Arabic:wght@500;600&family=IBM+Plex+Mono:wght@500&display=block">
+<style>
+/* Stage is the real export size: 1080×1920. Every value below is in output pixels. */
+:root{
+  --ink:#15181F; --stone:#E9E8E3; --cobalt:#2D4BF0; --cobalt-l:#93A3FF; --graphite:#6C707A; --white:#FFFFFF;
+  --sil-stone:#BDBBB3; --sil-ink:#2B2F39;
+  --wall-a:#3B3833; --wall-b:#211F1C;
+  --f-display:"Alexandria","IBM Plex Sans Arabic",sans-serif;
+  --f-body:"IBM Plex Sans Arabic",sans-serif;
+  --f-mono:"IBM Plex Mono","IBM Plex Sans Arabic",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden}
+.scene{position:absolute;inset:0;display:none;overflow:hidden}
+.scene.on{display:block}
+
+/* ---------- A-roll (talking head placeholder) ---------- */
+.talk{background:radial-gradient(120% 80% at 70% 20%,var(--wall-a),var(--wall-b))}
+.talk .shelf{position:absolute;top:520px;right:80px;width:420px;height:14px;background:#2A2723}
+.talk .books{position:absolute;top:430px;right:110px;display:flex;gap:10px;align-items:flex-end}
+.talk .books i{display:block;width:34px;background:#4A463F;border-radius:2px}
+.talk .books i.c{background:var(--cobalt);opacity:.85}
+.talk .lamp{position:absolute;width:430px;height:430px;border-radius:50%;background:radial-gradient(circle,rgba(255,196,120,.5),transparent 65%);top:300px;right:10px}
+.talk .person{position:absolute;bottom:0;left:50%;width:1100px;transform-origin:50% 100%}
+.talk .person svg{display:block;width:100%;fill:#0E0F12}
+.slate{position:absolute;top:220px;left:150px;font-family:var(--f-mono);font-size:30px;letter-spacing:.08em;color:rgba(255,255,255,.55);direction:ltr}
+.slate b{color:var(--cobalt-l);font-weight:500}
+
+/* keyword card */
+.kw{position:absolute;top:972px;left:50%;background:var(--stone);color:var(--ink);font-family:var(--f-display);font-weight:800;font-size:80px;line-height:1.2;padding:24px 50px 30px;border-radius:22px;white-space:nowrap;box-shadow:0 15px 0 var(--cobalt)}
+
+/* subtitles */
+.sub{position:absolute;left:140px;right:140px;text-align:center;font-family:var(--f-body);font-weight:600;font-size:58px;line-height:1.4}
+.sub mark{background:var(--cobalt);color:var(--white);padding:0 15px 4px;border-radius:11px}
+.talk .sub{top:1274px;color:var(--white);text-shadow:0 5px 17px rgba(0,0,0,.45)}
+.work .sub{top:1250px;color:var(--ink)}
+
+/* ---------- B-roll (work frames) ---------- */
+.work{background:var(--stone)}
+.work::before{content:"";position:absolute;inset:0;background-image:linear-gradient(to left,rgba(21,24,31,.06) 1px,transparent 1px),linear-gradient(to bottom,rgba(21,24,31,.06) 1px,transparent 1px);background-size:180px 180px;background-position:center}
+.mlabel{position:absolute;top:300px;right:140px;font-family:var(--f-mono);font-weight:500;font-size:36px;letter-spacing:.1em;color:var(--cobalt);direction:ltr}
+.media{position:absolute;top:380px;left:65px;right:65px;height:820px;border-radius:22px;overflow:hidden;background:var(--white);border:1px solid rgba(21,24,31,.12)}
+.media img{width:100%;height:100%;object-fit:cover;transform-origin:50% 60%}
+.hatch{background-image:repeating-linear-gradient(135deg,rgba(21,24,31,.10) 0 1px,transparent 1px 44px)}
+.ph{position:absolute;inset:auto 0 0 0;padding:18px 28px;font-family:var(--f-mono);font-size:26px;color:var(--graphite);direction:ltr;text-align:left;background:rgba(255,255,255,.85)}
+
+/* clients counter */
+.count{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:10px}
+.count .n{font-family:var(--f-display);font-weight:800;font-size:300px;line-height:1;color:var(--ink);direction:ltr}
+.count .n em{font-style:normal;color:var(--cobalt)}
+.count .l{font-family:var(--f-body);font-weight:600;font-size:48px;color:var(--graphite)}
+
+/* method (pip scene) */
+.pipwrap .mlabel{top:230px}
+.steps{position:absolute;top:300px;left:65px;right:65px;display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.step{height:400px;border-radius:22px;background:#F3F2EE;border:1px solid rgba(21,24,31,.10);padding:40px 44px;display:flex;flex-direction:column;justify-content:space-between;transition:none}
+.step span{font-family:var(--f-mono);font-size:34px;color:var(--cobalt);direction:ltr;text-align:right}
+.step b{font-family:var(--f-display);font-weight:800;font-size:96px;color:var(--ink);line-height:1.1}
+.step p{font-family:var(--f-body);font-size:32px;color:var(--graphite);line-height:1.4}
+.step.on{background:var(--cobalt);border-color:var(--cobalt)}
+.step.on span,.step.on b,.step.on p{color:var(--white)}
+.step.done{opacity:.55}
+.pip{position:absolute;top:1170px;left:65px;width:330px;height:440px;border-radius:22px;overflow:hidden;border:9px solid var(--white);background:radial-gradient(120% 80% at 70% 20%,var(--wall-a),var(--wall-b))}
+.pip svg{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:130%;fill:#0E0F12}
+.pipwrap .sub{top:1230px;left:440px;right:140px;text-align:right;font-size:54px}
+
+/* ---------- end card ---------- */
+.end{background:var(--cobalt);color:var(--white)}
+.end .ring{position:absolute;border:2px solid rgba(255,255,255,.16);border-radius:50%}
+.end .axis-h{position:absolute;left:0;right:0;top:1150px;border-top:2px solid rgba(255,255,255,.12)}
+.end .axis-v{position:absolute;top:0;bottom:0;left:300px;border-left:2px solid rgba(255,255,255,.12)}
+.end .dot{position:absolute;width:26px;height:26px;border-radius:50%;background:var(--white);left:287px;top:1137px}
+.end .tag{position:absolute;top:300px;right:140px;font-family:var(--f-mono);font-size:36px;letter-spacing:.14em;color:var(--stone);direction:ltr}
+.end h1{position:absolute;top:560px;right:140px;font-family:var(--f-display);font-weight:800;font-size:112px;line-height:1.38}
+.end .by{position:absolute;top:930px;right:140px;font-family:var(--f-body);font-weight:500;font-size:50px;opacity:.85}
+.end .mark{position:absolute;top:1380px;right:140px;font-family:var(--f-display);font-weight:800;font-size:72px;letter-spacing:.2em;direction:ltr}
+.end .meta{position:absolute;top:1470px;right:140px;font-family:var(--f-mono);font-size:28px;opacity:.75;direction:ltr}
+
+/* ---------- cover (Reels/TikTok thumbnail) ---------- */
+.cover{background:var(--ink);padding:730px 97px 0}
+.cover::before{content:"";position:absolute;inset:0;background-image:linear-gradient(to left,rgba(233,232,227,.06) 1px,transparent 1px),linear-gradient(to bottom,rgba(233,232,227,.06) 1px,transparent 1px);background-size:180px 180px;background-position:center}
+.cover::after{content:"";position:absolute;width:1274px;height:1274px;border:2px solid rgba(233,232,227,.11);border-radius:50%;left:-497px;top:151px}
+.cover .ctag{position:relative;z-index:1;font-family:var(--f-mono);font-size:39px;letter-spacing:.1em;color:var(--cobalt-l);direction:ltr;text-align:right}
+.cover h2{position:relative;z-index:1;margin-top:32px;font-family:var(--f-display);font-weight:800;font-size:123px;line-height:1.18;color:var(--stone)}
+.cover h2 em{font-style:normal;color:var(--cobalt-l)}
+.cover .cs{position:relative;z-index:1;margin-top:22px;font-family:var(--f-body);font-weight:500;font-size:50px;color:var(--stone);opacity:.72}
+.cover .person{position:absolute;bottom:0;left:65px;width:778px;fill:var(--sil-ink)}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="sil" viewBox="0 0 100 80"><circle cx="50" cy="27" r="15.5"/><path d="M12 80 C14 56 31 47.5 50 47.5 C69 47.5 86 56 88 80 Z"/></symbol>
+  <symbol id="sil-tall" viewBox="0 0 100 140"><circle cx="50" cy="30" r="15"/><path d="M4 140 C6 78 28 54 50 54 C72 54 94 78 96 140 Z"/></symbol>
+</svg>
+<div id="stage"></div>
+
+<script>
+/* ---------------------------------------------------------------
+   Timeline. Times in seconds. Exported at 25 fps (Tunisian 50 Hz).
+   Scene types: talk (A-roll), count, photo, method, end.
+   Each scene carries its own subtitle cues; keyword cards are
+   limited to three in the whole video (guide rule).
+---------------------------------------------------------------- */
+var FPS = 25, DURATION = 48;
+var SCENES = [
+  {t0:0,  t1:3,  type:'talk', shot:'M', slate:'A-ROLL · MEDIUM',
+   kw:{t0:0.2, text:'10 شهور'},
+   subs:[[0,1.4,'غبت عشرة شهور.'],[1.4,3,'ورجعت بحاجة وحدة <mark>تبدّلت</mark>']]},
+  {t0:3,  t1:7,  type:'talk', shot:'C', slate:'A-ROLL · CLOSE',
+   subs:[[3,5,'قبل كنت نحكي على <mark>اللوغو</mark>'],[5,7,'والألوان، والسوم.']]},
+  {t0:7,  t1:11, type:'count', label:'2021 — 2025 · CLIENTS',
+   subs:[[7,9,'أما بعد أكثر من <mark>40</mark> كليون'],[9,11,'فهمت حاجة ما كنتش نشوفها.']]},
+  {t0:11, t1:17, type:'talk', shot:'M', slate:'A-ROLL · MEDIUM',
+   kw:{t0:13.2, text:'لوغو ≠ ثقة'},
+   subs:[[11,13,'صاحب المشروع يطلب <mark>لوغو</mark>'],[13,15,'أما في الحقيقة يشري <mark>الثقة</mark>'],[15,17,'اللي مشروعو يتاخذ بجدية.']]},
+  {t0:17, t1:23, type:'photo', label:'CASE 01 · PARA ELIXEA', src:'assets/elixea.jpg',
+   subs:[[17,19.5,'خوذ بارافارماسي <mark>Elixea</mark>'],[19.5,23,'قبل ما نرسم حتى خط…']]},
+  {t0:23, t1:31, type:'method', label:'THE FOUNDATION METHOD',
+   steps:[[23,'نفهم السوق والحريف'],[25,'نقرّر شنوّا باش تقول'],[27,'مبعد نصمّم'],[29,'ونبقى معاه بعد الإطلاق']],
+   subs:[[23,25,'<mark>نفهم</mark> السوق والحريف'],[25,27,'<mark>نقرّر</mark> شنوّا باش تقول'],[27,29,'مبعد <mark>نصمّم</mark>'],[29,31,'ونبقى <mark>معاه</mark> بعد الإطلاق']]},
+  {t0:31, t1:36, type:'talk', shot:'C', slate:'A-ROLL · CLOSE',
+   kw:{t0:31.2, text:'الأساس قبل الواجهة'},
+   subs:[[31,33.5,'هذا علاش نبداو <mark>بالأساس</mark>'],[33.5,36,'قبل الواجهة.']]},
+  {t0:36, t1:40, type:'talk', shot:'M', slate:'A-ROLL · MEDIUM',
+   subs:[[36,38,'من اليوم، نحكيو هنا على'],[38,40,'البراند <mark>قرار تجاري</mark>']]},
+  {t0:40, t1:43, type:'talk', shot:'C', slate:'A-ROLL · CLOSE',
+   subs:[[40,43,'موش <mark>رسمة</mark>.']]},
+  {t0:43, t1:48, type:'end'}
+];
+
+var SIL = '<svg viewBox="0 0 100 80" aria-hidden="true"><use href="#sil"/></svg>';
+var STEP_NAMES = [['01','افهم'],['02','قرّر'],['03','صمّم'],['04','رافق']];
+var stage = document.getElementById('stage');
+
+/* Build every scene once; render(t) only toggles visibility and animates. */
+SCENES.forEach(function(s, i){
+  var el = document.createElement('div');
+  el.className = 'scene ' + ({talk:'talk',count:'work',photo:'work',method:'work pipwrap',end:'end'})[s.type];
+  var h = '';
+  if (s.type === 'talk') {
+    h += '<div class="lamp"></div><div class="shelf"></div><div class="books"><i style="height:90px"></i><i style="height:76px"></i><i class="c" style="height:84px"></i><i style="height:64px"></i></div>';
+    h += '<div class="person"><svg viewBox="0 0 100 140" aria-hidden="true"><use href="#sil-tall"/></svg></div>';
+    h += '<div class="slate"><b>●</b> ' + s.slate + '</div>';
+    if (s.kw) h += '<div class="kw">' + s.kw.text + '</div>';
+  } else if (s.type === 'count') {
+    h += '<span class="mlabel">' + s.label + '</span>';
+    h += '<div class="media hatch"><div class="count"><div class="n"><em>+</em><span class="num">0</span></div><div class="l">كليون · تونس والعالم</div></div><div class="ph">B-ROLL: scroll through past work</div></div>';
+  } else if (s.type === 'photo') {
+    h += '<span class="mlabel">' + s.label + '</span>';
+    h += '<div class="media"><img src="' + s.src + '" alt=""></div>';
+  } else if (s.type === 'method') {
+    h += '<span class="mlabel">' + s.label + '</span><div class="steps">';
+    STEP_NAMES.forEach(function(n, k){ h += '<div class="step"><span>' + n[0] + '</span><div><b>' + n[1] + '</b><p>' + s.steps[k][1] + '</p></div></div>'; });
+    h += '</div><div class="pip">' + SIL + '</div>';
+  } else if (s.type === 'end') {
+    h += '<div class="ring" style="width:1300px;height:1300px;left:-350px;top:500px"></div><div class="ring" style="width:760px;height:760px;left:-80px;top:770px"></div><div class="axis-h"></div><div class="axis-v"></div><div class="dot"></div>';
+    h += '<span class="tag">THE FOUNDATION METHOD</span><h1>نبني الأساس<br>قبل الواجهة</h1><p class="by">ريان، مصمم براند استراتيجي</p><span class="mark">RAYEN</span><span class="meta">Strategic Brand Designer · Tunis</span>';
+  }
+  if (s.subs) h += '<div class="sub"></div>';
+  el.innerHTML = h;
+  s.el = el;
+  stage.appendChild(el);
+});
+
+function ease(x){ x = Math.max(0, Math.min(1, x)); return 1 - Math.pow(1 - x, 3); }
+/* guide: soft fade + small rise over 6 frames, no bounce */
+function enter(node, since, rise){
+  var p = ease(since / (6 / FPS));
+  node.style.opacity = p;
+  return (1 - p) * (rise || 24);
+}
+
+window.render = function(t){
+  SCENES.forEach(function(s){
+    var on = t >= s.t0 && t < s.t1;
+    s.el.classList.toggle('on', on);
+    if (!on) return;
+    var local = t - s.t0;
+
+    if (s.type === 'talk') {
+      var scale = s.shot === 'C' ? 1.28 : 1.0;
+      var breathe = 1 + Math.sin(t * 1.3) * 0.004;
+      var person = s.el.querySelector('.person');
+      person.style.transform = 'translateX(-50%) translateY(' + (s.shot === 'C' ? 120 : 0) + 'px) scale(' + (scale * breathe) + ')';
+      var kw = s.el.querySelector('.kw');
+      if (kw) {
+        var since = t - s.kw.t0;
+        if (since < 0) kw.style.opacity = 0;
+        else kw.style.transform = 'translateX(-50%) translateY(' + enter(kw, since, 30) + 'px)';
+      }
+    }
+    if (s.type === 'count') {
+      var n = Math.round(40 * ease((local - 0.2) / 1.2));
+      s.el.querySelector('.num').textContent = n;
+    }
+    if (s.type === 'photo') {
+      s.el.querySelector('img').style.transform = 'scale(' + (1 + 0.06 * local / (s.t1 - s.t0)) + ')';
+    }
+    if (s.type === 'method') {
+      var steps = s.el.querySelectorAll('.step');
+      s.steps.forEach(function(st, k){
+        var next = k + 1 < s.steps.length ? s.steps[k + 1][0] : s.t1;
+        steps[k].classList.toggle('on', t >= st[0] && t < next);
+        steps[k].classList.toggle('done', t >= next);
+      });
+    }
+    if (s.type === 'end') {
+      var h1 = s.el.querySelector('h1'), by = s.el.querySelector('.by');
+      h1.style.transform = 'translateY(' + enter(h1, local - 0.15, 30) + 'px)';
+      by.style.transform = 'translateY(' + enter(by, local - 0.6, 20) + 'px)';
+    }
+
+    if (s.subs) {
+      var sub = s.el.querySelector('.sub'), cue = null;
+      s.subs.forEach(function(c){ if (t >= c[0] && t < c[1]) cue = c; });
+      if (!cue) { sub.innerHTML = ''; return; }
+      if (sub.dataset.key !== String(cue[0])) { sub.innerHTML = cue[2]; sub.dataset.key = cue[0]; }
+      sub.style.transform = 'translateY(' + enter(sub, t - cue[0], 24) + 'px)';
+    }
+  });
+};
+
+window.renderCover = function(){
+  stage.innerHTML = '<div class="scene on cover"><p class="ctag">NEW · 01</p><h2>غبت 10 شهور. هذا اللي <em>تبدّل</em></h2><p class="cs">من مصمم لوغو، لمصمم براند</p><svg class="person" viewBox="0 0 100 80" aria-hidden="true"><use href="#sil"/></svg></div>';
+};
+
+window.FPS = FPS; window.DURATION = DURATION;
+
+/* Preview in a normal browser: plays in real time, scaled to fit. ?t=12 freezes a frame, ?cover shows the thumbnail. */
+if (!navigator.webdriver) {
+  var q = new URLSearchParams(location.search);
+  document.documentElement.style.cssText = 'width:auto;height:auto;overflow:auto;background:#111';
+  document.body.style.cssText = 'width:auto;height:100vh;overflow:hidden;display:grid;place-items:center;background:#111';
+  var k = Math.min(innerHeight / 1920, innerWidth / 1080);
+  stage.style.transform = 'scale(' + k + ')';
+  stage.style.transformOrigin = 'center';
+  stage.style.flex = 'none';
+  if (q.has('cover')) renderCover();
+  else if (q.has('t')) render(parseFloat(q.get('t')));
+  else { var start = performance.now(); (function loop(){ render(((performance.now() - start) / 1000) % DURATION); requestAnimationFrame(loop); })(); }
+}
+</script>
+</body>
+</html>
