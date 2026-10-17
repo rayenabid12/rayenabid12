@@ -27,6 +27,7 @@
     type:  '<svg viewBox="0 0 120 120"><text x="60" y="84" text-anchor="middle" font-family="Alexandria" font-weight="800" font-size="72" fill="#E9E8E3">أب</text></svg>',
     voice: '<svg viewBox="0 0 120 120"><rect x="18" y="26" width="84" height="56" rx="14" fill="none" stroke="#E9E8E3" stroke-width="5"/><path d="M40 82 L34 100 L58 82" fill="#E9E8E3"/><rect x="34" y="46" width="52" height="6" rx="3" fill="#93A3FF"/><rect x="34" y="58" width="34" height="6" rx="3" fill="#93A3FF"/></svg>',
     target:'<svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="44" fill="none" stroke="#E9E8E3" stroke-width="5"/><circle cx="60" cy="60" r="24" fill="none" stroke="#93A3FF" stroke-width="5"/><circle cx="60" cy="60" r="8" fill="#2D4BF0"/></svg>',
+    brief: '<svg viewBox="0 0 120 120"><rect x="26" y="14" width="68" height="92" rx="8" fill="none" stroke="#E9E8E3" stroke-width="5"/><rect x="40" y="34" width="40" height="6" rx="3" fill="#93A3FF"/><rect x="40" y="50" width="40" height="6" rx="3" fill="#E9E8E3" opacity=".6"/><rect x="40" y="66" width="28" height="6" rx="3" fill="#E9E8E3" opacity=".6"/><circle cx="80" cy="92" r="16" fill="#2D4BF0"/></svg>',
     price: '<svg viewBox="0 0 120 120"><path d="M20 90 L46 62 L64 76 L100 34" fill="none" stroke="#93A3FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M80 34 H100 V54" fill="none" stroke="#E9E8E3" stroke-width="6" stroke-linecap="round"/></svg>'
   };
 
@@ -166,7 +167,9 @@
       '<div class="big"><b></b><p></p></div></div>');
     return { el: el, update: function(t, dur){
       var pill = el.querySelector('.pill'); if (pill) enter(pill, t, 16);
-      var at = o.steps.map(function(s, i){ return s.at != null ? s.at : (dur || 8) * i / n; });
+      /* if any step is timed, untimed steps stay off (e.g. teaser steps shown as ؟) */
+      var timed = o.steps.some(function(s){ return s.at != null; });
+      var at = o.steps.map(function(s, i){ return s.at != null ? s.at : timed ? Infinity : (dur || 8) * i / n; });
       var cur = -1; at.forEach(function(a, i){ if (t >= a) cur = i; });
       var gs = el.querySelectorAll('.node');
       gs.forEach(function(g, i){

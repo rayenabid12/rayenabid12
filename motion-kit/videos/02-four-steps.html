@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>02 · 4 étapes · Research</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans+Arabic:wght@500;600&family=IBM+Plex+Mono:wght@500&display=block">
+<link rel="stylesheet" href="../kit.css">
+</head>
+<body>
+<div id="stage"></div>
+<script src="../kit.js"></script>
+<script>
+/* Script: هذم 4 إيتاب يخلوك تعمل براند ناجحة، وأول حاجة شباب وهي research،
+   وفي البارتي هذي تاخذ بريف من العميل وتعمل بحث كبير في الماركت.
+   Cues sit on the speech pauses measured in the take. */
+Kit.mount({
+  duration: 10.83,
+  layout: [[0,'split'], [4.45,'full'], [5.95,'split']],
+  zoom:   [[0,1], [2.9,1.12], [4.45,1.16], [5.95,1], [9.77,1.12]],
+  graphics: [
+    { t0:0,    t1:1.45,  type:'counter', tag:'THE FOUNDATION METHOD', to:4, label:'إيتاب', tiles:4, time:0.7 },
+    { t0:1.45, t1:4.45,  type:'grid', tag:'BRAND', label:'براند *ناجحة*' },
+    { t0:5.95, t1:8.45,  type:'method', tag:'STEP 01', steps:[
+        { n:'01', name:'Research', desc:'البحث قبل أي تصميم', at:0.02 },
+        { n:'02', name:'؟' }, { n:'03', name:'؟' }, { n:'04', name:'؟' } ] },
+    { t0:8.45, t1:9.77,  type:'card', variant:'tiles', tag:'STEP 01 · RESEARCH', items:[ { icon:'brief', label:'Brief', hi:true } ] },
+    { t0:9.77, t1:10.83, type:'card', variant:'tiles', tag:'MARKET', step:0.18, items:[
+        { icon:'target', label:'السوق', hi:true }, { icon:'price', label:'الأسعار' }, { icon:'voice', label:'الحريف' } ] }
+  ],
+  subs: [
+    [0.26,1.17,'*4* إيتاب'],
+    [1.46,4.28,'يخلوك تعمل براند *ناجحة*'],
+    [4.62,5.55,'وأول حاجة'],
+    [5.97,7.17,'وهي *Research*'],
+    [7.54,8.42,'وفي البارتي هذي'],
+    [8.5,9.73,'تاخذ *Brief* من العميل'],
+    [9.81,10.83,'وتعمل بحث في *الماركت*']
+  ]
+});
+</script>
+</body>
+</html>
