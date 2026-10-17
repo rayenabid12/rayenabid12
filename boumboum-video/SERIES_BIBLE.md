@@ -48,7 +48,8 @@ product with the viewer.
 | 3 | Le Duel de Bulles (introduces Mélo; Fraise vs Pastèque, then together) | `Ep3Duel` |
 | 4 | Joyeux anniversaire, Mélo ! (surprise party at the pink monster's home) | `Ep4Birthday` |
 | 5 | La Naissance de Boum Boum (origin story, 45 s) | `Ep5Origin` |
-| 6 | Le Secret de Mélo (Mélo is afraid of the BOUM; his friend helps instead of mocking, 45 s) | `Ep6Secret` |
+| 6 | L'Étoile tombée (a fallen star; he lets her go home; 45 s) | `Ep6Star` |
+| – | Le Secret de Mélo (draft) | `Ep6Secret` (Drafts) |
 | – | Le Petit Héros (draft, not in the series) | `Ep6Hero` (Drafts) |
 | – | Le dernier Boum Boum | idea |
 | 5 | La Récré | idea |
@@ -56,11 +57,16 @@ product with the viewer.
 | ★ | Noël Boum Boum | idea |
 
 ## Locations
+- The pink monster's back garden at night (Ep. 6, `ep6star/NightGarden.tsx`): house, bush, flowers, night sky with the heart constellation; the little star (`StarShape`).
 - The candy factory where he was born (Ep. 5, `ep5/FactorySet.tsx`): bubble machine, filling tank, conveyor, quality-control scanner + reject bin, tasting machine (« Goûtomètre »), dripper line, printing platform. Canon: in a factory of identical, empty gums, a drop of filling fell into a bubble during a storm and he was born with a glowing liquid heart. Rejected as a « défaut », he tried to hide it, then his heart won the taste test, every Boum Boum got a liquid heart, and his face was printed on the first pack. Message: « Ce qui te rend différent, c'est ce qui te rend unique. »
 - The park's Boum-o-mètre, a fairground high striker for bubbles (Ep. 6, `ep6secret/FairSet.tsx`). Canon: Mélo blows perfect bubbles because he was afraid of the BOUM; since Ep. 6 he can make one.
 - Stormy city street with a tall building (draft, `ep6/StormCity.tsx`): low wall, awning, balconies, drainpipe, roof with antenna; rain, wind, clouds, rainbow; the kitten (`KittenShape`) and Mélo's leaf umbrella.
 - City street at night (Ep. 2, `ep2/CitySet.tsx`), sunny park (Ep. 3, `ep3/ParkSet.tsx`), the pink monster's home (Ep. 4, `ep4/HomeSet.tsx`: wall calendar, photo of the two friends, party table, front door).
 - Shared staging toolkit for two-character episodes: `src/episodes/shared/stage.tsx`. Mélo on the end card: `brand/FinaleMelo.tsx`.
+
+## Story rule (learned on Ep. 5 and Ep. 6)
+Every episode is built on ONE idea: a world with a rule, a hero who wants something, a low point,
+a real choice that changes him, and an ending that says something. A string of gags is not a story.
 
 ## Notes from Ep. 3
 - Long gaps between keys make channels drift (e.g. eyes slowly closing). Wrap episode keys in `tighten()` (`src/final/kit.ts`); give deliberate slow moves an explicit `inOut` ease.
