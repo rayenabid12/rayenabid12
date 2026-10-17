@@ -131,3 +131,4 @@ em{font-style:normal}
 .c-method .big b{display:block;font-family:var(--f-display);font-weight:800;font-size:116px;line-height:1.1;color:var(--stone)}
 .c-method .big p{font-family:var(--f-body);font-weight:500;font-size:42px;color:rgba(233,232,227,.6);margin-top:14px}
 .c-cmp em,.c-grid .lab em{color:var(--cobalt-l)}
+.c-count .lab em{color:var(--cobalt-l)}

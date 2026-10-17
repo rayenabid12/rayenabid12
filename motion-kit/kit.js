@@ -104,14 +104,15 @@
   C.counter = function(o){
     var n = o.tiles == null ? Math.min(o.to, 40) : o.tiles;
     var el = h('<div class="center c-count">' + (o.tag ? '<span class="pill"><i></i>' + o.tag + '</span>' : '') +
-      '<div class="num">' + (o.prefix ? '<em>' + o.prefix + '</em>' : '') + '<span>0</span>' + (o.suffix ? '<em>' + o.suffix + '</em>' : '') + '</div>' +
+      '<div class="num" style="font-size:' + Math.min(250, Math.round(1150 / (String(o.sep ? o.to.toLocaleString('en-US') : o.to).length + (o.prefix ? 1 : 0) + (o.suffix ? 1 : 0)))) + 'px">' + (o.prefix ? '<em>' + o.prefix + '</em>' : '') + '<span>0</span>' + (o.suffix ? '<em>' + o.suffix + '</em>' : '') + '</div>' +
       (o.label ? '<div class="lab">' + emph(o.label) + '</div>' : '') +
       (n ? '<div class="tiles">' + new Array(n + 1).join('<i></i>') + '</div>' : '') + '</div>');
     return { el: el, update: function(t){
       var pill = el.querySelector('.pill'); if (pill) enter(pill, t, 16);
       enter(el.querySelector('.num'), t, 30);
       var p = easeIO((t - 0.2) / (o.time || 1.4)), from = o.from || 0;
-      el.querySelector('.num span').textContent = Math.round(lerp(from, o.to, p));
+      var v = Math.round(lerp(from, o.to, p));
+      el.querySelector('.num span').textContent = o.sep ? v.toLocaleString('en-US') : v;
       var lab = el.querySelector('.lab'); if (lab) enter(lab, t - 0.2, 16);
       var tiles = el.querySelectorAll('.tiles i'), lit = Math.round(tiles.length * p);
       tiles.forEach(function(tl, i){ tl.classList.toggle('on', i < lit); });
