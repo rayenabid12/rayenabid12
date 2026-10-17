@@ -48,6 +48,7 @@ product with the viewer.
 | 3 | Le Duel de Bulles (introduces Mélo; Fraise vs Pastèque, then together) | `Ep3Duel` |
 | 4 | Joyeux anniversaire, Mélo ! (surprise party at the pink monster's home) | `Ep4Birthday` |
 | 5 | La Naissance de Boum Boum (origin story, 45 s) | `Ep5Origin` |
+| 6 | Le Petit Héros (afraid of heights, rescues a kitten in the storm, 45 s) | `Ep6Hero` |
 | – | Le dernier Boum Boum | idea |
 | 5 | La Récré | idea |
 | 6 | Mission Pastèque | idea |
@@ -55,6 +56,7 @@ product with the viewer.
 
 ## Locations
 - The candy factory where he was born (Ep. 5, `ep5/FactorySet.tsx`): bubble machine, filling tank, conveyor, quality-control scanner + reject bin, tasting machine (« Goûtomètre »), dripper line, printing platform. Canon: in a factory of identical, empty gums, a drop of filling fell into a bubble during a storm and he was born with a glowing liquid heart. Rejected as a « défaut », he tried to hide it, then his heart won the taste test, every Boum Boum got a liquid heart, and his face was printed on the first pack. Message: « Ce qui te rend différent, c'est ce qui te rend unique. »
+- Stormy city street with a tall building (Ep. 6, `ep6/StormCity.tsx`): low wall, awning, balconies, drainpipe, roof with antenna; rain, wind, clouds, rainbow; the kitten (`KittenShape`) and Mélo's leaf umbrella.
 - City street at night (Ep. 2, `ep2/CitySet.tsx`), sunny park (Ep. 3, `ep3/ParkSet.tsx`), the pink monster's home (Ep. 4, `ep4/HomeSet.tsx`: wall calendar, photo of the two friends, party table, front door).
 - Shared staging toolkit for two-character episodes: `src/episodes/shared/stage.tsx`. Mélo on the end card: `brand/FinaleMelo.tsx`.
 
