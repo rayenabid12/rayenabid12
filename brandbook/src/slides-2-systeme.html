@@ -1,0 +1,261 @@
+<!-- 16 · Chapitre 03 -->
+<section class="slide bg-teal divider" data-chapter="Couleurs">
+  <div class="eyebrow" style="position:absolute;left:120px;top:104px">Chapitre 03</div>
+  <div class="dv-arch"></div><div class="dv-num">03</div>
+  <div class="dv-title"><h2>Couleurs</h2>
+    <div class="dv-list"><span>Palette</span><span>Nuances et proportions</span><span>Contrastes et accessibilité</span></div>
+  </div>
+</section>
+
+<!-- 17 · Palette -->
+<section class="slide bg-white" data-chapter="Couleurs">
+  <div class="pad"><div class="head"><div class="eyebrow">Palette</div><h2 class="h-title">Cinq couleurs</h2></div></div>
+  <p class="small" style="position:absolute;left:1300px;top:150px;width:500px;opacity:.75">Les trois couleurs d'origine sont conservées. L'Encre Marine et la Porcelaine rejoignent la palette pour le texte et les fonds.</p>
+  <div style="position:absolute;left:120px;top:300px;width:1680px;height:640px;display:grid;grid-template-columns:2.1fr 1.5fr 1.3fr 1.1fr 1.1fr">
+    <div class="sw" style="background:var(--teal);color:var(--porc)">
+      <div class="rl">Principale</div><div class="nm">Vert Marine Profond</div>
+      <dl style="margin-top:14px"><dt>Hex</dt><dd>#1A5F7A</dd><dt>RVB</dt><dd>26 · 95 · 122</dd><dt>CMJN</dt><dd>88 · 45 · 30 · 25</dd><dt>Pantone</dt><dd>≈ 7699 C</dd></dl>
+    </div>
+    <div class="sw" style="background:var(--sage);color:var(--ink)">
+      <div class="rl">Secondaire</div><div class="nm">Vert Sauge Mat</div>
+      <dl style="margin-top:14px"><dt>Hex</dt><dd>#88B0A8</dd><dt>RVB</dt><dd>136 · 176 · 168</dd><dt>CMJN</dt><dd>50 · 15 · 35 · 5</dd><dt>Pantone</dt><dd>≈ 5575 C</dd></dl>
+    </div>
+    <div class="sw" style="background:var(--beige);color:var(--ink)">
+      <div class="rl">Chaleur</div><div class="nm">Beige Rosé</div>
+      <dl style="margin-top:14px"><dt>Hex</dt><dd>#D8C1A8</dd><dt>RVB</dt><dd>216 · 193 · 168</dd><dt>CMJN</dt><dd>12 · 24 · 34 · 0</dd><dt>Pantone</dt><dd>≈ 4685 C</dd></dl>
+    </div>
+    <div class="sw" style="background:var(--ink);color:var(--porc)">
+      <div class="rl">Texte · nouveau</div><div class="nm">Encre Marine</div>
+      <dl style="margin-top:14px;grid-template-columns:76px 1fr"><dt>Hex</dt><dd>#0E3442</dd><dt>RVB</dt><dd>14 · 52 · 66</dd><dt>CMJN</dt><dd>90 · 60 · 45 · 50</dd><dt>Pantone</dt><dd>≈ 7546 C</dd></dl>
+    </div>
+    <div class="sw" style="background:var(--porc);color:var(--ink);box-shadow:inset 0 0 0 1px rgba(14,52,66,.12)">
+      <div class="rl">Fond · nouveau</div><div class="nm">Porcelaine</div>
+      <dl style="margin-top:14px;grid-template-columns:76px 1fr"><dt>Hex</dt><dd>#F5F3EF</dd><dt>RVB</dt><dd>245 · 243 · 239</dd><dt>CMJN</dt><dd>3 · 3 · 5 · 0</dd><dt>Papier</dt><dd>Blanc naturel</dd></dl>
+    </div>
+  </div>
+  <p class="small" style="position:absolute;left:120px;top:960px;opacity:.6">Valeurs CMJN et Pantone indicatives, à valider sur épreuve chez l'imprimeur.</p>
+</section>
+
+<!-- 18 · Nuances et proportions -->
+<section class="slide" data-chapter="Couleurs">
+  <div class="pad"><div class="head"><div class="eyebrow">Nuances et proportions</div><h2 class="h-title">Doser la palette</h2></div></div>
+  <div style="position:absolute;left:120px;top:290px;width:1680px;display:flex;flex-direction:column;gap:16px">
+    <div style="display:grid;grid-template-columns:220px 1fr;align-items:center">
+      <span class="label" style="color:var(--teal)">Vert Marine</span>
+      <div style="display:flex;height:96px;border-radius:3px;overflow:hidden">
+        <div class="tint" data-tint="#1A5F7A" data-mix="-0.45"><span class="hex"></span></div><div class="tint" data-tint="#1A5F7A" data-mix="-0.22"><span class="hex"></span></div><div class="tint" data-tint="#1A5F7A" data-mix="0" style="flex:1.4"><span class="hex"></span></div><div class="tint" data-tint="#1A5F7A" data-mix="0.25"><span class="hex"></span></div><div class="tint" data-tint="#1A5F7A" data-mix="0.5"><span class="hex"></span></div><div class="tint" data-tint="#1A5F7A" data-mix="0.75"><span class="hex"></span></div><div class="tint" data-tint="#1A5F7A" data-mix="0.9"><span class="hex"></span></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:220px 1fr;align-items:center">
+      <span class="label" style="color:var(--teal)">Vert Sauge</span>
+      <div style="display:flex;height:96px;border-radius:3px;overflow:hidden">
+        <div class="tint" data-tint="#88B0A8" data-mix="-0.45"><span class="hex"></span></div><div class="tint" data-tint="#88B0A8" data-mix="-0.22"><span class="hex"></span></div><div class="tint" data-tint="#88B0A8" data-mix="0" style="flex:1.4"><span class="hex"></span></div><div class="tint" data-tint="#88B0A8" data-mix="0.25"><span class="hex"></span></div><div class="tint" data-tint="#88B0A8" data-mix="0.5"><span class="hex"></span></div><div class="tint" data-tint="#88B0A8" data-mix="0.75"><span class="hex"></span></div><div class="tint" data-tint="#88B0A8" data-mix="0.9"><span class="hex"></span></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:220px 1fr;align-items:center">
+      <span class="label" style="color:var(--teal)">Beige Rosé</span>
+      <div style="display:flex;height:96px;border-radius:3px;overflow:hidden">
+        <div class="tint" data-tint="#D8C1A8" data-mix="-0.45"><span class="hex"></span></div><div class="tint" data-tint="#D8C1A8" data-mix="-0.22"><span class="hex"></span></div><div class="tint" data-tint="#D8C1A8" data-mix="0" style="flex:1.4"><span class="hex"></span></div><div class="tint" data-tint="#D8C1A8" data-mix="0.25"><span class="hex"></span></div><div class="tint" data-tint="#D8C1A8" data-mix="0.5"><span class="hex"></span></div><div class="tint" data-tint="#D8C1A8" data-mix="0.75"><span class="hex"></span></div><div class="tint" data-tint="#D8C1A8" data-mix="0.9"><span class="hex"></span></div>
+      </div>
+    </div>
+    <p class="small" style="margin-left:220px;opacity:.65">Les nuances servent aux interfaces, graphiques et fonds secondaires. La teinte de référence (au centre) reste la couleur de marque.</p>
+  </div>
+  <div style="position:absolute;left:120px;top:735px;width:1680px">
+    <div class="label" style="color:var(--teal)">Proportions recommandées</div>
+    <div style="display:flex;height:84px;margin-top:18px;border-radius:3px;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(14,52,66,.1)">
+      <div style="flex:45;background:var(--white)"></div><div style="flex:30;background:var(--teal)"></div><div style="flex:12;background:var(--sage)"></div><div style="flex:8;background:var(--beige)"></div><div style="flex:5;background:var(--ink)"></div>
+    </div>
+    <div style="display:flex;margin-top:12px;font-size:16px" class="mono-num">
+      <span style="flex:45">Porcelaine et blanc · 45 %</span><span style="flex:30">Vert Marine · 30 %</span><span style="flex:12">Sauge · 12 %</span><span style="flex:8;white-space:nowrap">Beige · 8 %</span><span style="flex:5;white-space:nowrap">Encre · 5 %</span>
+    </div>
+  </div>
+</section>
+
+<!-- 19 · Contrastes -->
+<section class="slide bg-white" data-chapter="Couleurs">
+  <div class="pad"><div class="head"><div class="eyebrow">Contrastes et accessibilité</div><h2 class="h-title">Des couleurs lisibles</h2></div></div>
+  <p class="small" style="position:absolute;left:1300px;top:150px;width:500px;opacity:.75">Ratios calculés selon les WCAG 2.1. Le texte courant exige 4,5:1 (AA), les titres de 24 px et plus 3:1.</p>
+  <div style="position:absolute;left:120px;top:310px;width:1680px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
+    <div class="tile" style="height:290px;background:var(--teal);color:var(--white);padding:28px"><div class="serif" style="font-size:84px;line-height:1">Aa</div><p style="margin-top:14px;font-size:17px">Blanc sur Vert Marine</p><p class="mono-num" style="position:absolute;left:28px;bottom:24px;font-size:28px;font-weight:500">7,1:1 <span class="label" style="font-size:12px;margin-left:8px;padding:5px 10px;border:1px solid currentColor;border-radius:20px">AAA</span></p></div>
+    <div class="tile" style="height:290px;background:var(--porc);color:var(--teal);padding:28px"><div class="serif" style="font-size:84px;line-height:1">Aa</div><p style="margin-top:14px;font-size:17px">Vert Marine sur Porcelaine</p><p class="mono-num" style="position:absolute;left:28px;bottom:24px;font-size:28px;font-weight:500">6,4:1 <span class="label" style="font-size:12px;margin-left:8px;padding:5px 10px;border:1px solid currentColor;border-radius:20px">AA</span></p></div>
+    <div class="tile" style="height:290px;background:var(--sage);color:var(--ink);padding:28px"><div class="serif" style="font-size:84px;line-height:1">Aa</div><p style="margin-top:14px;font-size:17px">Encre sur Vert Sauge</p><p class="mono-num" style="position:absolute;left:28px;bottom:24px;font-size:28px;font-weight:500">5,6:1 <span class="label" style="font-size:12px;margin-left:8px;padding:5px 10px;border:1px solid currentColor;border-radius:20px">AA</span></p></div>
+    <div class="tile" style="height:290px;background:var(--beige);color:var(--ink);padding:28px"><div class="serif" style="font-size:84px;line-height:1">Aa</div><p style="margin-top:14px;font-size:17px">Encre sur Beige Rosé</p><p class="mono-num" style="position:absolute;left:28px;bottom:24px;font-size:28px;font-weight:500">7,6:1 <span class="label" style="font-size:12px;margin-left:8px;padding:5px 10px;border:1px solid currentColor;border-radius:20px">AAA</span></p></div>
+    <div class="tile" style="height:290px;background:var(--ink);color:var(--sage);padding:28px"><div class="serif" style="font-size:84px;line-height:1">Aa</div><p style="margin-top:14px;font-size:17px">Sauge sur Encre</p><p class="mono-num" style="position:absolute;left:28px;bottom:24px;font-size:28px;font-weight:500">5,6:1 <span class="label" style="font-size:12px;margin-left:8px;padding:5px 10px;border:1px solid currentColor;border-radius:20px">AA</span></p></div>
+    <div class="tile" style="height:290px;background:var(--porc);color:var(--ink);padding:28px"><div class="serif" style="font-size:84px;line-height:1">Aa</div><p style="margin-top:14px;font-size:17px">Encre sur Porcelaine</p><p class="mono-num" style="position:absolute;left:28px;bottom:24px;font-size:28px;font-weight:500">11,9:1 <span class="label" style="font-size:12px;margin-left:8px;padding:5px 10px;border:1px solid currentColor;border-radius:20px">AAA</span></p></div>
+    <div class="tile" style="height:290px;background:var(--beige);color:var(--teal);padding:28px"><div class="serif" style="font-size:84px;line-height:1">Aa</div><p style="margin-top:14px;font-size:17px">Vert Marine sur Beige · titres seulement</p><p class="mono-num" style="position:absolute;left:28px;bottom:24px;font-size:28px;font-weight:500">4,1:1 <span class="label" style="font-size:12px;margin-left:8px;padding:5px 10px;border:1px solid currentColor;border-radius:20px">AA titres</span></p></div>
+    <div class="tile" style="height:290px;background:var(--sage);color:var(--white);padding:28px"><span class="mark no" style="left:auto;right:20px;top:20px">×</span><div class="serif" style="font-size:84px;line-height:1">Aa</div><p style="margin-top:14px;font-size:17px">Blanc sur Vert Sauge</p><p class="mono-num" style="position:absolute;left:28px;bottom:24px;font-size:28px;font-weight:500">2,4:1 <span class="label" style="font-size:12px;margin-left:8px;padding:5px 10px;border:1px solid currentColor;border-radius:20px">Interdit</span></p></div>
+  </div>
+</section>
+
+<!-- 20 · Chapitre 04 -->
+<section class="slide bg-teal divider" data-chapter="Typographie">
+  <div class="eyebrow" style="position:absolute;left:120px;top:104px">Chapitre 04</div>
+  <div class="dv-arch"></div><div class="dv-num">04</div>
+  <div class="dv-title"><h2>Typographie</h2>
+    <div class="dv-list"><span>Familles</span><span>Hiérarchie</span><span>Typographie en usage</span></div>
+  </div>
+</section>
+
+<!-- 21 · Familles -->
+<section class="slide bg-white" data-chapter="Typographie" data-ftlight>
+  <div style="position:absolute;left:0;top:0;width:960px;height:1080px;padding:104px 80px 0 120px">
+    <div class="eyebrow">Police principale</div>
+    <h2 style="font-size:60px;font-weight:500;letter-spacing:.04em;margin-top:22px">Montserrat</h2>
+    <p class="small" style="opacity:.7;margin-top:6px">Titres, interfaces, texte courant · Google Fonts, licence libre</p>
+    <div style="font-size:300px;font-weight:500;line-height:1;margin-top:20px;color:var(--teal);letter-spacing:-.01em">Aa</div>
+    <div style="display:flex;gap:30px;margin-top:22px;font-size:22px"><span style="font-weight:300">Light</span><span style="font-weight:400">Regular</span><span style="font-weight:500">Medium</span><span style="font-weight:600">SemiBold</span></div>
+    <p style="margin-top:24px;font-size:22px;letter-spacing:.06em;line-height:1.6;opacity:.85">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>àâçéèêëîïôûù 0123456789 % € DT</p>
+  </div>
+  <div style="position:absolute;left:1060px;top:0;width:860px;height:1080px;padding:104px 120px 0 80px;background:var(--teal);color:var(--porc)">
+    <div class="eyebrow">Police d'accent</div>
+    <h2 class="serif" style="font-size:66px;font-weight:500;margin-top:18px">Cormorant Garamond</h2>
+    <p class="small" style="opacity:.75;margin-top:2px">Accroches, citations, chiffres clés · Google Fonts, licence libre</p>
+    <div class="serif it" style="font-size:300px;line-height:1;margin-top:20px;color:var(--sage-l)">Aa</div>
+    <div style="display:flex;gap:30px;margin-top:22px;font-size:26px" class="serif"><span>Regular</span><span class="it">Italic</span><span style="font-weight:500">Medium</span><span class="it" style="font-weight:500">Medium Italic</span></div>
+    <p class="serif it" style="margin-top:24px;font-size:28px;line-height:1.45;opacity:.9">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>àâçéèêëîïôûù 0123456789</p>
+  </div>
+  <p class="small" style="position:absolute;left:120px;top:900px;width:760px;opacity:.75">Gotham reste la police du logotype, et des imprimés si la licence est acquise. Calibri est abandonnée : trop associée aux documents bureautiques.</p>
+</section>
+
+<!-- 22 · Hiérarchie -->
+<section class="slide" data-chapter="Typographie">
+  <div class="pad"><div class="head"><div class="eyebrow">Hiérarchie</div><h2 class="h-title">Six niveaux, pas un de plus</h2></div></div>
+  <div style="position:absolute;left:120px;top:290px;width:1680px">
+    <div style="display:grid;grid-template-columns:1000px 1fr 1fr;padding:0 0 12px" class="label"><span style="opacity:.55">Exemple</span><span style="opacity:.55">Réglage</span><span style="opacity:.55">Print · Web</span></div>
+    <div style="display:grid;grid-template-columns:1000px 1fr 1fr;align-items:center;padding:20px 0;border-top:1px solid rgba(14,52,66,.18)"><span style="font-size:54px;font-weight:500;letter-spacing:.08em;line-height:1">SOINS DU VISAGE</span><span class="small">Montserrat Medium<br>Capitales · approche +80</span><span class="small mono-num">48–72 pt · 56 px</span></div>
+    <div style="display:grid;grid-template-columns:1000px 1fr 1fr;align-items:center;padding:20px 0;border-top:1px solid rgba(14,52,66,.18)"><span class="serif it" style="font-size:46px;line-height:1.1;color:var(--teal)">La douceur, en toute confiance.</span><span class="small">Cormorant Garamond Italic<br>Casse normale</span><span class="small mono-num">32–48 pt · 40 px</span></div>
+    <div style="display:grid;grid-template-columns:1000px 1fr 1fr;align-items:center;padding:20px 0;border-top:1px solid rgba(14,52,66,.18)"><span style="font-size:30px;font-weight:600">Routine peaux sensibles</span><span class="small">Montserrat SemiBold<br>Approche +10</span><span class="small mono-num">18–24 pt · 28 px</span></div>
+    <div style="display:grid;grid-template-columns:1000px 1fr 1fr;align-items:center;padding:20px 0;border-top:1px solid rgba(14,52,66,.18)"><span style="font-size:15px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--teal)">Conseil de la pharmacienne</span><span class="small">Montserrat Medium<br>Capitales · approche +240</span><span class="small mono-num">8–10 pt · 13 px</span></div>
+    <div style="display:grid;grid-template-columns:1000px 1fr 1fr;align-items:center;padding:20px 0;border-top:1px solid rgba(14,52,66,.18)"><span style="font-size:18px;line-height:1.6;max-width:760px">Appliquez votre crème hydratante sur une peau encore légèrement humide : elle pénètre mieux et apaise plus vite.</span><span class="small">Montserrat Regular<br>Interligne 160 %</span><span class="small mono-num">9–11 pt · 16 px</span></div>
+    <div style="display:grid;grid-template-columns:1000px 1fr 1fr;align-items:center;padding:20px 0;border-top:1px solid rgba(14,52,66,.18);border-bottom:1px solid rgba(14,52,66,.18)"><span style="font-size:13px;font-weight:300;opacity:.8">Offre valable du 1er au 30 juin, dans la limite des stocks disponibles.</span><span class="small">Montserrat Light<br>Mentions, légendes</span><span class="small mono-num">7–8 pt · 12 px</span></div>
+  </div>
+</section>
+
+<!-- 23 · Typographie en usage -->
+<section class="slide bg-beige" data-chapter="Typographie">
+  <div class="pad" style="width:620px">
+    <div class="head"><div class="eyebrow">Typographie en usage</div><h2 class="h-title">Une affiche, cinq niveaux</h2></div>
+    <div style="display:flex;flex-direction:column;gap:22px;margin-top:48px">
+      <div class="row" style="gap:18px;align-items:baseline"><span class="serif it" style="font-size:34px;color:var(--teal);width:36px">1</span><p class="small"><b>Sur-titre</b><br>Situe le sujet. Capitales espacées.</p></div>
+      <div class="row" style="gap:18px;align-items:baseline"><span class="serif it" style="font-size:34px;color:var(--teal);width:36px">2</span><p class="small"><b>Titre</b><br>Court, en capitales, deux lignes au plus.</p></div>
+      <div class="row" style="gap:18px;align-items:baseline"><span class="serif it" style="font-size:34px;color:var(--teal);width:36px">3</span><p class="small"><b>Accroche</b><br>La voix chaleureuse de la marque, en italique.</p></div>
+      <div class="row" style="gap:18px;align-items:baseline"><span class="serif it" style="font-size:34px;color:var(--teal);width:36px">4</span><p class="small"><b>Texte</b><br>Concret et utile : un conseil, une information.</p></div>
+      <div class="row" style="gap:18px;align-items:baseline"><span class="serif it" style="font-size:34px;color:var(--teal);width:36px">5</span><p class="small"><b>Signature</b><br>Logo vertical ou horizontal, toujours en pied.</p></div>
+    </div>
+  </div>
+  <div class="paper shadow-lg" style="position:absolute;left:820px;top:96px;width:560px;height:792px;background:var(--porc);padding:56px 52px;display:flex;flex-direction:column">
+    <div style="font-size:12px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--teal)">Conseil de la pharmacienne</div>
+    <h3 style="font-size:50px;font-weight:500;letter-spacing:.07em;line-height:1.05;margin-top:22px;text-transform:uppercase">Peaux sensibles</h3>
+    <p class="serif it" style="font-size:31px;line-height:1.15;color:var(--teal);margin-top:16px">Trois gestes pour apaiser votre peau cet hiver.</p>
+    <div style="height:250px;margin-top:28px;border-radius:125px 125px 0 0;overflow:hidden;position:relative;background:var(--sage)">
+      <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.5"><rect width="100%" height="100%" fill="url(#pat-leaf-porc)"/></svg>
+    </div>
+    <p style="font-size:14px;line-height:1.6;margin-top:24px">Nettoyez sans frotter, hydratez matin et soir, protégez du froid et du soleil. Nos pharmaciennes vous aident à composer votre routine.</p>
+    <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end">
+      <svg class="logo" style="width:150px;height:30px;color:var(--teal)"><use href="#lh"/></svg>
+      <span style="font-size:10px;opacity:.6">Slimene · Nabeul</span>
+    </div>
+  </div>
+  <div class="serif it" style="position:absolute;left:1392px;top:150px;font-size:30px;color:var(--teal)">1</div>
+  <div class="serif it" style="position:absolute;left:1392px;top:200px;font-size:30px;color:var(--teal)">2</div>
+  <div class="serif it" style="position:absolute;left:1392px;top:265px;font-size:30px;color:var(--teal)">3</div>
+  <div class="serif it" style="position:absolute;left:1392px;top:665px;font-size:30px;color:var(--teal)">4</div>
+  <div class="serif it" style="position:absolute;left:1392px;top:820px;font-size:30px;color:var(--teal)">5</div>
+  <div class="paper shadow-md" style="position:absolute;left:1470px;top:560px;width:330px;height:210px;background:var(--teal);color:var(--porc);padding:26px 28px;border-radius:0 0 4px 4px">
+    <div style="font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--sage-l)">Notre sélection</div>
+    <p class="serif it" style="font-size:27px;line-height:1.1;margin-top:10px">Le sérum apaisant préféré de l'équipe</p>
+    <svg class="logo" style="position:absolute;left:28px;bottom:22px;width:34px;height:30px;color:var(--sage)"><use href="#pe"/></svg>
+  </div>
+  <p class="small" style="position:absolute;left:1470px;top:790px;width:330px;opacity:.7">Étiquette de rayon, 90 × 55 mm. Mêmes niveaux, à plus petite échelle.</p>
+</section>
+
+<!-- 24 · Chapitre 05 -->
+<section class="slide bg-teal divider" data-chapter="Univers graphique">
+  <div class="eyebrow" style="position:absolute;left:120px;top:104px">Chapitre 05</div>
+  <div class="dv-arch"></div><div class="dv-num">05</div>
+  <div class="dv-title"><h2>Univers graphique</h2>
+    <div class="dv-list"><span>L'arche</span><span>Motifs</span><span>Iconographie</span><span>Photographie</span></div>
+  </div>
+</section>
+
+<!-- 25 · L'arche -->
+<section class="slide bg-white" data-chapter="Univers graphique">
+  <div class="pad" style="width:560px">
+    <div class="head"><div class="eyebrow">L'arche</div><h2 class="h-title">Une forme née du lieu</h2><p class="h-serif" style="color:var(--teal)">Les niches de la boutique deviennent un cadre.</p></div>
+    <p class="body" style="margin-top:32px">L'arche reprend le mobilier du point de vente. Elle encadre les photos, donne sa forme aux étiquettes et ouvre des fenêtres dans les compositions. Le lien entre le lieu et les supports devient visible.</p>
+    <div style="margin-top:32px;display:flex;flex-direction:column;gap:10px" class="small">
+      <span>— Rayon du sommet = moitié de la largeur</span>
+      <span>— Jamais déformée, jamais retournée</span>
+      <span>— Une arche dominante par composition</span>
+    </div>
+  </div>
+  <div style="position:absolute;left:800px;top:104px;width:1000px;height:290px;overflow:hidden;border-radius:3px">
+    <img src="assets/store-wall.jpg" alt="Mobilier en arches de la boutique" style="width:100%;height:100%;object-fit:cover;object-position:50% 45%">
+  </div>
+  <p class="small" style="position:absolute;left:800px;top:404px;opacity:.6">Source : le mobilier de la boutique, Slimene</p>
+  <div style="position:absolute;left:800px;top:470px;width:1000px;display:grid;grid-template-columns:repeat(3,1fr);gap:40px">
+    <div><div style="height:400px;border-radius:150px 150px 0 0;overflow:hidden"><img src="assets/store-niche.jpg" alt="" style="width:100%;height:100%;object-fit:cover"></div><div class="cap"><b>Cadre photo</b></div></div>
+    <div><div style="height:400px;border-radius:150px 150px 0 0;background:var(--teal);display:grid;place-items:center;position:relative;overflow:hidden"><svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.25"><rect width="100%" height="100%" fill="url(#pat-mono-sage)"/></svg><svg class="logo" style="position:relative;width:120px;height:104px;color:var(--porc)"><use href="#pe"/></svg></div><div class="cap"><b>Aplat de marque</b></div></div>
+    <div><div style="height:400px;border-radius:150px 150px 0 0;background:var(--beige);display:flex;flex-direction:column;justify-content:flex-end;padding:30px"><span style="font-size:12px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--teal)">Nouveau</span><span class="serif it" style="font-size:38px;line-height:1.05;margin-top:8px">Routine solaire</span></div><div class="cap"><b>Étiquette, encart</b></div></div>
+  </div>
+</section>
+
+<!-- 26 · Motifs -->
+<section class="slide" data-chapter="Univers graphique">
+  <div class="pad"><div class="head"><div class="eyebrow">Motifs</div><h2 class="h-title">Trois trames discrètes</h2></div></div>
+  <p class="small" style="position:absolute;left:1300px;top:150px;width:500px;opacity:.75">Un motif reste un fond : opacité de 15 à 40 %, jamais sous un texte courant, jamais deux motifs sur un même support.</p>
+  <div style="position:absolute;left:120px;top:300px;width:1680px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+    <div><div class="tile" style="height:540px;background:var(--teal)"><svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.32"><rect width="100%" height="100%" fill="url(#pat-mono-sage)"/></svg></div>
+      <div class="cap"><b>Monogramme</b><span>Papier de soie, fonds de sacs, intérieur de boîtes.</span></div></div>
+    <div><div class="tile" style="height:540px;background:var(--porc);box-shadow:inset 0 0 0 1px rgba(14,52,66,.1)"><svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.7"><rect width="100%" height="100%" fill="url(#pat-leaf-sage)"/></svg></div>
+      <div class="cap"><b>Feuille</b><span>Issue du e du monogramme. Papeterie, emballages cadeaux.</span></div></div>
+    <div><div class="tile" style="height:540px;background:var(--beige-l)"><svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.35"><rect width="100%" height="100%" fill="url(#pat-arch-teal)"/></svg></div>
+      <div class="cap"><b>Arches</b><span>Fonds digitaux, vitrophanie, habillage de vitrine.</span></div></div>
+  </div>
+</section>
+
+<!-- 27 · Iconographie -->
+<section class="slide bg-white" data-chapter="Univers graphique">
+  <div class="pad" style="width:560px">
+    <div class="head"><div class="eyebrow">Iconographie</div><h2 class="h-title">Le trait du monogramme</h2></div>
+    <p class="body" style="margin-top:32px">Les pictogrammes reprennent le dessin du logo : un trait régulier, des extrémités arrondies, aucune surface pleine.</p>
+    <div style="margin-top:40px;width:340px;height:340px;position:relative;background-color:var(--porc);background-image:linear-gradient(rgba(26,95,122,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(26,95,122,.12) 1px,transparent 1px);background-size:42.5px 42.5px;box-shadow:inset 0 0 0 1px rgba(26,95,122,.2)">
+      <svg style="position:absolute;inset:0;width:340px;height:340px;color:var(--teal)"><use href="#i-dermo"/></svg>
+    </div>
+    <p class="small" style="margin-top:16px;opacity:.75">Grille 48 px · trait 2,4 px · une seule couleur</p>
+  </div>
+  <div style="position:absolute;left:800px;top:150px;width:1000px;display:grid;grid-template-columns:repeat(4,1fr);gap:56px 24px">
+    <div class="col" style="align-items:center;gap:18px"><div style="width:170px;height:170px;border-radius:50%;background:var(--sage-l);display:grid;place-items:center"><svg class="ic" style="width:80px;height:80px"><use href="#i-conseil"/></svg></div><span class="label">Conseil</span></div>
+    <div class="col" style="align-items:center;gap:18px"><div style="width:170px;height:170px;border-radius:50%;background:var(--sage-l);display:grid;place-items:center"><svg class="ic" style="width:80px;height:80px"><use href="#i-dermo"/></svg></div><span class="label">Dermo-cosmétique</span></div>
+    <div class="col" style="align-items:center;gap:18px"><div style="width:170px;height:170px;border-radius:50%;background:var(--sage-l);display:grid;place-items:center"><svg class="ic" style="width:80px;height:80px"><use href="#i-bebe"/></svg></div><span class="label">Bébé &amp; maman</span></div>
+    <div class="col" style="align-items:center;gap:18px"><div style="width:170px;height:170px;border-radius:50%;background:var(--sage-l);display:grid;place-items:center"><svg class="ic" style="width:80px;height:80px"><use href="#i-solaire"/></svg></div><span class="label">Solaire</span></div>
+    <div class="col" style="align-items:center;gap:18px"><div style="width:170px;height:170px;border-radius:50%;background:var(--sage-l);display:grid;place-items:center"><svg class="ic" style="width:80px;height:80px"><use href="#i-complement"/></svg></div><span class="label">Compléments</span></div>
+    <div class="col" style="align-items:center;gap:18px"><div style="width:170px;height:170px;border-radius:50%;background:var(--sage-l);display:grid;place-items:center"><svg class="ic" style="width:80px;height:80px"><use href="#i-naturel"/></svg></div><span class="label">Naturel &amp; bio</span></div>
+    <div class="col" style="align-items:center;gap:18px"><div style="width:170px;height:170px;border-radius:50%;background:var(--sage-l);display:grid;place-items:center"><svg class="ic" style="width:80px;height:80px"><use href="#i-collect"/></svg></div><span class="label">Retrait en boutique</span></div>
+    <div class="col" style="align-items:center;gap:18px"><div style="width:170px;height:170px;border-radius:50%;background:var(--sage-l);display:grid;place-items:center"><svg class="ic" style="width:80px;height:80px"><use href="#i-livraison"/></svg></div><span class="label">Livraison</span></div>
+  </div>
+</section>
+
+<!-- 28 · Photographie -->
+<section class="slide" data-chapter="Univers graphique">
+  <div class="pad" style="width:620px">
+    <div class="head"><div class="eyebrow">Photographie</div><h2 class="h-title">Lumière douce, gestes vrais</h2></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px 36px;margin-top:44px">
+      <div><div class="label" style="color:var(--teal)">Lumière</div><p class="small" style="margin-top:6px">Naturelle et diffuse. Jamais de néon ni de flash frontal.</p></div>
+      <div><div class="label" style="color:var(--teal)">Matières</div><p class="small" style="margin-top:6px">Textures de crèmes, verre, lin, végétal. Gros plans assumés.</p></div>
+      <div><div class="label" style="color:var(--teal)">Palette</div><p class="small" style="margin-top:6px">Tons sauge, beige et blanc. Les couleurs vives restent ponctuelles.</p></div>
+      <div><div class="label" style="color:var(--teal)">Personnes</div><p class="small" style="margin-top:6px">Des mains, des gestes de soin, l'échange en boutique. Pas de poses figées.</p></div>
+    </div>
+    <div style="margin-top:44px;padding:24px 28px;background:var(--white);border-left:3px solid var(--teal)">
+      <div class="label" style="color:var(--teal)">À prévoir</div>
+      <p class="small" style="margin-top:6px">Une séance photo de la boutique terminée et des produits phares. Les visuels de la première édition venaient de banques d'images ou du chantier.</p>
+    </div>
+  </div>
+  <div style="position:absolute;left:840px;top:104px;width:960px;display:grid;grid-template-columns:1fr 1fr;gap:24px">
+    <div><div class="tile" style="height:560px"><img src="assets/store-wall.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:57% 50%;filter:brightness(1.06) saturate(.82) contrast(.95) sepia(.06)"><span class="mark yes">✓</span></div>
+      <div class="cap"><b>Oui</b><span>Lumière douce, rayons ordonnés, couleurs adoucies.</span></div></div>
+    <div><div class="tile" style="height:560px"><img src="assets/store-wall.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:57% 50%;filter:saturate(2) contrast(1.45) hue-rotate(-8deg) brightness(.92)"><span class="mark no">×</span></div>
+      <div class="cap"><b>Non</b><span>Couleurs saturées, contraste dur, ambiance clinique.</span></div></div>
+  </div>
+  <p class="small" style="position:absolute;left:840px;top:830px;width:960px;opacity:.7">Réglage de référence : luminosité +5, contraste −5, saturation −15, ombres légèrement réchauffées.</p>
+</section>
