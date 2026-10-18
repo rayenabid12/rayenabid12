@@ -49,6 +49,7 @@ product with the viewer.
 | 4 | Joyeux anniversaire, Mélo ! (surprise party at the pink monster's home) | `Ep4Birthday` |
 | 5 | La Naissance de Boum Boum (origin story, 45 s) | `Ep5Origin` |
 | 6 | L'Étoile tombée (a fallen star; he lets her go home; 45 s) | `Ep6Star` |
+| 7 | Le Jardin de Mélo (patience; a storm; they start again together; origin of the Pastèque flavour; 45 s) | `Ep7Garden` |
 | – | Le Secret de Mélo (draft) | `Ep6Secret` (Drafts) |
 | – | Le Petit Héros (draft, not in the series) | `Ep6Hero` (Drafts) |
 | – | Le dernier Boum Boum | idea |
@@ -57,6 +58,7 @@ product with the viewer.
 | ★ | Noël Boum Boum | idea |
 
 ## Locations
+- Mélo's vegetable garden (Ep. 7, `ep7garden/GardenPlot.tsx`): shed, fence, plot, a chalk sign counting the days, day/night/storm/grey-morning sky (`GardenSky`), `Plant`, `Watermelon` (cracks, opens in halves), `WateringCan`, `SliceShape`. Canon: Mélo grew one seed with patience for 40 days; a storm broke it, but the fruit left seeds and the two friends started again together; on day 90 their giant watermelon gave the first Pastèque flavour. Message: « Les plus belles choses prennent du temps… et grandissent mieux à deux. »
 - The pink monster's back garden at night (Ep. 6, `ep6star/NightGarden.tsx`): house, bush, flowers, night sky with the heart constellation; the little star (`StarShape`).
 - The candy factory where he was born (Ep. 5, `ep5/FactorySet.tsx`): bubble machine, filling tank, conveyor, quality-control scanner + reject bin, tasting machine (« Goûtomètre »), dripper line, printing platform. Canon: in a factory of identical, empty gums, a drop of filling fell into a bubble during a storm and he was born with a glowing liquid heart. Rejected as a « défaut », he tried to hide it, then his heart won the taste test, every Boum Boum got a liquid heart, and his face was printed on the first pack. Message: « Ce qui te rend différent, c'est ce qui te rend unique. »
 - The park's Boum-o-mètre, a fairground high striker for bubbles (Ep. 6, `ep6secret/FairSet.tsx`). Canon: Mélo blows perfect bubbles because he was afraid of the BOUM; since Ep. 6 he can make one.
