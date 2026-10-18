@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Para Elixea — Charte graphique</title>
+<link rel="stylesheet" href="css/brand.css">
+<script src="js/brand.js"></script>
+<style>
+  .abs { position: absolute; }
+  .col { display: flex; flex-direction: column; }
+  .row { display: flex; }
+  .num { font-family: var(--f-head); font-weight: 300; }
+  .divider .big-n { position: absolute; left: 140px; top: 150px; font-family: var(--f-head); font-weight: 300; font-size: 26px; letter-spacing: .3em; }
+  .divider .title { position: absolute; left: 132px; top: 360px; font-family: var(--f-head); font-weight: 300; font-size: 150px; line-height: .98; letter-spacing: -.03em; }
+  .divider .list { position: absolute; left: 140px; bottom: 150px; display: flex; gap: 48px; font-family: var(--f-head); font-weight: 500; font-size: 14px; letter-spacing: .24em; text-transform: uppercase; }
+  .divider .list span::before { content: "— "; opacity: .5; }
+  .title-l { position: absolute; left: 140px; top: 120px; width: 620px; }
+  .title-l .overline { margin-bottom: 28px; }
+  .tile { position: relative; border-radius: 4px; overflow: hidden; }
+  .lbl { font-family: var(--f-head); font-weight: 500; font-size: 13px; letter-spacing: .22em; text-transform: uppercase; }
+  .cardw { background: #fff; border-radius: 6px; padding: 44px 44px 40px; }
+  .x-mark { position: absolute; right: 18px; top: 18px; width: 40px; height: 40px; border-radius: 50%; background: #C8553D; display: flex; align-items: center; justify-content: center; }
+  .ok-mark { position: absolute; right: 18px; top: 18px; width: 40px; height: 40px; border-radius: 50%; background: #3F8F6B; display: flex; align-items: center; justify-content: center; }
+  .full-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .mock-cap { position: absolute; left: 60px; bottom: 50px; display: flex; align-items: center; gap: 18px; padding: 14px 26px; border-radius: 999px; background: rgba(245,239,230,.92); backdrop-filter: blur(6px); color: var(--nuit); }
+  .mock-cap b { font-family: var(--f-head); font-weight: 500; font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: var(--marine); }
+  .mock-cap span { font-family: var(--f-body); font-size: 17px; opacity: .75; }
+  .sw-meta { font-family: var(--f-head); font-size: 15px; line-height: 1.9; letter-spacing: .04em; }
+  .grid-bg { background-image: linear-gradient(rgba(26,95,122,.10) 1px, transparent 1px), linear-gradient(90deg, rgba(26,95,122,.10) 1px, transparent 1px); background-size: 40px 40px; }
+</style>
+</head>
+<body>
+
+<!-- 01 COVER -->
+<section class="slide bg-marine" data-nofoot>
+  <div data-pattern="leaf" data-c="#fff" data-o=".045" data-size="300" class="abs" style="inset:0"></div>
+  <div class="abs" style="left:140px;top:110px"><span data-pe="h" data-h="62" data-c="#fff"></span></div>
+  <div class="abs overline c-sauge" style="left:140px;top:420px">Identité visuelle — Édition 2.0</div>
+  <div class="abs h-display c-white" style="left:132px;top:470px;font-size:168px">Charte<br>graphique</div>
+  <div class="abs" style="left:140px;bottom:110px;display:flex;gap:80px;font-family:var(--f-head);font-size:14px;letter-spacing:.2em;text-transform:uppercase">
+    <div><div style="opacity:.55;margin-bottom:8px">Client</div>Para Elixea · Slimen, Nabeul</div>
+    <div><div style="opacity:.55;margin-bottom:8px">Conception</div>Catana Creative — Med Rayen Abid</div>
+    <div><div style="opacity:.55;margin-bottom:8px">Version</div>2026</div></div>
+  <div class="arch abs" style="right:140px;top:110px;width:560px;height:860px"><img class="cover-img" src="assets/photos/shelves.jpg" style="object-position:50% 40%"></div>
+  <div class="abs" style="right:140px;top:110px;width:560px;height:860px;border-radius:9999px 9999px 0 0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.2)"></div>
+</section>
+
+<!-- 02 SOMMAIRE -->
+<section class="slide bg-creme" data-section="Sommaire">
+  <div class="title-l"><div class="overline c-sauge">Sommaire</div><div class="h-display c-marine" style="font-size:110px">Contenu</div></div>
+  <div class="abs" style="left:900px;right:140px;top:140px;display:grid;grid-template-columns:1fr 1fr;column-gap:80px">
+    <script>
+      document.write([["La marque","Aperçu · Plateforme · Valeurs · Cliente"],["Le concept","Le Sanctuaire · L'Arche · La Ligne · La Feuille"],["Le logo","Anatomie · Construction · Déclinaisons · Usages"],["Les couleurs","Palette · Proportions · Accessibilité"],["La typographie","Gotham · Calibri · Hiérarchie"],["Éléments graphiques","Motif · Cadres · Icônes · Photographie"],["La marque en action","Papeterie · Packaging · Signalétique · Digital"]]
+        .map(([t,s],i)=>`<div style="border-top:1px solid rgba(26,95,122,.25);padding:30px 0 34px"><div class="num c-sauge" style="font-size:22px;letter-spacing:.2em">0${i+1}</div><div class="h2 c-marine" style="margin:10px 0 8px">${t}</div><div class="small" style="opacity:.65">${s}</div></div>`).join(""));
+    </script>
+  </div>
+</section>
+
+<!-- 03 MANIFESTE -->
+<section class="slide bg-marine" data-section="Manifeste">
+  <div class="abs" style="left:50%;top:150px;margin-left:-40px"><span data-pe="symbol" data-h="70" data-c="#88B0A8"></span></div>
+  <div class="abs" style="left:240px;right:240px;top:330px;text-align:center;font-family:var(--f-head);font-weight:300;font-size:60px;line-height:1.3;letter-spacing:-.01em;color:#fff">
+    Para Elixea est le <i style="color:var(--sauge)">sanctuaire bien-être</i> de la femme moderne&nbsp;: un lieu apaisant, des produits choisis avec exigence, et un conseil expert à chaque visite.</div>
+  <div class="abs overline c-sauge" style="left:0;right:0;bottom:160px;text-align:center">Confiance · Sérénité · Ambition · Excellence</div>
+</section>
+
+<!-- 04 DIVIDER 01 -->
+<section class="slide bg-marine divider" data-section="La marque">
+  <div class="big-n c-sauge">01</div><div class="title c-white">La<br>marque</div>
+  <div class="list c-white"><span>Aperçu</span><span>Plateforme</span><span>Valeurs &amp; ton</span><span>Notre cliente</span></div>
+  <div class="arch abs" style="right:140px;top:110px;width:520px;height:860px;background:var(--sauge)"><div data-pattern="leaf" data-c="#F5EFE6" data-o=".35" data-size="220" class="abs" style="inset:0"></div></div>
+</section>
+
+<!-- 05 APERÇU -->
+<section class="slide bg-white" data-section="La marque">
+  <div class="title-l"><div class="overline c-sauge">01 — Aperçu de la marque</div>
+    <div class="h1 c-marine">Une parapharmacie<br>pas comme<br>les autres.</div>
+    <p class="body" style="margin-top:40px;width:600px">Para Elixea est une parapharmacie premium établie à Slimen, Nabeul, conçue pour redéfinir l'expérience du bien-être en Tunisie.</p>
+    <p class="body" style="margin-top:18px;width:600px">Notre mission&nbsp;: offrir une alternative raffinée aux parapharmacies traditionnelles — une curation rigoureuse de produits premium, dans un environnement qui allie confiance absolue et sensation luxueuse.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:44px;width:600px"><span class="pill c-marine">Confiance</span><span class="pill c-marine">Sérénité</span><span class="pill c-marine">Ambition</span><span class="pill c-marine">Excellence</span></div></div>
+  <div class="abs" style="left:900px;right:0;top:0;bottom:0;background:var(--creme)"></div>
+  <div class="arch abs" style="left:1010px;top:120px;width:380px;height:720px"><img class="cover-img" src="assets/photos/shelves.jpg"></div>
+  <div class="arch abs" style="left:1430px;top:300px;width:350px;height:540px"><img class="cover-img" src="assets/photos/store-arches.jpg" style="object-position:24% 50%"></div>
+  <div class="abs caption" style="left:1430px;top:870px;width:350px">Les niches en arche de la boutique de Slimen — point de départ du concept.</div>
+</section>
+
+<!-- 06 PLATEFORME -->
+<section class="slide bg-creme" data-section="La marque">
+  <div class="abs" style="left:140px;top:110px"><div class="overline c-sauge">01 — Plateforme de marque</div><div class="h1 c-marine" style="margin-top:22px">Ce qui nous guide</div></div>
+  <div class="abs" style="left:140px;right:140px;top:330px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+    <script>
+      document.write([["Raison d'être","Remplacer le stress de l'achat bien-être par une expérience simple, de confiance et luxueuse."],["Vision","Devenir la référence incontournable du bien-être premium dans notre région."],["Leadership","Guider les femmes qui refusent les compromis : celles qui recherchent l'excellence, valorisent le conseil expert et méritent une expérience aussi raffinée qu'efficace."],["Positionnement","Le bien-être doit allier confiance scientifique et plaisir esthétique."],["Clientèle","La femme moderne de 30 à 50 ans, exigeante sur la qualité et l'efficacité — avec une attention particulière aux besoins des mamans."],["Différenciation","L'identité « Sanctuaire Luxe ». Là où les concurrents sont cliniques ou désordonnés, nous offrons une identité sophistiquée, cohérente, digne de confiance et luxueuse."]]
+        .map(([t,d],i)=>`<div class="cardw" style="min-height:280px${i==5?';background:var(--marine);color:#fff':''}"><div class="num" style="font-size:18px;letter-spacing:.2em;color:${i==5?'#88B0A8':'var(--sauge)'}">0${i+1}</div><div class="h3" style="margin:16px 0 14px;color:${i==5?'#fff':'var(--marine)'}">${t}</div><div class="small" style="opacity:.85">${d}</div></div>`).join(""));
+    </script>
+  </div>
+</section>
+
+<!-- 07 VALEURS & TON -->
+<section class="slide bg-white" data-section="La marque">
+  <div class="abs" style="left:140px;top:110px"><div class="overline c-sauge">01 — Valeurs &amp; ton de voix</div><div class="h1 c-marine" style="margin-top:22px">Quatre valeurs,<br>une seule voix</div></div>
+  <div class="abs" style="left:140px;top:420px;width:820px;display:grid;grid-template-columns:1fr 1fr;gap:54px 60px">
+    <script>
+      document.write([["heart","Confiance","Un conseil honnête, des produits sélectionnés et vérifiés par des pharmaciennes."],["leaf","Sérénité","Un lieu calme, une lumière douce, un parcours d'achat sans stress."],["star","Ambition","Élever les standards de la parapharmacie en Tunisie."],["check","Excellence","Une exigence constante, du choix des marques au moindre détail du service."]]
+        .map(([ic,t,d])=>`<div style="display:flex;gap:24px"><div style="flex:none;width:72px;height:72px;border-radius:50%;background:var(--sauge-20);display:flex;align-items:center;justify-content:center"><span data-icon="${ic}" data-s="34"></span></div><div><div class="h3 c-marine">${t}</div><div class="small" style="margin-top:8px;opacity:.8">${d}</div></div></div>`).join(""));
+    </script>
+  </div>
+  <div class="abs bg-creme" style="left:1080px;right:140px;top:110px;bottom:130px;border-radius:6px;padding:60px">
+    <div class="lbl c-sauge">Ton de voix</div>
+    <div class="h2 c-marine" style="margin:16px 0 40px">Une experte bienveillante,<br>jamais une vendeuse.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+      <div><div class="lbl c-marine" style="margin-bottom:18px">Nous sommes</div><div class="body" style="line-height:2">Rassurantes<br>Précises<br>Chaleureuses<br>Élégantes</div></div>
+      <div><div class="lbl" style="margin-bottom:18px;color:#C8553D">Nous ne sommes pas</div><div class="body" style="line-height:2;opacity:.55">Alarmistes<br>Techniques à l'excès<br>Familières<br>Tape-à-l'œil</div></div></div>
+    <div style="margin-top:46px;border-top:1px solid var(--line);padding-top:28px">
+      <div class="caption" style="opacity:.6;margin-bottom:8px">Exemple</div>
+      <div style="font-family:var(--f-head);font-weight:300;font-size:26px;line-height:1.4;color:var(--marine)">« Prenez un moment, nous vous aidons à choisir le soin qui vous ressemble. »</div></div>
+  </div>
+</section>
+
+<!-- 08 CLIENTE -->
+<section class="slide bg-creme" data-section="La marque">
+  <div class="arch abs" style="left:140px;top:110px;width:560px;height:840px"><img class="cover-img" src="assets/photos/customer-shelves.jpg" style="object-position:48% 50%"></div>
+  <div class="abs" style="left:820px;top:130px;width:960px">
+    <div class="overline c-sauge">01 — Notre cliente</div>
+    <div class="h1 c-marine" style="margin-top:22px">La femme moderne,<br>30 – 50 ans</div>
+    <p class="lead c-nuit" style="margin-top:36px;width:900px">Active, informée, souvent maman. Elle veut des produits efficaces, un avis fiable — et un moment pour elle.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:34px;margin-top:70px">
+      <div style="border-top:2px solid var(--marine);padding-top:22px"><div class="lbl c-marine">Ses attentes</div><div class="small" style="margin-top:12px;opacity:.8">Qualité prouvée, marques de confiance, conseil personnalisé.</div></div>
+      <div style="border-top:2px solid var(--sauge);padding-top:22px"><div class="lbl c-marine">Ses freins</div><div class="small" style="margin-top:12px;opacity:.8">Rayons encombrés, promotions criardes, ambiance clinique.</div></div>
+      <div style="border-top:2px solid var(--beige);padding-top:22px"><div class="lbl c-marine">Ce qu'on lui offre</div><div class="small" style="margin-top:12px;opacity:.8">Un lieu clair et apaisant, une sélection courte et sûre, du temps.</div></div></div>
+  </div>
+</section>
+
+<!-- 09 DIVIDER 02 -->
+<section class="slide bg-nuit divider" data-section="Le concept">
+  <div class="big-n c-sauge">02</div><div class="title c-white">Le<br>concept</div>
+  <div class="list c-white"><span>Le Sanctuaire</span><span>L'Arche</span><span>La Ligne</span><span>La Feuille</span></div>
+  <div class="arch abs" style="right:140px;top:110px;width:520px;height:860px;background:var(--marine)"></div>
+  <div class="arch abs" style="right:220px;top:240px;width:360px;height:730px;background:var(--sauge)"></div>
+  <div class="arch abs" style="right:300px;top:370px;width:200px;height:600px;background:var(--creme)"></div>
+</section>
+
+<!-- 10 CONCEPT — LE SANCTUAIRE -->
+<section class="slide bg-creme" data-section="Le concept">
+  <div class="abs" style="left:140px;top:110px"><div class="overline c-sauge">02 — Concept créatif</div></div>
+  <div class="abs h-display c-marine" style="left:132px;top:170px;font-size:150px">Le Sanctuaire.</div>
+  <p class="abs lead" style="left:140px;top:390px;width:1100px">Un refuge où l'on vient prendre soin de soi en confiance. Toute l'identité est pensée comme un lieu&nbsp;: on y entre, on respire, on est guidée.</p>
+  <div class="abs" style="left:140px;right:140px;top:620px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+    <div class="cardw"><div class="lbl c-sauge">Le constat</div><div class="body" style="margin-top:14px">Les parapharmacies tunisiennes sont soit <b>cliniques</b> (blanc froid, croix verte), soit <b>désordonnées</b> (promotions, rayons saturés).</div></div>
+    <div class="cardw"><div class="lbl c-sauge">L'idée</div><div class="body" style="margin-top:14px">Transformer l'achat bien-être en <b>rituel apaisant</b>&nbsp;: moins de bruit visuel, plus d'espace, un conseil expert mis en avant.</div></div>
+    <div class="cardw" style="background:var(--marine);color:#fff"><div class="lbl" style="color:var(--sauge)">L'expression</div><div class="body" style="margin-top:14px">Trois éléments issus du lieu et du logo&nbsp;: <b>l'Arche</b>, <b>la Ligne</b> et <b>la Feuille</b>, posés sur une palette douce et beaucoup de respiration.</div></div>
+  </div>
+</section>
+
+<!-- 11 TROIS PILIERS -->
+<section class="slide bg-white" data-section="Le concept">
+  <div class="abs" style="left:140px;top:110px"><div class="overline c-sauge">02 — Trois piliers visuels</div><div class="h1 c-marine" style="margin-top:22px">L'Arche · La Ligne · La Feuille</div></div>
+  <div class="abs" style="left:140px;right:140px;top:330px;bottom:130px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+    <div class="tile bg-creme" style="padding:50px">
+      <div style="height:330px;display:flex;align-items:flex-end;justify-content:center;gap:18px"><div class="arch" style="width:120px;height:300px;background:var(--marine)"></div><div class="arch" style="width:90px;height:220px;background:var(--sauge)"></div><div class="arch" style="width:60px;height:150px;background:var(--beige)"></div></div>
+      <div class="h3 c-marine" style="margin-top:44px">01 · L'Arche</div><div class="small" style="margin-top:12px;opacity:.8">Issue des niches de la boutique. Elle protège, encadre, accueille&nbsp;: cadre photo, fenêtre de packaging, signalétique.</div></div>
+    <div class="tile bg-creme" style="padding:50px">
+      <div style="height:330px;display:flex;align-items:center;justify-content:center"><svg width="320" height="220" viewBox="0 0 320 220" fill="none" stroke="#1A5F7A" stroke-width="10" stroke-linecap="round"><path d="M20 170 C80 170 80 50 140 50 S200 170 260 170 S300 110 300 110"/><path d="M20 200 H300" stroke="#88B0A8"/></svg></div>
+      <div class="h3 c-marine" style="margin-top:44px">02 · La Ligne</div><div class="small" style="margin-top:12px;opacity:.8">Le trait unique et continu du monogramme&nbsp;: épaisseur constante, extrémités arrondies. Il dessine les icônes et les illustrations.</div></div>
+    <div class="tile bg-creme" style="padding:50px">
+      <div style="height:330px;display:flex;align-items:center;justify-content:center"><span data-pe="leaf" data-h="260" data-c="#88B0A8"></span></div>
+      <div class="h3 c-marine" style="margin-top:44px">03 · La Feuille</div><div class="small" style="margin-top:12px;opacity:.8">Le « e » en forme de feuille, extrait du symbole. Répété, il devient le motif signature — discret, végétal, reconnaissable.</div></div>
+  </div>
+</section>
+
+<!-- 12 L'ARCHE -->
+<section class="slide bg-creme" data-section="Le concept">
+  <div class="title-l"><div class="overline c-sauge">02 — L'Arche</div><div class="h1 c-marine">Du lieu<br>à la forme</div>
+    <p class="body" style="margin-top:36px;width:560px">La boutique de Slimen est rythmée par des niches en arche. Nous avons simplifié cette architecture en une forme graphique unique&nbsp;: un rectangle coiffé d'un demi-cercle parfait.</p>
+    <p class="body" style="margin-top:18px;width:560px">L'arche devient un <b>cadre</b>&nbsp;: elle « met en vitrine » un produit, un visage, une information — comme une niche met en valeur ce qu'elle contient.</p></div>
+  <div class="abs" style="left:860px;top:150px;width:920px;display:flex;align-items:flex-end;gap:40px">
+    <div><div class="tile" style="width:420px;height:300px"><img class="cover-img" src="assets/photos/store-arches.jpg" style="object-position:20% 50%"></div><div class="lbl c-marine" style="margin-top:20px">1 · Le lieu</div></div>
+    <div style="font-family:var(--f-head);font-weight:300;font-size:50px;color:var(--sauge);padding-bottom:60px">→</div>
+    <div><div style="width:200px;height:300px;position:relative"><div class="arch abs" style="inset:0;border:3px solid var(--marine);border-bottom:0"></div><div class="abs" style="left:0;right:0;top:0;height:100px;border-bottom:1px dashed var(--marine);opacity:.6"></div><div class="abs" style="left:100px;top:0;width:1px;height:100px;background:var(--marine);opacity:.6"></div><div class="abs mono" style="left:110px;top:40px;font-size:11px;color:var(--marine)">r = l/2</div></div><div class="lbl c-marine" style="margin-top:20px">2 · La forme</div></div>
+  </div>
+  <div class="abs" style="left:860px;top:600px;width:920px">
+    <div class="lbl c-marine" style="margin-bottom:22px">3 · Les usages</div>
+    <div style="display:flex;gap:22px;align-items:flex-end">
+      <div class="arch" style="width:150px;height:240px"><img class="cover-img" src="assets/photos/customer-shelves.jpg" style="object-position:45% 50%"></div>
+      <div class="arch" style="width:150px;height:240px;background:var(--marine);display:flex;align-items:center;justify-content:center;padding-top:30px"><span data-pe="symbol" data-h="56" data-c="#fff"></span></div>
+      <div class="arch" style="width:150px;height:240px;background:var(--sauge);display:flex;flex-direction:column;justify-content:flex-end;padding:26px 20px"><div class="lbl" style="font-size:10px;color:var(--nuit)">Soin visage</div></div>
+      <div class="arch" style="width:150px;height:240px;background:var(--beige);display:flex;align-items:center;justify-content:center"><span data-icon="drop" data-s="60" data-c="#0F3443"></span></div>
+      <div class="arch" style="width:150px;height:240px"><img class="cover-img" src="assets/photos/pharmacist-counter.jpg" style="object-position:55% 40%"></div></div>
+    <div style="display:flex;gap:22px;margin-top:14px" class="caption"><span style="width:150px">Photo</span><span style="width:150px">Signalétique</span><span style="width:150px">Rayon</span><span style="width:150px">Icône</span><span style="width:150px">Portrait</span></div>
+  </div>
+</section>
+
+<!-- 13 LA LIGNE -->
+<section class="slide bg-white" data-section="Le concept">
+  <div class="title-l"><div class="overline c-sauge">02 — La Ligne</div><div class="h1 c-marine">Un seul trait,<br>une seule épaisseur</div>
+    <p class="body" style="margin-top:36px;width:560px">Le monogramme est dessiné d'un trait monoline aux terminaisons arrondies. Cette règle s'étend à tout le système&nbsp;: icônes, pictogrammes, filets et illustrations.</p>
+    <div style="margin-top:44px;display:grid;grid-template-columns:auto 1fr;gap:16px 26px;width:560px" class="small">
+      <b class="c-marine">Épaisseur</b><span>1/13 de la hauteur du symbole — constante.</span>
+      <b class="c-marine">Extrémités</b><span>Toujours arrondies, jamais coupées.</span>
+      <b class="c-marine">Angles</b><span>Jonctions arrondies, aucune arête vive.</span>
+      <b class="c-marine">Remplissage</b><span>Aucun&nbsp;: le trait seul porte la forme.</span></div></div>
+  <div class="abs bg-creme grid-bg" style="left:900px;right:140px;top:110px;bottom:130px;border-radius:6px;display:flex;align-items:center;justify-content:center;gap:90px">
+    <div style="position:relative"><span data-pe="symbol" data-h="400"></span>
+      <div class="abs" style="left:-40px;top:0;bottom:0;width:1px;background:var(--marine)"></div><div class="abs mono" style="left:-110px;top:190px;font-size:12px;color:var(--marine);transform:rotate(-90deg)">13 x</div>
+      <div class="abs" style="left:20px;bottom:-50px;width:30px;height:1px;background:#C8553D"></div><div class="abs mono" style="left:60px;bottom:-58px;font-size:12px;color:#C8553D">1 x</div></div>
+    <div style="display:grid;grid-template-columns:repeat(2,90px);gap:30px"><span data-icon="drop" data-s="90" data-sw="3.3"></span><span data-icon="leaf" data-s="90" data-sw="3.3"></span><span data-icon="baby" data-s="90" data-sw="3.3"></span><span data-icon="chat" data-s="90" data-sw="3.3"></span><span data-icon="capsule" data-s="90" data-sw="3.3"></span><span data-icon="sun" data-s="90" data-sw="3.3"></span></div>
+  </div>
+</section>
+
+<!-- 14 POSITIONNEMENT -->
+<section class="slide bg-creme" data-section="Le concept">
+  <div class="title-l"><div class="overline c-sauge">02 — Positionnement</div><div class="h1 c-marine">Occuper<br>l'espace libre</div>
+    <p class="body" style="margin-top:36px;width:560px">Le marché local se partage entre l'efficacité froide et l'abondance promotionnelle. Personne n'occupe le territoire de la sérénité experte&nbsp;: c'est la place de Para Elixea.</p></div>
+  <div class="abs" style="left:900px;top:110px;width:880px;height:840px">
+    <div class="abs" style="left:440px;top:0;bottom:0;width:1px;background:var(--marine);opacity:.35"></div><div class="abs" style="top:420px;left:0;right:0;height:1px;background:var(--marine);opacity:.35"></div>
+    <div class="abs lbl c-marine" style="left:0;right:0;top:-6px;text-align:center;background:var(--creme);width:200px;margin:auto">Curaté</div>
+    <div class="abs lbl c-marine" style="left:0;right:0;bottom:-6px;text-align:center;background:var(--creme);width:220px;margin:auto">Désordonné</div>
+    <div class="abs lbl c-marine" style="left:-6px;top:410px;background:var(--creme);padding-right:12px">Clinique</div>
+    <div class="abs lbl c-marine" style="right:-6px;top:410px;background:var(--creme);padding-left:12px">Sensoriel</div>
+    <div class="abs" style="left:150px;top:220px;text-align:center"><div style="width:26px;height:26px;border-radius:50%;background:var(--beige);margin:0 auto 10px"></div><div class="small">Pharmacies<br>de quartier</div></div>
+    <div class="abs" style="left:170px;top:600px;text-align:center"><div style="width:26px;height:26px;border-radius:50%;background:var(--beige);margin:0 auto 10px"></div><div class="small">Parapharmacies<br>traditionnelles</div></div>
+    <div class="abs" style="left:540px;top:640px;text-align:center"><div style="width:26px;height:26px;border-radius:50%;background:var(--beige);margin:0 auto 10px"></div><div class="small">Grandes surfaces<br>&amp; rayons beauté</div></div>
+    <div class="abs" style="left:560px;top:110px;text-align:center"><div style="width:120px;height:120px;border-radius:50%;background:var(--marine);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 18px rgba(26,95,122,.12)"><span data-pe="symbol" data-h="50" data-c="#fff"></span></div><div class="h3 c-marine">Para Elixea</div></div>
+  </div>
+</section>
+
+<!-- 15 MOODBOARD -->
+<section class="slide bg-white" data-section="Le concept">
+  <div class="abs" style="left:140px;top:110px"><div class="overline c-sauge">02 — Univers</div><div class="h1 c-marine" style="margin-top:22px">Moodboard</div>
+    <p class="body" style="margin-top:28px;width:470px">Lumière naturelle, matières douces, végétal discret, architecture courbe. L'autorité du Vert Marine, la douceur de la Crème.</p></div>
+  <div class="abs" style="left:700px;right:140px;top:110px;bottom:130px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);gap:16px">
+    <div class="tile" style="grid-row:span 2"><img class="cover-img" src="assets/photos/shelves.jpg"></div>
+    <div class="tile bg-marine" style="display:flex;align-items:flex-end;padding:22px"><span class="mono" style="color:#fff">#1A5F7A</span></div>
+    <div class="tile" style="grid-column:span 2"><img class="cover-img" src="assets/photos/pharmacist-counter.jpg" style="object-position:50% 35%"></div>
+    <div class="tile bg-creme" style="display:flex;align-items:center;justify-content:center"><span style="font-family:var(--f-head);font-weight:300;font-size:110px;color:var(--marine)">Aa</span></div>
+    <div class="tile bg-sauge"><div data-pattern="leaf" data-c="#F5EFE6" data-o=".6" data-size="150" class="abs" style="inset:0"></div></div>
+    <div class="tile arch" style="background:var(--beige);border-radius:999px 999px 4px 4px"></div>
+    <div class="tile" style="grid-column:span 2"><img class="cover-img" src="assets/photos/store-arches.jpg" style="object-position:30% 50%"></div>
+    <div class="tile bg-beige" style="display:flex;align-items:flex-end;padding:22px"><span class="mono">#D8C1A8</span></div>
+    <div class="tile"><img class="cover-img" src="assets/photos/customer-shelves.jpg" style="object-position:45% 40%"></div>
+  </div>
+</section>
+
+<!-- 16 DIVIDER 03 -->
+<section class="slide bg-sauge divider" data-section="Le logo">
+  <div class="big-n c-nuit" style="opacity:.6">03</div><div class="title c-nuit">Le<br>logo</div>
+  <div class="list c-nuit"><span>Logo principal</span><span>Anatomie</span><span>Construction</span><span>Déclinaisons</span><span>Usages</span></div>
+  <div class="abs" style="right:220px;top:300px"><span data-pe="symbol" data-h="480" data-c="#F5EFE6"></span></div>
+</section>
+
+<!-- 17 LOGO PRINCIPAL -->
+<section class="slide bg-creme" data-section="Le logo">
+  <div class="abs overline c-sauge" style="left:140px;top:110px">03 — Logo principal</div>
+  <div class="abs" style="left:0;right:0;top:0;bottom:60px;display:flex;align-items:center;justify-content:center"><span data-pe="h" data-h="230"></span></div>
+  <p class="abs small" style="left:140px;bottom:130px;width:760px;opacity:.75">Le logo associe un symbole — le monogramme PE — et un mot-symbole en Gotham. Il est la signature officielle de la marque et doit être privilégié dans toutes les applications.</p>
+</section>
+
+<!-- 18 ANATOMIE -->
+<section class="slide bg-white" data-section="Le logo">
+  <div class="title-l"><div class="overline c-sauge">03 — Anatomie du symbole</div><div class="h1 c-marine">P + feuille + e</div>
+    <p class="body" style="margin-top:36px;width:560px">Le symbole fusionne les initiales de Para Elixea. La boucle du <b>P</b> s'entrelace avec une <b>feuille</b> dont le contour dessine le <b>e</b>&nbsp;: la science (la lettre, la structure) rencontre la nature (le végétal, la croissance).</p>
+    <div style="margin-top:44px;display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;align-items:center;gap:18px"><i style="width:40px;height:8px;border-radius:4px;background:var(--marine)"></i><span class="lbl c-nuit">Le P — structure, expertise</span></div>
+      <div style="display:flex;align-items:center;gap:18px"><i style="width:40px;height:8px;border-radius:4px;background:var(--sauge)"></i><span class="lbl c-nuit">La feuille — nature, vitalité</span></div>
+      <div style="display:flex;align-items:center;gap:18px"><i style="width:40px;height:8px;border-radius:4px;background:var(--beige)"></i><span class="lbl c-nuit">Le e — Elixea, l'élixir</span></div></div></div>
+  <div class="abs bg-creme" style="left:900px;right:140px;top:110px;bottom:130px;border-radius:6px;display:flex;align-items:center;justify-content:center">
+    <svg width="620" height="545" viewBox="22 22 626 550" fill="none" stroke-width="42" stroke-linecap="round" stroke-linejoin="round" style="overflow:visible">
+      <path d="M44,540 V205" stroke="#1A5F7A"/><path d="M203,46 a159,159 0 1,1 0,318 a159,159 0 1,1 0,-318" stroke="#1A5F7A"/>
+      <path d="M614,46 C500,28 330,70 280,230 C234,375 322,548 470,548 C555,548 604,470 618,400" stroke="#D8C1A8"/>
+      <path d="M614,46 C634,180 580,320 388,334" stroke="#88B0A8"/><path d="M522,142 C430,180 330,250 290,330" stroke="#88B0A8"/>
+    </svg>
+  </div>
+</section>
+
+<!-- 19 CONSTRUCTION -->
+<section class="slide bg-nuit" data-section="Le logo">
+  <div class="title-l"><div class="overline c-sauge">03 — Construction</div><div class="h1 c-white">Géométrie<br>&amp; équilibre</div>
+    <p class="body c-white" style="margin-top:36px;width:560px;opacity:.8">La boucle du P est un cercle parfait. La feuille s'appuie sur ce cercle et sur l'axe du fût. Le mot-symbole est aligné sur le centre optique du symbole&nbsp;; sa hauteur de capitale équivaut à 0,42 fois la hauteur du symbole.</p></div>
+  <div class="abs" style="left:900px;right:140px;top:110px;bottom:130px;border:1px solid rgba(255,255,255,.15);border-radius:6px;display:flex;align-items:center;justify-content:center">
+    <div style="position:relative">
+      <svg width="560" height="492" viewBox="22 22 626 550" fill="none" style="overflow:visible">
+        <g stroke="#88B0A8" stroke-width="1.6" opacity=".7"><circle cx="203" cy="205" r="159"/><circle cx="203" cy="205" r="180"/><circle cx="203" cy="205" r="138"/>
+          <line x1="44" y1="-40" x2="44" y2="620"/><line x1="-40" y1="205" x2="700" y2="205"/><line x1="-40" y1="46" x2="700" y2="46"/><line x1="-40" y1="548" x2="700" y2="548"/><line x1="618" y1="-40" x2="618" y2="620"/>
+          <circle cx="470" cy="388" r="160" stroke-dasharray="6 8"/><line x1="614" y1="46" x2="290" y2="330" stroke-dasharray="6 8"/></g>
+        <g stroke="#fff" stroke-width="42" stroke-linecap="round" stroke-linejoin="round" opacity=".92"><path d="M44,540 V205"/><path d="M203,46 a159,159 0 1,1 0,318 a159,159 0 1,1 0,-318"/><path d="M614,46 C500,28 330,70 280,230 C234,375 322,548 470,548 C555,548 604,470 618,400"/><path d="M614,46 C634,180 580,320 388,334"/><path d="M522,142 C430,180 330,250 290,330"/></g>
+      </svg></div>
+  </div>
+</section>
+
+<!-- 20 ZONE DE PROTECTION -->
+<section class="slide bg-creme" data-section="Le logo">
+  <div class="title-l"><div class="overline c-sauge">03 — Zone de protection &amp; taille minimale</div><div class="h1 c-marine">Laisser<br>respirer</div>
+    <p class="body" style="margin-top:36px;width:560px">Aucun élément (texte, image, bord de document) ne doit pénétrer la zone de protection. Son unité <b>x</b> correspond à la largeur de la boucle du P divisée par deux.</p>
+    <div style="margin-top:60px;display:flex;gap:70px;align-items:flex-end">
+      <div><span data-pe="h" data-h="34"></span><div class="lbl c-marine" style="margin-top:18px">Logo · 30 mm / 140 px</div></div>
+      <div><span data-pe="symbol" data-h="24"></span><div class="lbl c-marine" style="margin-top:18px">Symbole · 8 mm / 24 px</div></div></div></div>
+  <div class="abs bg-white" style="left:900px;right:140px;top:110px;bottom:130px;border-radius:6px;display:flex;align-items:center;justify-content:center">
+    <div style="position:relative;padding:72px;outline:1.5px dashed rgba(200,85,61,.7);background:repeating-linear-gradient(45deg,rgba(200,85,61,.06) 0 10px,transparent 10px 20px)">
+      <div style="background:#fff;outline:1px solid rgba(26,95,122,.25)"><span data-pe="h" data-h="120"></span></div>
+      <script>document.write([["left:0;top:50%;margin-top:-36px"],["right:0;top:50%;margin-top:-36px"],["top:0;left:50%;margin-left:-36px"],["bottom:0;left:50%;margin-left:-36px"]].map(([p])=>`<div class="abs" style="${p};width:72px;height:72px;border:1.5px solid #C8553D;display:flex;align-items:center;justify-content:center;font-family:var(--f-head);font-size:20px;color:#C8553D">x</div>`).join(""))</script>
+    </div>
+  </div>
+</section>
+
+<!-- 21 DÉCLINAISONS -->
+<section class="slide bg-white" data-section="Le logo">
+  <div class="abs" style="left:140px;top:110px"><div class="overline c-sauge">03 — Déclinaisons</div><div class="h1 c-marine" style="margin-top:22px">Une famille, quatre formats</div></div>
+  <div class="abs" style="left:140px;right:140px;top:330px;bottom:130px;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:20px">
+    <script>
+      document.write([["h","Horizontal","Usage principal : en-têtes, façade, site web.",60],["v","Vertical","Formats carrés ou étroits : sacs, packaging.",76],["symbol","Symbole","Avatars, favicon, tampons, petits formats.",120],["wm","Mot-symbole","Lorsque le symbole est déjà présent.",44]]
+        .map(([k,t,d,h])=>`<div class="tile bg-creme" style="display:flex;flex-direction:column"><div style="flex:1;display:flex;align-items:center;justify-content:center"><span data-pe="${k}" data-h="${h}"></span></div><div style="padding:30px 34px;border-top:1px solid var(--line);min-height:150px"><div class="h3 c-marine">${t}</div><div class="small" style="margin-top:6px;opacity:.75">${d}</div></div></div>`).join(""));
+    </script>
+  </div>
+</section>
+
+<!-- 22 VERSIONS COULEUR -->
+<section class="slide bg-creme" data-section="Le logo">
+  <div class="abs" style="left:140px;top:110px"><div class="overline c-sauge">03 — Versions couleur</div><div class="h1 c-marine" style="margin-top:22px">Sur chaque fond, le bon contraste</div></div>
+  <div class="abs" style="left:140px;right:140px;top:330px;bottom:130px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:20px">
+    <div class="tile bg-white" style="display:flex;align-items:center;justify-content:center"><span data-pe="h" data-h="66"></span><span class="abs lbl c-marine" style="left:26px;bottom:22px">Marine sur blanc</span></div>
+    <div class="tile bg-marine" style="display:flex;align-items:center;justify-content:center"><span data-pe="h" data-h="66" data-c="#fff"></span><span class="abs lbl" style="left:26px;bottom:22px">Blanc sur marine</span></div>
+    <div class="tile bg-sauge" style="display:flex;align-items:center;justify-content:center"><span data-pe="h" data-h="66" data-c="#0F3443"></span><span class="abs lbl" style="left:26px;bottom:22px">Nuit sur sauge</span></div>
+    <div class="tile bg-beige" style="display:flex;align-items:center;justify-content:center"><span data-pe="h" data-h="66" data-c="#0F3443"></span><span class="abs lbl" style="left:26px;bottom:22px">Nuit sur beige</span></div>
+    <div class="tile" style="display:flex;align-items:center;justify-content:center"><img class="full-img" src="assets/photos/pharmacist-counter.jpg"><div class="abs" style="inset:0;background:rgba(15,52,67,.55)"></div><span data-pe="h" data-h="66" data-c="#fff" style="position:relative"></span><span class="abs lbl c-white" style="left:26px;bottom:22px">Blanc sur photo assombrie</span></div>
+    <div class="tile bg-white" style="display:flex;align-items:center;justify-content:center;outline:1px solid var(--line)"><span data-pe="h" data-h="66" data-c="#000"></span><span class="abs lbl" style="left:26px;bottom:22px;color:#000">Monochrome noir</span></div>
+  </div>
+</section>
+
+<!-- 23 USAGES INTERDITS -->
+<section class="slide bg-white" data-section="Le logo">
+  <div class="abs" style="left:140px;top:110px"><div class="overline c-sauge">03 — Usages interdits</div><div class="h1 c-marine" style="margin-top:22px">À ne jamais faire</div></div>
+  <div class="abs" style="left:140px;right:140px;top:330px;bottom:130px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:20px">
+    <script>
+      const X='<div class="x-mark">'+PE.icon("cross","#fff",22,4)+'</div>';
+      const T=(inner,lbl,bg)=>`<div class="tile" style="background:${bg||'var(--creme)'};display:flex;align-items:center;justify-content:center">${inner}${X}<span class="abs lbl" style="left:26px;bottom:22px;color:var(--nuit)">${lbl}</span></div>`;
+      document.write([
+        T(`<div style="transform:scaleX(1.5)">${PE.lockupH("#1A5F7A",56)}</div>`,"Déformer"),
+        T(`<div style="transform:rotate(-14deg)">${PE.lockupH("#1A5F7A",56)}</div>`,"Pivoter"),
+        T(PE.lockupH("#D23F7A",56),"Changer les couleurs"),
+        T(`<div style="filter:drop-shadow(6px 8px 4px rgba(0,0,0,.45))">${PE.lockupH("#1A5F7A",56)}</div>`,"Ajouter des effets"),
+        T(`<span class="pe-lockup" style="gap:14px">${PE.symbol("#1A5F7A",56)}<span style="font-family:Georgia,serif;font-size:40px;color:#1A5F7A;font-style:italic">Para Elixea</span></span>`,"Changer la typographie"),
+        T(PE.lockupH("#88B0A8",56),"Contraste insuffisant","#D8C1A8")].join(""));
+    </script>
+  </div>
+</section>
+
+<!-- 24 DIVIDER 04 -->
+<section class="slide divider" data-section="Les couleurs" style="background:var(--beige)">
+  <div class="big-n c-nuit" style="opacity:.6">04</div><div class="title c-nuit">Les<br>couleurs</div>
+  <div class="list c-nuit"><span>Palette</span><span>Proportions</span><span>Accessibilité</span></div>
+  <div class="abs" style="right:140px;top:110px;display:flex;gap:18px;align-items:flex-end">
+    <div class="arch" style="width:150px;height:860px;background:var(--marine)"></div><div class="arch" style="width:150px;height:740px;background:var(--sauge)"></div><div class="arch" style="width:150px;height:620px;background:var(--creme)"></div><div class="arch" style="width:150px;height:500px;background:var(--nuit)"></div></div>
+</section>
+
+<!-- 25 PALETTE -->
+<section class="slide bg-white" data-section="Les couleurs">
+  <div class="abs" style="left:140px;top:110px"><div class="overline c-sauge">04 — Palette principale</div><div class="h1 c-marine" style="margin-top:22px">Profondeur &amp; douceur</div></div>
+  <div class="abs" style="left:140px;right:140px;top:320px;bottom:130px;display:grid;grid-template-columns:2.2fr 1.4fr 1.4fr 1fr 1fr;gap:16px">
+    <script>
+      document.write([["Vert Marine Profond","#1A5F7A","26 · 95 · 122","85 · 45 · 30 · 20","Couleur signature. Autorité, confiance, expertise.","#fff"],
+        ["Vert Sauge Mât","#88B0A8","136 · 176 · 168","50 · 18 · 35 · 0","Nature, apaisement, fraîcheur.","#0F3443"],
+        ["Beige Rosé","#D8C1A8","216 · 193 · 168","14 · 24 · 34 · 0","Chaleur, peau, douceur.","#0F3443"],
+        ["Crème Sanctuaire","#F5EFE6","245 · 239 · 230","3 · 5 · 9 · 0","Fond principal, respiration.","#0F3443"],
+        ["Encre Nuit","#0F3443","15 · 52 · 67","90 · 60 · 45 · 45","Textes, contrastes forts.","#fff"]]
+        .map(([n,h,r,c,d,fg])=>`<div class="tile" style="background:${h};color:${fg};padding:36px 32px;display:flex;flex-direction:column;justify-content:flex-end;${h=='#F5EFE6'?'outline:1px solid var(--line)':''}"><div class="h3" style="letter-spacing:.06em;text-transform:none;font-size:24px">${n}</div><div class="small" style="opacity:.8;margin:8px 0 22px">${d}</div><div class="sw-meta"><b>HEX</b> ${h}<br><b>RVB</b> ${r}<br><b>CMJN</b> ≈ ${c}</div></div>`).join(""));
+    </script>
+  </div>
+</section>
+
+<!-- 26 PROPORTIONS & ACCESSIBILITÉ -->
+<section class="slide bg-creme" data-section="Les couleurs">
+  <div class="abs" style="left:140px;top:110px"><div class="overline c-sauge">04 — Proportions &amp; accessibilité</div><div class="h1 c-marine" style="margin-top:22px">Le bon dosage</div></div>
+  <div class="abs" style="left:140px;top:330px;width:780px">
+    <div class="lbl c-marine" style="margin-bottom:18px">Répartition recommandée</div>
+    <div style="display:flex;height:120px;border-radius:6px;overflow:hidden">
+      <div style="flex:45;background:var(--creme);outline:1px solid var(--line);padding:16px" class="mono">45 %</div><div style="flex:25;background:var(--marine);color:#fff;padding:16px" class="mono">25 %</div><div style="flex:15;background:var(--sauge);padding:16px" class="mono">15 %</div><div style="flex:10;background:var(--beige);padding:16px" class="mono">10</div><div style="flex:5;background:var(--nuit)"></div></div>
+    <div class="lbl c-marine" style="margin:56px 0 18px">Teintes</div>
+    <div style="display:grid;grid-template-rows:repeat(3,56px);gap:10px">
+      <div style="display:flex;gap:10px"><i style="flex:1;background:#1A5F7A"></i><i style="flex:1;background:#487F95"></i><i style="flex:1;background:#769FAF"></i><i style="flex:1;background:#A3BFCA"></i><i style="flex:1;background:#D1DFE4"></i></div>
+      <div style="display:flex;gap:10px"><i style="flex:1;background:#88B0A8"></i><i style="flex:1;background:#A0C0B9"></i><i style="flex:1;background:#B8D0CB"></i><i style="flex:1;background:#CFDFDC"></i><i style="flex:1;background:#E7EFED"></i></div>
+      <div style="display:flex;gap:10px"><i style="flex:1;background:#D8C1A8"></i><i style="flex:1;background:#E0CDB9"></i><i style="flex:1;background:#E8DACB"></i><i style="flex:1;background:#EFE6DC"></i><i style="flex:1;background:#F7F2EE"></i></div></div>
+    <div class="caption" style="margin-top:14px">100 · 80 · 60 · 40 · 20 %</div>
+  </div>
+  <div class="abs" style="left:1040px;right:140px;top:330px;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <script>
+      document.write([["#1A5F7A","#FFFFFF","7,1 : 1","AAA"],["#F5EFE6","#1A5F7A","6,2 : 1","AA"],["#88B0A8","#0F3443","5,5 : 1","AA"],["#D8C1A8","#0F3443","7,6 : 1","AAA"],["#0F3443","#FFFFFF","13,2 : 1","AAA"],["#88B0A8","#FFFFFF","2,4 : 1","Éviter"]]
+        .map(([bg,fg,r,s])=>`<div class="tile" style="background:${bg};color:${fg};height:170px;padding:24px 26px;${bg=='#F5EFE6'?'outline:1px solid var(--line)':''}"><div style="font-family:var(--f-head);font-weight:400;font-size:44px;line-height:1">Aa</div><div class="mono" style="position:absolute;left:26px;bottom:22px;font-size:12px">${r}</div><div class="mono" style="position:absolute;right:22px;bottom:22px;font-size:12px;padding:6px 12px;border-radius:999px;background:${s=='Éviter'?'#C8553D':'rgba(255,255,255,.85)'};color:${s=='Éviter'?'#fff':'#0F3443'}">${s}</div></div>`).join(""));
+    </script>
+    <div class="caption" style="grid-column:span 2;margin-top:4px">Ratios de contraste WCAG 2.1 — le blanc sur sauge est réservé aux très grands titres.</div>
+  </div>
+</section>
+
+<!-- 27 DIVIDER 05 -->
+<section class="slide bg-marine divider" data-section="La typographie">
+  <div class="big-n c-sauge">05</div><div class="title c-white">La<br>typographie</div>
+  <div class="list c-white"><span>Gotham</span><span>Calibri</span><span>Hiérarchie</span></div>
+  <div class="abs" style="right:140px;top:200px;font-family:var(--f-head);font-weight:300;font-size:560px;line-height:1;color:var(--sauge);letter-spacing:-.04em">Aa</div>
+</section>
+
+<!-- 28 GOTHAM -->
+<section class="slide bg-white" data-section="La typographie">
+  <div class="title-l"><div class="overline c-sauge">05 — Police principale</div><div class="h1 c-marine">Gotham</div>
+    <p class="body" style="margin-top:36px;width:560px">Géométrique, structurée, intemporelle. Gotham porte la voix de la marque&nbsp;: le mot-symbole, les titres et les éléments d'impact. En capitales avec une approche large, elle exprime l'autorité&nbsp;; en bas-de-casse Light, l'élégance.</p>
+    <div style="margin-top:46px;display:flex;flex-direction:column;gap:14px;font-family:var(--f-head);font-size:34px;color:var(--marine)">
+      <span style="font-weight:300">Light — Titres d'ambiance</span><span style="font-weight:400">Book — Mot-symbole, sous-titres</span><span style="font-weight:500">Medium — Surtitres, boutons</span><span style="font-weight:700">Bold — Chiffres clés</span></div></div>
+  <div class="abs bg-creme" style="left:900px;right:140px;top:110px;bottom:130px;border-radius:6px;padding:60px">
+    <div style="font-family:var(--f-head);font-weight:300;font-size:300px;line-height:.9;color:var(--marine);letter-spacing:-.04em">Aa</div>
+    <div style="font-family:var(--f-head);font-weight:400;font-size:34px;line-height:1.5;color:var(--nuit);margin-top:50px;letter-spacing:.02em">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 éèàçù &amp; ! ? € %</div>
+  </div>
+</section>
+
+<!-- 29 CALIBRI -->
+<section class="slide bg-creme" data-section="La typographie">
+  <div class="title-l"><div class="overline c-sauge">05 — Police secondaire</div><div class="h1 c-marine" style="font-family:var(--f-body);font-weight:700;letter-spacing:.02em">Calibri</div>
+    <p class="body" style="margin-top:36px;width:560px">Humaniste et très lisible, Calibri est dédiée aux textes courants, descriptions de produits, légendes et informations techniques. Elle apporte une touche d'accueil qui complète la rigueur de Gotham.</p>
+    <div style="margin-top:46px;display:flex;flex-direction:column;gap:14px;font-family:var(--f-body);font-size:34px;color:var(--marine)">
+      <span>Regular — Texte courant</span><span style="font-style:italic">Italic — Légendes, citations</span><span style="font-weight:700">Bold — Mises en avant</span></div></div>
+  <div class="abs bg-white" style="left:900px;right:140px;top:110px;bottom:130px;border-radius:6px;padding:60px">
+    <div style="font-family:var(--f-body);font-size:300px;line-height:.9;color:var(--sauge)">Aa</div>
+    <div style="font-family:var(--f-body);font-size:36px;line-height:1.45;color:var(--nuit);margin-top:50px">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 éèàçù &amp; ! ? € %</div>
+  </div>
+</section>
+
+<!-- 30 HIÉRARCHIE -->
+<section class="slide bg-white" data-section="La typographie">
+  <div class="abs" style="left:140px;top:110px"><div class="overline c-sauge">05 — Hiérarchie</div><div class="h1 c-marine" style="margin-top:22px">Typographie en usage</div></div>
+  <div class="abs" style="left:140px;right:140px;top:320px">
+    <script>
+      document.write([["Titre d'ambiance","Gotham Light · 60 pt · -2 %",`<span style="font-family:var(--f-head);font-weight:300;font-size:78px;color:var(--marine);letter-spacing:-.02em">Le sanctuaire bien-être</span>`],
+        ["Titre H1","Gotham Medium · 32 pt · capitales · +4 %",`<span style="font-family:var(--f-head);font-weight:500;font-size:44px;color:var(--marine);letter-spacing:.04em">SOINS DU VISAGE</span>`],
+        ["Surtitre","Gotham Medium · 10 pt · capitales · +32 %",`<span class="overline c-sauge" style="font-size:16px">Le conseil de la semaine</span>`],
+        ["Texte courant","Calibri Regular · 11 pt · interligne 16 pt",`<span class="body" style="display:block;width:820px">Nos pharmaciennes sélectionnent chaque produit pour son efficacité et sa tolérance, afin de vous proposer une routine simple et sûre.</span>`],
+        ["Légende","Calibri Italic · 9 pt",`<span class="caption" style="font-size:18px">Sérum hydratant — 30 ml</span>`]]
+        .map(([n,s,ex])=>`<div style="display:grid;grid-template-columns:360px 1fr;align-items:center;border-top:1px solid var(--line);padding:26px 0"><div><div class="lbl c-marine">${n}</div><div class="small" style="opacity:.6;margin-top:6px">${s}</div></div><div>${ex}</div></div>`).join(""));
+    </script>
+  </div>
+</section>
+
+<!-- 31 DIVIDER 06 -->
+<section class="slide bg-sauge divider" data-section="Éléments graphiques">
+  <div class="big-n c-nuit" style="opacity:.6">06</div><div class="title c-nuit">Éléments<br>graphiques</div>
+  <div class="list c-nuit"><span>Motif</span><span>Cadres en arche</span><span>Icônes</span><span>Photographie</span></div>
+  <div class="arch abs" style="right:140px;top:110px;width:560px;height:860px;background:var(--marine)"><div data-pattern="leaf" data-c="#88B0A8" data-o=".5" data-size="240" class="abs" style="inset:0"></div></div>
+</section>
+
+<!-- 32 MOTIF -->
+<section class="slide bg-white" data-section="Éléments graphiques">
+  <div class="title-l"><div class="overline c-sauge">06 — Motif signature</div><div class="h1 c-marine">La feuille<br>répétée</div>
+    <p class="body" style="margin-top:36px;width:560px">Le motif est tiré directement du symbole&nbsp;: la feuille-e, isolée et répétée en quinconce. Il s'utilise en fond discret — papier de soie, intérieur de packaging, cartes, réseaux sociaux.</p>
+    <div style="margin-top:36px;display:grid;grid-template-columns:auto 1fr;gap:14px 24px;width:560px" class="small">
+      <b class="c-marine">Opacité</b><span>10 à 50 % selon le support — jamais en concurrence avec le logo.</span>
+      <b class="c-marine">Échelle</b><span>Une feuille ≥ 3 fois la taille du symbole voisin.</span>
+      <b class="c-marine">Couleurs</b><span>Ton sur ton uniquement (sauge sur marine, crème sur sauge…).</span></div></div>
+  <div class="abs" style="left:900px;right:140px;top:110px;bottom:130px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1.3fr 1fr;gap:16px">
+    <div class="tile bg-marine" style="grid-column:span 2"><div data-pattern="leaf" data-c="#88B0A8" data-o=".5" data-size="230" class="abs" style="inset:0"></div></div>
+    <div class="tile bg-creme"><div data-pattern="leaf" data-c="#88B0A8" data-o=".7" data-size="170" class="abs" style="inset:0"></div></div>
+    <div class="tile bg-sauge"><div data-pattern="leaf" data-c="#F5EFE6" data-o=".6" data-size="170" class="abs" style="inset:0"></div></div>
+  </div>
+</section>
+
+<!-- 33 CADRES EN ARCHE -->
+<section class="slide bg-creme" data-section="Éléments graphiques">
+  <div class="title-l"><div class="overline c-sauge">06 — Cadres en arche</div><div class="h1 c-marine">Mettre<br>en niche</div>
+    <p class="body" style="margin-top:36px;width:560px">Trois proportions suffisent. L'arche se pose toujours sur une ligne de base (bord du support, filet, sol)&nbsp;: elle ne flotte jamais et n'est jamais retournée.</p>
+    <div style="margin-top:40px;display:flex;gap:30px" class="small"><div><b class="c-marine">A</b> · 1 : 1,5 — produits</div><div><b class="c-marine">B</b> · 1 : 2 — portraits</div><div><b class="c-marine">C</b> · 1 : 3 — bandeaux</div></div></div>
+  <div class="abs" style="left:900px;right:140px;bottom:130px;display:flex;align-items:flex-end;gap:30px;border-bottom:2px solid var(--marine)">
+    <div style="text-align:center"><div class="arch" style="width:300px;height:450px"><img class="cover-img" src="assets/photos/shelves.jpg"></div></div>
+    <div><div class="arch" style="width:260px;height:520px"><img class="cover-img" src="assets/photos/customer-shelves.jpg" style="object-position:48% 50%"></div></div>
+    <div><div class="arch" style="width:200px;height:600px;background:var(--marine);position:relative"><div data-pattern="leaf" data-c="#88B0A8" data-o=".45" data-size="150" class="abs" style="inset:0"></div></div></div>
+  </div>
+  <div class="abs mono c-marine" style="left:900px;right:140px;bottom:96px;display:flex;gap:30px;font-size:12px"><span style="width:300px">A</span><span style="width:260px">B</span><span style="width:200px">C</span></div>
+</section>
+
+<!-- 34 ICÔNES -->
+<section class="slide bg-white" data-section="Éléments graphiques">
+  <div class="title-l"><div class="overline c-sauge">06 — Iconographie</div><div class="h1 c-marine">Des icônes<br>au trait</div>
+    <p class="body" style="margin-top:36px;width:560px">Une grille de 48 × 48, un trait de 2,4 unités aux extrémités arrondies — le même ADN que le symbole. Les icônes sont toujours monochromes, posées seules ou dans un cercle de teinte claire.</p></div>
+  <div class="abs bg-creme" style="left:900px;right:140px;top:110px;bottom:130px;border-radius:6px;padding:60px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+    <script>
+      document.write([["drop","Soin visage"],["baby","Maman & bébé"],["leaf","Bio & naturel"],["capsule","Compléments"],["sun","Solaire"],["heart","Bien-être"],["chat","Conseil"],["calendar","Rendez-vous"],["bag","Commande"],["pin","Nous trouver"],["phone","Contact"],["star","Fidélité"]]
+        .map(([i,t])=>`<div style="display:flex;flex-direction:column;align-items:center;gap:16px"><div style="width:110px;height:110px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center"><span data-icon="${i}" data-s="54"></span></div><span class="lbl c-marine" style="font-size:11px">${t}</span></div>`).join(""));
+    </script>
+  </div>
+</section>
+
+<!-- 35 PHOTO -->
+<section class="slide bg-creme" data-section="Éléments graphiques">
+  <div class="title-l"><div class="overline c-sauge">06 — Direction photographique</div><div class="h1 c-marine">Lumière douce,<br>gestes vrais</div>
+    <div style="margin-top:36px;display:flex;flex-direction:column;gap:22px;width:560px">
+      <div class="small"><b class="c-marine">Lumière</b> — naturelle, diffuse et chaleureuse. On s'éloigne des éclairages cliniques.</div>
+      <div class="small"><b class="c-marine">Mise en scène</b> — épurée, intentionnelle&nbsp;: textures, ingrédients, gestes de soin.</div>
+      <div class="small"><b class="c-marine">Palette</b> — tons marine, sauge et crème présents dans le décor.</div>
+      <div class="small"><b class="c-marine">Humain</b> — de vraies clientes, de vraies pharmaciennes, en situation de conseil.</div>
+      <div class="small" style="color:#C8553D"><b>À éviter</b> — rayons saturés, promotions visibles, cartons, flash direct, banques d'images « médicales ».</div></div></div>
+  <div class="abs" style="left:900px;right:140px;top:110px;bottom:130px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:16px">
+    <div class="tile" style="grid-row:span 2"><img class="cover-img" src="assets/photos/shelves.jpg"><div class="ok-mark"></div></div>
+    <div class="tile"><img class="cover-img" src="assets/photos/pharmacist-counter.jpg"></div>
+    <div class="tile"><img class="cover-img" src="assets/photos/customer-shelves.jpg"></div>
+  </div>
+  <script>document.querySelectorAll('.ok-mark').forEach(e=>e.innerHTML=PE.icon("check","#fff",24,4))</script>
+</section>
+
+<!-- 36 DIVIDER 07 -->
+<section class="slide bg-nuit divider" data-section="La marque en action">
+  <div class="big-n c-sauge">07</div><div class="title c-white">La marque<br>en action</div>
+  <div class="list c-white"><span>Papeterie</span><span>Packaging</span><span>Signalétique</span><span>Digital</span></div>
+  <div class="arch abs" style="right:140px;top:110px;width:560px;height:860px"><img class="cover-img" src="export/mockups/05-facade.jpg" style="object-position:29% 50%"></div>
+</section>
+
+<!-- 37–47 MOCKUPS -->
+<script>
+  document.write([["01-cartes-de-visite","Cartes de visite","Recto marine, verso crème, motif feuille"],["02-papeterie","Papeterie","Papier à en-tête, enveloppe DL, carte de remerciement"],["03-sacs-shopping","Sacs shopping","Trois coloris pour trois tailles"],["04-packaging","Gamme signature","Proposition de packaging en marque propre"],["05-facade","Façade","Vitrine en arche, enseigne drapeau"],["10-signaletique-interieure","Signalétique intérieure","Les niches deviennent des univers"],["09-fidelite-et-etiquettes","Fidélité & étiquettes","Carte privilège, carte cadeau, étiquettes prix"],["11-sachet-et-sceau","Sachet & sceau","Papier de soie, sticker de fermeture, sachet officine"],["06-instagram","Instagram","Profil et publications"],["07-templates-sociaux","Templates sociaux","Publications 1:1 et stories 9:16"],["08-site-web","Site web","Version desktop et mobile"]]
+    .map(([f,t,d])=>`<section class="slide" data-mock data-section="La marque en action"><img class="full-img" src="export/mockups/${f}.jpg"><div class="mock-cap"><b>${t}</b><span>${d}</span></div></section>`).join(""));
+</script>
+
+<!-- 48 CLOSING -->
+<section class="slide bg-marine" data-nofoot>
+  <div data-pattern="leaf" data-c="#fff" data-o=".045" data-size="300" class="abs" style="inset:0"></div>
+  <div class="abs" style="left:0;right:0;top:250px;display:flex;justify-content:center"><span data-pe="v" data-h="180" data-c="#fff"></span></div>
+  <div class="abs" style="left:0;right:0;top:640px;text-align:center;font-family:var(--f-head);font-weight:300;font-size:64px;color:#fff">Merci.</div>
+  <div class="abs" style="left:0;right:0;bottom:110px;text-align:center;font-family:var(--f-head);font-size:14px;letter-spacing:.24em;text-transform:uppercase;color:#fff;opacity:.7">Catana Creative — Med Rayen Abid · rayenabid31@gmail.com</div>
+</section>
+
+<script>
+  // running footers + page numbers
+  document.querySelectorAll(".slide").forEach((s, i) => {
+    if (s.hasAttribute("data-nofoot")) return;
+    const dark = /bg-marine|bg-nuit/.test(s.className);
+    const f = document.createElement("div"); f.className = "run";
+    f.style.color = dark ? "#fff" : "var(--nuit)";
+    if (s.hasAttribute("data-mock")) { f.style.left = "auto"; f.style.right = "60px"; f.style.bottom = "62px"; f.style.gap = "40px"; f.style.color = "var(--nuit)"; f.style.opacity = ".7"; f.innerHTML = `<span>${String(i + 1).padStart(2, "0")}</span>`; }
+    else f.innerHTML = `<span>Para Elixea — Charte graphique</span><span>${s.dataset.section || ""}</span><span>${String(i + 1).padStart(2, "0")}</span>`;
+    s.appendChild(f);
+  });
+</script>
+</body>
+</html>
