@@ -50,6 +50,7 @@ product with the viewer.
 | 5 | La Naissance de Boum Boum (origin story, 45 s) | `Ep5Origin` |
 | 6 | L'Étoile tombée (a fallen star; he lets her go home; 45 s) | `Ep6Star` |
 | 7 | Le Jardin de Mélo (patience; a storm; they start again together; origin of the Pastèque flavour; 45 s) | `Ep7Garden` |
+| 8 | Le Pays sans couleurs (the pink monster alone in Boum Boum Land; kindness brings the colours back; 44 s) | `Ep8Colors` |
 | – | Le Secret de Mélo (draft) | `Ep6Secret` (Drafts) |
 | – | Le Petit Héros (draft, not in the series) | `Ep6Hero` (Drafts) |
 | – | Le dernier Boum Boum | idea |
@@ -58,6 +59,7 @@ product with the viewer.
 | ★ | Noël Boum Boum | idea |
 
 ## Locations
+- Boum Boum Land (Ep. 8, `ep8colors/CandyLand.tsx`): his gum-dome house, lollipop trees, gumdrop bushes, the gum tree, the syrup river with gumdrop stepping stones, the ravine, the candy mountain and the heart-shaped sun; friends: the lollipop flower, the little cloud, the candy fish. The world is drawn in colour plus a grey copy masked by how much colour each x has got back (`litAt`). Canon: one morning the land lost its colours; each good deed brought them back around it, and his biggest BOUM brought back the rest. Message: « Prends soin du monde… et le monde prendra soin de toi. » Music: the same growing tune as Ep. 7.
 - Mélo's vegetable garden (Ep. 7, `ep7garden/GardenPlot.tsx`): shed, fence, plot, a chalk sign counting the days, day/night/storm/grey-morning sky (`GardenSky`), `Plant`, `Watermelon` (cracks, opens in halves), `WateringCan`, `SliceShape`. Canon: Mélo grew one seed with patience for 40 days; a storm broke it, but the fruit left seeds and the two friends started again together; on day 90 their giant watermelon gave the first Pastèque flavour. Message: « Les plus belles choses prennent du temps… et grandissent mieux à deux. »
 - The pink monster's back garden at night (Ep. 6, `ep6star/NightGarden.tsx`): house, bush, flowers, night sky with the heart constellation; the little star (`StarShape`).
 - The candy factory where he was born (Ep. 5, `ep5/FactorySet.tsx`): bubble machine, filling tank, conveyor, quality-control scanner + reject bin, tasting machine (« Goûtomètre »), dripper line, printing platform. Canon: in a factory of identical, empty gums, a drop of filling fell into a bubble during a storm and he was born with a glowing liquid heart. Rejected as a « défaut », he tried to hide it, then his heart won the taste test, every Boum Boum got a liquid heart, and his face was printed on the first pack. Message: « Ce qui te rend différent, c'est ce qui te rend unique. »
