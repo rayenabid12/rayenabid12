@@ -15,4 +15,4 @@
 
 ## Photo credits (Unsplash License)
 
-Vitaly Gariev (desk, couch, science class, family with tablet), Fernando Galdamez (girl reading), Ryan Collins, Naeem Ad (boy on yellow), Anas Alhajj.
+Vitaly Gariev (desk, couch, science class, family with tablet), Fernando Galdamez (girl reading), Naeem Ad (boy on yellow).

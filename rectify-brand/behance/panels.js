@@ -325,7 +325,7 @@ panels.push(panel('17-closing', 760, `
   <div style="position:absolute;inset:0;background:#1C1511;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px">
     ${face(C.orange, 220, 'happy', 'thinking')}
     <div class="f" style="font-size:72px;font-weight:600;color:${C.cream}">Thank you.</div>
-    <div style="font:500 14px/1.7 Nunito;color:#a89a90;text-align:center">Photography: Unsplash — Vitaly Gariev, Fernando Galdamez, Ryan Collins, Naeem Ad<br>Typefaces: Fredoka, Nunito, Cairo (Google Fonts)</div>
+    <div style="font:500 14px/1.7 Nunito;color:#a89a90;text-align:center">Photography: Unsplash — Vitaly Gariev, Fernando Galdamez, Naeem Ad<br>Typefaces: Fredoka, Nunito, Cairo (Google Fonts)</div>
   </div>`));
 
 // ---- Render -------------------------------------------------------------------------------
