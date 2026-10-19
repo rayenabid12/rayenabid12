@@ -8,6 +8,7 @@ import { EP6_SECRET_DURATION, Ep6Secret } from "./episodes/ep6secret/Ep6Secret";
 import { EP6_STAR_DURATION, Ep6Star } from "./episodes/ep6star/Ep6Star";
 import { EP7_GARDEN_DURATION, Ep7Garden } from "./episodes/ep7garden/Ep7Garden";
 import { EP8_COLORS_DURATION, Ep8Colors } from "./episodes/ep8colors/Ep8Colors";
+import { EP9_BREATH_DURATION, Ep9Breath } from "./episodes/ep9breath/Ep9Breath";
 import { BoumFinal } from "./final/BoumFinal";
 import { BoumStory } from "./story/BoumStory";
 import { CharacterSheet } from "./story/CharacterSheet";
@@ -43,6 +44,7 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="Ep6Star" component={Ep6Star} durationInFrames={EP6_STAR_DURATION} fps={30} width={1080} height={1920} />
         <Composition id="Ep7Garden" component={Ep7Garden} durationInFrames={EP7_GARDEN_DURATION} fps={30} width={1080} height={1920} />
         <Composition id="Ep8Colors" component={Ep8Colors} durationInFrames={EP8_COLORS_DURATION} fps={30} width={1080} height={1920} />
+        <Composition id="Ep9Breath" component={Ep9Breath} durationInFrames={EP9_BREATH_DURATION} fps={30} width={1080} height={1920} />
       </Folder>
       <Folder name="Drafts">
         <Composition id="Ep6Secret" component={Ep6Secret} durationInFrames={EP6_SECRET_DURATION} fps={30} width={1080} height={1920} />

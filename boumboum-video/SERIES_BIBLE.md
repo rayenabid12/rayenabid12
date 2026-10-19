@@ -51,6 +51,7 @@ product with the viewer.
 | 6 | L'Étoile tombée (a fallen star; he lets her go home; 45 s) | `Ep6Star` |
 | 7 | Le Jardin de Mélo (patience; a storm; they start again together; origin of the Pastèque flavour; 45 s) | `Ep7Garden` |
 | 8 | Le Pays sans couleurs (the pink monster alone in Boum Boum Land; kindness brings the colours back; 44 s) | `Ep8Colors` |
+| 9 | Le Souffle de Boum Boum (anger; three slow breaths with Mélo; introduces the ritual « Inspire… souffle… BOUM ! »; product-free; 43 s) | `Ep9Breath` |
 | – | Le Secret de Mélo (draft) | `Ep6Secret` (Drafts) |
 | – | Le Petit Héros (draft, not in the series) | `Ep6Hero` (Drafts) |
 | – | Le dernier Boum Boum | idea |
@@ -67,6 +68,11 @@ product with the viewer.
 - Stormy city street with a tall building (draft, `ep6/StormCity.tsx`): low wall, awning, balconies, drainpipe, roof with antenna; rain, wind, clouds, rainbow; the kitten (`KittenShape`) and Mélo's leaf umbrella.
 - City street at night (Ep. 2, `ep2/CitySet.tsx`), sunny park (Ep. 3, `ep3/ParkSet.tsx`), the pink monster's home (Ep. 4, `ep4/HomeSet.tsx`: wall calendar, photo of the two friends, party table, front door).
 - Shared staging toolkit for two-character episodes: `src/episodes/shared/stage.tsx`. Mélo on the end card: `brand/FinaleMelo.tsx`.
+
+## Rituals (from the kids-brands research, reports/Kids brands tone and storytelling.md)
+- « Inspire… souffle… BOUM ! »: the calm-down ritual introduced in Ep. 9 (breathe in, blow out slowly, then the BOUM gesture with both fists). Any child can do it with no gum.
+- The gum never rescues the hero: courage, patience, kindness or a friend does.
+- Keep episodes product-free where possible (no pack, no eating on screen) so they can be promoted in every market.
 
 ## Story rule (learned on Ep. 5 and Ep. 6)
 Every episode is built on ONE idea: a world with a rule, a hero who wants something, a low point,
