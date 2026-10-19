@@ -306,7 +306,8 @@ const PROPS = {
     paint(rrPts(-.34 * U, 1.1 * U, .68 * U, .9 * U, .1 * U), { wash: '#B9BDC9', fill: '#8E93A3', fillOp: 70, ink: PAL.ink, sw: sw * .6 });
     for (const k of [-.14, 0, .14]) inkLine([[k * U, 1.3 * U], [k * U, 1.8 * U]], sw * .5, '#6B6F7E', 'inkfine', 0);
   },
-  chop(U, sw) {
+  chop(U, sw, fd) {
+    rotate(fd - 2.5);   // held up and forward, toward the mouth
     paint(ribbon([[0, -.25 * U], [0, .9 * U]], .16 * U, .14 * U), { wash: PAL.cream, ink: PAL.ink, sw: sw * .5 });
     paint(ellPts(0, -.32 * U, .14 * U, .12 * U, 10), { wash: PAL.cream, ink: PAL.ink, sw: sw * .4 });
     const m = []; for (let i = 0; i < 20; i++) { const a = i / 20 * TAU; m.push([Math.cos(a) * .5 * U * (1 + .1 * Math.sin(a * 3)), 1.35 * U + Math.sin(a) * .62 * U]); }
@@ -650,7 +651,7 @@ const POSE_ORDER = Object.keys(POSES);
 // One pose per character, taken from what they're doing in the illustration.
 const SIGNATURE = {
   girl:    { label: 'chatting', o: C => ({ view: 'q', ...faceOf('playful', { mouth: 'open' }), arms: [[.1, .2], [1.2, 1.2, 'open']] }) },
-  boy:     { label: 'eating', o: C => ({ view: 'q', ...faceOf('yummy', { mouth: 'chew', eyes: 'open' }), emote: 'hearts', arms: [{ to: [.55, -C.torso - 1.0], bend: -1, prop: 'chop' }, { to: [.95, -C.torso - .75], bend: 1 }] }) },
+  boy:     { label: 'eating', o: C => ({ view: 'q', ...faceOf('yummy', { mouth: 'chew', eyes: 'open' }), emote: 'hearts', arms: [{ to: [.15, -C.torso + .75], bend: -1, prop: 'chop' }, { to: [.55, -C.torso + .85], bend: 1 }] }) },
   mom:     { label: 'laughing', o: C => ({ view: 'q', ...faceOf('laugh'), lean: -.06, arms: [[.25, .3], [1.45, .25, 'open']] }) },
   dad:     { label: 'at the grill', o: C => ({ view: 'q', ...faceOf('laugh'), arms: [[.3, 1.6, 'fist', 'fries'], [1.95, .85, 'fist', 'spatula']] }) },
   grandma: { label: 'giggling', o: C => ({ view: 'q', ...faceOf('laugh', { eyes: 'laugh' }), arms: [{ to: 'mouth', bend: -1, hand: 'open' }, [.15, .2]] }) },
