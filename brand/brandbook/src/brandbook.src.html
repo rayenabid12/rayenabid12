@@ -1,0 +1,1105 @@
+<title>Ghaith Jenhani Brand Book</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;600&display=swap">
+<style>
+/* Layout: a reel of 16:9 "frames". Each spread is one shot; chapters cut between Blue Hour (dark) and Silver Screen (light).
+   Single committed look (the brand's own world), so colors are set explicitly rather than following the viewer theme. */
+:root{
+  --blue:#002B5C;      /* Blue Hour — primary, from the 2025 logo */
+  --night:#0A1220;     /* Night — deep base */
+  --tung:#F0A23B;      /* Tungsten — accent, 3200K practical light */
+  --silver:#E9EDF2;    /* Silver Screen — light ground */
+  --graph:#3A3F47;     /* Graphite — text on light */
+  --haze:#8F9BAD;      /* Haze — secondary text on dark */
+  --white:#FFFFFF;
+  --line-d:rgba(233,237,242,.16);
+  --line-l:rgba(10,18,32,.14);
+  --display:"Montserrat","Arial Black",system-ui,sans-serif;
+  --text:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --ar:"IBM Plex Sans Arabic","Geeza Pro",Tahoma,sans-serif;
+  --s-hero:clamp(2.6rem,6.2vw,6.4rem);
+  --s-h1:clamp(1.9rem,3.6vw,3.4rem);
+  --s-h2:clamp(1.25rem,1.9vw,1.75rem);
+  --s-h3:1.05rem;
+  --s-body:1rem;
+  --s-small:.84rem;
+  --s-label:.7rem;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:var(--night)}
+body{background:var(--night);color:var(--graph);font-family:var(--text);font-size:var(--s-body);line-height:1.55;-webkit-font-smoothing:antialiased}
+.sym{display:block;fill:currentColor}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.01em}
+h1{font-size:var(--s-h1);font-weight:800;line-height:1.04}
+h2{font-size:var(--s-h2);font-weight:700;line-height:1.15}
+h3{font-size:var(--s-h3);font-weight:700;line-height:1.25}
+p{margin:0;max-width:65ch}
+ul{margin:0;padding-left:1.1em}
+li+li{margin-top:.3em}
+.label{font-family:var(--mono);font-size:var(--s-label);letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.small{font-size:var(--s-small)}
+.lead{font-size:clamp(1.05rem,1.4vw,1.3rem);line-height:1.5}
+:focus-visible{outline:2px solid var(--tung);outline-offset:3px}
+
+/* ---------- frames ---------- */
+.sl{position:relative;overflow:hidden;break-after:page}
+.sl>.in{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding-block:clamp(28px,4vw,64px);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:clamp(20px,2.6vw,40px)}
+@media (min-width:900px){.sl>.in{padding-left:max(56px,env(safe-area-inset-left,0px));padding-right:max(56px,env(safe-area-inset-right,0px));min-height:min(56.25vw,787px)}}
+.light{background:var(--silver);color:var(--graph)}
+.light h1,.light h2,.light h3{color:var(--night)}
+.white{background:var(--white);color:var(--graph)}
+.white h1,.white h2,.white h3{color:var(--night)}
+.dark{background:var(--night);color:var(--silver)}
+.blue{background:var(--blue);color:var(--silver)}
+.dark h1,.dark h2,.dark h3,.blue h1,.blue h2,.blue h3{color:var(--white)}
+.dark .muted,.blue .muted{color:var(--haze)}
+.light .muted,.white .muted{color:#5c6470}
+.acc{color:var(--tung)}
+.light .accl,.white .accl{color:var(--blue)}
+
+/* viewfinder corner marks on dark frames */
+.vf::before,.vf::after{content:"";position:absolute;z-index:0;width:28px;height:28px;border:1.5px solid var(--line-d);pointer-events:none}
+.vf::before{top:16px;left:16px;border-right:0;border-bottom:0}
+.vf::after{bottom:16px;right:16px;border-left:0;border-top:0}
+.light.vf::before,.light.vf::after,.white.vf::before,.white.vf::after{border-color:var(--line-l)}
+
+/* slate header — every frame carries its timecode */
+.slate{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line-d);padding-bottom:12px}
+.light .slate,.white .slate{border-color:var(--line-l)}
+.slate .label{opacity:.75}
+.slate b{font-weight:500;opacity:1}
+.tc::before{content:"TC ";opacity:.55}
+.dark .tc,.blue .tc{color:var(--tung)}
+.light .tc,.white .tc{color:var(--blue)}
+
+.head{display:grid;gap:14px;max-width:900px}
+.grid{display:grid;gap:clamp(16px,2vw,28px)}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr))}
+.g5{grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr))}
+.grid>*{min-width:0}
+.cell{display:grid;gap:8px;align-content:start;border-top:1px solid var(--line-d);padding-top:14px}
+.light .cell,.white .cell{border-color:var(--line-l)}
+.cell .label{color:var(--tung)}
+.light .cell .label,.white .cell .label{color:var(--blue)}
+.panel{background:rgba(233,237,242,.05);border:1px solid var(--line-d);padding:clamp(16px,1.8vw,26px);display:grid;gap:10px;align-content:start}
+.light .panel,.white .panel{background:var(--white);border-color:var(--line-l)}
+.white .panel{background:var(--silver)}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:var(--s-small)}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line-l)}
+th{font-family:var(--mono);font-size:var(--s-label);letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--blue)}
+.dark th,.blue th{color:var(--tung)}
+.dark td,.dark th,.blue td,.blue th{border-color:var(--line-d)}
+td strong{color:inherit}
+
+/* ---------- cover ---------- */
+.cover .in{justify-content:space-between}
+.cover-mid{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,4vw,72px);align-items:center}
+.cover-mid .sym{width:clamp(110px,16vw,240px);color:var(--white)}
+.cover h1{font-size:var(--s-hero);font-weight:900;letter-spacing:-.025em;line-height:.95}
+.cover .tagline{font-family:var(--display);font-weight:600;font-size:clamp(1rem,1.6vw,1.4rem);color:var(--tung);margin-top:18px}
+.letterbox{position:absolute;left:0;right:0;height:9%;background:#000;z-index:0}
+.letterbox.t{top:0}.letterbox.b{bottom:0}
+.cover .in{min-height:min(56.25vw,787px)}
+@media (max-width:640px){.cover-mid{grid-template-columns:1fr}}
+
+.chapter .in{justify-content:center}
+.chapter .num{font-family:var(--display);font-weight:900;font-size:clamp(5rem,16vw,15rem);line-height:.8;color:transparent;-webkit-text-stroke:1.5px var(--tung)}
+.chapter h1{font-size:var(--s-hero);font-weight:900}
+
+/* contents */
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:24px}
+.toc ol{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.toc li{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line-d);padding-bottom:6px;font-size:var(--s-small)}
+.toc li span:last-child{font-family:var(--mono);color:var(--haze)}
+
+/* before/after */
+.ba{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px;align-items:start}
+.ba img{width:100%;display:block;border:1px solid var(--line-d)}
+
+/* positioning map */
+.map svg{width:100%;height:auto;display:block;max-width:760px}
+.map text{font-family:var(--mono);font-size:11px;fill:var(--graph)}
+.map .ax{font-size:10.5px;letter-spacing:.08em;fill:#5c6470}
+.map .gj{fill:var(--white);font-family:var(--display);font-weight:800;font-size:12px}
+
+/* persona */
+.persona{display:grid;gap:10px;background:var(--white);border:1px solid var(--line-l);padding:22px}
+.persona .who{font-family:var(--display);font-weight:800;font-size:1.25rem;color:var(--night)}
+.quote{font-family:var(--display);font-weight:600;font-size:1.05rem;color:var(--blue);line-height:1.35}
+.tagrow{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border:1px solid var(--line-l)}
+.dark .tag,.blue .tag{border-color:var(--line-d)}
+
+/* statements */
+.statement{font-family:var(--display);font-weight:700;font-size:clamp(1.4rem,2.7vw,2.5rem);line-height:1.15;color:var(--white);max-width:28ch;text-wrap:balance}
+.light .statement{color:var(--night)}
+.value .k{font-family:var(--display);font-weight:900;font-size:clamp(1.4rem,2.2vw,2rem);color:var(--white)}
+.light .value .k{color:var(--night)}
+
+/* tone sliders */
+.slider{display:grid;grid-template-columns:minmax(80px,1fr) 3fr minmax(80px,1fr);gap:12px;align-items:center;font-size:var(--s-small)}
+.slider .bar{position:relative;height:2px;background:var(--line-l)}
+.slider .bar i{position:absolute;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;background:var(--blue);border-radius:50%}
+.slider span:last-child{text-align:right}
+.say{display:grid;gap:6px;padding:14px 16px;border-left:3px solid var(--blue);background:var(--white)}
+.say.no{border-color:#b23b3b}
+.say .label{color:var(--blue)}
+.say.no .label{color:#b23b3b}
+
+/* vocabulary chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--display);font-weight:700;font-size:.9rem;padding:6px 12px;background:var(--blue);color:var(--white)}
+.chip.x{background:transparent;color:#8d2f2f;border:1px solid rgba(141,47,47,.35);text-decoration:line-through;text-decoration-thickness:1.5px}
+
+/* stills — art-directed placeholders built from light, not stock photos */
+.still{position:relative;aspect-ratio:2.39/1;max-width:100%;overflow:hidden;background:#111}
+.still.r169{aspect-ratio:16/9}
+.still.r45{aspect-ratio:4/5}
+.still.r11{aspect-ratio:1/1}
+.still.r916{aspect-ratio:9/16}
+.still svg{position:absolute;inset:0;width:100%;height:100%}
+.s-dunes{background:linear-gradient(180deg,#071630 0%,#123063 38%,#4f5f8c 56%,#c48a5c 66%,#2a1d1a 67%)}
+.s-tung{background:radial-gradient(circle at 68% 42%,#ffd08a 0,#f0a23b 5%,#7a4312 20%,#25140a 42%,#07070a 75%)}
+.s-sea{background:linear-gradient(180deg,#9fb6cf 0%,#dfe6ee 47%,#f6f3ee 49%,#2f5d8a 50%,#0d2b4f 100%)}
+.s-night{background:radial-gradient(circle at 20% 60%,rgba(240,162,59,.55) 0,rgba(240,162,59,0) 14%),radial-gradient(circle at 78% 52%,rgba(240,162,59,.45) 0,rgba(240,162,59,0) 10%),linear-gradient(180deg,#02060f 0%,#0a1a36 60%,#050a14 100%)}
+.s-portrait{background:radial-gradient(ellipse at 74% 30%,#3a5d8f 0,#0d1f3d 38%,#04070d 70%)}
+.s-olive{background:linear-gradient(180deg,#f4c27a 0%,#e09a49 40%,#8c4f22 62%,#2b1a10 63%,#120b07 100%)}
+.s-medina{background:linear-gradient(90deg,#e9edf2 0 18%,#0e3a6e 18% 23%,#f3efe8 23% 62%,#1b4f8a 62% 66%,#dfe4ea 66%)}
+.cap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;color:var(--haze);padding-top:8px}
+.light .cap,.white .cap{color:#5c6470}
+.lb::before,.lb::after{content:"";position:absolute;left:0;right:0;height:11%;background:#000;z-index:2}
+.lb::before{top:0}.lb::after{bottom:0}
+.tcburn{position:absolute;z-index:3;font-family:var(--mono);font-size:clamp(.55rem,.8vw,.72rem);color:rgba(255,255,255,.8);letter-spacing:.08em}
+
+/* logo system tiles */
+.ltile{display:grid;place-items:center;padding:clamp(24px,3vw,48px);min-height:220px;border:1px solid var(--line-l)}
+.ltile .sym{width:100%;height:auto}
+.ltile.on-blue{background:var(--blue);color:var(--white);border-color:var(--blue)}
+.ltile.on-night{background:var(--night);color:var(--white);border-color:var(--night)}
+.ltile.on-white{background:var(--white);color:var(--blue)}
+.ltile.on-silver{background:var(--silver);color:var(--night)}
+.ltile.on-tung{background:var(--tung);color:var(--night);border-color:var(--tung)}
+.ltile.on-photo{background:linear-gradient(180deg,rgba(10,18,32,.15),rgba(10,18,32,.55)),radial-gradient(circle at 70% 40%,#f0a23b 0,#7a4312 20%,#1a0f08 50%);color:var(--white)}
+
+/* color swatches */
+.sw{display:grid;grid-template-rows:auto 1fr;border:1px solid var(--line-l);background:var(--white)}
+.sw .chipc{aspect-ratio:4/3;max-width:100%;display:flex;align-items:flex-end;padding:14px;font-family:var(--display);font-weight:800;font-size:1.05rem}
+.sw dl{margin:0;padding:12px 14px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-family:var(--mono);font-size:.7rem;font-variant-numeric:tabular-nums}
+.sw dt{color:#5c6470}.sw dd{margin:0;color:var(--night)}
+.ratio{display:flex;height:56px;border:1px solid var(--line-l)}
+.ratio div{display:flex;align-items:flex-end;padding:6px 8px;font-family:var(--mono);font-size:.65rem}
+
+/* type specimens */
+.spec{display:grid;gap:10px;border-top:1px solid var(--line-l);padding-top:16px}
+.spec .big{font-size:clamp(2.6rem,6vw,5.2rem);line-height:1;color:var(--night)}
+.az{font-size:1.15rem;line-height:1.6;color:var(--night);word-break:break-word}
+.hier{display:grid;gap:14px}
+.hier>div{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:baseline;border-bottom:1px solid var(--line-l);padding-bottom:12px}
+.hier .label{color:var(--blue)}
+@media (max-width:560px){.hier>div{grid-template-columns:1fr}}
+
+/* graphic language */
+.gl{background:var(--night);color:var(--silver);aspect-ratio:16/10;max-width:100%;position:relative;display:grid;place-items:center;overflow:hidden}
+.gl svg{width:100%;height:100%;display:block}
+
+/* applications */
+.stage{background:radial-gradient(ellipse at 50% 0%,#1c2c48 0,#0a1220 70%);padding:clamp(20px,3vw,48px);display:grid;place-items:center;gap:24px;overflow:hidden}
+.stage.lightstage{background:radial-gradient(ellipse at 50% 0%,#ffffff 0,#d6dce4 80%)}
+.bc{aspect-ratio:85/55;width:min(100%,380px);box-shadow:0 30px 60px -20px rgba(0,0,0,.6),0 2px 0 rgba(255,255,255,.04) inset;position:relative;overflow:hidden}
+.bc.front{background:var(--blue);color:var(--white);display:grid;place-items:center}
+.bc.front .sym{width:26%}
+.bc.back{background:var(--silver);color:var(--night);padding:7% 8%;display:flex;flex-direction:column;justify-content:space-between}
+.bc .nm{font-family:var(--display);font-weight:800;font-size:clamp(.95rem,1.6vw,1.2rem);line-height:1.1}
+.bc .rl{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-top:4px}
+.bc .ct{font-family:var(--mono);font-size:.6rem;line-height:1.7;color:var(--graph)}
+.bc .stripe{position:absolute;right:0;top:0;bottom:0;width:4%;background:var(--tung)}
+.bc .bracket{position:absolute;width:14px;height:14px;border:1px solid rgba(255,255,255,.35)}
+.tilt1{transform:rotate(-4deg)}.tilt2{transform:rotate(3deg)}
+
+.a4{background:var(--white);aspect-ratio:210/297;width:min(100%,360px);box-shadow:0 30px 60px -24px rgba(0,0,0,.55);padding:8% 9%;display:flex;flex-direction:column;gap:6%;color:var(--graph);font-size:.5rem;line-height:1.6;position:relative}
+.a4 .sym{width:44%;color:var(--blue)}
+.a4 .meta{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.45rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);border-bottom:1px solid var(--line-l);padding-bottom:6px}
+.a4 .lines{display:grid;gap:5px}
+.a4 .lines i{display:block;height:3px;background:#e2e6ec}
+.a4 .foot{margin-top:auto;display:flex;justify-content:space-between;font-family:var(--mono);font-size:.42rem;color:#5c6470;border-top:2px solid var(--blue);padding-top:6px}
+.a4 h4{font-family:var(--display);font-size:.8rem;color:var(--night);margin:0}
+
+.phone{width:min(100%,300px);aspect-ratio:9/19;background:#000;border-radius:38px;padding:12px;box-shadow:0 30px 60px -20px rgba(0,0,0,.7),0 0 0 2px #2a3240 inset}
+.phone .scr{width:100%;height:100%;border-radius:28px;background:var(--white);overflow:hidden;display:flex;flex-direction:column}
+.ig-top{display:flex;align-items:center;gap:10px;padding:16px 12px 8px}
+.ig-av{width:46px;height:46px;border-radius:50%;background:var(--blue);display:grid;place-items:center;flex:none}
+.ig-av .sym{width:46%;color:var(--white)}
+.ig-name{font-family:var(--text);font-weight:600;font-size:.72rem;color:#111}
+.ig-bio{padding:0 12px 10px;font-size:.6rem;line-height:1.45;color:#222}
+.ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.ig-grid>div{aspect-ratio:4/5;position:relative;overflow:hidden}
+.ig-q{background:var(--blue);color:var(--white);display:flex;align-items:flex-end;padding:8px;font-family:var(--display);font-weight:800;font-size:.55rem;line-height:1.15}
+.ig-q.t{background:var(--tung);color:var(--night)}
+.ig-q.n{background:var(--night)}
+
+.post{width:min(100%,340px);aspect-ratio:4/5;position:relative;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+.post .txt{position:absolute;z-index:3;left:8%;right:8%;bottom:8%;color:var(--white);display:grid;gap:8px}
+.post .txt b{font-family:var(--display);font-weight:800;font-size:clamp(1.1rem,2vw,1.5rem);line-height:1.08}
+.post .bug{position:absolute;z-index:3;top:7%;left:8%;width:12%;color:var(--white)}
+.post .scrim{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(10,18,32,0) 40%,rgba(10,18,32,.85) 100%)}
+
+.yt{width:min(100%,560px);aspect-ratio:16/9;position:relative;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+.yt .scrim{position:absolute;inset:0;z-index:2;background:linear-gradient(90deg,rgba(0,43,92,.92) 0,rgba(0,43,92,.55) 45%,rgba(0,43,92,0) 70%)}
+.yt .t{position:absolute;z-index:3;left:6%;top:50%;transform:translateY(-50%);width:62%;display:grid;gap:10px}
+.yt .t b{font-family:var(--display);font-weight:900;font-size:clamp(1rem,2.1vw,1.7rem);line-height:.98;color:var(--white);text-transform:uppercase}
+.yt .t .k{display:inline-block;background:var(--tung);color:var(--night);font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;padding:4px 8px;justify-self:start;text-transform:uppercase}
+.yt .bug{position:absolute;z-index:3;right:4%;bottom:6%;width:7%;color:var(--white);opacity:.9}
+.yt .dur{position:absolute;z-index:3;right:3%;top:5%;background:rgba(0,0,0,.75);color:#fff;font-family:var(--mono);font-size:.62rem;padding:2px 6px}
+
+.lt{position:absolute;z-index:3;left:6%;bottom:18%;display:flex;align-items:stretch;gap:10px;color:var(--white)}
+.lt .barv{width:4px;background:var(--tung)}
+.lt b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(.8rem,1.5vw,1.15rem)}
+.lt span{font-family:var(--mono);font-size:clamp(.5rem,.9vw,.66rem);letter-spacing:.12em;text-transform:uppercase;color:var(--silver)}
+.title-card{position:absolute;z-index:3;inset:0;display:grid;place-items:center;align-content:center;gap:10px;color:var(--white);text-align:center}
+.title-card b{font-family:var(--display);font-weight:900;font-size:clamp(1.2rem,3vw,2.4rem);letter-spacing:.18em;text-transform:uppercase}
+.title-card span{font-family:var(--mono);font-size:clamp(.5rem,.9vw,.68rem);letter-spacing:.3em;text-transform:uppercase;color:var(--tung)}
+
+.slateboard{width:min(100%,460px);background:#0b0d10;color:#f2f2f2;box-shadow:0 30px 60px -20px rgba(0,0,0,.7);font-family:var(--mono)}
+.slateboard .stick{height:38px;background:repeating-linear-gradient(-55deg,var(--white) 0 22px,var(--blue) 22px 44px);transform-origin:0 100%;transform:rotate(-8deg) translateY(-6px);border:2px solid #0b0d10}
+.slateboard .stick2{height:30px;background:repeating-linear-gradient(55deg,var(--white) 0 22px,var(--blue) 22px 44px);border-bottom:3px solid #0b0d10}
+.slateboard .bd{padding:14px 16px 18px;display:grid;gap:10px}
+.slateboard .row{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #3a3f47}
+.slateboard .row>div{padding:6px 8px;border-right:1px solid #3a3f47;display:grid;gap:2px}
+.slateboard .row>div:last-child{border-right:0}
+.slateboard small{font-size:.55rem;letter-spacing:.14em;color:var(--haze)}
+.slateboard strong{font-size:1.05rem;font-weight:500}
+.slateboard .prod{display:flex;align-items:center;gap:12px;border:1px solid #3a3f47;padding:8px}
+.slateboard .prod .sym{width:30px;color:var(--white)}
+
+.laptop{width:min(100%,640px)}
+.laptop .scr{background:#000;border-radius:14px 14px 0 0;padding:12px 12px 14px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+.laptop .base{height:14px;background:linear-gradient(#c9ced6,#8f9bad);border-radius:0 0 12px 12px;margin:0 -5%}
+.site{aspect-ratio:16/10;position:relative;overflow:hidden;background:var(--night)}
+.site nav{position:absolute;z-index:4;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:3% 4%;font-family:var(--mono);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--silver)}
+.site nav .sym{width:90px;color:var(--white)}
+.site nav span{display:flex;gap:14px}
+.site .h{position:absolute;z-index:4;left:4%;bottom:12%;color:var(--white);display:grid;gap:6px}
+.site .h b{font-family:var(--display);font-weight:900;font-size:clamp(1rem,2.6vw,1.9rem);line-height:1}
+.site .h span{font-family:var(--mono);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tung)}
+.site .scrim{position:absolute;inset:0;z-index:3;background:linear-gradient(180deg,rgba(10,18,32,.5) 0,rgba(10,18,32,0) 30%,rgba(10,18,32,.75) 100%)}
+
+.sig{background:var(--white);width:min(100%,520px);padding:22px;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;box-shadow:0 20px 40px -20px rgba(0,0,0,.35);border-top:3px solid var(--blue)}
+.sig .sym{width:44px;color:var(--blue)}
+.sig b{font-family:var(--display);font-weight:800;color:var(--night);font-size:1rem}
+.sig .r{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.sig .c{font-size:.75rem;color:var(--graph);margin-top:6px}
+
+.merch{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:24px;width:100%}
+.merch figure{margin:0;display:grid;gap:10px;justify-items:center}
+.merch svg{width:100%;max-width:280px;height:auto}
+.merch figcaption{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--haze)}
+.sticker{width:140px;height:140px;border-radius:50%;background:var(--tung);color:var(--night);display:grid;place-items:center;box-shadow:0 14px 30px -10px rgba(0,0,0,.6)}
+.sticker .sym{width:46%}
+.badge{width:200px;background:var(--white);border-radius:10px;overflow:hidden;box-shadow:0 20px 40px -14px rgba(0,0,0,.6);display:grid}
+.badge .tp{background:var(--blue);padding:16px;display:grid;place-items:center}
+.badge .tp .sym{width:36%;color:var(--white)}
+.badge .bt{padding:14px;display:grid;gap:4px}
+.badge .bt b{font-family:var(--display);font-weight:800;color:var(--night)}
+.badge .bt span{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.badge .bt .crew{margin-top:6px;background:var(--tung);color:var(--night);text-align:center;padding:4px;font-weight:500}
+
+.dont{display:grid;gap:8px}
+.dont .box{aspect-ratio:3/2;max-width:100%;background:var(--white);border:1px solid var(--line-l);display:grid;place-items:center;position:relative;overflow:hidden}
+.dont .box::after{content:"";position:absolute;inset:0;background:linear-gradient(to top right,transparent calc(50% - 1px),rgba(178,59,59,.75) 50%,transparent calc(50% + 1px))}
+.dont .box .sym{width:40%}
+.dont p{font-size:var(--s-small)}
+
+.files{display:grid;gap:0}
+.files>div{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,2fr) auto;gap:16px;padding:12px 0;border-bottom:1px solid var(--line-d);align-items:baseline}
+.files code{font-family:var(--mono);font-size:.72rem;color:var(--tung);word-break:break-all}
+@media (max-width:640px){.files>div{grid-template-columns:1fr}}
+
+.foot-credit{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid var(--line-d);padding-top:12px}
+@media (prefers-reduced-motion:no-preference){.cover-mid .sym{animation:iris 1.4s cubic-bezier(.2,.7,.1,1) both}@keyframes iris{from{clip-path:circle(0% at 50% 40%)}to{clip-path:circle(75% at 50% 40%)}}}
+
+</style>
+
+{{SYMBOLS}}
+
+<!-- ================= COVER ================= -->
+<section class="sl dark cover" id="cover">
+  <div class="letterbox t"></div><div class="letterbox b"></div>
+  <div class="in">
+    <div class="slate"><span class="label">Brand Book · Edition 2026 · v1.0</span><span class="label tc">00:00:00:00</span></div>
+    <div class="cover-mid">
+      <svg class="sym" viewBox="{{VB_symbol}}" aria-hidden="true"><use href="#gj-symbol"/></svg>
+      <div>
+        <h1>Ghaith<br>Jenhani</h1>
+        <p class="tagline">Every frame, intentional.</p>
+      </div>
+    </div>
+    <div class="foot-credit"><span class="label muted">Filmmaker · Tunis</span><span class="label muted">Strategy · Verbal identity · Visual identity · Guidelines · Applications</span></div>
+  </div>
+</section>
+
+<!-- ================= CONTENTS ================= -->
+<section class="sl dark vf" id="contents">
+  <div class="in">
+    <div class="slate"><span class="label">Contents</span><span class="label tc">00:00:01:00</span></div>
+    <div class="head"><h1>The reel, scene by scene</h1><p class="lead muted">This book takes the 2025 logo and builds the brand it was missing: a strategy, a voice, a visual system and the rules that keep it consistent. The page numbers are timecodes. The middle pair of digits is the chapter.</p></div>
+    <nav class="toc">
+      <div><p class="label acc">01 · Market &amp; competition</p><ol><li><span>Starting point</span><span>01:02</span></li><li><span>Market overview</span><span>01:03</span></li><li><span>Competitors</span><span>01:04</span></li><li><span>Positioning, gaps, opportunities</span><span>01:05</span></li></ol></div>
+      <div><p class="label acc">02 · Audience</p><ol><li><span>Primary &amp; secondary</span><span>02:01</span></li><li><span>Profile &amp; buying drivers</span><span>02:02</span></li></ol></div>
+      <div><p class="label acc">03 · Brand strategy</p><ol><li><span>Purpose, vision, mission</span><span>03:01</span></li><li><span>Values &amp; belief</span><span>03:02</span></li><li><span>Positioning &amp; value</span><span>03:03</span></li><li><span>Personality &amp; promise</span><span>03:04</span></li><li><span>Messaging pillars</span><span>03:05</span></li></ol></div>
+      <div><p class="label acc">04 · Verbal identity</p><ol><li><span>Tone &amp; principles</span><span>04:01</span></li><li><span>Messages &amp; vocabulary</span><span>04:02</span></li><li><span>Messaging in use</span><span>04:03</span></li></ol></div>
+      <div><p class="label acc">05 · Visual identity</p><ol><li><span>Creative direction</span><span>05:01</span></li><li><span>Visual territory</span><span>05:02</span></li><li><span>Logo system</span><span>05:03</span></li><li><span>Colour</span><span>05:05</span></li><li><span>Typography</span><span>05:06</span></li><li><span>Graphic language</span><span>05:07</span></li><li><span>Imagery &amp; elements</span><span>05:08</span></li></ol></div>
+      <div><p class="label acc">06 · Guidelines &amp; applications</p><ol><li><span>Logo usage</span><span>06:01</span></li><li><span>Colour, type, layout</span><span>06:03</span></li><li><span>Applications</span><span>06:05</span></li><li><span>Deliverables</span><span>06:11</span></li></ol></div>
+    </nav>
+  </div>
+</section>
+
+<!-- ================= 01 MARKET ================= -->
+<section class="sl blue chapter vf"><div class="in"><span class="num">01</span><h1>Market &amp; competition</h1><p class="lead muted">The landscape the brand has to stand out in.</p></div></section>
+
+<section class="sl light vf" id="start">
+  <div class="in">
+    <div class="slate"><span class="label">Starting point · 2025 → 2026</span><span class="label tc">00:01:02:00</span></div>
+    <div class="ba">
+      <div class="grid" style="gap:14px">
+        <h1>A strong mark with no system around it</h1>
+        <p>The 2025 logo already works. The G is made of a C and a lowercase g, and an aperture with six blades sits inside the bowl. It is distinctive, it reads well small, and it tells you the profession straight away. What it lacked was everything around it. There was no strategy, no voice, no colour logic beyond one navy, and no rules. Every touchpoint had to be designed from zero, so the result looked inconsistent.</p>
+        <div class="grid g2" style="gap:14px">
+          <div class="cell"><span class="label">Kept</span><p class="small">The symbol and wordmark geometry, redrawn from the original vectors. The Blue Hour navy (#002B5C). The stacked lockup.</p></div>
+          <div class="cell"><span class="label">Added</span><p class="small">A horizontal lockup, an avatar, a second accent colour, a type system, a graphic language taken from cinema tools, guidelines and applications.</p></div>
+        </div>
+        <div class="panel"><span class="label accl">Working assumptions to confirm</span><p class="small">This book assumes Ghaith works from Tunisia as a director and director of photography. It assumes his main work is brand films, commercials, documentaries and music videos, and that he also takes international service work. The market and audience sections are qualitative strategy based on those assumptions. Validate competitor names, prices and audience details with 5–8 client interviews before using them to make investment decisions.</p></div>
+      </div>
+      <figure style="margin:0;display:grid;gap:8px"><img src="{{OLD_IMG}}" alt="The six 2025 logo artboards: white logos on navy, black and graphite, and navy, black and graphite logos on white."><figcaption class="cap"><span>2025 source file · 14 artboards</span><span>logo on flat colour only</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sl light vf" id="market">
+  <div class="in">
+    <div class="slate"><span class="label">01 · Market overview</span><span class="label tc">00:01:03:00</span></div>
+    <div class="head"><h1>Video is now the default, and craft is becoming scarce</h1><p class="lead">Every business in Tunisia and the wider region now needs moving images. Most of it is produced quickly and for one feed, and is forgotten within a day. That leaves room for a filmmaker who makes work people remember.</p></div>
+    <div class="grid g3">
+      <div class="cell"><span class="label">Demand shift</span><h3>Social-first, vertical, always on</h3><p class="small">Brands have moved budget from occasional TV spots to a steady stream of Reels, TikTok and YouTube content. Volume went up and per-piece budgets came down, and that split the market in two. There is cheap, fast content, and there are a few hero films a year that have to carry the brand.</p></div>
+      <div class="cell"><span class="label">Supply shift</span><h3>Gear is cheap, taste is not</h3><p class="small">Mirrorless cinema cameras, gimbals and drones are now affordable for anyone, so the number of "videographers" has grown fast. Equipment no longer sets anyone apart. Direction, lighting, story, sound and grading do.</p></div>
+      <div class="cell"><span class="label">Local strength</span><h3>A country that's on screen</h3><p class="small">Tunisia has a long film culture. It runs the Journées Cinématographiques de Carthage, one of Africa's oldest film festivals, and its deserts, coast and medinas have drawn international productions for decades. Locations, crews and a tradition of cinema are real assets.</p></div>
+      <div class="cell"><span class="label">Regional pull</span><h3>MENA &amp; Europe as one market</h3><p class="small">Gulf, North African and European clients increasingly buy remote or travelling production. A Tunis-based filmmaker who works in French, Arabic and English and offers competitive rates can sell well beyond the local market.</p></div>
+      <div class="cell"><span class="label">Disruptors</span><h3>AI and in-house teams</h3><p class="small">Generative video and in-house content teams will take over generic, low-stakes footage. Work that depends on real people, real places and real emotion becomes worth more as a result.</p></div>
+      <div class="cell"><span class="label">Implication</span><h3>Compete on intention, not on price</h3><p class="small">The middle of the market is crowded and losing value. The brand should sit clearly above it, as director-led craft, while staying as quick and easy to deal with as a freelancer.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sl white vf" id="competitors">
+  <div class="in">
+    <div class="slate"><span class="label">01 · Direct &amp; indirect competitors</span><span class="label tc">00:01:04:00</span></div>
+    <div class="head"><h1>Who else the client is talking to</h1><p class="muted">Competitors are grouped by type rather than named. Fill in 2–3 real names per row from your own market when you review this.</p></div>
+    <div class="tablewrap">
+    <table>
+      <thead><tr><th>Type</th><th>Competitor archetype</th><th>Strength</th><th>Weakness</th><th>How Ghaith wins</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Direct</strong></td><td><strong>Established production houses</strong> (TV commercials, institutional films)</td><td>Crews, equipment, track record, broadcaster relationships</td><td>Expensive, slow, layered, director rarely in the room with the client</td><td>Same cinematic standard, one creative lead from the first brief to the final grade, faster turnaround</td></tr>
+        <tr><td><strong>Direct</strong></td><td><strong>Freelance videographers</strong> (Instagram-led one-person operations)</td><td>Cheap, available, quick, comfortable with social formats</td><td>Same look for every client, weak story and sound, no process, unreliable</td><td>A clear process, a story-first approach, and craft that shows in the first 3 seconds</td></tr>
+        <tr><td><strong>Direct</strong></td><td><strong>Event &amp; wedding studios</strong></td><td>High volume, packaged pricing, emotional storytelling</td><td>Template edits, trend-chasing, rarely trusted with brand work</td><td>Brand and documentary credibility, and an authored rather than templated look</td></tr>
+        <tr><td><strong>Direct</strong></td><td><strong>Agencies with in-house video</strong></td><td>Hold the client relationship and strategy</td><td>Video is one service among many and often outsourced anyway</td><td>Become the agencies' preferred director/DP partner instead of competing with them</td></tr>
+        <tr><td>Indirect</td><td><strong>In-house phone content</strong> &amp; UGC creators</td><td>Authentic, near-free, high volume</td><td>No production value, inconsistent brand</td><td>Make the hero films that their volume content refers back to</td></tr>
+        <tr><td>Indirect</td><td><strong>AI video &amp; stock footage</strong></td><td>Instant, cheap, endlessly variable</td><td>Generic, no real people or places, trust problems</td><td>Real locations, real faces, real emotion that can't be generated</td></tr>
+        <tr><td>Indirect</td><td><strong>Photographers adding video</strong></td><td>Existing client base and visual taste</td><td>Motion, sound and editing are secondary skills</td><td>Moving image is the core craft, not an add-on</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<section class="sl light vf" id="positioning-map">
+  <div class="in">
+    <div class="slate"><span class="label">01 · Positioning, gaps &amp; opportunities</span><span class="label tc">00:01:05:00</span></div>
+    <div class="grid g2" style="align-items:start">
+      <div class="grid" style="gap:16px">
+        <h1>The empty quadrant: story-led <span class="accl">and</span> easy to work with</h1>
+        <div class="map">
+        <svg viewBox="0 0 520 420" role="img" aria-label="Positioning map. Horizontal axis runs from transactional footage to story-led film. Vertical axis runs from improvised process to structured process. Production houses sit high on process and fairly high on story. Agencies sit high on process and mid on story. Wedding studios and freelancers sit low on process in the middle and left. UGC and AI sit bottom left. Ghaith Jenhani targets the top right, story-led with a structured process.">
+          <rect x="50" y="20" width="450" height="350" fill="#fff" stroke="rgba(10,18,32,.14)"/>
+          <line x1="275" y1="20" x2="275" y2="370" stroke="rgba(10,18,32,.14)" stroke-dasharray="4 4"/>
+          <line x1="50" y1="195" x2="500" y2="195" stroke="rgba(10,18,32,.14)" stroke-dasharray="4 4"/>
+          <rect x="370" y="30" width="122" height="120" fill="rgba(240,162,59,.18)" stroke="#F0A23B" stroke-dasharray="3 3"/>
+          <text x="376" y="46" style="fill:#8a5512">THE GAP</text>
+          <circle cx="330" cy="70" r="30" fill="rgba(0,43,92,.12)" stroke="#002B5C"/><text x="330" y="66" text-anchor="middle">production</text><text x="330" y="79" text-anchor="middle">houses</text>
+          <circle cx="215" cy="95" r="22" fill="rgba(0,43,92,.12)" stroke="#002B5C"/><text x="215" y="99" text-anchor="middle">agencies</text>
+          <circle cx="265" cy="265" r="20" fill="rgba(0,43,92,.12)" stroke="#002B5C"/><text x="265" y="261" text-anchor="middle">wedding</text><text x="265" y="273" text-anchor="middle">studios</text>
+          <circle cx="170" cy="290" r="18" fill="rgba(0,43,92,.12)" stroke="#002B5C"/><text x="170" y="294" text-anchor="middle">freelancers</text>
+          <circle cx="95" cy="335" r="14" fill="rgba(0,43,92,.12)" stroke="#002B5C"/><text x="95" y="320" text-anchor="middle">UGC · AI</text>
+          <circle cx="432" cy="95" r="26" fill="#002B5C"/><text class="gj" x="432" y="99" text-anchor="middle">GJ</text>
+          <text class="ax" x="50" y="392">← TRANSACTIONAL FOOTAGE</text>
+          <text class="ax" x="500" y="392" text-anchor="end">STORY-LED FILM →</text>
+          <text class="ax" transform="translate(30 370) rotate(-90)">IMPROVISED PROCESS</text>
+          <text class="ax" transform="translate(30 150) rotate(-90)">STRUCTURED →</text>
+          <text x="50" y="414" style="font-size:9.5px;fill:#5c6470">Circle size ≈ typical project budget. Qualitative map, not survey data.</text>
+        </svg>
+        </div>
+      </div>
+      <div class="grid" style="gap:18px">
+        <div class="cell"><span class="label">Strategic gaps</span>
+          <ul class="small">
+            <li><strong>Authorship at freelance speed.</strong> Production houses have craft but come with layers. Freelancers are fast but have no point of view. Nobody owns both.</li>
+            <li><strong>Process people can see.</strong> Few local filmmakers show clients a clear path from brief to treatment to shoot to delivery, so buying film feels risky.</li>
+            <li><strong>A recognisable look.</strong> Most local work follows trends and is hard to tell apart. Few filmmakers have a signature colour and light.</li>
+            <li><strong>Trilingual storytelling.</strong> Work that sounds natural in Arabic, French and English is rare, and regional brands need it.</li>
+          </ul></div>
+        <div class="cell"><span class="label">Opportunities</span>
+          <ul class="small">
+            <li><strong>Brand films for hospitality, tourism and F&amp;B.</strong> Tunisian hotels, restaurants and destinations sell atmosphere, and atmosphere is what Ghaith films.</li>
+            <li><strong>Agency partner programme.</strong> Offer agencies a fixed-rate director/DP package with their logo on the deliverables.</li>
+            <li><strong>Service productions.</strong> Offer local DP and production support to foreign crews filming in Tunisia.</li>
+            <li><strong>Hero film plus cut-down kit.</strong> One film delivered with 6–10 social cut-downs, so craft also covers the volume work.</li>
+            <li><strong>Personal work as marketing.</strong> Short documentaries for festivals and YouTube build authority that ads can't.</li>
+          </ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 AUDIENCE ================= -->
+<section class="sl blue chapter vf"><div class="in"><span class="num">02</span><h1>Audience</h1><p class="lead muted">The people who commission films, and what they need to feel safe saying yes.</p></div></section>
+
+<section class="sl light vf" id="audience">
+  <div class="in">
+    <div class="slate"><span class="label">02 · Primary &amp; secondary audience</span><span class="label tc">00:02:01:00</span></div>
+    <div class="head"><h1>Two buyers, one need: to look good to the people they answer to</h1></div>
+    <div class="grid g2">
+      <article class="persona">
+        <span class="label accl">Primary · Brand decision-makers</span>
+        <p class="who">The Marketing Lead</p>
+        <p class="small">Marketing managers, brand managers and founders at mid-size Tunisian and MENA companies, mainly hospitality, food &amp; beverage, fashion, tourism, real estate and tech start-ups. They commission 2–6 hero films a year and a steady stream of social content.</p>
+        <p class="quote">"I need something that makes us look like the brand we're trying to become, and I need it on time."</p>
+        <div class="tagrow"><span class="tag">28–45</span><span class="tag">Tunis · Sousse · Sfax · Gulf</span><span class="tag">FR / AR / EN</span><span class="tag">Instagram · LinkedIn</span></div>
+      </article>
+      <article class="persona">
+        <span class="label accl">Primary · Agency partners</span>
+        <p class="who">The Agency Creative Director</p>
+        <p class="small">Creative and account directors at communication agencies who sell the idea and then need someone they trust to shoot it. They bring repeat volume and their clients' briefs.</p>
+        <p class="quote">"I can't afford a shoot that makes me look bad in front of my client."</p>
+        <div class="tagrow"><span class="tag">30–50</span><span class="tag">Agencies</span><span class="tag">Repeat work</span><span class="tag">Referrals</span></div>
+      </article>
+    </div>
+    <div class="grid g3">
+      <div class="cell"><span class="label">Secondary</span><h3>Cultural &amp; NGO commissioners</h3><p class="small">Festivals, foundations, international NGOs and institutions who need documentary storytelling with sensitivity and credibility.</p></div>
+      <div class="cell"><span class="label">Secondary</span><h3>Artists &amp; labels</h3><p class="small">Musicians and labels commissioning music videos. Budgets are smaller but the work is very visible, so it builds the portfolio.</p></div>
+      <div class="cell"><span class="label">Secondary</span><h3>International productions</h3><p class="small">Foreign crews and producers filming in Tunisia who need a dependable local DP or second unit.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sl white vf" id="audience-profile">
+  <div class="in">
+    <div class="slate"><span class="label">02 · Profile &amp; buying drivers</span><span class="label tc">00:02:02:00</span></div>
+    <div class="grid g3">
+      <div class="cell"><span class="label">Demographics</span><ul class="small"><li>Age 26–50, university-educated, mid to senior roles</li><li>Urban: Greater Tunis, Sahel, Sfax. Diaspora and Gulf clients work remotely</li><li>Work in French and Arabic, often English with international clients</li><li>Project budgets from mid four figures to five figures (TND)</li></ul></div>
+      <div class="cell"><span class="label">Psychographics</span><ul class="small"><li>Aesthetically literate: they follow international campaigns and know good from good-enough</li><li>Ambitious for their brand and impatient with clichés</li><li>Proud of Tunisian places and culture but don't want folklore postcards</li><li>Risk-aware: one bad production costs them credibility inside the company</li></ul></div>
+      <div class="cell"><span class="label">Motivations</span><ul class="small"><li>Raise how the brand is seen, quickly</li><li>Have a hero piece to show leadership, investors and partners</li><li>Make content that performs and still looks premium</li><li>Work with someone who makes the job easier</li></ul></div>
+      <div class="cell"><span class="label">Pain points</span><ul class="small"><li>Past suppliers who missed deadlines or disappeared after the shoot</li><li>Beautiful shots with no story, or a story with amateur visuals</li><li>Endless revision rounds and unclear pricing</li><li>Being shown the same look the supplier gives everyone else</li></ul></div>
+      <div class="cell"><span class="label">Needs</span><ul class="small"><li>A clear treatment before the shoot: mood, frames, plan</li><li>A fixed scope, a fixed price and a known number of revisions</li><li>Final files in every format they need, from 16:9 to 9:16</li><li>A director who listens, then has a point of view</li></ul></div>
+      <div class="cell"><span class="label">Desired identity</span><ul class="small"><li>"The person who brought in the film everyone talks about."</li><li>To be seen as a modern, international-level brand from here</li><li>A tasteful decision-maker rather than someone who buys on price</li></ul></div>
+    </div>
+    <div class="panel"><span class="label accl">Buying considerations, in order of weight</span>
+      <div class="grid g5" style="gap:14px">
+        <div><p class="mono small"><b>1.</b> Portfolio fit</p><p class="small muted">"Has he done something like what I need?"</p></div>
+        <div><p class="mono small"><b>2.</b> Trust &amp; reliability</p><p class="small muted">References, process, professionalism of the first contact</p></div>
+        <div><p class="mono small"><b>3.</b> Creative chemistry</p><p class="small muted">Does the first call produce ideas?</p></div>
+        <div><p class="mono small"><b>4.</b> Clarity of offer</p><p class="small muted">Scope, timeline, deliverables, price</p></div>
+        <div><p class="mono small"><b>5.</b> Price vs value</p><p class="small muted">Rarely the cheapest option, but easy to justify</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 STRATEGY ================= -->
+<section class="sl blue chapter vf"><div class="in"><span class="num">03</span><h1>Brand strategy</h1><p class="lead muted">Why the brand exists, what it stands for and the promise it keeps.</p></div></section>
+
+<section class="sl dark vf" id="purpose">
+  <div class="in">
+    <div class="slate"><span class="label">03 · Purpose, vision, mission</span><span class="label tc">00:03:01:00</span></div>
+    <div class="grid" style="gap:clamp(24px,3vw,48px)">
+      <div class="grid" style="gap:10px"><span class="label acc">Purpose · why we exist</span><p class="statement">To give the stories, people and places of this region the cinema they deserve.</p></div>
+      <div class="grid g2">
+        <div class="cell"><span class="label">Vision · where we're going</span><p class="lead">A Tunisian filmmaker whose name brands across the Mediterranean and the Gulf trust with the films that matter most to them.</p></div>
+        <div class="cell"><span class="label">Mission · what we do every day</span><p class="lead">To make films with intention, from the first conversation to the final grade, that make people feel something and remember who made them feel it.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sl dark vf" id="values">
+  <div class="in">
+    <div class="slate"><span class="label">03 · Values &amp; brand belief</span><span class="label tc">00:03:02:00</span></div>
+    <div class="grid g5">
+      <div class="cell value"><span class="label">01</span><p class="k">Intention</p><p class="small muted">Every frame, cut and sound is chosen for a reason. Nothing is filler.</p></div>
+      <div class="cell value"><span class="label">02</span><p class="k">Craft</p><p class="small muted">Light, lenses, sound and grade done properly, including the parts nobody notices.</p></div>
+      <div class="cell value"><span class="label">03</span><p class="k">Honesty</p><p class="small muted">True to the subject. No fake emotion and no overpromising in the brief.</p></div>
+      <div class="cell value"><span class="label">04</span><p class="k">Rooted</p><p class="small muted">Shaped by Tunisian light, places and people, and made to international standards.</p></div>
+      <div class="cell value"><span class="label">05</span><p class="k">Reliability</p><p class="small muted">On time, on scope, easy to work with. Craft is wasted without trust.</p></div>
+    </div>
+    <div class="panel" style="gap:14px"><span class="label acc">Brand belief · worldview</span><p class="statement" style="max-width:34ch">Attention can't be bought. It's earned one honest frame at a time.</p><p class="muted">We believe people now scroll past almost everything. The work that stops them isn't the loudest. It's the most intentional, made by someone who understood the story before turning on the camera.</p></div>
+  </div>
+</section>
+
+<section class="sl light vf" id="positioning">
+  <div class="in">
+    <div class="slate"><span class="label">03 · Positioning, value proposition, differentiation</span><span class="label tc">00:03:03:00</span></div>
+    <div class="panel" style="gap:12px"><span class="label accl">Positioning statement</span>
+      <p class="statement" style="max-width:none;font-size:clamp(1.15rem,2vw,1.75rem)">For brands and agencies in Tunisia and beyond who need films that raise how they are seen, Ghaith Jenhani is the director-led filmmaker who brings cinematic intention to every frame, with the clarity and speed of working directly with the person behind the camera.</p>
+    </div>
+    <div class="grid g2">
+      <div class="cell"><span class="label">Value proposition</span><h2>Cinema-grade films, one creative lead, no surprises.</h2>
+        <ul class="small"><li><strong>Functional.</strong> Concept, shoot, edit, sound and colour delivered in every format, on a fixed scope and timeline.</li><li><strong>Emotional.</strong> The confidence of showing a film you're proud of to your leadership and your audience.</li><li><strong>Self-expressive.</strong> Being the brand, or the person, with taste.</li></ul></div>
+      <div class="cell"><span class="label">Differentiation · reasons to believe</span>
+        <ul class="small">
+          <li><strong>Director and DP in one person.</strong> The person who pitches the idea is the person who lights and frames it.</li>
+          <li><strong>The Treatment first.</strong> Every project starts with a written and visual treatment. The client sees the film before it is shot.</li>
+          <li><strong>A signature look.</strong> Blue-hour and tungsten colour grading that people recognise across the portfolio.</li>
+          <li><strong>One shoot, every screen.</strong> Hero film plus vertical and square cut-downs as standard.</li>
+          <li><strong>Trilingual.</strong> Briefs, scripts and subtitles in Arabic, French and English.</li>
+        </ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="sl dark vf" id="personality">
+  <div class="in">
+    <div class="slate"><span class="label">03 · Personality, archetype, promise</span><span class="label tc">00:03:04:00</span></div>
+    <div class="grid g2" style="align-items:start">
+      <div class="grid" style="gap:18px">
+        <span class="label acc">Archetype</span>
+        <h1>The Creator, with an Explorer's eye</h1>
+        <p class="muted">The <strong style="color:var(--white)">Creator</strong> (primary, about 70%) wants to make something lasting and meaningful. That covers craft, vision and control of the image. The <strong style="color:var(--white)">Explorer</strong> (secondary, about 30%) brings curiosity about places and people: the desert at 5 a.m., a stranger's face, the light in a medina alley. Together they make an author who goes out and finds the story rather than staging one.</p>
+        <div class="grid g2" style="gap:12px">
+          <div class="cell"><span class="label">Is</span><p class="small">Visionary · Calm · Precise · Warm · Curious · Confident</p></div>
+          <div class="cell"><span class="label">Is never</span><p class="small">Flashy · Arrogant · Trend-chasing · Vague · Salesy</p></div>
+        </div>
+      </div>
+      <div class="grid" style="gap:18px">
+        <div class="panel" style="gap:12px"><span class="label acc">Brand promise</span><p class="statement">Every frame, intentional.</p><p class="small muted">Nothing in a Ghaith Jenhani film is there by accident: no shot, cut, sound or colour. Clients can hold us to that, and should.</p></div>
+        <div class="panel"><span class="label acc">If the brand were a person</span><p class="small muted">Arrives early to watch the light. Asks more questions than he answers in the first meeting. Speaks softly on set and everyone listens. Sends the cut a day early.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sl light vf" id="pillars">
+  <div class="in">
+    <div class="slate"><span class="label">03 · Messaging pillars</span><span class="label tc">00:03:05:00</span></div>
+    <div class="head"><h1>Four pillars. Every message stands on at least one.</h1></div>
+    <div class="grid g4">
+      <div class="panel"><span class="label accl">Pillar 1</span><h2>Intention</h2><p class="small">Every choice has a reason. Talk about why a shot exists, not only how good it looks.</p><p class="small muted"><em>Proof:</em> treatments, shot lists, behind-the-scenes explanations.</p></div>
+      <div class="panel"><span class="label accl">Pillar 2</span><h2>Craft</h2><p class="small">Light, lens, sound, grade. Show the expertise the client doesn't see.</p><p class="small muted"><em>Proof:</em> before/after grades, lighting diagrams, gear and set breakdowns.</p></div>
+      <div class="panel"><span class="label accl">Pillar 3</span><h2>Stories from here</h2><p class="small">Tunisian places, light and people, filmed with pride and without clichés, for international audiences.</p><p class="small muted"><em>Proof:</em> personal documentaries, location stories, festival work.</p></div>
+      <div class="panel"><span class="label accl">Pillar 4</span><h2>A process you can trust</h2><p class="small">Brief, Treatment, Shoot, Cut, Deliver. Clear steps, clear scope, on time.</p><p class="small muted"><em>Proof:</em> client testimonials, timelines, the deliverables kit.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 VERBAL ================= -->
+<section class="sl blue chapter vf"><div class="in"><span class="num">04</span><h1>Verbal identity</h1><p class="lead muted">How the brand sounds in a pitch, a caption and a call sheet.</p></div></section>
+
+<section class="sl light vf" id="tone">
+  <div class="in">
+    <div class="slate"><span class="label">04 · Tone of voice &amp; communication principles</span><span class="label tc">00:04:01:00</span></div>
+    <div class="grid g2" style="align-items:start">
+      <div class="grid" style="gap:18px">
+        <h1>Speak like a director on set: calm, clear, sure</h1>
+        <div class="grid" style="gap:14px" role="list" aria-label="Tone sliders">
+          <div class="slider" role="listitem"><span>Formal</span><div class="bar"><i style="left:58%"></i></div><span>Casual</span></div>
+          <div class="slider" role="listitem"><span>Reserved</span><div class="bar"><i style="left:35%"></i></div><span>Loud</span></div>
+          <div class="slider" role="listitem"><span>Poetic</span><div class="bar"><i style="left:40%"></i></div><span>Technical</span></div>
+          <div class="slider" role="listitem"><span>Serious</span><div class="bar"><i style="left:38%"></i></div><span>Playful</span></div>
+          <div class="slider" role="listitem"><span>Humble</span><div class="bar"><i style="left:55%"></i></div><span>Confident</span></div>
+        </div>
+        <p class="small muted">Tone attributes: <strong>Calm</strong> (no hype, no exclamation marks), <strong>Precise</strong> (concrete nouns, real numbers), <strong>Warm</strong> (talks about people before equipment), <strong>Confident</strong> (states, doesn't hedge).</p>
+      </div>
+      <div class="grid g2" style="gap:14px">
+        <div class="cell"><span class="label">1 · Show the why</span><p class="small">Explain the intention behind a choice. "We shot it at blue hour so the city feels like it's waiting."</p></div>
+        <div class="cell"><span class="label">2 · Fewer, better words</span><p class="small">Edit copy the way you'd edit a film. If a sentence doesn't move the story, cut it.</p></div>
+        <div class="cell"><span class="label">3 · Specific beats superlative</span><p class="small">"3 shooting days, 14 locations, 1 film" persuades more than "an amazing epic production".</p></div>
+        <div class="cell"><span class="label">4 · People before gear</span><p class="small">Mention the camera only when it matters to the result. Clients buy feeling, not sensor sizes.</p></div>
+        <div class="cell"><span class="label">5 · Same voice, three languages</span><p class="small">Arabic, French and English are each written natively, never translated word for word.</p></div>
+        <div class="cell"><span class="label">6 · Quiet confidence</span><p class="small">Let the work speak. One strong claim backed by a frame beats five adjectives.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sl white vf" id="messages">
+  <div class="in">
+    <div class="slate"><span class="label">04 · Key messages &amp; brand vocabulary</span><span class="label tc">00:04:02:00</span></div>
+    <div class="grid g3">
+      <div class="cell"><span class="label">Core message</span><p class="lead" style="color:var(--night);font-family:var(--display);font-weight:700">Films made with intention, from the first idea to the final frame.</p></div>
+      <div class="cell"><span class="label">To brands</span><p class="small">"Your brand already has a story worth filming. I'll find it, frame it and deliver it on every screen your audience uses."</p></div>
+      <div class="cell"><span class="label">To agencies</span><p class="small">"Bring me the idea. I'll protect it from treatment to grade, and make you look good in front of your client."</p></div>
+      <div class="cell"><span class="label">To cultural partners</span><p class="small">"Real people, real places, told with care and the craft they deserve."</p></div>
+      <div class="cell"><span class="label">To international crews</span><p class="small">"Your eyes and hands in Tunisia: locations, light and a crew that speaks your language."</p></div>
+      <div class="cell"><span class="label">Tagline · trilingual</span>
+        <p style="font-family:var(--display);font-weight:800;color:var(--night)">Every frame, intentional.</p>
+        <p style="font-family:var(--display);font-weight:800;color:var(--night)">Chaque plan, une intention.</p>
+        <p dir="rtl" lang="ar" style="font-family:var(--ar);font-weight:600;font-size:1.15rem;color:var(--night)">كل لقطة، مقصودة.</p></div>
+    </div>
+    <div class="grid g2">
+      <div class="grid" style="gap:10px"><span class="label accl">Words we use</span>
+        <div class="chips"><span class="chip">frame</span><span class="chip">intention</span><span class="chip">light</span><span class="chip">story</span><span class="chip">craft</span><span class="chip">treatment</span><span class="chip">the cut</span><span class="chip">grade</span><span class="chip">place</span><span class="chip">people</span><span class="chip">blue hour</span><span class="chip">feeling</span><span class="chip">on time</span></div></div>
+      <div class="grid" style="gap:10px"><span class="label" style="color:#8d2f2f">Words we avoid</span>
+        <div class="chips"><span class="chip x">epic</span><span class="chip x">viral</span><span class="chip x">cinematic vibes</span><span class="chip x">best in Tunisia</span><span class="chip x">4K quality!!</span><span class="chip x">cheap</span><span class="chip x">content machine</span><span class="chip x">trendy</span><span class="chip x">guaranteed views</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sl light vf" id="messaging-direction">
+  <div class="in">
+    <div class="slate"><span class="label">04 · Messaging direction · in use</span><span class="label tc">00:04:03:00</span></div>
+    <div class="head"><h1>The same voice, everywhere it speaks</h1></div>
+    <div class="grid g2">
+      <div class="grid" style="gap:12px">
+        <div class="say"><span class="label">Bio · short</span><p class="small">Ghaith Jenhani is a filmmaker based in Tunis. He directs and shoots brand films, documentaries and music videos, and he wants every frame to have a reason to be there.</p></div>
+        <div class="say"><span class="label">Instagram caption</span><p class="small">5:47 a.m., Tozeur. Forty minutes of blue hour, one take that mattered.<br>New brand film for [client]: full piece on YouTube.</p></div>
+        <div class="say"><span class="label">Proposal opening</span><p class="small">Before we talk cameras, let's talk about what you want people to feel at 0:03, 0:30 and the last frame. The treatment below is my answer.</p></div>
+      </div>
+      <div class="grid" style="gap:12px">
+        <div class="say no"><span class="label">Not like this</span><p class="small">🔥🔥 EPIC cinematic video for the BEST hotel in Tunisia!! Shot in 4K with the latest drone 🚁 DM for prices!!!</p></div>
+        <div class="say"><span class="label">Like this</span><p class="small">A hotel is a feeling before it's a room. We filmed the hour when the terrace goes quiet. Full film in bio.</p></div>
+        <div class="say"><span class="label">Email sign-off</span><p class="small">Treatment attached. Cut one lands Thursday. Talk soon, Ghaith</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 VISUAL ================= -->
+<section class="sl blue chapter vf"><div class="in"><span class="num">05</span><h1>Visual identity</h1><p class="lead muted">One mark, two lights, and the vocabulary of the camera.</p></div></section>
+
+<section class="sl dark vf" id="direction">
+  <div class="in">
+    <div class="slate"><span class="label">05 · Creative direction</span><span class="label tc">00:05:01:00</span></div>
+    <div class="grid g2" style="align-items:center">
+      <div class="grid" style="gap:16px">
+        <span class="label acc">Concept</span>
+        <h1>Blue hour, tungsten light</h1>
+        <p class="lead muted">Every filmmaker balances two kinds of light. There is the cool <span style="color:#9fb6cf">daylight and blue hour</span> outside, at around 5600K and above, and the warm <span class="acc">tungsten practicals</span> inside, at 3200K. The identity is built on that tension. Blue Hour navy is the calm and the depth. Tungsten is the spark of a human story inside it.</p>
+        <ul class="small muted">
+          <li><strong style="color:var(--white)">Look through the camera.</strong> Graphic devices come from the viewfinder: frame lines, timecode, the slate, letterbox bars.</li>
+          <li><strong style="color:var(--white)">Restraint.</strong> Lots of dark space, a single point of warm light. Like a well-lit frame, most of it is shadow.</li>
+          <li><strong style="color:var(--white)">Authorship.</strong> The aperture in the mark is the brand's eye. Everything is seen through it.</li>
+        </ul>
+      </div>
+      <figure style="margin:0">
+        <div class="still lb s-dunes"><svg viewBox="0 0 239 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 66 C40 58 70 60 100 64 C130 68 170 56 239 60 L239 100 L0 100Z" fill="#1d1513"/><path d="M0 78 C50 70 90 76 140 72 C180 69 210 74 239 70 L239 100 L0 100Z" fill="#0c0908"/><circle cx="170" cy="60" r="1.2" fill="#F0A23B"/></svg><span class="tcburn" style="right:3%;bottom:14%">A001_C014 · 05:47:12:08</span></div>
+        <figcaption class="cap"><span>Key frame · blue hour exterior, one tungsten practical</span><span>2.39:1</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sl dark vf" id="moodboard">
+  <div class="in">
+    <div class="slate"><span class="label">05 · Moodboard · visual territory</span><span class="label tc">00:05:02:00</span></div>
+    <div class="head"><h1>The territory</h1><p class="muted">These are art-directed colour frames that show the light and palette of the brand world. Replace them with Ghaith's own stills that match each description.</p></div>
+    <div class="grid g3">
+      <figure style="margin:0"><div class="still r169 s-tung"><svg viewBox="0 0 160 90" preserveAspectRatio="none" aria-hidden="true"><rect x="0" y="62" width="160" height="28" fill="#0a0604"/><path d="M28 62 L36 30 L44 62Z" fill="#120a05"/></svg></div><figcaption class="cap"><span>Tungsten interior · café, practicals only</span><span>3200K</span></figcaption></figure>
+      <figure style="margin:0"><div class="still r169 s-sea"><svg viewBox="0 0 160 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 44 L30 44 L34 38 L60 38 L62 44 L160 44 L160 46 L0 46Z" fill="#e9edf2"/><rect x="92" y="40" width="4" height="4" fill="#1b4f8a"/></svg></div><figcaption class="cap"><span>Mediterranean · Sidi Bou Said horizon</span><span>5600K</span></figcaption></figure>
+      <figure style="margin:0"><div class="still r169 s-night"><svg viewBox="0 0 160 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 90 L0 50 L20 50 L20 40 L40 40 L40 55 L70 55 L70 35 L90 35 L90 52 L120 52 L120 44 L160 44 L160 90Z" fill="#03060c"/></svg></div><figcaption class="cap"><span>Night exterior · sodium streetlight</span><span>T1.5</span></figcaption></figure>
+      <figure style="margin:0"><div class="still r169 s-portrait"><svg viewBox="0 0 160 90" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="80" cy="40" rx="14" ry="18" fill="#05080e"/><path d="M48 90 C52 66 66 60 80 60 C94 60 108 66 112 90Z" fill="#05080e"/><path d="M93 30 C96 38 95 48 90 54" stroke="#6f93c4" stroke-width="1" fill="none" opacity=".7"/></svg></div><figcaption class="cap"><span>Portrait · cool rim, faces in shadow</span><span>85mm</span></figcaption></figure>
+      <figure style="margin:0"><div class="still r169 s-olive"><svg viewBox="0 0 160 90" preserveAspectRatio="none" aria-hidden="true"><g fill="#1a100a"><circle cx="30" cy="54" r="10"/><circle cx="62" cy="56" r="8"/><circle cx="104" cy="53" r="11"/><circle cx="140" cy="56" r="7"/></g><circle cx="120" cy="34" r="6" fill="#ffe0a8" opacity=".85"/></svg></div><figcaption class="cap"><span>Golden hour · olive grove, Sahel</span><span>backlit</span></figcaption></figure>
+      <figure style="margin:0"><div class="still r169 s-medina"></div><figcaption class="cap"><span>Medina · whitewash and blue doors, flat light</span><span>graphic</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sl white vf" id="logo-system">
+  <div class="in">
+    <div class="slate"><span class="label">05 · Logo system</span><span class="label tc">00:05:03:00</span></div>
+    <div class="head"><h1>One mark, five lockups</h1><p class="muted">Use the primary stacked logo wherever there is room. Use the horizontal lockup for headers and narrow bands, the symbol where the brand is already known, and the avatar for profiles and app icons.</p></div>
+    <div class="grid g3">
+      <figure style="margin:0;display:grid;gap:8px"><div class="ltile on-white" style="min-height:300px"><svg class="sym" style="max-width:260px" viewBox="{{VB_primary-stacked}}" role="img" aria-label="Primary stacked logo"><use href="#gj-primary-stacked"/></svg></div><figcaption class="cap"><span>A · Primary stacked</span><span>default</span></figcaption></figure>
+      <figure style="margin:0;display:grid;gap:8px"><div class="ltile on-blue" style="min-height:300px"><svg class="sym" style="max-width:320px" viewBox="{{VB_horizontal}}" role="img" aria-label="Horizontal logo"><use href="#gj-horizontal"/></svg></div><figcaption class="cap"><span>B · Horizontal</span><span>headers, bands, web nav</span></figcaption></figure>
+      <figure style="margin:0;display:grid;gap:8px"><div class="ltile on-night" style="min-height:300px"><svg class="sym" style="max-width:130px" viewBox="{{VB_symbol}}" role="img" aria-label="Symbol"><use href="#gj-symbol"/></svg></div><figcaption class="cap"><span>C · Symbol / mark</span><span>bugs, stamps, favicon</span></figcaption></figure>
+      <figure style="margin:0;display:grid;gap:8px"><div class="ltile on-silver" style="min-height:200px"><svg class="sym" style="max-width:340px" viewBox="{{VB_wordmark}}" role="img" aria-label="Wordmark"><use href="#gj-wordmark"/></svg></div><figcaption class="cap"><span>D · Wordmark</span><span>credits, end cards</span></figcaption></figure>
+      <figure style="margin:0;display:grid;gap:8px"><div class="ltile on-silver" style="min-height:200px"><div style="display:flex;gap:18px;align-items:center"><div class="ig-av" style="width:84px;height:84px"><svg class="sym" viewBox="{{VB_symbol}}" aria-hidden="true"><use href="#gj-symbol"/></svg></div><div class="ig-av" style="width:56px;height:56px;border-radius:12px;background:var(--night)"><svg class="sym" viewBox="{{VB_symbol}}" aria-hidden="true"><use href="#gj-symbol"/></svg></div><div class="ig-av" style="width:32px;height:32px;border-radius:6px;background:var(--tung)"><svg class="sym" style="color:var(--night)" viewBox="{{VB_symbol}}" aria-hidden="true"><use href="#gj-symbol"/></svg></div></div></div><figcaption class="cap"><span>E · Avatar &amp; app icon</span><span>profiles, favicon</span></figcaption></figure>
+      <figure style="margin:0;display:grid;gap:8px"><div class="ltile on-tung" style="min-height:200px"><svg class="sym" style="max-width:110px" viewBox="{{VB_symbol}}" role="img" aria-label="Symbol in Night on Tungsten"><use href="#gj-symbol"/></svg></div><figcaption class="cap"><span>Accent use · Night on Tungsten</span><span>stickers, merch only</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sl light vf" id="logo-anatomy">
+  <div class="in">
+    <div class="slate"><span class="label">05 · Logo anatomy</span><span class="label tc">00:05:04:00</span></div>
+    <div class="grid g2" style="align-items:center">
+      <div class="ltile on-white" style="min-height:420px;position:relative">
+        <svg viewBox="-40 -30 {{ANAT_W}} {{ANAT_H}}" style="width:100%;max-width:420px;height:auto" role="img" aria-label="Annotated symbol showing the C, the aperture and the g descender">
+          <g fill="#002B5C"><use href="#gj-symbol"/></g>
+          {{ANATOMY}}
+        </svg>
+      </div>
+      <div class="grid" style="gap:16px">
+        <h1>Two letters, one lens</h1>
+        <div class="cell"><span class="label">① The C · initial of Ghaith</span><p class="small">A heavy outer arc that opens to the right, like a frame that hasn't closed yet.</p></div>
+        <div class="cell"><span class="label">② The aperture · the eye</span><p class="small">Six blade segments inside the bowl. This is the iris of a lens and the brand's point of view. Don't redraw or animate it independently except in the approved iris reveal.</p></div>
+        <div class="cell"><span class="label">③ The g · initial of Jenhani</span><p class="small">The crossbar and descender turn the C into a lowercase g, so the two names become one gesture.</p></div>
+        <div class="cell"><span class="label">Wordmark</span><p class="small">"Ghaith Jenhani" is set in Montserrat ExtraBold and outlined. The descriptor "Filmmaker" is set in Open Sans Regular and outlined. Both are vector masters: never retype them.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sl white vf" id="colour">
+  <div class="in">
+    <div class="slate"><span class="label">05 · Colour palette</span><span class="label tc">00:05:05:00</span></div>
+    <div class="head"><h1>Two lights, four grounds</h1><p class="muted">Print values are starting points. Check every Pantone reference against a physical swatch book and proof CMYK on the final paper stock.</p></div>
+    <div class="grid g3">
+      <div class="sw"><div class="chipc" style="background:#002B5C;color:#fff">Blue Hour</div><dl><dt>Role</dt><dd>Primary · logo, grounds</dd><dt>HEX</dt><dd>#002B5C</dd><dt>RGB</dt><dd>0 43 92</dd><dt>CMYK</dt><dd>100 80 25 45</dd><dt>Pantone</dt><dd>≈ 295 C</dd></dl></div>
+      <div class="sw"><div class="chipc" style="background:#F0A23B;color:#0A1220">Tungsten</div><dl><dt>Role</dt><dd>Accent · one spark per layout</dd><dt>HEX</dt><dd>#F0A23B</dd><dt>RGB</dt><dd>240 162 59</dd><dt>CMYK</dt><dd>0 40 85 0</dd><dt>Pantone</dt><dd>≈ 1375 C</dd></dl></div>
+      <div class="sw"><div class="chipc" style="background:#0A1220;color:#fff">Night</div><dl><dt>Role</dt><dd>Deep base · cinema dark</dd><dt>HEX</dt><dd>#0A1220</dd><dt>RGB</dt><dd>10 18 32</dd><dt>CMYK</dt><dd>80 65 45 85</dd><dt>Pantone</dt><dd>≈ Black 6 C</dd></dl></div>
+      <div class="sw"><div class="chipc" style="background:#E9EDF2;color:#0A1220">Silver Screen</div><dl><dt>Role</dt><dd>Light ground</dd><dt>HEX</dt><dd>#E9EDF2</dd><dt>RGB</dt><dd>233 237 242</dd><dt>CMYK</dt><dd>6 3 2 0</dd><dt>Pantone</dt><dd>≈ 656 C</dd></dl></div>
+      <div class="sw"><div class="chipc" style="background:#3A3F47;color:#fff">Graphite</div><dl><dt>Role</dt><dd>Body text on light</dd><dt>HEX</dt><dd>#3A3F47</dd><dt>RGB</dt><dd>58 63 71</dd><dt>CMYK</dt><dd>65 55 45 40</dd><dt>Pantone</dt><dd>≈ Cool Gray 11 C</dd></dl></div>
+      <div class="sw"><div class="chipc" style="background:#8F9BAD;color:#0A1220">Haze</div><dl><dt>Role</dt><dd>Secondary text on dark</dd><dt>HEX</dt><dd>#8F9BAD</dd><dt>RGB</dt><dd>143 155 173</dd><dt>CMYK</dt><dd>40 28 18 0</dd><dt>Pantone</dt><dd>≈ 7544 C</dd></dl></div>
+    </div>
+  </div>
+</section>
+
+<section class="sl light vf" id="type">
+  <div class="in">
+    <div class="slate"><span class="label">05 · Typography</span><span class="label tc">00:05:06:00</span></div>
+    <div class="grid g2">
+      <div class="spec"><span class="label accl">Display · Montserrat ExtraBold / Black</span><p class="big" style="font-family:var(--display);font-weight:900">Aa Gg</p><p class="az" style="font-family:var(--display);font-weight:800">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789</p><p class="small muted">This is the wordmark's own face, so headlines and the logo share the same letterforms. Use it for headlines, titles and on-screen title cards. Free on Google Fonts.</p></div>
+      <div class="spec"><span class="label accl">Text · Instrument Sans</span><p class="big" style="font-family:var(--text);font-weight:500">Aa Gg</p><p class="az" style="font-family:var(--text)">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789</p><p class="small muted">A contemporary, slightly condensed grotesque for body copy, proposals and websites. It replaces the 2025 Open Sans for running text, while Open Sans stays in the logo descriptor. Free on Google Fonts.</p></div>
+      <div class="spec"><span class="label accl">Utility · JetBrains Mono</span><p class="big" style="font-family:var(--mono)">01:24</p><p class="az" style="font-family:var(--mono);font-size:1rem">SCENE 04 · TAKE 03 · ROLL A001<br>TC 05:47:12:08 · 2.39:1 · T2.8</p><p class="small muted">The camera's own voice, used for timecodes, labels, captions, slate data and technical specs. Always uppercase with tracking, or numerals only.</p></div>
+      <div class="spec"><span class="label accl">Arabic · IBM Plex Sans Arabic</span><p class="big" dir="rtl" lang="ar" style="font-family:var(--ar);font-weight:600;line-height:1.5">غيث جنحاني</p><p class="az" dir="rtl" lang="ar" style="font-family:var(--ar);line-height:1.9">كل لقطة، مقصودة. أفلام تُصنع بنيّة، من الفكرة الأولى إلى اللقطة الأخيرة.</p><p class="small muted">Arabic companion for subtitles, captions and bilingual documents. Match the weight to the Latin it sits next to.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sl dark vf" id="graphic-language">
+  <div class="in">
+    <div class="slate"><span class="label">05 · Graphic language</span><span class="label tc">00:05:07:00</span></div>
+    <div class="head"><h1>Seen through the viewfinder</h1><p class="muted">Five devices, all taken from the tools of cinema. Use one or two per layout, never all five.</p></div>
+    <div class="grid g3">
+      <figure style="margin:0;display:grid;gap:8px"><div class="gl"><svg viewBox="0 0 320 200" aria-hidden="true"><g stroke="#E9EDF2" stroke-width="2" fill="none" opacity=".9"><path d="M40 60 V40 H60"/><path d="M260 40 H280 V60"/><path d="M280 140 V160 H260"/><path d="M60 160 H40 V140"/></g><g stroke="#8F9BAD" stroke-width="1" opacity=".6"><line x1="154" y1="100" x2="166" y2="100"/><line x1="160" y1="94" x2="160" y2="106"/></g><text x="160" y="185" text-anchor="middle" fill="#8F9BAD" style="font:10px 'JetBrains Mono',monospace;letter-spacing:2px">FRAME LINES</text></svg></div><figcaption class="cap"><span>01 · Frame corners</span><span>crop &amp; focus attention</span></figcaption></figure>
+      <figure style="margin:0;display:grid;gap:8px"><div class="gl"><svg viewBox="0 0 320 200" aria-hidden="true"><rect x="0" y="0" width="320" height="33" fill="#000"/><rect x="0" y="167" width="320" height="33" fill="#000"/><rect x="0" y="33" width="320" height="134" fill="#002B5C"/><text x="160" y="104" text-anchor="middle" fill="#fff" style="font:800 18px Montserrat,sans-serif">2.39 : 1</text></svg></div><figcaption class="cap"><span>02 · Letterbox</span><span>the anamorphic band</span></figcaption></figure>
+      <figure style="margin:0;display:grid;gap:8px"><div class="gl"><svg viewBox="0 0 320 200" aria-hidden="true"><text x="160" y="96" text-anchor="middle" fill="#F0A23B" style="font:500 26px 'JetBrains Mono',monospace">05:47:12:08</text><text x="160" y="122" text-anchor="middle" fill="#8F9BAD" style="font:10px 'JetBrains Mono',monospace;letter-spacing:2px">HH : MM : SS : FF</text></svg></div><figcaption class="cap"><span>03 · Timecode</span><span>numbering, dates, captions</span></figcaption></figure>
+      <figure style="margin:0;display:grid;gap:8px"><div class="gl" style="background:var(--blue)"><svg viewBox="0 0 320 200" aria-hidden="true"><g transform="translate(160 100)" fill="none" stroke="#E9EDF2" stroke-width="10" stroke-dasharray="40 8" opacity=".9"><circle r="60" transform="rotate(-20)"/></g><g transform="translate(160 100)" fill="none" stroke="#F0A23B" stroke-width="2"><circle r="30"/></g></svg></div><figcaption class="cap"><span>04 · Aperture ring</span><span>from the mark's six blades</span></figcaption></figure>
+      <figure style="margin:0;display:grid;gap:8px"><div class="gl" style="background:#0b0d10"><svg viewBox="0 0 320 200" aria-hidden="true"><g style="font:9px 'JetBrains Mono',monospace;letter-spacing:1.5px" fill="#8F9BAD"><rect x="40" y="50" width="240" height="100" fill="none" stroke="#3A3F47"/><line x1="120" y1="50" x2="120" y2="150" stroke="#3A3F47"/><line x1="200" y1="50" x2="200" y2="150" stroke="#3A3F47"/><line x1="40" y1="100" x2="280" y2="100" stroke="#3A3F47"/><text x="48" y="64">ROLL</text><text x="128" y="64">SCENE</text><text x="208" y="64">TAKE</text><text x="48" y="114">DIR.</text><text x="128" y="114">DP</text><text x="208" y="114">DATE</text></g><g style="font:500 18px 'JetBrains Mono',monospace" fill="#fff"><text x="48" y="90">A001</text><text x="128" y="90">04</text><text x="208" y="90">03</text></g></svg></div><figcaption class="cap"><span>05 · Slate grid</span><span>data, specs, credits</span></figcaption></figure>
+      <figure style="margin:0;display:grid;gap:8px"><div class="gl" style="background:var(--silver)"><svg viewBox="0 0 320 200" aria-hidden="true"><rect x="0" y="0" width="320" height="200" fill="#E9EDF2"/><rect x="0" y="0" width="160" height="200" fill="#002B5C"/><circle cx="160" cy="100" r="7" fill="#F0A23B"/><text x="40" y="180" fill="#E9EDF2" style="font:10px 'JetBrains Mono',monospace;letter-spacing:2px">90%</text><text x="270" y="180" fill="#0A1220" style="font:10px 'JetBrains Mono',monospace;letter-spacing:2px">10%</text></svg></div><figcaption class="cap"><span>Rule · one spark</span><span>Tungsten only once per layout</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sl light vf" id="imagery">
+  <div class="in">
+    <div class="slate"><span class="label">05 · Imagery direction &amp; basic elements</span><span class="label tc">00:05:08:00</span></div>
+    <div class="grid g2" style="align-items:start">
+      <div class="grid" style="gap:14px">
+        <h1>Shadow first, then one source of light</h1>
+        <div class="grid g2" style="gap:14px">
+          <div class="cell"><span class="label">Light</span><p class="small">Motivated, directional, often a single source. Blue hour and practicals. Avoid flat midday light unless it's a deliberate graphic choice.</p></div>
+          <div class="cell"><span class="label">Grade</span><p class="small">Cool shadows toward Blue Hour, warm highlights toward Tungsten. Skin stays natural. Blacks are rich but never crushed.</p></div>
+          <div class="cell"><span class="label">Composition</span><p class="small">Generous negative space and off-centre subjects, so headlines have room. Wide establishing frames alternate with tight details.</p></div>
+          <div class="cell"><span class="label">Subjects</span><p class="small">Real people at work, hands, faces in profile and Tunisian places beyond the postcard. Never staged stock smiles.</p></div>
+        </div>
+        <div class="grid g2" style="gap:12px">
+          <div class="say"><span class="label">Do</span><p class="small">Grain, flares from real sources, silhouettes, rack focus, 2.39:1 crops for hero stills.</p></div>
+          <div class="say no"><span class="label">Don't</span><p class="small">Heavy teal-orange presets, drone-for-everything, HDR halos, stock footage, emoji overlays.</p></div>
+        </div>
+      </div>
+      <div class="grid" style="gap:14px">
+        <figure style="margin:0"><div class="still lb s-portrait"><svg viewBox="0 0 239 100" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="150" cy="46" rx="13" ry="18" fill="#05080e"/><path d="M120 100 C124 74 136 66 150 66 C164 66 176 74 180 100Z" fill="#05080e"/></svg>
+          <div class="lt"><div class="barv"></div><div><b>Amira Ben Salah</b><span>Ceramicist · Nabeul</span></div></div>
+          <span class="tcburn" style="right:3%;top:14%">●REC</span></div>
+          <figcaption class="cap"><span>Basic element · lower third (example name)</span><span>Montserrat 800 + Mono</span></figcaption></figure>
+        <figure style="margin:0"><div class="still lb s-dunes"><svg viewBox="0 0 239 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 66 C40 58 70 60 100 64 C130 68 170 56 239 60 L239 100 L0 100Z" fill="#1d1513"/></svg>
+          <div class="title-card"><span>A film by Ghaith Jenhani</span><b>Sable</b></div></div>
+          <figcaption class="cap"><span>Basic element · title card</span><span>tracked caps, centred in letterbox</span></figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 GUIDELINES ================= -->
+<section class="sl blue chapter vf"><div class="in"><span class="num">06</span><h1>Guidelines &amp; applications</h1><p class="lead muted">The rules, and the brand at work.</p></div></section>
+
+<section class="sl white vf" id="logo-usage">
+  <div class="in">
+    <div class="slate"><span class="label">06 · Logo usage · clear space &amp; minimum size</span><span class="label tc">00:06:01:00</span></div>
+    <div class="grid g2" style="align-items:center">
+      <div class="ltile on-silver" style="min-height:380px">
+        <svg viewBox="{{CS_VB}}" style="width:100%;max-width:440px;height:auto" role="img" aria-label="Clear space diagram: a margin of X on every side, where X equals the height of the g crossbar">
+          {{CLEARSPACE}}
+        </svg>
+      </div>
+      <div class="grid" style="gap:16px">
+        <h1>Give the mark room to breathe</h1>
+        <div class="cell"><span class="label">Clear space</span><p class="small"><strong>X</strong> is the height of the g's crossbar. Keep at least 1X clear on every side of any lockup. Nothing goes inside that space: no type, no edge, no frame line.</p></div>
+        <div class="cell"><span class="label">Minimum sizes</span>
+          <div class="tablewrap"><table style="min-width:0"><thead><tr><th>Lockup</th><th>Print</th><th>Screen</th></tr></thead><tbody>
+            <tr><td>Primary stacked</td><td class="mono">30 mm wide</td><td class="mono">140 px</td></tr>
+            <tr><td>Horizontal</td><td class="mono">40 mm wide</td><td class="mono">160 px</td></tr>
+            <tr><td>Wordmark</td><td class="mono">30 mm wide</td><td class="mono">120 px</td></tr>
+            <tr><td>Symbol</td><td class="mono">8 mm high</td><td class="mono">24 px · 16 px favicon</td></tr>
+          </tbody></table></div></div>
+        <div class="cell"><span class="label">Video bug</span><p class="small">Symbol only, white at 80% opacity, bottom right, at 6% of frame height, inside the title-safe area.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sl light vf" id="logo-misuse">
+  <div class="in">
+    <div class="slate"><span class="label">06 · Logo on backgrounds &amp; misuse</span><span class="label tc">00:06:02:00</span></div>
+    <div class="grid g4">
+      <figure style="margin:0;display:grid;gap:8px"><div class="ltile on-white" style="min-height:150px"><svg class="sym" style="max-width:190px" viewBox="{{VB_horizontal}}" aria-hidden="true"><use href="#gj-horizontal"/></svg></div><figcaption class="cap"><span>✓ Blue Hour on white</span></figcaption></figure>
+      <figure style="margin:0;display:grid;gap:8px"><div class="ltile on-blue" style="min-height:150px"><svg class="sym" style="max-width:190px" viewBox="{{VB_horizontal}}" aria-hidden="true"><use href="#gj-horizontal"/></svg></div><figcaption class="cap"><span>✓ White on Blue Hour</span></figcaption></figure>
+      <figure style="margin:0;display:grid;gap:8px"><div class="ltile on-night" style="min-height:150px"><svg class="sym" style="max-width:190px" viewBox="{{VB_horizontal}}" aria-hidden="true"><use href="#gj-horizontal"/></svg></div><figcaption class="cap"><span>✓ White on Night</span></figcaption></figure>
+      <figure style="margin:0;display:grid;gap:8px"><div class="ltile on-photo" style="min-height:150px"><svg class="sym" style="max-width:190px" viewBox="{{VB_horizontal}}" aria-hidden="true"><use href="#gj-horizontal"/></svg></div><figcaption class="cap"><span>✓ White on dark footage</span><span>with scrim</span></figcaption></figure>
+    </div>
+    <span class="label" style="color:#8d2f2f">Never</span>
+    <div class="grid g5">
+      <div class="dont"><div class="box"><svg class="sym" style="color:var(--blue);transform:scaleX(1.5)" viewBox="{{VB_symbol}}" aria-hidden="true"><use href="#gj-symbol"/></svg></div><p>Stretch or squash</p></div>
+      <div class="dont"><div class="box"><svg class="sym" style="color:var(--blue);transform:rotate(-20deg)" viewBox="{{VB_symbol}}" aria-hidden="true"><use href="#gj-symbol"/></svg></div><p>Rotate</p></div>
+      <div class="dont"><div class="box"><svg class="sym" style="color:#d4462f" viewBox="{{VB_symbol}}" aria-hidden="true"><use href="#gj-symbol"/></svg></div><p>Recolour outside the palette</p></div>
+      <div class="dont"><div class="box"><svg class="sym" style="color:var(--blue);filter:drop-shadow(6px 6px 4px rgba(0,0,0,.6))" viewBox="{{VB_symbol}}" aria-hidden="true"><use href="#gj-symbol"/></svg></div><p>Add shadows, glows or bevels</p></div>
+      <div class="dont"><div class="box" style="background:var(--tung)"><svg class="sym" style="color:var(--white)" viewBox="{{VB_symbol}}" aria-hidden="true"><use href="#gj-symbol"/></svg></div><p>White on Tungsten (low contrast)</p></div>
+    </div>
+    <p class="small muted">Also never: retype the wordmark, rearrange the lockups, outline the mark, place it on busy footage without a scrim, or use Tungsten for the full logo on light backgrounds.</p>
+  </div>
+</section>
+
+<section class="sl white vf" id="colour-type-rules">
+  <div class="in">
+    <div class="slate"><span class="label">06 · Colour &amp; typography rules</span><span class="label tc">00:06:03:00</span></div>
+    <div class="grid g2" style="align-items:start">
+      <div class="grid" style="gap:16px">
+        <h2>Colour proportion</h2>
+        <div class="ratio" role="img" aria-label="Colour proportion: Night and Blue Hour 60 percent, Silver Screen and white 25 percent, Graphite and Haze 10 percent, Tungsten 5 percent">
+          <div style="flex:35;background:#0A1220;color:#E9EDF2">Night 35</div>
+          <div style="flex:25;background:#002B5C;color:#E9EDF2">Blue Hour 25</div>
+          <div style="flex:25;background:#E9EDF2;color:#0A1220">Silver 25</div>
+          <div style="flex:10;background:#3A3F47;color:#E9EDF2">10</div>
+          <div style="flex:5;background:#F0A23B;color:#0A1220">5</div>
+        </div>
+        <h2>Accessible pairings <span class="small muted" style="font-family:var(--text);font-weight:400">(WCAG contrast)</span></h2>
+        <div class="tablewrap"><table style="min-width:0">
+          <thead><tr><th>Text on ground</th><th>Ratio</th><th>Use</th></tr></thead>
+          <tbody>
+            <tr><td>White on Blue Hour</td><td class="mono">14.0 : 1</td><td>✓ Any size</td></tr>
+            <tr><td>Silver Screen on Night</td><td class="mono">15.9 : 1</td><td>✓ Any size</td></tr>
+            <tr><td>Graphite on Silver Screen</td><td class="mono">9.0 : 1</td><td>✓ Body text</td></tr>
+            <tr><td>Tungsten on Night</td><td class="mono">8.9 : 1</td><td>✓ Labels, accents</td></tr>
+            <tr><td>Tungsten on Blue Hour</td><td class="mono">6.6 : 1</td><td>✓ Labels, accents</td></tr>
+            <tr><td>Haze on Night</td><td class="mono">6.7 : 1</td><td>✓ Secondary text</td></tr>
+            <tr><td>Tungsten on white</td><td class="mono">2.1 : 1</td><td>✗ Never for text</td></tr>
+          </tbody></table></div>
+      </div>
+      <div class="grid" style="gap:16px">
+        <h2>Type hierarchy</h2>
+        <div class="hier">
+          <div><span class="label">Display</span><span style="font-family:var(--display);font-weight:900;font-size:2.2rem;line-height:1;color:var(--night)">Sable</span></div>
+          <div><span class="label">H1 · 800</span><span style="font-family:var(--display);font-weight:800;font-size:1.6rem;line-height:1.1;color:var(--night)">Films made with intention</span></div>
+          <div><span class="label">H2 · 700</span><span style="font-family:var(--display);font-weight:700;font-size:1.2rem;color:var(--night)">The treatment</span></div>
+          <div><span class="label">Body · 400</span><span>Before we talk cameras, let's talk about what you want people to feel at 0:03.</span></div>
+          <div><span class="label">Label · Mono</span><span class="label" style="color:var(--blue)">Scene 04 · Take 03 · 2.39:1</span></div>
+        </div>
+        <ul class="small muted"><li>Headlines: sentence case, tight leading (1.0–1.15), slight negative tracking.</li><li>Labels: mono, uppercase, +12–14% tracking, never longer than one line.</li><li>Body: 1.5 line height, 55–70 characters per line, left-aligned. Never justified.</li><li>Maximum two weights per layout plus mono.</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sl light vf" id="layout">
+  <div class="in">
+    <div class="slate"><span class="label">06 · Layout principles, imagery &amp; graphic elements</span><span class="label tc">00:06:04:00</span></div>
+    <div class="grid g2" style="align-items:start">
+      <div class="gl" style="aspect-ratio:16/9;background:var(--white);border:1px solid var(--line-l)">
+        <svg viewBox="0 0 480 270" role="img" aria-label="Layout grid: 12 columns, margins of one column-twelfth, a letterbox image band and a headline sitting on the lower third line">
+          <g fill="rgba(0,43,92,.06)">{{COLS}}</g>
+          <rect x="0" y="40" width="480" height="120" fill="#0A1220"/>
+          <rect x="0" y="40" width="480" height="120" fill="url(#lg)" opacity=".9"/>
+          <defs><radialGradient id="lg" cx=".7" cy=".45" r=".6"><stop offset="0" stop-color="#F0A23B"/><stop offset=".35" stop-color="#5a3510"/><stop offset="1" stop-color="#0A1220"/></radialGradient></defs>
+          <line x1="0" y1="180" x2="480" y2="180" stroke="#F0A23B" stroke-dasharray="3 3"/>
+          <text x="40" y="206" style="font:800 20px Montserrat,sans-serif" fill="#0A1220">Headline on the third</text>
+          <text x="40" y="226" style="font:9px 'JetBrains Mono',monospace;letter-spacing:1.5px" fill="#002B5C">LABEL · MONO · 00:06:04</text>
+          <text x="440" y="252" text-anchor="end" style="font:9px 'JetBrains Mono',monospace" fill="#5c6470">12 col · margin = 1/12</text>
+        </svg>
+      </div>
+      <div class="grid g2" style="gap:14px">
+        <div class="cell"><span class="label">Grid</span><p class="small">12 columns. Outer margin is 1/12 of the format width. Gutters are 1/48. Content aligns to the left column edge, never centred by default.</p></div>
+        <div class="cell"><span class="label">Rule of thirds</span><p class="small">Headlines sit on the lower-third line, as they would in a camera frame. Images carry the top two thirds.</p></div>
+        <div class="cell"><span class="label">Letterbox band</span><p class="small">Hero images are cropped to 2.39:1 inside any format. The band can bleed off the edges and type never overlaps it.</p></div>
+        <div class="cell"><span class="label">Negative space</span><p class="small">At least 40% of any layout stays empty. Dark grounds outnumber light grounds.</p></div>
+        <div class="cell"><span class="label">Imagery rules</span><p class="small">Text on footage needs a Night scrim at 0–85%. Never place copy over faces. One hero image per layout.</p></div>
+        <div class="cell"><span class="label">Graphic elements</span><p class="small">Frame corners at 1.5pt, in Silver Screen at 20–40% on dark. Timecode replaces page numbers. The aperture ring is decoration only.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sl dark vf" id="app-stationery">
+  <div class="in">
+    <div class="slate"><span class="label">06 · Applications · business cards &amp; letterhead</span><span class="label tc">00:06:05:00</span></div>
+    <div class="stage" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));align-items:center">
+      <div style="display:grid;gap:26px;justify-items:center">
+        <div class="bc front tilt1"><svg class="sym" viewBox="{{VB_symbol}}" aria-hidden="true"><use href="#gj-symbol"/></svg><span class="bracket" style="top:8%;left:6%;border-right:0;border-bottom:0"></span><span class="bracket" style="bottom:8%;right:6%;border-left:0;border-top:0"></span></div>
+        <div class="bc back tilt2"><div class="stripe"></div><div><p class="nm">Ghaith Jenhani</p><p class="rl">Director · Director of Photography</p></div><div class="ct">+216 00 000 000<br>hello@yourdomain.tn<br>yourdomain.tn · @handle</div></div>
+      </div>
+      <div class="a4">
+        <svg class="sym" viewBox="{{VB_horizontal}}" aria-hidden="true"><use href="#gj-horizontal"/></svg>
+        <div class="meta"><span>Treatment · v2</span><span>TC 2026.10.19</span></div>
+        <h4>"Sable", brand film for [Client]</h4>
+        <div class="lines"><i></i><i style="width:92%"></i><i style="width:96%"></i><i style="width:60%"></i></div>
+        <div class="still lb s-dunes" style="aspect-ratio:2.39/1"><svg viewBox="0 0 239 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 66 C40 58 70 60 100 64 C130 68 170 56 239 60 L239 100 L0 100Z" fill="#1d1513"/></svg></div>
+        <div class="lines"><i></i><i style="width:88%"></i><i style="width:94%"></i><i></i><i style="width:40%"></i></div>
+        <div class="foot"><span>Ghaith Jenhani · Filmmaker</span><span>Tunis · 01 / 08</span></div>
+      </div>
+    </div>
+    <p class="cap"><span>Business card 85 × 55 mm, Blue Hour front / Silver Screen back · A4 letterhead and treatment cover</span><span>contact details are placeholders</span></p>
+  </div>
+</section>
+
+<section class="sl light vf" id="app-social">
+  <div class="in">
+    <div class="slate"><span class="label">06 · Applications · Instagram</span><span class="label tc">00:06:06:00</span></div>
+    <div class="stage lightstage" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));align-items:center">
+      <div class="phone"><div class="scr">
+        <div class="ig-top"><div class="ig-av"><svg class="sym" viewBox="{{VB_symbol}}" aria-hidden="true"><use href="#gj-symbol"/></svg></div><div><p class="ig-name">ghaith.jenhani</p><p style="font-size:.58rem;color:#666">Filmmaker</p></div></div>
+        <p class="ig-bio">Director &amp; DP · Tunis<br>Every frame, intentional.<br><span style="color:#002B5C">↳ latest film: Sable</span></p>
+        <div class="ig-grid">
+          <div class="still s-tung" style="aspect-ratio:4/5"></div>
+          <div class="ig-q">Every frame, intentional.</div>
+          <div class="still s-sea" style="aspect-ratio:4/5"></div>
+          <div class="ig-q n"><span style="font-family:var(--mono);font-weight:500;color:var(--tung);font-size:.5rem">05:47:12:08</span></div>
+          <div class="still s-dunes" style="aspect-ratio:4/5"></div>
+          <div class="still s-portrait" style="aspect-ratio:4/5"></div>
+          <div class="still s-olive" style="aspect-ratio:4/5"></div>
+          <div class="ig-q t">Behind the frame · Ep. 04</div>
+          <div class="still s-night" style="aspect-ratio:4/5"></div>
+        </div>
+      </div></div>
+      <div class="post">
+        <div class="still s-night" style="position:absolute;inset:0;aspect-ratio:auto"><svg viewBox="0 0 80 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 100 L0 60 L12 60 L12 48 L26 48 L26 64 L44 64 L44 40 L58 40 L58 58 L80 58 L80 100Z" fill="#03060c"/></svg></div>
+        <div class="scrim"></div>
+        <svg class="bug sym" viewBox="{{VB_symbol}}" aria-hidden="true"><use href="#gj-symbol"/></svg>
+        <div class="txt"><span class="label" style="color:var(--tung)">Behind the frame · 04</span><b>Why we waited four nights for one streetlight.</b><span class="label" style="color:var(--haze)">Swipe →</span></div>
+      </div>
+    </div>
+    <p class="cap"><span>Profile grid rhythm: two stills, one typographic tile. Carousel cover 4:5 with Night scrim.</span><span>1080 × 1350</span></p>
+  </div>
+</section>
+
+<section class="sl dark vf" id="app-video">
+  <div class="in">
+    <div class="slate"><span class="label">06 · Applications · YouTube, title card, lower third</span><span class="label tc">00:06:07:00</span></div>
+    <div class="stage" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));align-items:center">
+      <div class="yt">
+        <div class="still r169 s-dunes" style="position:absolute;inset:0;aspect-ratio:auto"><svg viewBox="0 0 160 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 58 C30 50 60 54 90 56 C120 58 140 50 160 52 L160 90 L0 90Z" fill="#1d1513"/></svg></div>
+        <div class="scrim"></div>
+        <div class="t"><span class="k">Behind the frame</span><b>Shooting the Sahara at blue hour</b></div>
+        <svg class="bug sym" viewBox="{{VB_symbol}}" aria-hidden="true"><use href="#gj-symbol"/></svg>
+        <span class="dur">14:08</span>
+      </div>
+      <div class="yt" style="background:#000">
+        <div class="still s-tung lb" style="position:absolute;inset:0;aspect-ratio:auto"><svg viewBox="0 0 160 90" preserveAspectRatio="none" aria-hidden="true"><rect x="0" y="64" width="160" height="26" fill="#0a0604"/></svg>
+          <div class="lt"><div class="barv"></div><div><b>Ghaith Jenhani</b><span>Director · DP</span></div></div>
+          <span class="tcburn" style="right:3%;top:14%">01:02:14:22</span>
+        </div>
+        <svg class="bug sym" viewBox="{{VB_symbol}}" aria-hidden="true" style="opacity:.8;bottom:14%"><use href="#gj-symbol"/></svg>
+      </div>
+      <div class="yt" style="background:var(--night)">
+        <div style="position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:14px">
+          <svg class="sym" style="width:42%;color:var(--white)" viewBox="{{VB_wordmark}}" aria-hidden="true"><use href="#gj-wordmark"/></svg>
+          <span class="label" style="color:var(--tung)">Every frame, intentional.</span>
+        </div>
+      </div>
+      <div class="yt">
+        <div class="still s-dunes lb" style="position:absolute;inset:0;aspect-ratio:auto"><div class="title-card"><span>Ghaith Jenhani presents</span><b>Sable</b></div></div>
+      </div>
+    </div>
+    <p class="cap"><span>Thumbnail 1280 × 720 · interview frame with lower third and bug · end card · opening title</span><span>16:9 · 2.39:1</span></p>
+  </div>
+</section>
+
+<section class="sl light vf" id="app-set">
+  <div class="in">
+    <div class="slate"><span class="label">06 · Applications · on set</span><span class="label tc">00:06:08:00</span></div>
+    <div class="stage" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));align-items:center">
+      <div class="slateboard">
+        <div class="stick"></div><div class="stick2"></div>
+        <div class="bd">
+          <div class="prod"><svg class="sym" viewBox="{{VB_symbol}}" aria-hidden="true"><use href="#gj-symbol"/></svg><div><small>PROD.</small><br><strong style="font-family:var(--display);font-weight:800">SABLE</strong></div></div>
+          <div class="row"><div><small>ROLL</small><strong>A001</strong></div><div><small>SCENE</small><strong>04</strong></div><div><small>TAKE</small><strong>03</strong></div></div>
+          <div class="row"><div><small>DIRECTOR</small><strong style="font-size:.8rem">G. JENHANI</strong></div><div><small>CAMERA</small><strong style="font-size:.8rem">A</strong></div><div><small>DATE</small><strong style="font-size:.8rem">19.10.26</strong></div></div>
+        </div>
+      </div>
+      <div style="display:grid;gap:28px;justify-items:center">
+        <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center;align-items:center">
+          <div class="sticker"><svg class="sym" viewBox="{{VB_symbol}}" aria-hidden="true"><use href="#gj-symbol"/></svg></div>
+          <div class="badge"><div class="tp"><svg class="sym" viewBox="{{VB_symbol}}" aria-hidden="true"><use href="#gj-symbol"/></svg></div><div class="bt"><b>SABLE</b><span>Tozeur · 3 days</span><span class="crew">Crew · All access</span></div></div>
+        </div>
+        <div style="background:#1a1d22;padding:14px 18px;display:flex;gap:14px;align-items:center;box-shadow:0 20px 40px -14px rgba(0,0,0,.6);border:1px solid #2c3038">
+          <svg class="sym" style="width:34px;color:var(--white)" viewBox="{{VB_symbol}}" aria-hidden="true"><use href="#gj-symbol"/></svg>
+          <span class="mono" style="color:var(--haze);font-size:.68rem;letter-spacing:.12em">CASE 03 / 08 · LENSES · FRAGILE</span>
+        </div>
+      </div>
+    </div>
+    <p class="cap"><span>Clapperboard in brand stripes · gear sticker in Tungsten · crew pass · flight-case label</span><span>production tools</span></p>
+  </div>
+</section>
+
+<section class="sl white vf" id="app-digital">
+  <div class="in">
+    <div class="slate"><span class="label">06 · Applications · website &amp; email</span><span class="label tc">00:06:09:00</span></div>
+    <div class="stage" style="grid-template-columns:1fr;justify-items:center">
+      <div class="laptop">
+        <div class="scr"><div class="site">
+          <div class="still s-dunes" style="position:absolute;inset:0;aspect-ratio:auto"><svg viewBox="0 0 160 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 64 C30 56 60 60 90 62 C120 64 140 56 160 58 L160 100 L0 100Z" fill="#1d1513"/><path d="M0 80 C50 72 90 78 160 72 L160 100 L0 100Z" fill="#0c0908"/></svg></div>
+          <div class="scrim"></div>
+          <nav><svg class="sym" viewBox="{{VB_horizontal}}" aria-hidden="true"><use href="#gj-horizontal"/></svg><span><span>Films</span><span>About</span><span>Process</span><span style="color:var(--tung)">Contact</span></span></nav>
+          <div class="h"><span>Now showing · Sable · 2026</span><b>Every frame,<br>intentional.</b></div>
+        </div></div>
+        <div class="base"></div>
+      </div>
+      <div class="sig"><svg class="sym" viewBox="{{VB_symbol}}" aria-hidden="true"><use href="#gj-symbol"/></svg><div><b>Ghaith Jenhani</b><p class="r">Filmmaker · Director &amp; DP</p><p class="c">+216 00 000 000 · yourdomain.tn<br><span style="color:#5c6470">Every frame, intentional.</span></p></div></div>
+    </div>
+    <p class="cap"><span>Portfolio home with a full-bleed hero film · email signature</span><span>placeholders for domain &amp; phone</span></p>
+  </div>
+</section>
+
+<section class="sl dark vf" id="app-merch">
+  <div class="in">
+    <div class="slate"><span class="label">06 · Applications · crew merch</span><span class="label tc">00:06:10:00</span></div>
+    <div class="stage">
+      <div class="merch">
+        <figure><svg viewBox="0 0 200 200" aria-hidden="true"><path d="M60 20 L80 14 C86 24 114 24 120 14 L140 20 L182 44 L166 78 L148 70 L148 186 L52 186 L52 70 L34 78 L18 44Z" fill="#0A1220" stroke="#2a3240"/><use href="#gj-symbol" x="108" y="52" width="22" height="28" fill="#E9EDF2"/></svg><figcaption>Crew tee · Night</figcaption></figure>
+        <figure><svg viewBox="0 0 200 200" aria-hidden="true"><path d="M60 20 L80 14 C86 24 114 24 120 14 L140 20 L182 44 L166 78 L148 70 L148 186 L52 186 L52 70 L34 78 L18 44Z" fill="#E9EDF2" stroke="#8F9BAD"/><use href="#gj-symbol" x="76" y="70" width="48" height="62" fill="#002B5C"/><text x="100" y="152" text-anchor="middle" style="font:500 4.4px 'JetBrains Mono',monospace;letter-spacing:1px" fill="#002B5C">EVERY FRAME, INTENTIONAL.</text></svg><figcaption>Back print · Silver Screen</figcaption></figure>
+        <figure><svg viewBox="0 0 200 200" aria-hidden="true"><path d="M40 120 C40 70 70 48 100 48 C130 48 160 70 160 120Z" fill="#002B5C"/><path d="M30 120 L170 120 C176 120 190 128 190 136 L120 136 Z" fill="#00224a"/><rect x="36" y="116" width="128" height="8" fill="#001d40"/><use href="#gj-symbol" x="88" y="72" width="24" height="31" fill="#F0A23B"/></svg><figcaption>Cap · Blue Hour, Tungsten mark</figcaption></figure>
+        <figure><svg viewBox="0 0 200 200" aria-hidden="true"><path d="M70 40 C70 20 130 20 130 40" fill="none" stroke="#c9ced6" stroke-width="5"/><rect x="44" y="40" width="112" height="140" fill="#E9EDF2"/><use href="#gj-symbol" x="74" y="66" width="52" height="68" fill="#0A1220"/><text x="100" y="160" text-anchor="middle" style="font:800 8px Montserrat,sans-serif" fill="#0A1220">GHAITH JENHANI</text></svg><figcaption>Tote · hard drive carrier</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sl dark vf" id="deliverables">
+  <div class="in">
+    <div class="slate"><span class="label">06 · Deliverables · file index</span><span class="label tc">00:06:11:00</span></div>
+    <div class="head"><h1>What's in the package</h1><p class="muted">Everything lives in the <code class="mono acc">brand/</code> folder of the repository.</p></div>
+    <div class="files">
+      <div><strong>Brand strategy document</strong><span class="small muted">Market, audience, strategy and verbal identity as editable text</span><code>strategy/brand-strategy.md</code></div>
+      <div><strong>Brand book (this document)</strong><span class="small muted">Visual identity system, guidelines and applications. Interactive web version and print PDF</span><code>brandbook/index.html · Ghaith-Jenhani-Brandbook.pdf</code></div>
+      <div><strong>Logo masters · SVG</strong><span class="small muted">5 lockups (stacked, horizontal, symbol, wordmark, name) × 4 colours, plus 3 avatars</span><code>logos/svg/gj-*.svg</code></div>
+      <div><strong>Logo exports · PNG</strong><span class="small muted">Transparent, 2400 px wide (avatars 1080 px)</span><code>logos/png/gj-*.png</code></div>
+      <div><strong>Mockups · PNG</strong><span class="small muted">Each application spread exported at 2×</span><code>mockups/*.png</code></div>
+      <div><strong>Colour &amp; type tokens</strong><span class="small muted">CSS variables, JSON tokens and an Adobe swatch file (.ase)</span><code>source/tokens/</code></div>
+      <div><strong>Original source</strong><span class="small muted">The 2025 Illustrator file, unchanged</span><code>source/original/ghaith-jenhani-logo-2025.ai</code></div>
+    </div>
+    <div class="foot-credit" style="margin-top:auto"><span class="label muted">Ghaith Jenhani · Brand Book v1.0 · 2026</span><span class="label acc">Every frame, intentional.</span></div>
+  </div>
+</section>

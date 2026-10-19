@@ -1,0 +1,14 @@
+:root {
+  --gj-blue-hour: #002B5C; /* primary */
+  --gj-tungsten: #F0A23B; /* accent */
+  --gj-night: #0A1220; /* base */
+  --gj-silver-screen: #E9EDF2; /* light ground */
+  --gj-graphite: #3A3F47; /* text on light */
+  --gj-haze: #8F9BAD; /* secondary text on dark */
+  --gj-font-display: "Montserrat", "Arial Black", sans-serif;
+  --gj-font-text: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --gj-font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --gj-font-arabic: "IBM Plex Sans Arabic", Tahoma, sans-serif;
+}
+/* Google Fonts:
+   https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;600&display=swap */
