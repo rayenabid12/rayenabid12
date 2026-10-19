@@ -1,4 +1,4 @@
-// Renders the brand book: standalone HTML, mockup PNGs and a PDF of every plate.
+// Renders the brand book: standalone HTML, mockup PNGs and one 2x PNG per plate (see README for the PDF step).
 // Usage: node render.js [--preview out.png]
 const fs = require('fs');
 const path = require('path');
