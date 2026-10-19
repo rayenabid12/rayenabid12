@@ -585,6 +585,40 @@ panels.push(panel('10g-layout', 1000, `
   </div>
   <svg width="0" height="0" style="position:absolute"><clipPath id="lens" clipPathUnits="objectBoundingBox"><ellipse cx=".25" cy=".5" rx=".25" ry=".5"/><ellipse cx=".75" cy=".5" rx=".25" ry=".5"/><rect x=".45" y=".44" width=".1" height=".12"/></clipPath></svg>`));
 
+// ===== Behance project covers (808 x 632, exported at 4x) ==============================
+const COVERS = path.join(__dirname, 'covers');
+const cover = (name, body) => ({ name, w: 808, h: 632, scale: 4, out: COVERS, quality: 93, body: `<div style="position:relative;width:808px;height:632px;overflow:hidden">${body}</div>` });
+const lensClip = `<svg width="0" height="0" style="position:absolute"><clipPath id="lensC" clipPathUnits="objectBoundingBox"><ellipse cx=".25" cy=".5" rx=".25" ry=".5"/><ellipse cx=".75" cy=".5" rx=".25" ry=".5"/><rect x=".45" y=".44" width=".1" height=".12"/></clipPath></svg>`;
+
+panels.push(cover('cover-a-orange', `
+  <div style="position:absolute;inset:0;background:${C.orange}"></div>
+  <div style="position:absolute;left:330px;top:70px">${face(C.cream, 760, 'curious')}</div>
+  ${grain}
+  <div style="position:absolute;left:44px;top:44px;display:flex;align-items:flex-start">${wordmark(C.ink, 62)}${reg(C.ink, 14)}</div>
+  <div class="f" style="position:absolute;left:44px;bottom:84px;width:300px;font-size:34px;font-weight:600;line-height:1.02;color:${C.ink}">Learn. Laugh.<br>Look closer.</div>
+  <div style="position:absolute;left:44px;bottom:44px">${micro('Brand identity · 2026', C.ink)}</div>`));
+
+panels.push(cover('cover-b-lens', `
+  ${lensClip}
+  <div style="position:absolute;inset:0;background:#1C1511"></div>
+  <div style="position:absolute;left:84px;top:170px;width:640px;height:300px;clip-path:url(#lensC);overflow:hidden">
+    <img src="${ph('girl-glasses')}" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%;filter:saturate(1.1) contrast(1.05) sepia(.08)"></div>
+  <div style="position:absolute;left:0;right:0;top:56px;display:flex;justify-content:center"><div style="display:flex;align-items:flex-start">${wordmark(C.cream, 70)}${reg(C.cream, 14)}</div></div>
+  <div style="position:absolute;left:44px;right:44px;bottom:44px;display:flex;justify-content:space-between;align-items:flex-end">
+    ${micro('Brand identity', C.cream)}${symbol(C.orange, 44)}${micro('Look closer · 2026', C.cream)}</div>
+  ${grain}`));
+
+panels.push(cover('cover-c-grid', `
+  <div style="position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr">
+    <div style="position:relative;background:${C.orange};display:flex;align-items:center;justify-content:center">${face(C.cream, 230, 'curious')}</div>
+    <div style="position:relative;overflow:hidden">${photo('desk', '52% 22%')}</div>
+    <div style="position:relative;overflow:hidden">${photo('science', '32% 50%')}</div>
+    <div style="position:relative;background:${C.ink};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
+      <div style="display:flex;align-items:flex-start">${wordmark(C.cream, 64)}${reg(C.cream, 13)}</div>${micro('Brand identity · 2026', C.orange)}</div>
+  </div>
+  <div style="position:absolute;left:404px;top:316px;transform:translate(-50%,-50%);width:150px;height:150px;border-radius:75px;background:${C.coral};display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 8px ${C.cream}">${face(C.cream, 100, 'happy')}</div>
+  ${grain}`));
+
 // ---- Render -------------------------------------------------------------------------------
 async function main() {
   const only = process.argv.slice(2);
@@ -596,11 +630,11 @@ async function main() {
 <style>*{box-sizing:border-box;margin:0;padding:0}html,body{width:${s.w}px;height:${s.h}px;overflow:hidden}body{font-family:Nunito,sans-serif;color:${C.ink};-webkit-font-smoothing:antialiased}.f{font-family:Fredoka,sans-serif}.ar{font-family:Cairo,sans-serif}</style></head><body>${s.body}</body></html>`;
     const src = path.join(SRC, `${s.name}.html`);
     fs.writeFileSync(src, html);
-    const p = await browser.newPage({ viewport: { width: s.w, height: s.h }, deviceScaleFactor: 2 });
+    const p = await browser.newPage({ viewport: { width: s.w, height: s.h }, deviceScaleFactor: s.scale || 2 });
     await p.goto('file://' + src);
     await p.evaluate(() => document.fonts.ready);
     await p.waitForTimeout(400);
-    await p.screenshot({ path: path.join(OUT, `${s.name}.jpg`), type: 'jpeg', quality: 88 });
+    await p.screenshot({ path: path.join(s.out || OUT, `${s.name}.jpg`), type: 'jpeg', quality: s.quality || 88 });
     await p.close();
     console.log('rendered', s.name);
   }
