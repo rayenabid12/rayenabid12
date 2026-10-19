@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <title>Family character sheets</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=block">
+<!-- Permanent Marker (Apache 2.0), bundled so headless renders never wait on the network -->
 <style>
+  @font-face { font-family: "Permanent Marker"; src: url(assets/PermanentMarker-Regular.ttf) format("truetype"); font-display: block; }
   html, body { margin: 0; background: #1b1820; color: #eee; font: 13px system-ui, sans-serif; }
   main { padding: 12px; display: grid; gap: 8px; }
   #out { width: min(100%, 1280px); aspect-ratio: 16 / 9; height: auto; background: #F3EBDC; }
@@ -31,6 +32,7 @@
 <script src="src/sheets.js"></script>
 <!-- your video: add a script per scene file, in order -->
 <script src="src/scenes/family_sheets.js"></script>
+<script src="src/scenes/family_anim.js"></script>
 <script>
   // Open studio.html?loop=emotions (or views) to scrub a standalone loop instead of the video.
   const q = new URLSearchParams(location.search).get('loop'); if (q && LOOPS[q]) window.LOOP = LOOPS[q];

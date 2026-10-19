@@ -13,7 +13,7 @@ const LOOPS = {};
 
 function drawWorld(t) {
   if (window.LOOP) window.LOOP(t);
-  else if (!SHOTS.length) placeholder(t);
+  else if (!SHOTS.length) { if (!location.search.includes('render')) placeholder(t); }   // headless renders skip it: its first watercolour fills cost ~10 s without a GPU
   else {
     let i = 0; while (i + 1 < SHOTS.length && t >= SHOTS[i + 1][0]) i++;
     const t0 = SHOTS[i][0], end = i + 1 < SHOTS.length ? SHOTS[i + 1][0] : DUR;

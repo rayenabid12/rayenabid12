@@ -35,7 +35,7 @@ function playwrightChromes() {
 }
 const CHROME = CHROMES.find(p => p && existsSync(p));
 if (!CHROME) { console.error('Chrome not found: pass --chrome=<path> or set CHROME_PATH'); process.exit(1); }
-const fps = +(args.fps || 24), FRAMES_DIR = 'out/frames';
+const fps = +(args.fps || 24); let FRAMES_DIR = args.framesdir || 'out/frames';
 const run = (cmd, a) => new Promise((ok, bad) => { const p = spawn(cmd, a, { stdio: 'inherit' }); p.on('close', c => c ? bad(new Error(cmd + ' exited ' + c)) : ok()); });
 const times = s => String(s).split(',').map(Number);
 const span = s => String(s).split(':').map(Number);
@@ -57,7 +57,8 @@ if (args.encode) {
 // no WebGL context there. Check which GPU Chrome actually lands on with gpu_probe.mjs.
 const ANGLE = { vulkan: ['--use-angle=vulkan', '--enable-features=Vulkan'], 'gl-egl': ['--use-angle=gl-egl'] };
 if (args['gpu-angle'] && !ANGLE[args['gpu-angle']]) { console.error(`--gpu-angle must be one of ${Object.keys(ANGLE)}`); process.exit(1); }
-const gpu = args['soft-gl'] ? ['--use-angle=swiftshader', '--enable-unsafe-swiftshader']
+// (2D canvas work stays on the CPU: compositing and JPEG-encoding each frame through SwiftShader costs ~0.6 s more.)
+const gpu = args['soft-gl'] ? ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--disable-accelerated-2d-canvas']
   : args['gpu-angle'] ? ANGLE[args['gpu-angle']]
   : process.platform === 'win32' ? ['--use-angle=d3d11'] : process.platform === 'darwin' ? ['--use-angle=metal'] : ['--use-gl=angle'];
 // Ubuntu 23.10+ blocks Chrome's user-namespace sandbox; headless rendering of local files doesn't need it.
@@ -117,6 +118,7 @@ if (args.sheet || args.strip) {
   // Parallel and resumable: each worker pulls the next missing frame; files are written atomically.
   const probe = await openPage(), len = await lengthOf(probe); await probe.close();
   const [a, b] = args.range ? span(args.range) : [0, len], workers = +(args.workers || 4);
+  if (args.framesdir) FRAMES_DIR = args.framesdir;
   mkdirSync(FRAMES_DIR, { recursive: true });
   const first = Math.round(a * fps), last = Math.min(Math.ceil(len * fps) - 1, Math.round(b * fps) - 1);
   const todo = []; for (let i = first; i <= last; i++) { const f = `${FRAMES_DIR}/f${String(i).padStart(5, '0')}.jpg`; if (!existsSync(f) || statSync(f).size < 1000) todo.push(i); }

@@ -96,6 +96,7 @@ function person(x, y, u, who, o = {}) {
   const TL = C.torso, hipY = -(C.leg + .2), tw = V.tw;
   const head = [V.hx, -(TL + C.neck + C.ry * .9)];
   const bust = !!o.bust, dy = o.dy || 0;
+  x += (o.dx || 0) * U;
 
   rs('shadow');
   if (!bust && !o.noShadow) {
@@ -104,7 +105,7 @@ function person(x, y, u, who, o = {}) {
   }
 
   push();
-  translate(x, y + (bust ? (TL - 1.3 - hipY) * U : dy * U)); scale(o.flip ? -1 : 1, 1);
+  translate(x, y + (bust ? (TL - 1.3 - hipY) * U : dy * U)); scale((o.flip ? -1 : 1) * (1 + (o.sq || 0) * .45), 1 - (o.sq || 0));
   if (o.chair && !bust) { rs('chair'); chair(C, hipY, -dy, U, sw); }
 
   // legs (base frame: hip centre at (0, hipY))
@@ -121,14 +122,7 @@ function person(x, y, u, who, o = {}) {
   }
 
   // upper body, first pass: back arms, hair behind, neck, torso
-  const armSpec = o.arms || DEF_ARMS[vn];
-  const shoulder = i => [V.arms[i][0] * C.S * tw * .86, -TL + .38];
-  const arms = V.arms.map(([, layer], i) => {
-    let s = armSpec[i] || DEF_ARMS[vn][i], ae;
-    if (Array.isArray(s)) { ae = [s[0], s[1]]; s = { hand: s[2], prop: s[3] }; }
-    else ae = reach(shoulder(i), target(C, vn, head, s.to, i), C.ua, C.fa, s.bend ?? 1);
-    return { i, layer, sh: shoulder(i), a: ae[0], e: ae[1], hand: s.hand, prop: s.prop };
-  });
+  const arms = resolveArms(who, vn, o.arms);
   const upper = () => { translate(0, hipY * U); if (o.lean) rotate(o.lean); };
   const atHead = fn => { push(); translate(head[0] * U, head[1] * U); if (o.tilt) rotate(o.tilt); fn(); pop(); };
   push(); upper();
@@ -158,6 +152,20 @@ function person(x, y, u, who, o = {}) {
   rs('after');
 }
 
+// Arm specs → angles: [{ i, layer, sh, a, e, hand, prop }]. Animations use it to blend between poses.
+function resolveArms(who, vn, armSpec) {
+  const C = CAST[who], V = PV[vn], TL = C.torso, head = [V.hx, -(TL + C.neck + C.ry * .9)];
+  armSpec = armSpec || DEF_ARMS[vn];
+  const shoulder = i => [V.arms[i][0] * C.S * V.tw * .86, -TL + .38];
+  return V.arms.map(([, layer], i) => {
+    let s = armSpec[i] || DEF_ARMS[vn][i], ae;
+    if (Array.isArray(s)) { ae = [s[0], s[1]]; s = { hand: s[2], prop: s[3] }; }
+    else if (s.a != null) ae = [s.a, s.e];
+    else ae = reach(shoulder(i), target(C, vn, head, s.to, i), C.ua, C.fa, s.bend ?? 1);
+    return { i, layer, sh: shoulder(i), a: ae[0], e: ae[1], hand: s.hand, prop: s.prop };
+  });
+}
+
 // Named reach targets, in the upper-body frame (hip centre = origin), in u.
 function target(C, vn, head, to, i) {
   if (Array.isArray(to)) return to;
@@ -165,6 +173,10 @@ function target(C, vn, head, to, i) {
   switch (to) {
     case 'mouth': return h(fx(0) + (vn === 'side' ? .3 : .05), C.my + .28);
     case 'chin': return h(fx(0) + (vn === 'side' ? .25 : 0), C.ry + .2);
+    case 'eye0': return h(fx(-C.ex), C.ey + .35);
+    case 'eye1': return h(fx(C.ex), C.ey + .35);
+    case 'belly0': return [-.25 * C.Wd, -C.torso * .4];
+    case 'belly1': return [.25 * C.Wd, -C.torso * .36];
     case 'cheek0': return h(fx(-.62) - .1, .45);
     case 'cheek1': return h(fx(.62) + .1, .45);
     case 'hip0': return [-C.Hp * PV[vn].tw * 1.02, -.3];
@@ -419,7 +431,9 @@ function eye(kind, s, C, f, U, sw, vn) {
     inkLine(I([[1.05, yi], [-1.05, yo]]), sw * 1.05, PAL.ink, 'ink', 0);
   };
   const arc = (pts, w = 1.25, c = .5) => inkLine(R(pts), sw * w, PAL.ink, 'ink', c);
+  if (f.blink > .5 && ['open', 'look', 'wide', 'shine', 'scared', 'sad', 'angry', 'determined', 'narrow', 'sleepy', 'teary'].includes(kind)) kind = 'shut';
   switch (kind) {
+    case 'shut': arc([[-1, .02], [-.4, .3], [.4, .3], [1, .02]], 1.15); lash(); break;
     case 'open': case 'look': white(); iris(); top(); lash(); break;
     case 'wide': white(1.18); iris(.82); top(1.18); lash(); break;
     case 'shine': white(1.08); iris(1.05); paint(ellPts(lx + r * .25, ly + r * .25, r * .1, r * .1, 8), { wash: '#FFFFFF', ink: null }); top(1.08); lash(); break;
