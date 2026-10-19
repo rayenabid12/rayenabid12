@@ -122,7 +122,7 @@ function person(x, y, u, who, o = {}) {
 
   // upper body, first pass: back arms, hair behind, neck, torso
   const armSpec = o.arms || DEF_ARMS[vn];
-  const shoulder = i => [V.arms[i][0] * C.S * tw * .92, -TL + .32];
+  const shoulder = i => [V.arms[i][0] * C.S * tw * .86, -TL + .38];
   const arms = V.arms.map(([, layer], i) => {
     let s = armSpec[i] || DEF_ARMS[vn][i], ae;
     if (Array.isArray(s)) { ae = [s[0], s[1]]; s = { hand: s[2], prop: s[3] }; }
@@ -294,8 +294,8 @@ function hand(kind, C, U, sw, skin) {
     paint(ribbon([[0, h * .9], [0, h * 2.6]], h * .52, h * .42), { wash: skin, ink: PAL.ink, sw: sw * .5 });
     paint(ellPts(0, h * .75, h, h * 1.0, 16), { wash: skin, ink: PAL.ink, sw: sw * .6 });
   } else {
-    paint(ellPts(0, h * .8, h * .9, h * 1.15, 16), { wash: skin, ink: PAL.ink, sw: sw * .6 });
-    paint(ribbon([[h * .55, h * .35], [h * .95, h * .75], [h * .8, h * 1.15]], h * .42, h * .3), { wash: skin, ink: PAL.ink, sw: sw * .45 });
+    paint(ellPts(0, h * .8, h * .92, h * 1.12, 16), { wash: skin, ink: PAL.ink, sw: sw * .6 });
+    inkLine([[-h * .45, h * 1.25], [0, h * 1.38], [h * .45, h * 1.25]], sw * .35, C.skinDk, 'inkfine', .5);
   }
 }
 
@@ -358,7 +358,7 @@ function headDraw(C, vn, f, U, sw, rs) {
   });
   const hp = P(headPts(C, vn));
   paint(hp, { wash: f.skinNow, ink: null });
-  paint(P(ellPts(V.face ? V.face.fc - .2 : 0, .55, .62, .3, 16, 0, .1)), { fill: C.skinDk, fillOp: 60, bleed: .2, tex: .5, border: .4, ink: null });
+  if (vn === 'front' || vn === 'q') paint(P(ellPts(V.face.fc * .5, .62, .48, .22, 16, 0, .1)), { fill: C.skinDk, fillOp: 55, bleed: .15, tex: .5, border: .4, ink: null });
   paint(hp, { ink: PAL.ink, sw: sw * .95 });
   rs('face'); if (V.face) face(C, vn, f, U, sw);
   rs('hair'); hairFront(C, vn, U, sw);
@@ -522,7 +522,7 @@ function hairline(C, vn) {
   if (vn === 'q') {
     const mx = X => F.fc + X * F.fw * (X > 0 ? F.far : 1), pts = HL.slice(1).map(([x, y]) => [mx(x * rx), y]);
     pts[pts.length - 1] = onR(pts[pts.length - 1][1]);
-    return (cov ? [[-.56, .9], [-.48, .45], [-.44, 0], [-.36, -.3]].concat(pts.slice(1)) : [[-.66, .78], [-.5, .45], [-.4, .14]].concat(pts));
+    return (cov ? [[-.56, .9], [-.48, .45], [-.44, 0], [-.36, -.3]] : [[-.66, .78], [-.5, .45], [-.42, .12], [-.36, -.24]]).concat(pts.slice(1));
   }
   if (vn === 'side') {
     const pts = HL.filter(([x]) => x <= 0).map(([x, y]) => [.8 + x * rx * .78, y]);
@@ -584,7 +584,7 @@ function hairFront(C, vn, U, sw) {
   if (C.style === 'bun') { const [bx, by, br] = BUN[vn]; paint(ribbon(P([[bx - br * .6, by + br * .75], [bx, by + br * .9], [bx + br * .6, by + br * .75]]), .13 * U, .13 * U), { wash: PAL.rose, ink: PAL.ink, sw: sw * .45 }); }
   if (C.curl) { const [cx, cy, d] = CURL[vn]; paint(ribbon(P([[cx, cy + .1], [cx + .02 * d, cy - .14], [cx + .18 * d, cy - .26], [cx + .3 * d, cy - .16], [cx + .22 * d, cy - .06]]), .14 * U, .05 * U), { wash: C.hair, ink: PAL.ink, sw: sw * .5 }); }
 }
-const BUN = { front: [-.38, -1.1, .42], q: [-.4, -1.08, .42], side: [-.5, -1.0, .42], qback: [-.18, -1.12, .42], back: [.38, -1.1, .42] };
+const BUN = { front: [-.3, -1.36, .4], q: [-.26, -1.34, .4], side: [-.42, -1.26, .4], qback: [-.12, -1.36, .4], back: [.3, -1.36, .4] };
 const CURL = { front: [.12, -1.08, 1], q: [.36, -1.04, 1], side: [.5, -.98, 1], qback: [-.05, -1.1, -1], back: [-.12, -1.1, -1] };
 // Grandpa: bald on top, with grey tufts round the sides and the back.
 const BALD = {

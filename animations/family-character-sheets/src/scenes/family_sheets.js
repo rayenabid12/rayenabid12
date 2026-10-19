@@ -11,8 +11,8 @@
   const floor = (y, x0 = 40, x1 = W - 40) => { boilSeed('floor' + y + x0); inkLine([[x0, y + 6], [(x0 + x1) / 2, y + 4], [x1, y + 7]], .6, mixCol(PAL.paper, PAL.ink, .35), 'inkfine', .5); };
   const guide = (y, x0, x1) => { boilSeed('guide' + y); inkLine([[x0, y], [x1, y]], .35, mixCol(PAL.paper, PAL.ink, .22), 'inkfine', 0); };
   // height of a character in u (sole to the top of the hair), and of its bust
-  const tall = C => C.leg + .2 + C.torso + C.neck + C.ry * 1.9 + C.vol + (C.style === 'bun' ? .55 : 0) + (C.curl ? .3 : 0);
-  const bustH = C => 1.3 + C.neck + C.ry * 1.9 + C.vol + (C.style === 'bun' ? .55 : 0) + (C.curl ? .3 : 0);
+  const tall = C => C.leg + .2 + C.torso + C.neck + C.ry * 1.9 + C.vol + (C.style === 'bun' ? .8 : 0) + (C.curl ? .3 : 0);
+  const bustH = C => 1.3 + C.neck + C.ry * 1.9 + C.vol + (C.style === 'bun' ? .8 : 0) + (C.curl ? .3 : 0);
   const order = ['girl', 'boy', 'mom', 'dad', 'grandma', 'grandpa'];
 
   for (const who of order) {
