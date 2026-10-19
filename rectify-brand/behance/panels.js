@@ -325,8 +325,265 @@ panels.push(panel('17-closing', 760, `
   <div style="position:absolute;inset:0;background:#1C1511;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px">
     ${face(C.orange, 220, 'happy', 'thinking')}
     <div class="f" style="font-size:72px;font-weight:600;color:${C.cream}">Thank you.</div>
-    <div style="font:500 14px/1.7 Nunito;color:#a89a90;text-align:center">Photography: Unsplash — Vitaly Gariev, Fernando Galdamez, Naeem Ad<br>Typefaces: Fredoka, Nunito, Cairo (Google Fonts)</div>
+    <div style="font:500 14px/1.7 Nunito;color:#a89a90;text-align:center">Photography: Unsplash — Vitaly Gariev, Fernando Galdamez, Naeem Ad, Anas Alhajj, Ryan Collins<br>Typefaces: Fredoka, Nunito, Cairo (Google Fonts)</div>
   </div>`));
+
+// ===== Concept development chapter =================================================
+pupil.left = (c, f) => `<circle cx="${c.x - 4.5}" cy="${c.y + 2}" r="8.5" fill="${f}"/>`;
+const sym = (parts, fill) => parts.map((i) => `<path d="${P.sym[i]}" fill="${fill}"/>`).join('');
+
+// 02b — Brand idea ------------------------------------------------------------------
+const pillars = [
+  ['See clearly', 'Big ideas, made simple enough for a six-year-old and solid enough for their teacher.'],
+  ['Play seriously', 'Fun is how we teach, not the reward at the end.'],
+  ['Grow together', 'Kids, parents and teachers looking at the same progress.'],
+];
+panels.push(panel('02b-idea', 900, `
+  <div style="position:absolute;inset:0;background:#1C1511;padding:96px 120px;display:flex;flex-direction:column;justify-content:space-between">
+    <div style="display:flex;justify-content:space-between">${micro('Brand idea', C.orange)}${micro('Look closer', '#8a7a6e')}</div>
+    <div class="f" style="font-size:78px;font-weight:500;line-height:1.04;color:${C.cream};width:1060px">Every kid is already curious. Rectify helps them <span style="color:${C.orange}">look closer.</span></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px">
+      ${pillars.map(([t, d], i) => `<div style="border-top:1.5px solid #4a3c33;padding-top:20px;display:flex;flex-direction:column;gap:10px">
+        <span style="font:800 13px Nunito;color:${C.orange}">0${i + 1}</span><span class="f" style="font-size:30px;font-weight:600;color:${C.cream}">${t}</span>
+        <span style="font:500 16px/1.55 Nunito;color:#b3a397">${d}</span></div>`).join('')}
+    </div>
+  </div>`));
+
+// 03b — Construction, step by step ----------------------------------------------------
+const steps = [
+  [[0], 'Stem', 'One rounded stroke: the spine of an R that leans forward, like a kid walking into class.'],
+  [[0, 1], 'Bowl', 'The bowl is a 4x circle, opened on the left so the R breathes.'],
+  [[0, 1, 5], 'Bridge', 'A short bar joins stem and bowl: the arm of a pair of glasses.'],
+  [[0, 1, 5, 3], 'Lenses', 'Two lenses share the bowl’s centre line. The R now wears glasses.'],
+  [[0, 1, 5, 3, 2, 4], 'Spark', 'Spiral pupils give it a look: the moment an idea clicks.'],
+];
+panels.push(panel('03b-steps', 820, `
+  <div style="position:absolute;inset:0;background:${C.cream};padding:90px 80px;display:flex;flex-direction:column;gap:50px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;padding:0 40px">
+      <div style="display:flex;flex-direction:column;gap:16px">${micro('Logo construction', C.deep)}<div class="f" style="font-size:60px;font-weight:600;line-height:1">Five strokes to a face.</div></div>
+      <p style="font:500 17px/1.6 Nunito;width:440px;color:#4a3e37">The symbol is built in the order a child would draw it. Every part keeps one stroke weight and round ends.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;flex:1">
+      ${steps.map(([parts, t, d], i) => `<div style="background:#fff;border-radius:24px;padding:26px 22px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;justify-content:space-between">${micro('Step ' + (i + 1), C.deep)}${micro(i === 4 ? 'Final' : '', C.deep)}</div>
+        <svg viewBox="560 95 280 380" style="width:100%;height:250px">
+          <circle cx="717.5" cy="213.4" r="100.4" fill="none" stroke="${C.peach}" stroke-width="2"/>
+          <line x1="560" x2="840" y1="213.4" y2="213.4" stroke="${C.peach}" stroke-width="2" stroke-dasharray="4 4"/>
+          ${parts.map((p, j) => `<path d="${P.sym[p]}" fill="${j === parts.length - 1 || (i === 4 && (p === 2 || p === 4)) ? C.orange : C.ink}"/>`).join('')}
+        </svg>
+        <span class="f" style="font-size:26px;font-weight:600">${t}</span>
+        <span style="font:500 14px/1.55 Nunito;color:#5c4f47">${d}</span></div>`).join('')}
+    </div>
+  </div>`));
+
+// 04b — Proportions on the x grid --------------------------------------------------------
+const X = 49, gx0 = 533.5, gy0 = 64;
+let grid = '';
+for (let i = 0; i <= 7; i++) grid += `<line x1="${gx0 + i * X}" x2="${gx0 + i * X}" y1="${gy0}" y2="${gy0 + 9 * X}" stroke="${C.orange}" stroke-width=".7" opacity=".55"/>`;
+for (let j = 0; j <= 9; j++) grid += `<line y1="${gy0 + j * X}" y2="${gy0 + j * X}" x1="${gx0}" x2="${gx0 + 7 * X}" stroke="${C.orange}" stroke-width=".7" opacity=".55"/>`;
+const dim = (x1, y1, x2, y2, label, lx, ly) => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${C.ink}" stroke-width="1.2"/>
+  <circle cx="${x1}" cy="${y1}" r="2.4" fill="${C.ink}"/><circle cx="${x2}" cy="${y2}" r="2.4" fill="${C.ink}"/>
+  <text x="${lx}" y="${ly}" font-family="Nunito" font-weight="800" font-size="11" fill="${C.ink}">${label}</text>`;
+const ratios = [['x', 'Stem width. The unit for everything.'], ['7x', 'Total height of the symbol.'], ['4x', 'Bowl diameter.'], ['1x × 0.6x', 'Each lens opening.'], ['41°', 'Leg angle, leaning forward.']];
+panels.push(panel('04b-proportions', 940, `
+  <div style="position:absolute;inset:0;background:${C.peach};display:grid;grid-template-columns:1fr 470px">
+    <div style="position:relative">
+      <svg viewBox="500 40 420 500" style="position:absolute;inset:40px 0 40px 60px;width:calc(100% - 60px);height:calc(100% - 80px)">
+        ${grid}
+        ${sym([0, 1, 2, 3, 4, 5], C.ink)}
+        ${dim(582, 100, 631, 100, 'x', 600, 93)}
+        ${dim(560, 113, 560, 454, '7x', 538, 290)}
+        <line x1="617" x2="617" y1="314" y2="500" stroke="${C.ink}" stroke-width=".8" stroke-dasharray="3 3"/><line x1="818" x2="818" y1="213" y2="500" stroke="${C.ink}" stroke-width=".8" stroke-dasharray="3 3"/>${dim(617, 500, 818, 500, '4x', 708, 520)}
+        ${dim(870, 189, 870, 238, '1x', 878, 217)}
+      </svg>
+    </div>
+    <div style="padding:100px 80px 80px 0;display:flex;flex-direction:column;gap:30px">
+      ${micro('Proportions', C.deep)}
+      <div class="f" style="font-size:52px;font-weight:600;line-height:1.02">Built on one unit.</div>
+      <div style="display:flex;flex-direction:column">
+        ${ratios.map(([k, v]) => `<div style="display:grid;grid-template-columns:130px 1fr;gap:16px;padding:16px 0;border-top:1.5px solid ${C.ink}"><span class="f" style="font-size:26px;font-weight:600;color:${C.deep}">${k}</span><span style="font:600 16px/1.45 Nunito">${v}</span></div>`).join('')}
+      </div>
+    </div>
+  </div>`));
+
+// 05b — Logo in motion ----------------------------------------------------------------------
+const frames = [['curious', 'curious', '0.0 s', 'Look'], ['left', 'left', '0.3 s', 'Glance'], ['sleepy', 'sleepy', '0.6 s', 'Blink'], ['curious', 'curious', '0.7 s', 'Open'], ['thinking', 'thinking', '1.0 s', 'Think'], ['happy', 'happy', '1.4 s', 'Smile']];
+panels.push(panel('05b-motion', 720, `
+  <div style="position:absolute;inset:0;background:${C.orange}"></div>${grain}
+  <div style="position:absolute;left:80px;right:80px;top:70px;display:flex;justify-content:space-between;align-items:flex-end">
+    <div style="display:flex;flex-direction:column;gap:14px">${micro('Logo in motion', C.ink)}<div class="f" style="font-size:56px;font-weight:600;line-height:1;color:${C.ink}">The logo blinks.</div></div>
+    <p style="font:600 16px/1.55 Nunito;width:430px;color:${C.ink};text-align:right">A 1.4-second sequence for the app loader, video intros and end cards. Only the pupils move; the R never changes shape.</p>
+  </div>
+  <div style="position:absolute;left:80px;right:80px;bottom:80px;display:grid;grid-template-columns:repeat(6,1fr);gap:14px">
+    ${frames.map(([l, r, t, n]) => `<div style="background:${C.cream};border-radius:22px;height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px">
+      ${face(C.ink, 170, l, r)}<div style="display:flex;justify-content:space-between;width:80%"><span style="font:800 13px Nunito">${n}</span><span style="font:600 13px Nunito;color:#8a7a6e">${t}</span></div></div>`).join('')}
+  </div>`));
+
+// 07b — Iconography ------------------------------------------------------------------------------
+const icons = [
+  ['Watch', `<path d="M24 16 L48 32 L24 48 Z" stroke-linejoin="round"/>`, `<circle cx="48" cy="16" r="4" fill="${C.orange}" stroke="none"/>`],
+  ['Read', `<path d="M8 16 C16 12 26 12 32 18 C38 12 48 12 56 16 V48 C48 44 38 44 32 50 C26 44 16 44 8 48 Z M32 18 V50"/>`, `<path d="M14 24 H24" stroke="${C.orange}"/>`],
+  ['Science', `<path d="M24 8 H40 M27 8 V26 L13 50 C11 55 13 57 18 57 H46 C51 57 53 55 51 50 L37 26 V8"/>`, `<path d="M19 45 H45" stroke="${C.orange}"/>`],
+  ['Math', `<path d="M14 20 H28 M21 13 V27 M38 20 H52 M15 39 L27 51 M27 39 L15 51"/>`, `<path d="M38 41 H52 M38 49 H52" stroke="${C.orange}"/>`],
+  ['World', `<circle cx="32" cy="32" r="22"/><ellipse cx="32" cy="32" rx="9" ry="22"/>`, `<path d="M11 32 H53" stroke="${C.orange}"/>`],
+  ['Idea', `<path d="M23 42 C15 36 14 16 32 13 C50 16 49 36 41 42 V48 H23 Z"/>`, `<path d="M26 56 H38" stroke="${C.orange}"/>`],
+  ['Write', `<path d="M12 52 L16 40 L42 14 L50 22 L24 48 Z"/>`, `<path d="M37 19 L45 27" stroke="${C.orange}"/>`],
+  ['Look closer', `<circle cx="21" cy="34" r="10"/><circle cx="43" cy="34" r="10"/><path d="M31 34 H33 M11 34 H6"/>`, `<circle cx="21" cy="34" r="3" fill="${C.orange}" stroke="none"/><circle cx="43" cy="34" r="3" fill="${C.orange}" stroke="none"/>`],
+];
+panels.push(panel('07b-icons', 820, `
+  <div style="position:absolute;inset:0;background:${C.cream};padding:90px 120px;display:flex;flex-direction:column;gap:50px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end">
+      <div style="display:flex;flex-direction:column;gap:16px">${micro('Iconography', C.deep)}<div class="f" style="font-size:60px;font-weight:600;line-height:1">Drawn with the logo’s pen.</div></div>
+      <p style="font:500 17px/1.6 Nunito;width:440px;color:#4a3e37">Same stroke weight as the R, round caps and joins, and one orange detail per icon, never more.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;flex:1">
+      ${icons.map(([n, body, accent]) => `<div style="background:#fff;border-radius:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
+        <svg viewBox="0 0 64 64" width="96" height="96" fill="none" stroke="${C.ink}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">${body}${accent}</svg>
+        <span style="font:800 13px Nunito;letter-spacing:.08em;text-transform:uppercase">${n}</span></div>`).join('')}
+    </div>
+  </div>`));
+
+// 10b — Photography principles -------------------------------------------------------------------
+const rules = [
+  ['desk', '50% 30%', 'At their eye level', 'Shoot from a child’s height. The world should look the size it feels to them.'],
+  ['science', '30% 50%', 'Mid-discovery', 'Hands busy, eyes on the thing. Catch the moment, never the pose.'],
+  ['couch', '62% 40%', 'Warm light, one orange note', 'Daylight, soft shadows and one warm accent in the frame: a cushion, a wall, a sleeve.'],
+  ['girl-glasses', '50% 30%', 'Close enough to see', 'Get near: eyes, hands, pages. Leave room for the Lens and a headline.'],
+];
+const avoid = ['Posed stock smiles', 'Cold blue screen glow', 'Busy, cluttered frames', 'Kids as props for adults'];
+panels.push(panel('10b-photo-rules', 980, `
+  <div style="position:absolute;inset:0;background:${C.cream};padding:90px 80px 80px;display:flex;flex-direction:column;gap:44px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;padding:0 40px">
+      <div style="display:flex;flex-direction:column;gap:16px">${micro('Photography', C.deep)}<div class="f" style="font-size:60px;font-weight:600;line-height:1">Real kids, really curious.</div></div>
+      <p style="font:500 17px/1.6 Nunito;width:440px;color:#4a3e37">Photography shows learning as it actually happens: messy, focused and joyful. Four rules keep every shoot on brand.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px">
+      ${rules.map(([img, pos, t, d], i) => `<div style="display:flex;flex-direction:column;gap:14px">
+        <div style="position:relative;height:420px;border-radius:20px;overflow:hidden">${photo(img, pos)}
+          <span style="position:absolute;left:14px;top:14px;width:34px;height:34px;border-radius:17px;background:${C.orange};font:800 15px Nunito;display:flex;align-items:center;justify-content:center">${i + 1}</span></div>
+        <span class="f" style="font-size:24px;font-weight:600">${t}</span><span style="font:500 14.5px/1.55 Nunito;color:#5c4f47">${d}</span></div>`).join('')}
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;padding:22px 40px 0;border-top:1.5px solid ${C.ink};margin:0 40px">
+      ${micro('Avoid', C.deep, 'margin-right:16px')}
+      ${avoid.map((a) => `<span style="display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:#fff;font:700 14px Nunito"><span style="color:${C.coral};font-weight:900">✕</span>${a}</span>`).join('')}
+    </div>
+  </div>`));
+
+// 10c — Grading: before / after --------------------------------------------------------------------
+panels.push(panel('10c-grade', 900, `
+  <img src="${ph('couch')}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;filter:saturate(.75) contrast(.92) brightness(1.04) hue-rotate(-14deg)">
+  <div style="position:absolute;inset:0;clip-path:inset(0 0 0 50%)">
+    ${photo('couch', '50% 40%', 'filter:sepia(.2) saturate(1.2) contrast(1.08) brightness(1.02)')}
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(245,124,0,.16),rgba(255,111,97,.06));mix-blend-mode:soft-light"></div>
+    <div style="position:absolute;inset:0;background:rgba(35,26,21,.06);mix-blend-mode:lighten"></div>
+    ${grain}
+  </div>
+  <div style="position:absolute;left:699px;top:0;bottom:0;width:2px;background:${C.cream}"></div>
+  <div style="position:absolute;left:672px;top:422px;width:56px;height:56px;border-radius:28px;background:${C.cream};display:flex;align-items:center;justify-content:center;font:800 18px Nunito">‹ ›</div>
+  <div style="position:absolute;left:40px;top:40px">${pill('Before', C.cream, C.cream, 'rgba(0,0,0,.25)')}</div>
+  <div style="position:absolute;right:40px;top:40px">${pill('Rectify grade', C.ink, C.orange, C.orange)}</div>
+  <div style="position:absolute;right:40px;bottom:40px;width:420px;background:${C.cream};border-radius:20px;padding:24px 26px;display:flex;flex-direction:column;gap:10px">
+    ${micro('Grading recipe', C.deep)}
+    ${[['Temperature', '+8 warm'], ['Contrast', '+6'], ['Blacks', 'lifted to Ink #231A15'], ['Highlights', 'soft, orange tint'], ['Grain', '10%, fine']].map(([k, v]) => `<div style="display:flex;justify-content:space-between;font:600 15px Nunito;border-top:1px solid #eadbcb;padding-top:8px"><span>${k}</span><span style="color:#5c4f47">${v}</span></div>`).join('')}
+  </div>`));
+
+// 10d — Tritone campaign treatment --------------------------------------------------------------
+const tritone = (id, a, b, c) => {
+  const t = (i) => [a, b, c].map((h) => (parseInt(h.slice(1 + i * 2, 3 + i * 2), 16) / 255).toFixed(3)).join(' ');
+  return `<filter id="${id}" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="table" tableValues="${t(0)}"/><feFuncG type="table" tableValues="${t(1)}"/><feFuncB type="table" tableValues="${t(2)}"/></feComponentTransfer></filter>`;
+};
+panels.push(panel('10d-tritone', 900, `
+  <svg width="0" height="0" style="position:absolute">${tritone('tOrange', C.ink, C.orange, C.cream)}${tritone('tCoral', C.ink, C.coral, C.peach)}</svg>
+  <div style="position:absolute;inset:0;background:#1C1511;display:grid;grid-template-columns:1.35fr 1fr;gap:16px;padding:16px">
+    <div style="position:relative;overflow:hidden;border-radius:6px">
+      <img src="${ph('tablet-boy')}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 50%;filter:url(#tOrange) contrast(1.1)">${grain}
+      <div style="position:absolute;left:40px;bottom:40px;display:flex;flex-direction:column;gap:12px">${wordmark(C.cream, 64)}<span style="font:800 12px Nunito;letter-spacing:.2em;color:${C.cream}">BACK TO SCHOOL · 2026</span></div>
+    </div>
+    <div style="display:grid;grid-template-rows:1fr auto;gap:16px;min-height:0">
+      <div style="position:relative;overflow:hidden;border-radius:6px">
+        <img src="${ph('slate')}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;transform:scale(1.25);transform-origin:45% 30%;filter:url(#tCoral) contrast(1.05)">${grain}
+        <div style="position:absolute;right:28px;top:28px">${face(C.cream, 90, 'happy')}</div>
+      </div>
+      <div style="background:${C.cream};border-radius:6px;padding:28px 30px;display:flex;flex-direction:column;gap:10px">
+        ${micro('Campaign treatment', C.deep)}
+        <div class="f" style="font-size:30px;font-weight:600;line-height:1.05">Tritone: Ink, Orange, Cream.</div>
+        <span style="font:500 15px/1.55 Nunito;color:#4a3e37">For posters, events and big outdoor formats. It unifies photos from any source into one Rectify look.</span>
+      </div>
+    </div>
+  </div>`));
+
+// 10e — The Zoom device ----------------------------------------------------------------------------
+const zx = 640, zy = 540, zr = 215;
+panels.push(panel('10e-zoom', 900, `
+  ${photo('science', '50% 50%', 'filter:grayscale(.85) sepia(.25) brightness(.72) contrast(1.05)')}
+  <div style="position:absolute;left:${zx - zr}px;top:${zy - zr}px;width:${zr * 2}px;height:${zr * 2}px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 10px ${C.orange},0 30px 60px rgba(0,0,0,.5)">
+    <div style="position:absolute;left:${-(zx - zr)}px;top:${-(zy - zr)}px;width:${W}px;height:900px">
+      ${photo('science', '50% 50%', `transform:scale(1.9);transform-origin:${zx}px ${zy}px;filter:saturate(1.15) contrast(1.06) sepia(.08)`)}
+    </div>
+  </div>
+  <div style="position:absolute;left:${zx + zr * 0.68}px;top:${zy + zr * 0.68}px;width:150px;height:30px;border-radius:15px;background:${C.orange};transform:rotate(45deg);transform-origin:0 50%"></div>
+  ${grain}
+  <div style="position:absolute;left:56px;top:44px">${micro('New: the Zoom', C.cream)}</div>
+  <div style="position:absolute;right:60px;top:60px;width:420px;display:flex;flex-direction:column;gap:14px;text-align:right;align-items:flex-end">
+    <div class="f" style="font-size:52px;font-weight:600;line-height:1.02;color:${C.cream}">Fade the scene.<br><span style="color:${C.orange}">Zoom the detail.</span></div>
+    <span style="font:600 16px/1.55 Nunito;color:#e8d9cc">The photo dims and one detail is magnified in full color: the thing this lesson is about.</span>
+  </div>`));
+
+// 10f — Moodboard -----------------------------------------------------------------------------------------
+const tile = (inner, span = '', bg = '#fff', extra = '') => `<div style="position:relative;overflow:hidden;border-radius:16px;background:${bg};${span};${extra}">${inner}</div>`;
+panels.push(panel('10f-moodboard', 1000, `
+  <div style="position:absolute;inset:0;background:${C.peach};padding:40px;display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(4,1fr);gap:14px">
+    ${tile(photo('desk', '55% 25%'), 'grid-column:span 2;grid-row:span 2')}
+    ${tile(`<div style="padding:26px;display:flex;flex-direction:column;justify-content:space-between;height:100%">${micro('Art direction', C.deep)}<div class="f" style="font-size:40px;font-weight:600;line-height:1">Warm. Curious. Honest.</div></div>`, 'grid-column:span 2', C.cream)}
+    ${tile(`<div style="height:100%;display:flex;align-items:center;justify-content:center">${face(C.cream, 150, 'wow')}</div>`, '', C.orange)}
+    ${tile(photo('girl-glasses', '50% 35%'), 'grid-row:span 2')}
+    ${tile(`<div style="height:100%;display:flex;align-items:center;justify-content:center"><span class="f" style="font-size:110px;font-weight:600;color:${C.ink}">Aa</span></div>`, '', C.sun)}
+    ${tile(`<div style="height:100%;display:grid;grid-template-columns:repeat(3,1fr)"><div style="background:${C.ink}"></div><div style="background:${C.orange}"></div><div style="background:${C.coral}"></div></div>`, 'grid-column:span 2')}
+    ${tile(photo('science', '30% 50%'), 'grid-column:span 2;grid-row:span 2')}
+    ${tile(`<div style="height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px">${glassesOnly(C.ink, 60)}<span style="font:800 11px Nunito;letter-spacing:.16em">LOOK CLOSER</span></div>`, '', C.cream)}
+    ${tile(photo('yellow-boy', '50% 10%', 'transform:scale(2.1);transform-origin:58% 14%'), 'grid-row:span 2')}
+    ${tile(photo('couch', '70% 40%'), 'grid-column:span 2')}
+    ${tile(`<div style="padding:22px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;gap:6px">${['Daylight', 'Kid height', 'Hands & eyes', 'One orange note'].map((k) => `<span style="font:700 14px Nunito;color:${C.cream}">— ${k}</span>`).join('')}</div>`, '', C.ink)}
+  </div>`));
+
+// 10g — Layout system ------------------------------------------------------------------------------------------
+const cols = (n, color) => `<div style="position:absolute;inset:18px;display:grid;grid-template-columns:repeat(${n},1fr);gap:10px;pointer-events:none">${Array.from({ length: n }, () => `<div style="background:${color}"></div>`).join('')}</div>`;
+const tag = (t, x, y) => `<span style="position:absolute;left:${x}px;top:${y}px;padding:4px 9px;border-radius:6px;background:${C.sun};font:800 10px Nunito;letter-spacing:.06em;color:${C.ink};white-space:nowrap">${t}</span>`;
+panels.push(panel('10g-layout', 1000, `
+  <div style="position:absolute;inset:0;background:#1C1511"></div>
+  <div style="position:absolute;left:120px;right:120px;top:90px;display:flex;justify-content:space-between;align-items:flex-end">
+    <div style="display:flex;flex-direction:column;gap:16px">${micro('Layout system', C.orange)}<div class="f" style="font-size:60px;font-weight:600;line-height:1;color:${C.cream}">Corner. Lens. Line.</div></div>
+    <p style="font:500 17px/1.6 Nunito;width:460px;color:#b3a397">Logo in a corner at one margin. One Lens or Zoom per layout. The headline sits on the eye line, the top third, where the logo’s glasses sit.</p>
+  </div>
+  <div style="position:absolute;left:120px;right:120px;bottom:80px;display:flex;justify-content:space-between;align-items:flex-end">
+    <div style="display:flex;flex-direction:column;gap:16px">
+    <div style="position:relative;width:380px;height:537px;background:${C.cream};overflow:hidden">
+      ${cols(4, 'rgba(245,124,0,.07)')}
+      <div style="position:absolute;left:0;right:0;top:179px;border-top:1.5px dashed ${C.coral}"></div>
+      <div class="f" style="position:absolute;left:28px;top:118px;width:320px;font-size:38px;font-weight:600;line-height:1.02">Why do leaves change color?</div>
+      <div style="position:absolute;left:28px;top:290px;width:324px;height:162px;clip-path:url(#lens);overflow:hidden">${photo('girl-glasses', '50% 30%')}</div>
+      <div style="position:absolute;left:28px;bottom:26px">${wordmark(C.orange, 24)}</div>
+      <div style="position:absolute;right:28px;bottom:28px;font:800 10px Nunito;letter-spacing:.14em">SCIENCE · 4 MIN</div>
+    </div>
+    <span style="font:700 13px/1.5 Nunito;color:#b3a397">Poster · headline on the eye line,<br>one Lens, logo bottom-left</span></div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+    <div style="position:relative;width:270px;height:480px;background:${C.orange};overflow:hidden;border-radius:18px">
+      ${cols(4, 'rgba(35,26,21,.06)')}
+      <div style="position:absolute;left:0;right:0;top:160px;border-top:1.5px dashed ${C.ink}"></div>
+      <div style="position:absolute;left:22px;top:22px">${symbol(C.ink, 38)}</div>
+      <div class="f" style="position:absolute;left:22px;top:106px;width:230px;font-size:30px;font-weight:600;line-height:1.02;color:${C.ink}">New lesson: fractions are pizza.</div>
+      <div style="position:absolute;left:22px;right:22px;bottom:22px;height:200px;border-radius:100px;overflow:hidden">${photo('desk', '50% 30%')}</div>
+    </div>
+    <span style="font:700 13px/1.5 Nunito;color:#b3a397">Story · symbol top-left,<br>photo in a rounded Lens</span></div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+    <div style="position:relative;width:440px;height:244px;background:${C.ink};overflow:hidden;border-radius:6px;box-shadow:0 0 0 1px #3a2e27">
+      <div style="position:absolute;right:0;top:0;width:200px;height:100%">${photo('science', '35% 50%')}</div>
+      <div class="f" style="position:absolute;left:22px;top:52px;width:200px;font-size:26px;font-weight:600;line-height:1.05;color:${C.cream}">Look closer at chemistry.</div>
+      <div style="position:absolute;left:22px;bottom:20px">${hlockup(C.orange, 24, '', C.cream)}</div>
+    </div>
+    <span style="font:700 13px/1.5 Nunito;color:#b3a397">Web banner · horizontal lockup<br>bottom-left, photo right</span></div>
+  </div>
+  <svg width="0" height="0" style="position:absolute"><clipPath id="lens" clipPathUnits="objectBoundingBox"><ellipse cx=".25" cy=".5" rx=".25" ry=".5"/><ellipse cx=".75" cy=".5" rx=".25" ry=".5"/><rect x=".45" y=".44" width=".1" height=".12"/></clipPath></svg>`));
 
 // ---- Render -------------------------------------------------------------------------------
 async function main() {
