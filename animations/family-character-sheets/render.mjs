@@ -77,6 +77,8 @@ async function openPage(tag = '') {
     const ok = await page.evaluate(name => { if (!LOOPS[name]) return false; window.LOOP = LOOPS[name]; return true; }, args.loop);
     if (!ok) { console.error(`no loop named "${args.loop}"`); process.exit(1); }
   }
+  // The first frame a page draws can lose some of its washes, so draw one throwaway frame before the real ones.
+  await page.evaluate(() => window.renderAt(0, 'image/jpeg', .5));
   return page;
 }
 const frameOf = async (page, t, type, q) => {

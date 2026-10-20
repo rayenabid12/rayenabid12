@@ -1,7 +1,7 @@
 {
   "name": "family-reel",
   "version": "1.0.0",
-  "description": "My Remotion video",
+  "description": "The painted family, animated: a reel of every character's turnaround, walk, run, jump and emotions",
   "repository": {},
   "license": "UNLICENSED",
   "engines": {
@@ -29,7 +29,8 @@
     "dev": "remotion studio",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
-    "lint": "eslint src && tsc"
+    "lint": "eslint src && tsc",
+    "sync-clips": "mkdir -p public/clips && cp ../family-character-sheets/clips/*.mp4 public/clips/"
   },
   "allowScripts": {
     "esbuild": false

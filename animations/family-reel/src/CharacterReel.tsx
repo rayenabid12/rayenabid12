@@ -10,7 +10,7 @@ type CharacterReelProps = {
   readonly who: Who;
 };
 
-// One character's chapter: name card, then each animated clip, crossfading. 904 frames at 24 fps.
+// One character's chapter: name card, then each animated clip, crossfading. 898 frames at 24 fps.
 const CharacterReelInner: React.FC<CharacterReelProps> = ({ who }) => {
   return (
     <TransitionSeries name="Character timeline">
@@ -18,7 +18,7 @@ const CharacterReelInner: React.FC<CharacterReelProps> = ({ who }) => {
         <NameCard who={who} />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: 8 })} />
-      <TransitionSeries.Sequence name="Turnaround" durationInFrames={148}>
+      <TransitionSeries.Sequence name="Turnaround" durationInFrames={146}>
         <ClipScene clip={`${who}_turn`} title="360° turnaround" showEmotions={false} />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: 8 })} />
@@ -26,11 +26,11 @@ const CharacterReelInner: React.FC<CharacterReelProps> = ({ who }) => {
         <ClipScene clip={`${who}_walk`} title="Walk cycle" showEmotions={false} />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: 8 })} />
-      <TransitionSeries.Sequence name="Run" durationInFrames={78}>
+      <TransitionSeries.Sequence name="Run" durationInFrames={76}>
         <ClipScene clip={`${who}_run`} title="Run cycle" showEmotions={false} />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: 8 })} />
-      <TransitionSeries.Sequence name="Jump and wave" durationInFrames={112}>
+      <TransitionSeries.Sequence name="Jump and wave" durationInFrames={110}>
         <ClipScene clip={`${who}_jump`} title="Jump & wave" showEmotions={false} />
       </TransitionSeries.Sequence>
       <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: 8 })} />
