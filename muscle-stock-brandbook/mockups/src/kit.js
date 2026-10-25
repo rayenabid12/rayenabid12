@@ -23,7 +23,7 @@ function el(tag, attrs = {}, html = '') {
 
 // A matte black supplement tub. w = width in px; height follows the 1 : 1.32 tub ratio
 // (short = true gives a squat creatine jar).
-function tub(parent, { x, y, w, line = 'performance', product = 'WHEY', variant = 'ISOLATE', flavour = 'CHOCOLAT', weight = '2,27 KG', short = false }) {
+function tub(parent, { x, y, w, line = 'performance', product = 'WHEY', variant = 'ISOLATE', flavour = 'CHOCOLATE', weight = '2.27 KG', short = false }) {
   const L = LINES[line];
   const h = Math.round(w * (short ? 1.0 : 1.32));
   const s = w / 360; // type scale relative to the 360px design
@@ -67,7 +67,7 @@ function reflect(parent, node, x, y, h, opacity = 0.16) {
   parent.insertBefore(r, parent.firstChild.nextSibling);
 }
 
-function pouch(parent, { x, y, w, product = 'CRÉATINE', variant = 'MONOHYDRATE', weight = '500 G', line = 'performance' }) {
+function pouch(parent, { x, y, w, product = 'CREATINE', variant = 'MONOHYDRATE', weight = '500 G', line = 'performance' }) {
   const L = LINES[line];
   const h = Math.round(w * 1.45), s = w / 320;
   const p = el('div', { class: 'pouch', style: { left: x + 'px', top: y + 'px', width: w + 'px', height: h + 'px', '--body': '#EDE8E0' } });
@@ -82,7 +82,7 @@ function pouch(parent, { x, y, w, product = 'CRÉATINE', variant = 'MONOHYDRATE'
       </div>
       <div class="abs display" style="left:0;right:0;top:54.5%;text-align:center;font-size:${66 * s}px;color:#F2EEE7;transform:skewY(-7deg)">${product}</div>
       <div class="abs display" style="left:0;right:0;top:76%;text-align:center;font-size:${30 * s}px;color:#1D1D1B">${variant}</div>
-      <div class="abs" style="left:0;right:0;bottom:6%;text-align:center;font:700 ${11 * s}px Roboto;letter-spacing:.24em;color:#55524c">${weight} · POUDRE PURE</div>
+      <div class="abs" style="left:0;right:0;bottom:6%;text-align:center;font:700 ${11 * s}px Roboto;letter-spacing:.24em;color:#55524c">${weight} · PURE POWDER</div>
       <div class="shade"></div>
     </div>`;
   parent.appendChild(p);
