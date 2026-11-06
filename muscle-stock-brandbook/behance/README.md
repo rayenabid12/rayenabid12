@@ -2,7 +2,7 @@
 
 ## Files
 - `cover-1616x1264.jpg`: project cover (upload this one; Behance crops it to 808×632). `cover-808x632.jpg` is the exact-size copy.
-- `slides/01-…35-*.jpg`: the 35 brand-book slides at 1920×1080, in order. Add them as image modules, top to bottom.
+- `slides/01-…35-*.jpg`: the 35 brand-book slides at 3840×2160 (2x, Retina-sharp), in order. Add them as image modules, top to bottom.
 - `export-slides.mjs` + `blob-map.json`: regenerate the slide images from the deck files.
 
 ## Project title
