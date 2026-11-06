@@ -77,4 +77,4 @@ plus `social-templates-overview.jpg`.
 Fixed system on every post: real logo + wordmark bottom-left, handle bottom-right,
 red eyebrow label, Barlow Condensed headline, one 14° red band for offers.
 To make a new post: duplicate a block, swap the photo and the text.
-Placeholders to replace: `@musclestock.tn`, street address, opening hours, offer dates.
+Placeholders to replace: `@muscle.stock.nutrition`, street address, opening hours, offer dates.

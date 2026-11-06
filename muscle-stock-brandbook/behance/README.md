@@ -2,7 +2,7 @@
 
 ## Files
 - `cover-1616x1264.jpg`: project cover (upload this one; Behance crops it to 808×632). `cover-808x632.jpg` is the exact-size copy.
-- `slides/01-…30-*.jpg`: the 30 brand-book slides at 1920×1080, in order. Add them as image modules, top to bottom.
+- `slides/01-…35-*.jpg`: the 35 brand-book slides at 1920×1080, in order. Add them as image modules, top to bottom.
 - `export-slides.mjs` + `blob-map.json`: regenerate the slide images from the deck files.
 
 ## Project title
@@ -21,6 +21,8 @@ What's inside:
 • Palette with a new Bone neutral and colour-coded product lines (Performance, Recovery, Essentials)
 • Typography: Sakana (wordmark), Barlow Condensed (headings), Roboto (text)
 • Graphic language built on a single 14° cut, plus a red duotone photo treatment
+• Photography direction: mood, five-shot list, shooting rules and an AI prompt recipe
+• AI product photography and 6 Instagram post + 2 story templates
 • Applications: supplement packaging, shaker and bottle, apparel, business and loyalty cards,
   storefront signage, Instagram and a responsive online store
 
