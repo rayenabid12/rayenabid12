@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="render-scale" content="2">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;1,700;1,800&family=Roboto:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="base.css">
+<style>
+  /* Social media template system. Posts are 540x675 (renders 1080x1350, Instagram 4:5),
+     stories 540x960 (renders 1080x1920). Photos come from openart/generated/. */
+  html, body { background: #0b0b0a; }
+  body { padding: 20px; display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+  .post, .story { position: relative; overflow: hidden; background: #121211; color: #F2EEE7; }
+  .post { width: 540px; height: 675px; }
+  .story { width: 540px; height: 960px; }
+  .photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
+  .shade-top { position: absolute; left: 0; right: 0; top: 0; height: 60%; background: linear-gradient(180deg, rgba(18,18,17,.92), rgba(18,18,17,0)); }
+  .shade-bottom { position: absolute; left: 0; right: 0; bottom: 0; height: 45%; background: linear-gradient(0deg, rgba(18,18,17,.95), rgba(18,18,17,0)); }
+  .band { position: absolute; left: -10%; right: -10%; background: #BC3333; transform: skewY(-14deg); }
+  /* footer: same place on every post = brand recognition in the grid */
+  .foot { position: absolute; left: 32px; right: 32px; bottom: 26px; display: flex; align-items: center; justify-content: space-between; }
+  .badge { display: flex; align-items: center; gap: 10px; }
+  .badge img.i { width: 38px; }
+  .badge img.w { width: 120px; }
+  .handle { font: 500 12px Roboto; color: #cfc9bf; letter-spacing: .04em; }
+  .eyebrow-red { font: 700 12px Roboto; letter-spacing: .3em; text-transform: uppercase; color: #BC3333; }
+  .pill { display: inline-block; font: 700 13px Roboto; letter-spacing: .12em; text-transform: uppercase; padding: 12px 20px; border-radius: 3px; }
+  .num { position: absolute; top: 28px; right: 32px; font: 700 11px Roboto; letter-spacing: .3em; color: #8C8A85; }
+</style>
+</head>
+<body>
+
+<!-- 01 Motivation -->
+<div class="post" data-out="social-post-01-motivation">
+  <div class="photo" style="background-image:url(../../openart/generated/scene-deadlift.jpg)"></div>
+  <div class="shade-top"></div><div class="shade-bottom" style="height:30%"></div>
+  <div class="abs" style="left:32px;top:40px;width:470px">
+    <div class="eyebrow-red">Monday fuel</div>
+    <div class="display" style="font-size:78px;margin-top:14px">DISCIPLINE<br><span style="color:#BC3333">BEATS</span><br>MOTIVATION.</div>
+  </div>
+  <div class="foot"><div class="badge"><img class="i" src="../../assets/logo/icon-color.png"><img class="w" src="../../assets/logo/wordmark-white.png"></div><div class="handle">@musclestock.tn</div></div>
+</div>
+
+<!-- 02 Product spotlight -->
+<div class="post" data-out="social-post-02-product">
+  <div class="photo" style="background-image:url(../../openart/generated/product-tubs.jpg)"></div>
+  <div class="shade-top" style="height:42%"></div><div class="shade-bottom" style="height:28%"></div>
+  <div class="abs" style="left:32px;top:38px;width:470px">
+    <div class="eyebrow-red">New stock · In store now</div>
+    <div class="display" style="font-size:66px;margin-top:12px">THE WHEY RANGE</div>
+    <div style="font:400 15px/1.5 Roboto;color:#cfc9bf;margin-top:10px;width:380px">Performance, Recovery, Essentials. One tub, three lines — pick yours.</div>
+  </div>
+  <div class="foot"><div class="badge"><img class="i" src="../../assets/logo/icon-color.png"><img class="w" src="../../assets/logo/wordmark-white.png"></div><div class="handle">@musclestock.tn</div></div>
+</div>
+
+<!-- 03 Promo -->
+<div class="post" data-out="social-post-03-promo">
+  <div class="photo" style="background-image:url(../../openart/generated/scene-powder-branded.jpg)"></div>
+  <div class="abs" style="inset:0;background:rgba(18,18,17,.35)"></div>
+  <div class="band" style="top:250px;height:200px"></div>
+  <div class="abs" style="left:0;right:0;top:40px;text-align:center"><div class="eyebrow-red" style="color:#F2EEE7">Weekend offer</div></div>
+  <div class="abs display" style="left:0;right:0;top:250px;text-align:center;font-size:170px;transform:skewY(-14deg);line-height:1.1">-20%</div>
+  <div class="abs" style="left:0;right:0;top:500px;text-align:center">
+    <div class="display" style="font-size:40px">ON ALL WHEY</div>
+    <div style="margin-top:14px"><span class="pill" style="background:#F2EEE7;color:#1D1D1B">Fri – Sun · In store &amp; online</span></div>
+  </div>
+  <div class="foot"><div class="badge"><img class="i" src="../../assets/logo/icon-color.png"><img class="w" src="../../assets/logo/wordmark-white.png"></div><div class="handle">@musclestock.tn</div></div>
+</div>
+
+<!-- 04 Education -->
+<div class="post" data-out="social-post-04-tip">
+  <div class="photo" style="background-image:url(../../openart/generated/scene-flatlay.jpg)"></div>
+  <div class="abs" style="left:0;top:0;bottom:0;width:300px;background:linear-gradient(90deg,rgba(18,18,17,.96) 70%,rgba(18,18,17,0))"></div>
+  <div class="num">TIP #05</div>
+  <div class="abs" style="left:32px;top:40px;width:250px">
+    <div class="eyebrow-red">Nutrition 101</div>
+    <div class="display" style="font-size:58px;margin-top:12px">CREATINE,<br>SIMPLY.</div>
+    <div style="margin-top:26px;display:flex;flex-direction:column;gap:16px">
+      <div style="border-left:3px solid #BC3333;padding-left:12px;font:400 14px/1.45 Roboto;color:#e4dfd6"><b style="color:#F2EEE7">Every day.</b><br>Consistency matters more than timing.</div>
+      <div style="border-left:3px solid #BC3333;padding-left:12px;font:400 14px/1.45 Roboto;color:#e4dfd6"><b style="color:#F2EEE7">Mix it easily.</b><br>Water, juice or your protein shake.</div>
+      <div style="border-left:3px solid #BC3333;padding-left:12px;font:400 14px/1.45 Roboto;color:#e4dfd6"><b style="color:#F2EEE7">Stay hydrated.</b><br>Drink water through the day.</div>
+    </div>
+  </div>
+  <div class="foot"><div class="badge"><img class="i" src="../../assets/logo/icon-color.png"><img class="w" src="../../assets/logo/wordmark-white.png"></div><div class="handle">@musclestock.tn</div></div>
+</div>
+
+<!-- 05 Tagline / quote -->
+<div class="post" data-out="social-post-05-tagline">
+  <div class="photo" style="background-image:url(../../openart/generated/scene-grip.jpg)"></div>
+  <div class="shade-top" style="height:55%"></div><div class="shade-bottom" style="height:25%"></div>
+  <div class="abs" style="left:0;right:0;top:56px;text-align:center">
+    <img src="../../assets/logo/icon-color.png" style="width:72px;margin:0 auto">
+    <div class="display" style="font-size:84px;margin-top:22px">STRENGTH,<br><span style="color:#BC3333">IN STOCK.</span></div>
+  </div>
+  <div class="foot"><div class="badge"><img class="w" src="../../assets/logo/wordmark-white.png"></div><div class="handle">@musclestock.tn</div></div>
+</div>
+
+<!-- 06 Accessory -->
+<div class="post" data-out="social-post-06-shaker">
+  <div class="photo" style="background-image:url(../../openart/generated/product-shaker.jpg)"></div>
+  <div class="shade-top" style="height:40%"></div><div class="shade-bottom" style="height:28%"></div>
+  <div class="abs" style="left:32px;top:38px;width:470px">
+    <div class="eyebrow-red">Gear</div>
+    <div class="display" style="font-size:70px;margin-top:12px">SHAKE IT.<br>LIFT IT.</div>
+  </div>
+  <div class="foot"><div class="badge"><img class="i" src="../../assets/logo/icon-color.png"><img class="w" src="../../assets/logo/wordmark-white.png"></div><div class="handle">@musclestock.tn</div></div>
+</div>
+
+<!-- Story 01 Promo -->
+<div class="story" data-out="social-story-01-promo">
+  <div class="photo" style="background-image:url(../../openart/generated/scene-athlete-story.jpg)"></div>
+  <div class="shade-top" style="height:35%"></div><div class="shade-bottom" style="height:55%"></div>
+  <div class="abs" style="left:28px;top:40px;display:flex;align-items:center;gap:10px"><img src="../../assets/logo/icon-color.png" style="width:40px"><img src="../../assets/logo/wordmark-white.png" style="width:140px"></div>
+  <div class="band" style="top:600px;height:150px"></div>
+  <div class="abs" style="left:32px;right:32px;top:560px">
+    <div class="eyebrow-red" style="color:#F2EEE7">Weekend offer</div>
+  </div>
+  <div class="abs display" style="left:0;right:0;top:600px;text-align:center;font-size:120px;transform:skewY(-14deg);line-height:1.25">-20% WHEY</div>
+  <div class="abs" style="left:32px;right:32px;bottom:60px;text-align:center"><span class="pill" style="background:#F2EEE7;color:#1D1D1B;padding:16px 40px">Shop now</span></div>
+</div>
+
+<!-- Story 02 Visit us -->
+<div class="story" data-out="social-story-02-visit">
+  <div class="photo" style="background-image:url(../../openart/generated/scene-gym-night.jpg)"></div>
+  <div class="shade-top" style="height:50%"></div><div class="shade-bottom" style="height:35%"></div>
+  <div class="abs" style="left:0;right:0;top:90px;text-align:center">
+    <img src="../../assets/logo/icon-color.png" style="width:110px;margin:0 auto">
+    <div class="eyebrow-red" style="margin-top:26px">Your local stock</div>
+    <div class="display" style="font-size:96px;margin-top:12px">COME<br>LIFT WITH<br>US.</div>
+  </div>
+  <div class="abs" style="left:40px;right:40px;bottom:70px;text-align:center">
+    <div style="font:500 16px/1.6 Roboto;color:#e4dfd6">[Street address], Tunis<br>Mon – Sat · [__h – __h]</div>
+    <div style="margin-top:20px"><span class="pill" style="background:#BC3333;color:#F2EEE7;padding:16px 40px">Get directions</span></div>
+  </div>
+</div>
+
+</body>
+</html>
