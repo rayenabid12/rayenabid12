@@ -15,7 +15,8 @@ import { CharacterSheet } from "./story/CharacterSheet";
 import { DuoLineup } from "./rig/DuoLineup";
 import { MELO_REEL_DURATION, MeloReaction, MeloReactionGrid, MeloReactionReel } from "./rig/MeloReactions";
 import { MELO_REACTIONS } from "./rig/meloKeys";
-import { MeloSheet, ModelSheet } from "./rig/ModelSheet";
+import { MeloSheet, ModelSheet, MyrtilleSheet } from "./rig/ModelSheet";
+import { TrioLineup } from "./rig/TrioLineup";
 import { REEL_DURATION, ReactionGrid, ReactionReel } from "./rig/ReactionReel";
 import { BoumBoumPromo } from "./BoumBoumPromo";
 import { BubblePop } from "./bubblepop/BubblePop";
@@ -70,6 +71,8 @@ export const RemotionRoot: React.FC = () => {
         <Still id="ModelSheet" component={ModelSheet} width={3840} height={2500} />
         <Still id="MeloSheet" component={MeloSheet} width={3840} height={2500} />
         <Still id="DuoLineup" component={DuoLineup} width={1920} height={1080} />
+        <Still id="MyrtilleSheet" component={MyrtilleSheet} width={3840} height={2500} />
+        <Still id="TrioLineup" component={TrioLineup} width={1920} height={1080} />
         <Composition id="MeloReactionReel" component={MeloReactionReel} durationInFrames={MELO_REEL_DURATION} fps={30} width={1920} height={1080} />
         <Composition id="MeloReactionGrid" component={MeloReactionGrid} durationInFrames={300} fps={30} width={1920} height={1080} />
         {MELO_REACTIONS.map((r, i) => (

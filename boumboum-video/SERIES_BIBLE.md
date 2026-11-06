@@ -30,6 +30,12 @@ product with the viewer.
 - Acting: fewer, shorter, more precise moves; he always settles back to cool. He only loses it on a big surprise, then pretends nothing happened.
 - Reactions (`Melo-*` compositions, `MeloReactionReel`, `MeloReactionGrid`): Idle (hand on hip, nods to a beat), Yo (two-finger flick), Yesss (fist pump, then composes himself), Miam (calm chew + chef's kiss), Surprise (take, then checks no one saw), Clin d'œil (finger guns), Trop facile (signature perfect bubble, shrug, pop).
 
+## Myrtille, the little blueberry (Myrtille flavour)
+- The youngest and smallest of the gang (about 60 % of their height in scenes). Indigo round body with a dusty bloom, a five-point blueberry crown, very big violet eyes, a small mouth.
+- Personality: curious, a little shy, asks « Pourquoi ? » about everything, afraid of whatever is too big (the dark, thunder, the BOUM).
+- Role: the youngest viewers (4–6) see themselves in her. The pink monster and Mélo become her big brothers: Mélo gets protective, the pink monster has to learn patience and explain things.
+- Rig: `skin="myrtille"` on `BoumMonster` (same rig, shorter arms). Model sheet: `MyrtilleSheet`; trio: `TrioLineup`. Concept art (OpenArt): `concepts/third-character/`.
+
 ## World
 - Candy world (`story/World`): gum trees, watermelon-striped hills, bubble clouds; `night` mode for seasonal episodes.
 - Candy city (`episodes/ep2/CitySet`): BONBONS candy shop, apartment block, haunted townhouse n°13, parallax skyline, sidewalk and street lamps.

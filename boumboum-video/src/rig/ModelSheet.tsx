@@ -1,7 +1,7 @@
 import type React from "react";
 import { AbsoluteFill } from "remotion";
 import { bodyFont, candyText, colors, displayFont } from "../theme";
-import { BoumMonster, MELO_PALETTE, PALETTE, type Skin } from "./BoumMonster";
+import { BoumMonster, MELO_PALETTE, MYRTILLE_PALETTE, PALETTE, type Skin } from "./BoumMonster";
 import { MELO_COOL } from "./meloKeys";
 import { DEFAULT_POSE, type Pose } from "./pose";
 
@@ -247,5 +247,67 @@ export const MeloSheet: React.FC = () => (
     ink="#1D4A26"
     guide="#9ED68A"
     card="#F8FFF2"
+  />
+);
+
+// Myrtille's default face: wide open curious eyes, a small "oh".
+export const MYRTILLE_CURIOUS: Partial<Pose> = { eyeScale: 1.08, browY: -10, mouthOpen: 0.35, mouthWidth: 0.4, smile: 0.4 };
+
+export const MyrtilleSheet: React.FC = () => (
+  <CharacterSheet
+    skin="myrtille"
+    name="Myrtille"
+    version="Model sheet · v1 · la petite Myrtille"
+    personality="Personnalité : la plus petite de la bande. Curieuse, un peu timide, elle demande « Pourquoi ? » à tout… et elle a peur de ce qui est trop grand."
+    turnaround={[
+      { label: "FACE", p: MYRTILLE_CURIOUS },
+      { label: "3/4", p: { ...MYRTILLE_CURIOUS, turn: 0.5 } },
+      { label: "PROFIL", p: { ...MYRTILLE_CURIOUS, turn: 1 } },
+      { label: "DOS", p: { back: 1 } },
+    ]}
+    expressions={[
+      { label: "Curieuse (défaut)", p: MYRTILLE_CURIOUS },
+      { label: "Rire", p: { squint: 1, mouthOpen: 0.8, mouthWidth: 0.7, browY: -10 } },
+      { label: "« Pourquoi ? »", p: { browTilt: 10, browY: -14, lookY: -0.4, lookX: 0.4, mouthOpen: 0.5, mouthWidth: 0.35 } },
+      { label: "Émerveillée", p: { eyeScale: 1.25, pupil: 1.2, browY: -18, mouthOpen: 0.7, mouthWidth: 0.4 } },
+      { label: "Timide", p: { blink: 0.3, lookX: -0.6, lookY: 0.5, cheeks: 1, mouthOpen: 0, mouthWidth: 0.4, smile: 0.5 } },
+      { label: "Peur", p: { eyeScale: 1.2, pupil: 0.6, browTilt: 22, browY: -8, mouthOpen: 0.4, mouthWidth: 0.6, smile: -0.8 } },
+      { label: "Fière", p: { squint: 0.4, browTilt: -8, mouthOpen: 0, mouthWidth: 0.6, smile: 1, cheeks: 0.6 } },
+      { label: "Triste", p: { browTilt: 20, smile: -1, mouthOpen: 0, mouthWidth: 0.4, lookY: 0.5 } },
+    ]}
+    mouths={[
+      { label: "« Oh »", p: { mouthOpen: 0.35, mouthWidth: 0.4, smile: 0.4 } },
+      { label: "Grand sourire", p: { mouthOpen: 0.8, mouthWidth: 0.7 } },
+      { label: "« O »", p: { mouthOpen: 0.9, mouthWidth: 0.45 } },
+      { label: "Souffle", p: { mouthOpen: 0.3, mouthWidth: 0.28 } },
+      { label: "Petit sourire", p: { mouthOpen: 0, mouthWidth: 0.45, smile: 0.8 } },
+      { label: "Langue", p: { mouthOpen: 0.55, mouthWidth: 0.6, tongue: 1, tongueX: 0.4 } },
+      { label: "Moue", p: { mouthOpen: 0, mouthWidth: 0.4, smile: -1 } },
+    ]}
+    swatches={[
+      ["Corps clair", MYRTILLE_PALETTE.bodyLight],
+      ["Corps", MYRTILLE_PALETTE.body],
+      ["Corps ombre", MYRTILLE_PALETTE.bodyMid],
+      ["Ombre profonde", MYRTILLE_PALETTE.bodyShadow],
+      ["Couronne", "#3A2F96"],
+      ["Joues", MYRTILLE_PALETTE.cheek],
+      ["Iris", MYRTILLE_PALETTE.iris],
+      ["Iris foncé", MYRTILLE_PALETTE.irisDark],
+      ["Trait", MYRTILLE_PALETTE.ink],
+      ["Bouche", MYRTILLE_PALETTE.mouth],
+      ["Langue", MYRTILLE_PALETTE.tongue],
+    ]}
+    rules={[
+      "Dans les scènes, elle fait environ 60 % de la taille des deux autres : la plus petite de la bande.",
+      "Corps bien rond, indigo, avec un léger voile poudré ; petite couronne de myrtille à 5 pointes sur la tête.",
+      "Très grands yeux violets, bouche petite. Par défaut : curieuse, sourcils levés, un petit « oh ».",
+      "Elle bouge par petits sauts rapides et se cache derrière ses amis quand elle a peur.",
+    ]}
+    guides={[[46, "couronne"], [226, "yeux"], [322, "bouche"], [470, "pieds"]]}
+    bg="#F3F1FF"
+    accent="#6E66D8"
+    ink="#2A2172"
+    guide="#B9B4F2"
+    card="#FAF9FF"
   />
 );

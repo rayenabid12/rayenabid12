@@ -43,7 +43,24 @@ export const MELO_PALETTE: Palette = {
   stripe: "#2E7D32",
 };
 
-export type Skin = "pink" | "melo";
+// Myrtille, the little blueberry: round indigo body with a dusty bloom, a five-point crown, violet eyes.
+export const MYRTILLE_PALETTE: Palette = {
+  bodyLight: "#A9A6F2",
+  body: "#6E66D8",
+  bodyMid: "#4E44B4",
+  bodyShadow: "#2E2780",
+  speckle: "#2E2780",
+  cheek: "#FF8FB8",
+  ink: "#1C1446",
+  irisLight: "#E3C6FF",
+  iris: "#9A5CE6",
+  irisDark: "#4A1F8C",
+  mouth: "#7A1240",
+  lip: "#4E0E2E",
+  tongue: "#F25C8E",
+};
+
+export type Skin = "pink" | "melo" | "myrtille";
 
 const FEET = 470;
 const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
@@ -216,8 +233,7 @@ const Mouth: React.FC<MouthProps> = ({ x, y, scaleX, open, width, smile, tongue,
   );
 };
 
-const Arm: React.FC<{ sx: number; sy: number; angle: number; curl: number; fill: string }> = ({ sx, sy, angle, curl, fill }) => {
-  const len = 134;
+const Arm: React.FC<{ sx: number; sy: number; angle: number; curl: number; fill: string; len?: number }> = ({ sx, sy, angle, curl, fill, len = 134 }) => {
   const a = (angle * Math.PI) / 180;
   const hx = sx + Math.cos(a) * len;
   const hy = sy + Math.sin(a) * len;
@@ -245,6 +261,13 @@ const MELO_LEGS = [
   { x: 232, w: 88, len: 82, phase: 2.2, splay: -8 },
   { x: 288, w: 84, len: 78, phase: 3.0, splay: -24 },
 ];
+const MYR_BODY = "M 200 84 C 304 84 386 166 386 266 C 386 360 310 434 200 434 C 90 434 14 360 14 266 C 14 166 96 84 200 84 Z";
+const MYR_LEGS = [
+  { x: 118, w: 84, len: 62, phase: 0, splay: 22 },
+  { x: 174, w: 86, len: 66, phase: 1.4, splay: 8 },
+  { x: 230, w: 86, len: 64, phase: 2.2, splay: -8 },
+  { x: 284, w: 82, len: 60, phase: 3.0, splay: -22 },
+];
 // rind stripes (clipped to the body)
 const MELO_STRIPES = [64, 128, 200, 272, 336].map(
   (x) => `M ${x - 14} 60 C ${x + 12} 170 ${x - 30} 280 ${x - 6} 450 L ${x + 22} 450 C ${x - 2} 280 ${x + 40} 170 ${x + 14} 60 Z`,
@@ -259,12 +282,16 @@ export const BoumMonster: React.FC<{
   skin?: Skin;
   style?: React.CSSProperties;
 }> = ({ pose: p, shadow = true, held, over, inner, skin = "pink", style }) => {
+  const myr = skin === "myrtille";
   const melo = skin === "melo";
-  const pal: Palette = melo ? MELO_PALETTE : PALETTE;
-  const eyeY = melo ? 206 : 190;
-  const mouthY = melo ? 304 : 292;
-  const legs = melo ? MELO_LEGS : LEGS;
-  const legRoot = melo ? 392 : 374;
+  // Myrtille shares Mélo's round build (no ears, side arms)
+  const round = melo || myr;
+  const pal: Palette = myr ? MYRTILLE_PALETTE : melo ? MELO_PALETTE : PALETTE;
+  const eyeY = myr ? 226 : melo ? 206 : 190;
+  const mouthY = myr ? 322 : melo ? 304 : 292;
+  const legs = myr ? MYR_LEGS : melo ? MELO_LEGS : LEGS;
+  const legRoot = myr ? 404 : melo ? 392 : 374;
+  const eyeBoost = myr ? 1.16 : 1;
   const frame = useCurrentFrame();
   const id = useId().replace(/:/g, "");
   const fill = `url(#body${id})`;
@@ -283,16 +310,16 @@ export const BoumMonster: React.FC<{
   const eyeR = { x: faceX + eyeSpread, s: t < 0 ? 1 - a * 0.55 : 1 };
   const showL = !(t > 0.82);
   const showR = !(t < -0.82);
-  const shoulder = (base: number) => 200 + (base - 200) * (1 - a * (melo ? 0.12 : 0.5)) + t * 30;
+  const shoulder = (base: number) => 200 + (base - 200) * (1 - a * (round ? 0.12 : 0.5)) + t * 30;
   const farArmIsLeft = t > 0.3;
   const farArmIsRight = t < -0.3;
   const legX = (x: number) => 200 + (x - 200) * (1 - a * 0.4) + t * 20;
   const lift = clamp(p.legLift, 0, 1);
 
   const shadowScale = clamp(1 + p.y / 700, 0.35, 1);
-  const armY = melo ? 262 : 252;
-  const armLEl = <Arm sx={shoulder(melo ? 30 : 74) + bx(armY)} sy={armY} angle={118 + p.armL} curl={p.curlL} fill={fill} />;
-  const armREl = <Arm sx={shoulder(melo ? 370 : 326) + bx(armY)} sy={armY} angle={62 - p.armR} curl={-p.curlR} fill={fill} />;
+  const armY = myr ? 290 : melo ? 262 : 252;
+  const armLEl = <Arm sx={shoulder(round ? 30 : 74) + bx(armY)} sy={armY} angle={118 + p.armL} curl={p.curlL} fill={fill} len={myr ? 100 : 134} />;
+  const armREl = <Arm sx={shoulder(round ? 370 : 326) + bx(armY)} sy={armY} angle={62 - p.armR} curl={-p.curlR} fill={fill} len={myr ? 100 : 134} />;
 
   return (
     <svg viewBox="0 0 400 500" style={{ overflow: "visible", ...style }}>
@@ -337,7 +364,7 @@ export const BoumMonster: React.FC<{
         })}
         {farArmIsLeft ? armLEl : null}
         {farArmIsRight ? armREl : null}
-        {melo ? null : (
+        {round ? null : (
           <>
         {/* splash ears (far ear tucks in when turned) */}
         <g transform={`translate(${t > 0 ? t * 70 : t * 20} 0) translate(95 135) scale(${t > 0 ? 1 - a * 0.35 : 1}) rotate(${-p.earL}) translate(-95 -135)`}>
@@ -352,7 +379,22 @@ export const BoumMonster: React.FC<{
           </>
         )}
         {/* body */}
-        <path d={warpPath(melo ? MELO_BODY : BODY, warp)} fill={fill} />
+        <path d={warpPath(myr ? MYR_BODY : melo ? MELO_BODY : BODY, warp)} fill={fill} />
+        {myr ? (
+          <>
+            {/* dusty bloom on the skin */}
+            <ellipse cx={262 + bx(180)} cy={180} rx={90} ry={60} fill="white" opacity={0.12} />
+            <ellipse cx={120 + bx(360)} cy={360} rx={80} ry={44} fill="white" opacity={0.08} />
+            {/* the little blueberry crown, swinging with the ear physics */}
+            <g transform={`translate(${bx(84) + t * 40} 0) rotate(${p.earL * 0.7 + Math.sin(frame / 9) * 4} 200 92)`}>
+              {[0, 72, 144, 216, 288].map((r) => (
+                <path key={r} d="M 200 90 L 188 62 L 200 46 L 212 62 Z" fill="#3A2F96" transform={`rotate(${r - 36} 200 90)`} />
+              ))}
+              <circle cx={200} cy={88} r={14} fill="#2A2172" />
+              <circle cx={196} cy={84} r={5} fill="#8C86E8" opacity={0.6} />
+            </g>
+          </>
+        ) : null}
         {melo ? (
           <>
             <defs>
@@ -374,9 +416,11 @@ export const BoumMonster: React.FC<{
           </>
         ) : null}
         {/* gloss + speckles */}
-        <ellipse cx={128 + bx(104) - t * 20} cy={melo ? 128 : 104} rx={46} ry={20} fill="white" opacity={0.45} transform={`rotate(-28 ${128 + bx(104)} ${melo ? 128 : 104})`} />
-        <ellipse cx={92 + bx(140)} cy={melo ? 162 : 140} rx={10} ry={6} fill="white" opacity={0.4} transform={`rotate(-50 ${92 + bx(140)} ${melo ? 162 : 140})`} />
-        {(melo
+        <ellipse cx={128 + bx(104) - t * 20} cy={round ? 128 : 104} rx={46} ry={20} fill="white" opacity={0.45} transform={`rotate(-28 ${128 + bx(104)} ${round ? 128 : 104})`} />
+        <ellipse cx={92 + bx(140)} cy={round ? 162 : 140} rx={10} ry={6} fill="white" opacity={0.4} transform={`rotate(-50 ${92 + bx(140)} ${round ? 162 : 140})`} />
+        {(myr
+          ? []
+          : melo
           ? [[140, 372, 4], [262, 366, 4.5], [205, 392, 3.5], [96, 340, 3.5], [306, 336, 3.5]]
           : [[140, 380, 4], [262, 372, 4.5], [210, 395, 3]]
         ).map(([x, y, r], i) => (
@@ -395,7 +439,7 @@ export const BoumMonster: React.FC<{
             ].map(([dx, y, r], i) => {
               const side = dx < 0 ? -1 : 1;
               if (a > 0.6 && side !== nearSide) return null;
-              return melo ? null : (
+              return round ? null : (
                 <circle key={i} cx={faceX + dx * (1 - a * 0.35)} cy={y} r={r} fill={pal.speckle} opacity={0.55} />
               );
             })}
@@ -405,19 +449,19 @@ export const BoumMonster: React.FC<{
                 <ellipse
                   key={side}
                   cx={faceX + side * 100 * (1 - a * 0.35)}
-                  cy={melo ? 282 : 268}
+                  cy={myr ? 300 : melo ? 282 : 268}
                   rx={(34 + p.cheeks * 16) * (side === nearSide ? 1 : 1 - a * 0.5)}
                   ry={24 + p.cheeks * 12}
                   fill={pal.cheek}
-                  opacity={(melo ? 0.78 : 0.35) + p.cheeks * (melo ? 0.2 : 0.35)}
+                  opacity={(round ? 0.78 : 0.35) + p.cheeks * (round ? 0.2 : 0.35)}
                 />
               );
             })}
             {showL ? (
-              <Eye cx={eyeL.x} cy={eyeY} scaleX={eyeL.s} side={1} blink={p.blink} squint={p.squint} lookX={p.lookX + t * 0.5} lookY={p.lookY} size={p.eyeScale} pupil={p.pupil} browY={p.browY} browTilt={p.browTilt} id={id} fill={fill} pal={pal} />
+              <Eye cx={eyeL.x} cy={eyeY} scaleX={eyeL.s} side={1} blink={p.blink} squint={p.squint} lookX={p.lookX + t * 0.5} lookY={p.lookY} size={p.eyeScale * eyeBoost} pupil={p.pupil} browY={p.browY} browTilt={p.browTilt} id={id} fill={fill} pal={pal} />
             ) : null}
             {showR ? (
-              <Eye cx={eyeR.x} cy={eyeY} scaleX={eyeR.s} side={-1} blink={p.blink} squint={Math.max(p.squint, p.wink)} lookX={p.lookX + t * 0.5} lookY={p.lookY} size={p.eyeScale} pupil={p.pupil} browY={p.browY + p.wink * 8} browTilt={p.browTilt - p.wink * 10} id={id} fill={fill} pal={pal} />
+              <Eye cx={eyeR.x} cy={eyeY} scaleX={eyeR.s} side={-1} blink={p.blink} squint={Math.max(p.squint, p.wink)} lookX={p.lookX + t * 0.5} lookY={p.lookY} size={p.eyeScale * eyeBoost} pupil={p.pupil} browY={p.browY + p.wink * 8} browTilt={p.browTilt - p.wink * 10} id={id} fill={fill} pal={pal} />
             ) : null}
             <Mouth x={faceX} y={mouthY} scaleX={1 - a * 0.4} open={p.mouthOpen} width={p.mouthWidth} smile={p.smile} tongue={p.tongue} tongueX={p.tongueX} id={id} pal={pal} />
           </g>
